@@ -16,7 +16,7 @@ white = pygame.Color(255, 255, 255)
 while True:
     window.fill(white)
 
-    for event pygame.event.get():
+    for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
