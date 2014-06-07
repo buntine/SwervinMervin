@@ -9,7 +9,7 @@ from pygame.locals import *
 pygame.init()
 
 # Game variables.
-fps            = 30
+fps            = 50
 dimensions     = (640, 480)
 road_width     = 2000
 speed          = 3 # TODO: Change to 0 once accel/decel implemented.
@@ -21,22 +21,38 @@ dark_grey      = pygame.Color(123, 123, 123)
 fps_clock = pygame.time.Clock()
 window    = pygame.display.set_mode(dimensions)
 
-height = 50
+t = 0
 
 while True:
     window.fill(white)
 
-    for n in range(10):
-        color = dark_grey if (n % 2 == 0) else light_grey
-        pygame.draw.rect(window, color, (0, (480 - height), 640, height), 0)
-        height = (height - acceleration);
+    z = t
+    dz = 0
+    ddz = 3
+
+    for n in range(240):
+        dz += ddz
+        z += dz
+
+        if z < 4000:
+            color = dark_grey
+        elif z > 8000:
+            z = 0
+            color = dark_grey
+        elif z > 4000:
+            color = light_grey
+
+        pygame.draw.line(window, color, (0, 480 - n), (640, 480 - n), 1)
+
+    if t > 8000:
+        t = 0
+    else:
+        t += 800
 
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
-
-    height = 50
 
     pygame.display.update()
     fps_clock.tick(fps)
