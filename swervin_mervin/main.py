@@ -42,6 +42,10 @@ while True:
     if speed > top_speed:
         speed = top_speed
 
+    base_segment = find_segment(position, segments, segment_length)
+
+    print base_segment
+
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
