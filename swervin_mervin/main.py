@@ -5,49 +5,42 @@
 
 import pygame, sys
 from pygame.locals import *
+from projection import *
 
 pygame.init()
 
 # Game variables.
 fps            = 50
+position       = 0
 dimensions     = (640, 480)
-road_width     = 2000
-speed          = 3 # TODO: Change to 0 once accel/decel implemented.
-acceleration   = 3
-white          = pygame.Color(255, 255, 255)
-light_grey     = pygame.Color(193, 193, 193)
-dark_grey      = pygame.Color(123, 123, 123)
+segment_height = 200
+rumble_length  = 3
+speed          = 0
+player_x       = 0
+player_z       = 0
+top_speed      = (segment_height / (1.0/fps))
+acceleration   = top_speed / 5.0
+colours        = {"white": pygame.Color(255, 255, 255),
+                  "light_grey": pygame.Color(193, 193, 193),
+                  "dark_grey": pygame.Color(123, 123, 123)}
+
+segments       = build_segments(segment_height, rumble_length, colours["dark_grey"], colours["light_grey"])
+track_length   = len(segments) * segment_height
 
 fps_clock = pygame.time.Clock()
 window    = pygame.display.set_mode(dimensions)
 
-t = 0
-
 while True:
-    window.fill(white)
+    window.fill(colours["white"])
 
-    z = t
-    dz = 0
-    ddz = 3
+    position += (0.02 * speed)
+    speed += (acceleration * 0.02)
 
-    for n in range(240):
-        dz += ddz
-        z += dz
+    if position >= track_length:
+        position = 0
 
-        if z < 4000:
-            color = dark_grey
-        elif z > 8000:
-            z = 0
-            color = dark_grey
-        elif z > 4000:
-            color = light_grey
-
-        pygame.draw.line(window, color, (0, 480 - n), (640, 480 - n), 1)
-
-    if t > 8000:
-        t = 0
-    else:
-        t += 800
+    if speed > top_speed:
+        speed = top_speed
 
     for event in pygame.event.get():
         if event.type == QUIT:
