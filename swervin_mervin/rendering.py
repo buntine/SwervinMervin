@@ -1,7 +1,8 @@
 # Helper functions for rendering.
 
-def render_segment(segment):
-    pass
+def segment_pointlist(segment):
+    # Return pointlist...
+    pass 
 
 def render_player():
     pass

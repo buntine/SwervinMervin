@@ -6,6 +6,7 @@
 import pygame, sys, math
 from pygame.locals import *
 from projection import *
+from rendering import *
 
 pygame.init()
 
@@ -61,8 +62,9 @@ while True:
         if segment["bottom"]["camera"]["z"] <= camera_depth:
             continue
 
-        print segments[index]
-        render_segment(segment)
+        pointlist = segment_pointlist(segment)
+
+        pygame.draw.polygon(screen, segment["colour"], pointlist)
 
     for event in pygame.event.get():
         if event.type == QUIT:
