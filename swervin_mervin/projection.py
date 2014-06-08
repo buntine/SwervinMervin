@@ -5,7 +5,7 @@ import math
 def build_segments(segment_height, rumble_length, colours):
     segments = []
 
-    for n in range(400):
+    for n in range(500):
         segments.append({
           "index":  n,
           "top":    {"world": {"z": ((n + 1) * segment_height)}, "camera": {}, "screen": {}},

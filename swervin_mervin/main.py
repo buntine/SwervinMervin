@@ -17,18 +17,22 @@ dimensions     = (640, 480)
 segment_height = 200
 rumble_length  = 3
 speed          = 1
-draw_distance  = 100
+draw_distance  = 200
 road_width     = 1500
 top_speed      = (segment_height / (1.0/fps))
-acceleration   = top_speed / 5.0
+acceleration   = top_speed / 9.0
 field_of_view  = 100 # Degrees
 camera_height  = 1000
 camera_depth   = 1 / math.tan((field_of_view / 2) * math.pi / 180);
 player_x       = 0
 player_z       = camera_height * camera_depth
 colours        = {"white": pygame.Color(255, 255, 255),
-                  "light": pygame.Color(193, 193, 193),
-                  "dark": pygame.Color(123, 123, 123)}
+                  "light": {"road": pygame.Color(193, 193, 193),
+                            "grass": pygame.Color(61, 212, 76),
+                            "lane": pygame.Color(255, 255, 255)},
+                  "dark": {"road": pygame.Color(173, 173, 173),
+                           "grass": pygame.Color(50, 186, 62),
+                           "lane": pygame.Color(255, 255, 255)}}
 
 segments       = build_segments(segment_height, rumble_length, colours)
 track_length   = len(segments) * segment_height
@@ -59,13 +63,15 @@ while True:
 
         segment["top"]    = project_line(segment, "top", (player_x * road_width), camera_height, position, camera_depth, dimensions, road_width)
         segment["bottom"] = project_line(segment, "bottom", (player_x * road_width), camera_height, position, camera_depth, dimensions, road_width)
+        segments[index] = segment
 
         # Segment is behind us. TODO: Check for clipping.
         if segment["bottom"]["camera"]["z"] <= camera_depth:
             continue
 
         pointlist = segment_pointlist(segment)
-        pygame.draw.polygon(window, segment["colour"], pointlist)
+        render_grass(window, segment)
+        pygame.draw.polygon(window, segment["colour"]["road"], pointlist)
 
     for event in pygame.event.get():
         if event.type == QUIT:

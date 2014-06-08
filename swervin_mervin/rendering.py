@@ -1,5 +1,7 @@
 # Helper functions for rendering.
 
+import pygame
+
 def segment_pointlist(segment):
     top    = segment["top"]["screen"]
     bottom = segment["bottom"]["screen"]
@@ -8,6 +10,12 @@ def segment_pointlist(segment):
             ((bottom["x"] + bottom["w"]), (480 - bottom["y"])),
             ((top["x"] + top["w"]), (480 - top["y"])),
             ((top["x"] - top["w"]), (480 - top["y"]))]
+
+def render_grass(window, segment):
+    top       = segment["top"]["screen"]
+    bottom    = segment["bottom"]["screen"]
+
+    pygame.draw.rect(window, segment["colour"]["grass"], (0, (480 - top["y"]), 640, (top["y"] - bottom["y"])))
 
 def render_player():
     pass
