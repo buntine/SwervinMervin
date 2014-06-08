@@ -64,7 +64,7 @@ while True:
 
         pointlist = segment_pointlist(segment)
 
-        pygame.draw.polygon(screen, segment["colour"], pointlist)
+        pygame.draw.polygon(window, segment["colour"], pointlist)
 
     for event in pygame.event.get():
         if event.type == QUIT:
