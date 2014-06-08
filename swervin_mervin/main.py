@@ -19,8 +19,11 @@ speed          = 0
 player_x       = 0
 player_z       = 0
 draw_distance  = 100
+road_width     = 1500
 top_speed      = (segment_height / (1.0/fps))
 acceleration   = top_speed / 5.0
+field_of_view  = 100 # Degrees
+camera_depth   = 1 / Math.tan((field_of_view / 2) * math.pi / 180);
 colours        = {"white": pygame.Color(255, 255, 255),
                   "light_grey": pygame.Color(193, 193, 193),
                   "dark_grey": pygame.Color(123, 123, 123)}
@@ -46,11 +49,17 @@ while True:
     base_segment = find_segment(position, segments, segment_height)
 
     for s in range(draw_distance):
-        segment = segments[(base_segment["index"] + s) % len(segments)]
-        # Project segment.bottom (p1)
-        # Project segment.top (p2)
-        # Make sure segment not behind us.
-        # Render segment.
+        index             = (base_segment["index"] + s) % len(segments)
+        segment           = segments[index]
+        segment["bottom"] = project_segment(segment, "bottom")
+        segment["top"]    = project_segment(segment, "top")
+        segments[index]   = segment
+
+        # Segment is behind us.
+        if segment["bottom"]["camera"]["z"] <= camera_depth:
+            continue
+
+        render_segment(segment)
 
     for event in pygame.event.get():
         if event.type == QUIT:
