@@ -17,7 +17,7 @@ dimensions     = (640, 480)
 segment_height = 200
 rumble_length  = 3
 speed          = 1
-draw_distance  = 150
+draw_distance  = 100
 road_width     = 1500
 top_speed      = (segment_height / (1.0/fps))
 acceleration   = top_speed / 5.0
@@ -42,8 +42,11 @@ while True:
     position += (0.02 * speed)
     speed += (acceleration * 0.02) # TODO: Might need actually time diff instead of 0.02 guess.
 
-    if position > track_length:
-        position = 0
+    while position >= track_length:
+        position -= track_length
+
+    while position < 0:
+        position += track_length
 
     if speed > top_speed:
         speed = top_speed
