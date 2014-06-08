@@ -1,5 +1,7 @@
 # Helper functions for projection.
 
+import math
+
 def build_segments(segment_height, rumble_length, dark_strip, light_strip):
     segments = []
 
@@ -13,4 +15,4 @@ def build_segments(segment_height, rumble_length, dark_strip, light_strip):
     return segments
 
 def find_segment(z, segments, segment_length):
-    return segments[(z / segment_length) % len(segments)]
+    return segments[math.trunc((z / segment_length) % len(segments))]

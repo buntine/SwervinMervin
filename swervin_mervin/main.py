@@ -18,6 +18,7 @@ rumble_length  = 3
 speed          = 0
 player_x       = 0
 player_z       = 0
+draw_distance  = 100
 top_speed      = (segment_height / (1.0/fps))
 acceleration   = top_speed / 5.0
 colours        = {"white": pygame.Color(255, 255, 255),
@@ -36,15 +37,20 @@ while True:
     position += (0.02 * speed)
     speed += (acceleration * 0.02)
 
-    if position >= track_length:
+    if position > track_length:
         position = 0
 
     if speed > top_speed:
         speed = top_speed
 
-    base_segment = find_segment(position, segments, segment_length)
+    base_segment = find_segment(position, segments, segment_height)
 
-    print base_segment
+    for s in range(draw_distance):
+        segment = segments[(base_segment["index"] + s) % len(segments)]
+        # Project segment.bottom (p1)
+        # Project segment.top (p2)
+        # Make sure segment not behind us.
+        # Render segment.
 
     for event in pygame.event.get():
         if event.type == QUIT:
