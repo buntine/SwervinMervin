@@ -8,8 +8,8 @@ def build_segments(segment_height, rumble_length, colours):
     for n in range(400):
         segments.append({
           "index":  n,
-          "top":    {"world": {"z": (n * segment_height)}, "camera": {}, "screen": {}},
-          "bottom": {"world": {"z": ((n + 1) * segment_height)}, "camera": {}, "screen": {}},
+          "top":    {"world": {"z": ((n + 1) * segment_height)}, "camera": {}, "screen": {}},
+          "bottom": {"world": {"z": (n * segment_height)}, "camera": {}, "screen": {}},
           "colour": colours["dark"] if (n / rumble_length) % 2 == 0 else colours["light"]})
 
     return segments
