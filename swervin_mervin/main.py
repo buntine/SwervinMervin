@@ -27,10 +27,10 @@ camera_depth   = 1 / math.tan((field_of_view / 2) * math.pi / 180);
 player_x       = 0
 player_z       = camera_height * camera_depth
 colours        = {"white": pygame.Color(255, 255, 255),
-                  "light_grey": pygame.Color(193, 193, 193),
-                  "dark_grey": pygame.Color(123, 123, 123)}
+                  "light": pygame.Color(193, 193, 193),
+                  "dark": pygame.Color(123, 123, 123)}
 
-segments       = build_segments(segment_height, rumble_length, colours["dark_grey"], colours["light_grey"])
+segments       = build_segments(segment_height, rumble_length, colours)
 track_length   = len(segments) * segment_height
 
 fps_clock = pygame.time.Clock()
@@ -40,7 +40,7 @@ while True:
     window.fill(colours["white"])
 
     position += (0.02 * speed)
-    speed += (acceleration * 0.02)
+    speed += (acceleration * 0.02) # Might need actually time diff instead of 0.02 guess.
 
     if position > track_length:
         position = 0
@@ -54,16 +54,14 @@ while True:
         index             = (base_segment["index"] + s) % len(segments)
         segment           = segments[index]
 
-        segment["bottom"] = project_line(segment, "bottom", (player_x * road_width), camera_height, position, camera_depth, dimensions, road_width)
         segment["top"]    = project_line(segment, "top", (player_x * road_width), camera_height, position, camera_depth, dimensions, road_width)
-        segments[index]   = segment
+        segment["bottom"] = project_line(segment, "bottom", (player_x * road_width), camera_height, position, camera_depth, dimensions, road_width)
 
-        # Segment is behind us.
+        # Segment is behind us. TODO: Check for clipping.
         if segment["bottom"]["camera"]["z"] <= camera_depth:
             continue
 
         pointlist = segment_pointlist(segment)
-
         pygame.draw.polygon(window, segment["colour"], pointlist)
 
     for event in pygame.event.get():

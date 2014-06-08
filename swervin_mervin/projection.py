@@ -2,15 +2,15 @@
 
 import math
 
-def build_segments(segment_height, rumble_length, dark_strip, light_strip):
+def build_segments(segment_height, rumble_length, colours):
     segments = []
 
     for n in range(400):
         segments.append({
           "index":  n,
-          "bottom": {"world": {"z": (n * segment_height)}, "camera": {}, "screen": {}},
-          "top":    {"world": {"z": ((n + 1) * segment_height)}, "camera": {}, "screen": {}},
-          "colour": dark_strip if (n / rumble_length) % 2 == 0 else light_strip})
+          "top":    {"world": {"z": (n * segment_height)}, "camera": {}, "screen": {}},
+          "bottom": {"world": {"z": ((n + 1) * segment_height)}, "camera": {}, "screen": {}},
+          "colour": colours["dark"] if (n / rumble_length) % 2 == 0 else colours["light"]})
 
     return segments
 
