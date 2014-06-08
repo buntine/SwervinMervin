@@ -16,3 +16,6 @@ def build_segments(segment_height, rumble_length, dark_strip, light_strip):
 
 def find_segment(z, segments, segment_length):
     return segments[math.trunc((z / segment_length) % len(segments))]
+
+def project_segment(p, camera_x, camera_y, camera_z, camera_depth, width, height, road_width):
+    pass
