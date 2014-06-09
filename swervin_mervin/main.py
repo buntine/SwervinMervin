@@ -31,6 +31,13 @@ while True:
     player_x += direction_x
 
     # TODO: Move.
+    # Prevent player from going too far off track.
+    if player_x < -1.8:
+        player_x = -1.8
+    elif player_x > 1.8:
+        player_x = 1.8
+
+    # TODO: Move.
     while position >= track_length:
         position -= track_length
     while position < 0:
@@ -40,8 +47,9 @@ while True:
     if speed > s.TOP_SPEED:
         speed = s.TOP_SPEED
 
-    base_segment = find_segment(position, segments, s.SEGMENT_HEIGHT)
+    base_segment = find_segment(position, segments)
 
+    # Loop through segments we should draw for this frame.
     for i in range(s.DRAW_DISTANCE):
         index              = (base_segment["index"] + i) % len(segments)
         segment            = segments[index]
@@ -51,13 +59,14 @@ while True:
         if segment["index"] < base_segment["index"]:
             projected_position -= track_length
 
-        project_line(segment, "top", (player_x * s.ROAD_WIDTH), s.CAMERA_HEIGHT, projected_position, s.CAMERA_DEPTH, s.DIMENSIONS, s.ROAD_WIDTH)
-        project_line(segment, "bottom", (player_x * s.ROAD_WIDTH), s.CAMERA_HEIGHT, projected_position, s.CAMERA_DEPTH, s.DIMENSIONS, s.ROAD_WIDTH)
+        project_line(segment, "top", (player_x * s.ROAD_WIDTH), projected_position)
+        project_line(segment, "bottom", (player_x * s.ROAD_WIDTH), projected_position)
 
-        # Segment is behind us.
+        # Segment is behind us, so ignore it.
         if segment["bottom"]["camera"]["z"] <= s.CAMERA_DEPTH:
             continue
 
+        # TODO: Clean up rendering.py and only pass in necessary arguments.
         render_grass(window, segment, s.DIMENSIONS)
         render_road(window, segment, s.DIMENSIONS, s.RUMBLE_LENGTH)
         render_player(window, segment, s.DIMENSIONS)
@@ -73,14 +82,6 @@ while True:
                 direction_x = (0.02 * 2 * (speed / s.TOP_SPEED))
         else:
             direction_x = 0
-
-    # TODO: Move.
-    # Prevent player from going too far off track.
-    if player_x < -1.8:
-        player_x = -1.8
-    elif player_x > 1.8:
-        player_x = 1.8
-
 
     pygame.display.update()
     fps_clock.tick(s.FPS)
