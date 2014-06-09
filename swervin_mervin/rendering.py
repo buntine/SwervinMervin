@@ -31,6 +31,18 @@ def render_road(window, segment, dimensions, rumble_length):
 
     pygame.draw.polygon(window, segment["colour"]["rumble"], points)
 
+    if (segment["index"] / rumble_length) % 2 == 0:
+        bottom_line_width = (bottom["w"] / 32)
+        top_line_width    = (top["w"] / 32)
+        
+        points = [(bottom["x"], (dimensions[1] - bottom["y"])),
+                  ((bottom["x"] + bottom_line_width * 2), (dimensions[1] - bottom["y"])),
+                  ((top["x"] + top_line_width * 2), (dimensions[1] - top["y"])),
+                  (top["x"], (dimensions[1] - top["y"]))]
+                  
+        pygame.draw.polygon(window, segment["colour"]["line"], points)
+
+
 def render_grass(window, segment, dimensions):
     top       = segment["top"]["screen"]
     bottom    = segment["bottom"]["screen"]

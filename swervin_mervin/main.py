@@ -31,11 +31,11 @@ colours        = {"white": pygame.Color(255, 255, 255),
                   "light": {"road": pygame.Color(193, 193, 193),
                             "grass": pygame.Color(61, 212, 76),
                             "rumble": pygame.Color(223, 215, 1),
-                            "lane": pygame.Color(255, 255, 255)},
+                            "line": pygame.Color(255, 255, 255)},
                   "dark": {"road": pygame.Color(173, 173, 173),
                            "grass": pygame.Color(50, 186, 62),
                            "rumble": pygame.Color(192, 186, 0),
-                           "lane": pygame.Color(255, 255, 255)}}
+                           "line": pygame.Color(255, 255, 255)}}
 
 segments       = build_segments(segment_height, rumble_length, colours)
 track_length   = len(segments) * segment_height
