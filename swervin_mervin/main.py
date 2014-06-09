@@ -25,6 +25,7 @@ field_of_view  = 100 # Degrees
 camera_height  = 1000
 camera_depth   = 1 / math.tan((field_of_view / 2) * math.pi / 180);
 player_x       = 0
+direction_x    = 0
 player_z       = camera_height * camera_depth
 colours        = {"white": pygame.Color(255, 255, 255),
                   "light": {"road": pygame.Color(193, 193, 193),
@@ -45,6 +46,7 @@ while True:
 
     position += (0.02 * speed)
     speed += (acceleration * 0.02) # TODO: Might need actually time diff instead of 0.02 guess.
+    player_x += direction_x
 
     while position >= track_length:
         position -= track_length
@@ -76,6 +78,21 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+        elif event.type == KEYDOWN:
+            if event.key == K_LEFT:
+                direction_x = -0.02
+            elif event.key == K_RIGHT:
+                direction_x = 0.02
+        else:
+            direction_x = 0
+
+    # Prevent player from going too far off track.
+    if player_x < -1.8:
+        player_x = -1.8
+
+    if player_x > 1.8:
+        player_x = 1.8
+
 
     pygame.display.update()
     fps_clock.tick(fps)
