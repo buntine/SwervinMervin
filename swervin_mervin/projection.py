@@ -1,7 +1,5 @@
 # Helper functions for projection.
 
-import math
-
 def build_segments(segment_height, rumble_length, colours):
     segments = []
 
@@ -15,17 +13,22 @@ def build_segments(segment_height, rumble_length, colours):
     return segments
 
 def find_segment(z, segments, segment_length):
-    return segments[math.trunc((z / segment_length) % len(segments))]
+    s = int(round((z / segment_length) % len(segments)))
+
+    if s == len(segments):
+        s = 0
+
+    return segments[s]
 
 def project_line(segment, line, camera_x, camera_y, camera_z, camera_depth, dimensions, road_width):
-    p = segment[line]
+    p      = segment[line]
+    width  = dimensions[0] / 2
+    height = dimensions[1] / 2
 
     p["camera"]["x"] = p["world"].get("x", 0) - camera_x
     p["camera"]["y"] = p["world"].get("y", 0) - camera_y
     p["camera"]["z"] = p["world"].get("z", 0) - camera_z
     p["screen"]["s"] = camera_depth / p["camera"]["z"]
-    p["screen"]["x"] = math.trunc((dimensions[0] / 2) + (p["screen"]["s"] * p["camera"]["x"] * (dimensions[0] / 2)))
-    p["screen"]["y"] = math.trunc((dimensions[1] / 2) + (p["screen"]["s"] * p["camera"]["y"] * (dimensions[1] / 2)))
-    p["screen"]["w"] = math.trunc(p["screen"]["s"] * road_width * (dimensions[0] / 2))
-
-    return p
+    p["screen"]["x"] = round(width + (p["screen"]["s"] * p["camera"]["x"] * width))
+    p["screen"]["y"] = round(height + (p["screen"]["s"] * p["camera"]["y"] * height))
+    p["screen"]["w"] = round(p["screen"]["s"] * road_width * (dimensions[0] / 2))

@@ -14,10 +14,10 @@ pygame.init()
 fps            = 50
 position       = 0
 dimensions     = (640, 480)
-segment_height = 200
+segment_height = 150
 rumble_length  = 3
 speed          = 1
-draw_distance  = 200
+draw_distance  = 100
 road_width     = 1500
 top_speed      = (segment_height / (1.0/fps))
 acceleration   = top_speed / 9.0
@@ -61,11 +61,10 @@ while True:
         index             = (base_segment["index"] + s) % len(segments)
         segment           = segments[index]
 
-        segment["top"]    = project_line(segment, "top", (player_x * road_width), camera_height, position, camera_depth, dimensions, road_width)
-        segment["bottom"] = project_line(segment, "bottom", (player_x * road_width), camera_height, position, camera_depth, dimensions, road_width)
-        segments[index] = segment
+        project_line(segment, "top", (player_x * road_width), camera_height, position, camera_depth, dimensions, road_width)
+        project_line(segment, "bottom", (player_x * road_width), camera_height, position, camera_depth, dimensions, road_width)
 
-        # Segment is behind us. TODO: Check for clipping.
+        # Segment is behind us.
         if segment["bottom"]["camera"]["z"] <= camera_depth:
             continue
 
