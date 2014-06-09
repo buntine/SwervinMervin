@@ -62,11 +62,16 @@ while True:
     base_segment = find_segment(position, segments, segment_height)
 
     for s in range(draw_distance):
-        index             = (base_segment["index"] + s) % len(segments)
-        segment           = segments[index]
+        index              = (base_segment["index"] + s) % len(segments)
+        segment            = segments[index]
+        projected_position = position
 
-        project_line(segment, "top", (player_x * road_width), camera_height, position, camera_depth, dimensions, road_width)
-        project_line(segment, "bottom", (player_x * road_width), camera_height, position, camera_depth, dimensions, road_width)
+        # Past end of track and looped back.
+        if segment["index"] < base_segment["index"]:
+            projected_position -= track_length
+
+        project_line(segment, "top", (player_x * road_width), camera_height, projected_position, camera_depth, dimensions, road_width)
+        project_line(segment, "bottom", (player_x * road_width), camera_height, projected_position, camera_depth, dimensions, road_width)
 
         # Segment is behind us.
         if segment["bottom"]["camera"]["z"] <= camera_depth:
