@@ -80,9 +80,9 @@ while True:
             sys.exit()
         elif event.type == KEYDOWN:
             if event.key == K_LEFT:
-                direction_x = -0.02
+                direction_x = -(0.02 * 2 * (speed / top_speed))
             elif event.key == K_RIGHT:
-                direction_x = 0.02
+                direction_x = (0.02 * 2 * (speed / top_speed))
         else:
             direction_x = 0
 
