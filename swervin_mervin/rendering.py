@@ -14,8 +14,9 @@ def segment_pointlist(segment):
 def render_grass(window, segment):
     top       = segment["top"]["screen"]
     bottom    = segment["bottom"]["screen"]
+    height    = (top["y"] - bottom["y"])
 
-    pygame.draw.rect(window, segment["colour"]["grass"], (0, (480 - top["y"]), 640, (top["y"] - bottom["y"])))
+    pygame.draw.rect(window, segment["colour"]["grass"], (0, (480 - top["y"]), 640, height))
 
 def render_player():
     pass
