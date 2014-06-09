@@ -22,7 +22,7 @@ road_width     = 1500
 top_speed      = (segment_height / (1.0/fps))
 acceleration   = top_speed / 9.0
 field_of_view  = 100 # Degrees
-camera_height  = 1000
+camera_height  = 1400
 camera_depth   = 1 / math.tan((field_of_view / 2) * math.pi / 180);
 player_x       = 0
 direction_x    = 0
@@ -73,7 +73,7 @@ while True:
             continue
 
         render_grass(window, segment, dimensions)
-        render_road(window, segment, dimensions)
+        render_road(window, segment, dimensions, rumble_length)
         render_player(window, segment, dimensions)
 
     for event in pygame.event.get():

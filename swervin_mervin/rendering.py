@@ -2,7 +2,7 @@
 
 import pygame
 
-def render_road(window, segment, dimensions):
+def render_road(window, segment, dimensions, rumble_length):
     top    = segment["top"]["screen"]
     bottom = segment["bottom"]["screen"]
 
@@ -14,22 +14,22 @@ def render_road(window, segment, dimensions):
     pygame.draw.polygon(window, segment["colour"]["road"], points)
 
     # Rumble strip.
-    if (segment["index"] / 3) % 2 > 0:
-        points = [((bottom["x"] - bottom["w"] + 20), (dimensions[1] - bottom["y"])),
-                  ((bottom["x"] - bottom["w"]), (dimensions[1] - bottom["y"])),
-                  ((top["x"] - top["w"]), (dimensions[1] - top["y"])),
-                  ((top["x"] - top["w"] + 20), (dimensions[1] - top["y"]))]
+    left_rumble_width  = top["w"] / 6
+    right_rumble_width = bottom["w"] / 6
 
-        pygame.draw.polygon(window, segment["colour"]["rumble"], points)
+    points = [((bottom["x"] - bottom["w"] - left_rumble_width), (dimensions[1] - bottom["y"])),
+              ((bottom["x"] - bottom["w"]), (dimensions[1] - bottom["y"])),
+              ((top["x"] - top["w"]), (dimensions[1] - top["y"])),
+              ((top["x"] - top["w"] - left_rumble_width), (dimensions[1] - top["y"]))]
 
-        points = [((bottom["x"] + bottom["w"] - 20), (dimensions[1] - bottom["y"])),
-                  ((bottom["x"] + bottom["w"]), (dimensions[1] - bottom["y"])),
-                  ((top["x"] + top["w"]), (dimensions[1] - top["y"])),
-                  ((top["x"] + top["w"] - 20), (dimensions[1] - top["y"]))]
+    pygame.draw.polygon(window, segment["colour"]["rumble"], points)
 
-        pygame.draw.polygon(window, segment["colour"]["rumble"], points)
+    points = [((bottom["x"] + bottom["w"] + right_rumble_width), (dimensions[1] - bottom["y"])),
+              ((bottom["x"] + bottom["w"]), (dimensions[1] - bottom["y"])),
+              ((top["x"] + top["w"]), (dimensions[1] - top["y"])),
+              ((top["x"] + top["w"] + right_rumble_width), (dimensions[1] - top["y"]))]
 
-
+    pygame.draw.polygon(window, segment["colour"]["rumble"], points)
 
 def render_grass(window, segment, dimensions):
     top       = segment["top"]["screen"]
