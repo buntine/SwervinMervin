@@ -70,9 +70,8 @@ while True:
         if segment["bottom"]["camera"]["z"] <= camera_depth:
             continue
 
-        pointlist = segment_pointlist(segment)
-        render_grass(window, segment)
-        pygame.draw.polygon(window, segment["colour"]["road"], pointlist)
+        render_grass(window, segment, dimensions)
+        render_road(window, segment, dimensions)
 
     for event in pygame.event.get():
         if event.type == QUIT:
