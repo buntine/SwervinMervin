@@ -47,7 +47,6 @@ while True:
     # TODO: Move.
     if speed > s.TOP_SPEED:
         speed = s.TOP_SPEED
-
     if speed < 0:
         speed = 0
 
@@ -98,11 +97,7 @@ while True:
 
         else:
             direction_x = 0
-
-            if speed > 0:
-                acceleration = -(1.0 / s.FPS)
-            else:
-                acceleration = 0
+            acceleration = -(1.0 / s.FPS)
 
     pygame.display.update()
     fps_clock.tick(s.FPS)
