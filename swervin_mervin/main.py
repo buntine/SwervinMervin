@@ -24,7 +24,7 @@ fps_clock = pygame.time.Clock()
 window    = pygame.display.set_mode(s.DIMENSIONS)
 
 while True:
-    window.fill(s.COLOURS["white"])
+    window.fill(s.COLOURS["sky"])
 
     position += (0.02 * speed)
     speed    += (s.ACCELERATION * 0.02) # TODO: Might need actually time diff instead of 0.02 guess.

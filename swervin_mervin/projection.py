@@ -3,6 +3,8 @@
 import settings as s
 
 def build_segments():
+    """Builds an array of segments, pre-populating each with a Z position
+       and alternating colour palette"""
     segments = []
 
     for n in range(500):
@@ -21,6 +23,7 @@ def build_segments():
     return segments
 
 def find_segment(z, segments):
+    """Finds the correct segment for any given Z position"""
     i = int(round((z / s.SEGMENT_HEIGHT) % len(segments)))
 
     if i == len(segments):
@@ -29,6 +32,8 @@ def find_segment(z, segments):
     return segments[i]
 
 def project_line(segment, line, camera_x, camera_z):
+    """Translates 3d coordinates to fit into a 2d surface.
+       Modifies segment[line] in place."""
     p      = segment[line]
     width  = s.DIMENSIONS[0] / 2
     height = s.DIMENSIONS[1] / 2

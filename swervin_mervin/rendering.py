@@ -4,6 +4,7 @@ import pygame
 import settings as s
 
 def render_road(window, segment):
+    """Renders the polygons for the road, markers, etc."""
     top      = segment["top"]["screen"]
     bottom   = segment["bottom"]["screen"]
     y_top    = (s.DIMENSIONS[1] - top["y"])
@@ -46,6 +47,7 @@ def render_road(window, segment):
         pygame.draw.polygon(window, colour["line"], points)
 
 def render_grass(window, segment):
+    """Renders grass strip for the given segment"""
     top       = segment["top"]["screen"]
     bottom    = segment["bottom"]["screen"]
     height    = top["y"] - bottom["y"]
