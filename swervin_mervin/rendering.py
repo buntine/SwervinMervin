@@ -36,13 +36,13 @@ def render_road(window, segment):
     pygame.draw.polygon(window, colour["rumble"], points)
 
     if (segment["index"] / s.RUMBLE_LENGTH) % 2 == 0:
-       
-        # Road lane marker(s).
+        # Road lanes.
         top_line_width    = (top["w"] / (s.LANES * 8))
         bottom_line_width = (bottom["w"] / (s.LANES * 8))
         lane_top_w        = top["w"] / s.LANES
         lane_bottom_w     = bottom["w"] / s.LANES
 
+        # Render each lane separator.
         for lane in range(s.LANES - 1):
             lane_bottom_w *= 2
             lane_top_w    *= 2

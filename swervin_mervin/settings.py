@@ -4,6 +4,7 @@ from pygame import Color
 import math
 
 FPS              = 50
+FRAME_RATE       = (1.0 / FPS)
 DIMENSIONS       = (640, 480)
 SEGMENT_HEIGHT   = 220
 RUMBLE_LENGTH    = 3
