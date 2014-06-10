@@ -18,8 +18,8 @@ def render_road(window, segment):
               ((top["x"] - top["w"]),       y_top)]
     pygame.draw.polygon(window, colour["road"], points)
 
-    top_rumble_width    = top["w"] / 6
-    bottom_rumble_width = bottom["w"] / 6
+    top_rumble_width    = top["w"] / (s.LANES * 2)
+    bottom_rumble_width = bottom["w"] / (s.LANES * 2)
 
     # Left rumble strip.
     points = [((bottom["x"] - bottom["w"] - top_rumble_width), y_bottom),
@@ -36,15 +36,26 @@ def render_road(window, segment):
     pygame.draw.polygon(window, colour["rumble"], points)
 
     if (segment["index"] / s.RUMBLE_LENGTH) % 2 == 0:
-        top_line_width    = (top["w"] / 32)
-        bottom_line_width = (bottom["w"] / 32)
-        
-        # Road lane marker.
-        points = [(bottom["x"],                           y_bottom),
-                  ((bottom["x"] + bottom_line_width * 2), y_bottom),
-                  ((top["x"] + top_line_width * 2),       y_top),
-                  (top["x"],                              y_top)]
-        pygame.draw.polygon(window, colour["line"], points)
+       
+        # Road lane marker(s).
+        top_line_width    = (top["w"] / (s.LANES * 8))
+        bottom_line_width = (bottom["w"] / (s.LANES * 8))
+        lane_top_w        = top["w"] / s.LANES
+        lane_bottom_w     = bottom["w"] / s.LANES
+
+        for lane in range(s.LANES - 1):
+            lane_bottom_w *= 2
+            lane_top_w    *= 2
+            bottom_left    = (bottom["x"] - bottom["w"] + lane_bottom_w)
+            bottom_right   = bottom_left + bottom_line_width
+            top_left       = (top["x"] - top["w"] + lane_top_w)
+            top_right      = top_left + top_line_width
+
+            points = [(bottom_left,  y_bottom),
+                      (bottom_right, y_bottom),
+                      (top_right,    y_top),
+                      (top_left,     y_top)]
+            pygame.draw.polygon(window, colour["line"], points)
 
 def render_grass(window, segment):
     """Renders grass strip for the given segment"""

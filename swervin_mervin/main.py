@@ -27,7 +27,7 @@ window    = pygame.display.set_mode(s.DIMENSIONS)
 while True:
     window.fill(s.COLOURS["sky"])
 
-    position += (0.02 * speed)
+    position += ((1.0 / s.FPS) * speed)
     speed    += (s.ACCELERATION * acceleration)
     player_x += direction_x
 
@@ -81,23 +81,23 @@ while True:
         elif event.type == KEYDOWN:
             # Go left.
             if event.key == K_LEFT:
-                direction_x = -(0.02 * 2 * (speed / s.TOP_SPEED))
+                direction_x = -((1.0 / s.FPS) * 2 * (speed / s.TOP_SPEED))
 
             # Go right.
             elif event.key == K_RIGHT:
-                direction_x = (0.02 * 2 * (speed / s.TOP_SPEED))
+                direction_x = ((1.0 / s.FPS) * 2 * (speed / s.TOP_SPEED))
 
             # Accelerate!
             elif event.key == K_UP:
                 acceleration = (1.0 / s.FPS)
 
-            # Decelerate
+            # Decelerate.
             elif event.key == K_DOWN:
                 acceleration = -(1.0 / s.FPS)
 
         else:
-            direction_x = 0
-            acceleration = -(1.0 / s.FPS)
+            direction_x  = 0
+            acceleration = 0
 
     pygame.display.update()
     fps_clock.tick(s.FPS)
