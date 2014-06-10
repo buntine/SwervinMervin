@@ -16,6 +16,7 @@ position     = 0
 speed        = 1
 player_x     = 0
 direction_x  = 0
+acceleration = 0
 player_z     = s.CAMERA_HEIGHT * s.CAMERA_DEPTH
 segments     = build_segments()
 track_length = len(segments) * s.SEGMENT_HEIGHT
@@ -27,7 +28,7 @@ while True:
     window.fill(s.COLOURS["sky"])
 
     position += (0.02 * speed)
-    speed    += (s.ACCELERATION * 0.02) # TODO: Might need actually time diff instead of 0.02 guess.
+    speed    += (s.ACCELERATION * acceleration)
     player_x += direction_x
 
     # TODO: Move.
@@ -46,6 +47,9 @@ while True:
     # TODO: Move.
     if speed > s.TOP_SPEED:
         speed = s.TOP_SPEED
+
+    if speed < 0:
+        speed = 0
 
     base_segment = find_segment(position, segments)
 
@@ -76,12 +80,29 @@ while True:
             pygame.quit()
             sys.exit()
         elif event.type == KEYDOWN:
+            # Go left.
             if event.key == K_LEFT:
                 direction_x = -(0.02 * 2 * (speed / s.TOP_SPEED))
+
+            # Go right.
             elif event.key == K_RIGHT:
                 direction_x = (0.02 * 2 * (speed / s.TOP_SPEED))
+
+            # Accelerate!
+            elif event.key == K_UP:
+                acceleration = (1.0 / s.FPS)
+
+            # Decelerate
+            elif event.key == K_DOWN:
+                acceleration = -(1.0 / s.FPS)
+
         else:
             direction_x = 0
+
+            if speed > 0:
+                acceleration = -(1.0 / s.FPS)
+            else:
+                acceleration = 0
 
     pygame.display.update()
     fps_clock.tick(s.FPS)
