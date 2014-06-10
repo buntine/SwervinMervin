@@ -2,15 +2,21 @@
 
 import settings as s
 
-def build_segments(segment_height, rumble_length, colours):
+def build_segments():
     segments = []
 
     for n in range(500):
+        palette = "dark" if (n / s.RUMBLE_LENGTH) % 2 == 0 else "light"
+
         segments.append({
           "index":  n,
-          "top":    {"world": {"z": ((n + 1) * segment_height)}, "camera": {}, "screen": {}},
-          "bottom": {"world": {"z": (n * segment_height)}, "camera": {}, "screen": {}},
-          "colour": colours["dark"] if (n / rumble_length) % 2 == 0 else colours["light"]})
+          "top":    {"world": {"z": ((n + 1) * s.SEGMENT_HEIGHT)},
+                     "camera": {},
+                     "screen": {}},
+          "bottom": {"world": {"z": (n * s.SEGMENT_HEIGHT)},
+                     "camera": {},
+                     "screen": {}},
+          "colour": s.COLOURS[palette]})
 
     return segments
 

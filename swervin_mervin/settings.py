@@ -5,7 +5,7 @@ import math
 
 FPS              = 50
 DIMENSIONS       = (640, 480)
-SEGMENT_HEIGHT   = 150
+SEGMENT_HEIGHT   = 220
 RUMBLE_LENGTH    = 3
 DRAW_DISTANCE    = 100
 ROAD_WIDTH       = 1500

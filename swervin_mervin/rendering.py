@@ -1,58 +1,60 @@
 # Helper functions for rendering.
 
 import pygame
+import settings as s
 
-def render_road(window, segment, dimensions, rumble_length):
-    top    = segment["top"]["screen"]
-    bottom = segment["bottom"]["screen"]
+def render_road(window, segment):
+    top      = segment["top"]["screen"]
+    bottom   = segment["bottom"]["screen"]
+    y_top    = (s.DIMENSIONS[1] - top["y"])
+    y_bottom = (s.DIMENSIONS[1] - bottom["y"])
+    colour   = segment["colour"]
 
     # Road.
-    points = [((bottom["x"] - bottom["w"]), (dimensions[1] - bottom["y"])),
-              ((bottom["x"] + bottom["w"]), (dimensions[1] - bottom["y"])),
-              ((top["x"] + top["w"]), (dimensions[1] - top["y"])),
-              ((top["x"] - top["w"]), (dimensions[1] - top["y"]))]
-    pygame.draw.polygon(window, segment["colour"]["road"], points)
+    points = [((bottom["x"] - bottom["w"]), y_bottom),
+              ((bottom["x"] + bottom["w"]), y_bottom),
+              ((top["x"] + top["w"]),       y_top),
+              ((top["x"] - top["w"]),       y_top)]
+    pygame.draw.polygon(window, colour["road"], points)
 
-    # Rumble strip.
-    left_rumble_width  = top["w"] / 6
-    right_rumble_width = bottom["w"] / 6
+    top_rumble_width    = top["w"] / 6
+    bottom_rumble_width = bottom["w"] / 6
 
-    points = [((bottom["x"] - bottom["w"] - left_rumble_width), (dimensions[1] - bottom["y"])),
-              ((bottom["x"] - bottom["w"]), (dimensions[1] - bottom["y"])),
-              ((top["x"] - top["w"]), (dimensions[1] - top["y"])),
-              ((top["x"] - top["w"] - left_rumble_width), (dimensions[1] - top["y"]))]
+    # Left rumble strip.
+    points = [((bottom["x"] - bottom["w"] - top_rumble_width), y_bottom),
+              ((bottom["x"] - bottom["w"]),                    y_bottom),
+              ((top["x"] - top["w"]),                          y_top),
+              ((top["x"] - top["w"] - top_rumble_width),       y_top)]
+    pygame.draw.polygon(window, colour["rumble"], points)
 
-    pygame.draw.polygon(window, segment["colour"]["rumble"], points)
+    # Right rumble strip.
+    points = [((bottom["x"] + bottom["w"] + bottom_rumble_width), y_bottom),
+              ((bottom["x"] + bottom["w"]),                       y_bottom),
+              ((top["x"] + top["w"]),                             y_top),
+              ((top["x"] + top["w"] + bottom_rumble_width),       y_top)]
+    pygame.draw.polygon(window, colour["rumble"], points)
 
-    points = [((bottom["x"] + bottom["w"] + right_rumble_width), (dimensions[1] - bottom["y"])),
-              ((bottom["x"] + bottom["w"]), (dimensions[1] - bottom["y"])),
-              ((top["x"] + top["w"]), (dimensions[1] - top["y"])),
-              ((top["x"] + top["w"] + right_rumble_width), (dimensions[1] - top["y"]))]
-
-    pygame.draw.polygon(window, segment["colour"]["rumble"], points)
-
-    if (segment["index"] / rumble_length) % 2 == 0:
-        bottom_line_width = (bottom["w"] / 32)
+    if (segment["index"] / s.RUMBLE_LENGTH) % 2 == 0:
         top_line_width    = (top["w"] / 32)
+        bottom_line_width = (bottom["w"] / 32)
         
-        points = [(bottom["x"], (dimensions[1] - bottom["y"])),
-                  ((bottom["x"] + bottom_line_width * 2), (dimensions[1] - bottom["y"])),
-                  ((top["x"] + top_line_width * 2), (dimensions[1] - top["y"])),
-                  (top["x"], (dimensions[1] - top["y"]))]
-                  
-        pygame.draw.polygon(window, segment["colour"]["line"], points)
+        # Road lane marker.
+        points = [(bottom["x"],                           y_bottom),
+                  ((bottom["x"] + bottom_line_width * 2), y_bottom),
+                  ((top["x"] + top_line_width * 2),       y_top),
+                  (top["x"],                              y_top)]
+        pygame.draw.polygon(window, colour["line"], points)
 
-
-def render_grass(window, segment, dimensions):
+def render_grass(window, segment):
     top       = segment["top"]["screen"]
     bottom    = segment["bottom"]["screen"]
-    height    = (top["y"] - bottom["y"])
-    y         = (dimensions[1] - top["y"])
+    height    = top["y"] - bottom["y"]
+    y         = s.DIMENSIONS[1] - top["y"]
 
     if height <= 1:
-        pygame.draw.line(window, segment["colour"]["grass"], (0, y), (dimensions[0], y), 1)
+        pygame.draw.line(window, segment["colour"]["grass"], (0, y), (s.DIMENSIONS[0], y), 1)
     else:
-        pygame.draw.rect(window, segment["colour"]["grass"], (0, y, dimensions[0], height))
+        pygame.draw.rect(window, segment["colour"]["grass"], (0, y, s.DIMENSIONS[0], height))
 
-def render_player(window, segment, dimensions):
+def render_player(window, segment):
     pass

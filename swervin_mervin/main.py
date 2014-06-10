@@ -17,7 +17,7 @@ speed        = 1
 player_x     = 0
 direction_x  = 0
 player_z     = s.CAMERA_HEIGHT * s.CAMERA_DEPTH
-segments     = build_segments(s.SEGMENT_HEIGHT, s.RUMBLE_LENGTH, s.COLOURS)
+segments     = build_segments()
 track_length = len(segments) * s.SEGMENT_HEIGHT
 
 fps_clock = pygame.time.Clock()
@@ -67,9 +67,9 @@ while True:
             continue
 
         # TODO: Clean up rendering.py and only pass in necessary arguments.
-        render_grass(window, segment, s.DIMENSIONS)
-        render_road(window, segment, s.DIMENSIONS, s.RUMBLE_LENGTH)
-        render_player(window, segment, s.DIMENSIONS)
+        render_grass(window, segment)
+        render_road(window, segment)
+        render_player(window, segment)
 
     for event in pygame.event.get():
         if event.type == QUIT:
