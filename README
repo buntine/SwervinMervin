@@ -4,3 +4,5 @@ SWERVIN' MERVIN'
 A recreation of 80's-style pseudo-3D arcade racing games.
 
 Accelleration and steering are performed by integrating with a LEAP Motion Controller.
+
+I owe a lot to to Jake at codeincomplete.com and Lou at extentofthejam.com as pseudo-3d games development really pushed my mathematical boundaries. Without their fantastic articles I would have failed miserably!

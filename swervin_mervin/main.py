@@ -19,7 +19,7 @@ player_x     = 0
 direction_x  = 0
 acceleration = 0
 player_z     = s.CAMERA_HEIGHT * s.CAMERA_DEPTH
-segments     = se.build_segments()
+segments     = se.build_level()
 track_length = len(segments) * s.SEGMENT_HEIGHT
 
 fps_clock = pygame.time.Clock()

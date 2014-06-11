@@ -2,35 +2,36 @@
 
 import settings as s
 
-def build_segments():
+def build_level():
     """Builds an array of segments, pre-populating each with a Z position
        and alternating colour palette"""
     segments = []
 
     for n in range(100):
-        palette = "dark" if (n / s.RUMBLE_LENGTH) % 2 == 0 else "light"
+        segments.append(new_segment(n, 0))
 
-        segments.append({
-          "index":  n,
-          "curve": 0,
-          "top":    {"world": {"z": ((n + 1) * s.SEGMENT_HEIGHT)},
-                     "camera": {},
-                     "screen": {}},
-          "bottom": {"world": {"z": (n * s.SEGMENT_HEIGHT)},
-                     "camera": {},
-                     "screen": {}},
-          "colour": s.COLOURS[palette]})
-
-    #segments += add_curve(a, b, c, d)
+    #segments += add_corner(a, b, c, d)
 
     return segments
 
-def add_segment(curve):
-    """Adds a single segment to the segments array"""
-    pass
+def new_segment(index, curve):
+    """Returns a new segment for the segments array"""
+    palette = "dark" if (index / s.RUMBLE_LENGTH) % 2 == 0 else "light"
+    segment = {
+      "index":  index,
+      "curve": curve,
+      "top":    {"world": {"z": ((index + 1) * s.SEGMENT_HEIGHT)},
+                 "camera": {},
+                 "screen": {}},
+      "bottom": {"world": {"z": (index * s.SEGMENT_HEIGHT)},
+                 "camera": {},
+                 "screen": {}},
+      "colour": s.COLOURS[palette]}
 
-def add_curve(enter, hold, exit, curve):
-    """Writes a curve into the segments array"""
+    return segment
+
+def add_corner(curr_len, enter, hold, exit, curve):
+    """Writes a curve (with easing) into the segments array"""
     pass
 
 def find_segment(z, segments):
