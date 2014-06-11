@@ -1,6 +1,7 @@
 # Helper functions for projection.
 
 import settings as s
+import math
 
 def project_line(segment, line, camera_x, camera_z):
     """Translates 3d coordinates to fit into a 2d surface.
@@ -54,13 +55,9 @@ def position(position, speed, track_length):
     return new_pos
 
 def ease_in(a, b, p):
-    """Traditional ease-in motion function"""
-    pass
-
-def ease_out(a, b, p):
-    """Traditional ease-out motion function"""
-    pass
+    """Traditional ease-in from a to b motion function"""
+    return a + (b - a) * (p ** 2)
 
 def ease_in_out(a, b, p):
-    """Traditional ease-in-and-then-out motion function"""
-    pass
+    """Traditional ease-in-and-then-out from a to b motion function"""
+    return a + (b - a) * (-math.cos(p * math.pi) / 2) + 0.5
