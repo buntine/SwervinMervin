@@ -7,6 +7,7 @@ import pygame, sys
 from pygame.locals import *
 import projection as p
 import rendering as r
+import segmentation as se
 import settings as s
 
 pygame.init()
@@ -18,7 +19,7 @@ player_x     = 0
 direction_x  = 0
 acceleration = 0
 player_z     = s.CAMERA_HEIGHT * s.CAMERA_DEPTH
-segments     = p.build_segments()
+segments     = se.build_segments()
 track_length = len(segments) * s.SEGMENT_HEIGHT
 
 fps_clock = pygame.time.Clock()
@@ -30,7 +31,7 @@ while True:
     position     = p.position(position, speed, track_length)
     speed        = p.accelerate(speed, acceleration)
     player_x     = p.steer(player_x, direction_x)
-    base_segment = p.find_segment(position, segments)
+    base_segment = se.find_segment(position, segments)
 
     # Loop through segments we should draw for this frame.
     for i in range(s.DRAW_DISTANCE):
