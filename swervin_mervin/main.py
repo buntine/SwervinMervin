@@ -27,29 +27,9 @@ window    = pygame.display.set_mode(s.DIMENSIONS)
 while True:
     window.fill(s.COLOURS["sky"])
 
-    position += s.FRAME_RATE * speed
-    speed    += (s.ACCELERATION * acceleration)
-    player_x += direction_x
-
-    # TODO: Move.
-    # Prevent player from going too far off track.
-    if player_x < -1.8:
-        player_x = -1.8
-    elif player_x > 1.8:
-        player_x = 1.8
-
-    # TODO: Move.
-    while position >= track_length:
-        position -= track_length
-    while position < 0:
-        position += track_length
-
-    # TODO: Move.
-    if speed > s.TOP_SPEED:
-        speed = s.TOP_SPEED
-    if speed < 0:
-        speed = 0
-
+    position     = p.position(position, speed, track_length)
+    speed        = p.accelerate(speed, acceleration)
+    player_x     = p.steer(player_x, direction_x)
     base_segment = p.find_segment(position, segments)
 
     # Loop through segments we should draw for this frame.

@@ -11,6 +11,7 @@ RUMBLE_LENGTH    = 3
 DRAW_DISTANCE    = 100
 ROAD_WIDTH       = 1900
 LANES            = 3
+BOUNDS           = 1.8
 TOP_SPEED        = (SEGMENT_HEIGHT / (1.0/FPS))
 ACCELERATION     = TOP_SPEED / 7.0
 FIELD_OF_VIEW    = 100 # Degrees

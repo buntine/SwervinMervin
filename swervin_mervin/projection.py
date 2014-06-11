@@ -45,3 +45,37 @@ def project_line(segment, line, camera_x, camera_z):
     p["screen"]["x"] = round(width + (p["screen"]["s"] * p["camera"]["x"] * width))
     p["screen"]["y"] = round(height + (p["screen"]["s"] * p["camera"]["y"] * height))
     p["screen"]["w"] = round(p["screen"]["s"] * s.ROAD_WIDTH * width)
+
+def steer(x, direction):
+    """Returns a new X position for the player"""
+    new_x = x + direction
+
+    # Prevent player from going too far off track.
+    if new_x < -s.BOUNDS:
+        new_x = -s.BOUNDS
+    elif new_x > s.BOUNDS:
+        new_x = s.BOUNDS
+
+    return new_x
+
+def accelerate(speed, acceleration):
+    """Returns a new speed given the acceleration/deceleration value"""
+    new_speed = speed + (s.ACCELERATION * acceleration)
+
+    if new_speed > s.TOP_SPEED:
+        new_speed = s.TOP_SPEED
+    if new_speed < 0:
+        new_speed = 0
+
+    return new_speed
+
+def position(position, speed, track_length):
+    """Returns a new Z position for the camera"""
+    new_pos = position + (s.FRAME_RATE * speed)
+
+    while new_pos >= track_length:
+        new_pos -= track_length
+    while new_pos < 0:
+        new_pos += track_length
+
+    return new_pos
