@@ -22,17 +22,17 @@ def render_road(window, segment):
     bottom_rumble_width = bottom["w"] / (s.LANES * 2)
 
     # Left rumble strip.
-    points = [((bottom["x"] - bottom["w"] - top_rumble_width), y_bottom),
-              ((bottom["x"] - bottom["w"]),                    y_bottom),
-              ((top["x"] - top["w"]),                          y_top),
-              ((top["x"] - top["w"] - top_rumble_width),       y_top)]
+    points = [((bottom["x"] - bottom["w"] - bottom_rumble_width), y_bottom),
+              ((bottom["x"] - bottom["w"]),                       y_bottom),
+              ((top["x"] - top["w"]),                             y_top),
+              ((top["x"] - top["w"] - top_rumble_width),          y_top)]
     pygame.draw.polygon(window, colour["rumble"], points)
 
     # Right rumble strip.
     points = [((bottom["x"] + bottom["w"] + bottom_rumble_width), y_bottom),
               ((bottom["x"] + bottom["w"]),                       y_bottom),
               ((top["x"] + top["w"]),                             y_top),
-              ((top["x"] + top["w"] + bottom_rumble_width),       y_top)]
+              ((top["x"] + top["w"] + top_rumble_width),          y_top)]
     pygame.draw.polygon(window, colour["rumble"], points)
 
     if (segment["index"] / s.RUMBLE_LENGTH) % 2 == 0:

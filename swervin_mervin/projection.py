@@ -62,19 +62,21 @@ def accelerate(speed, acceleration):
     """Returns a new speed given the acceleration/deceleration value"""
     new_speed = speed + (s.ACCELERATION * acceleration)
 
+    # Prevent player from going too fast.
     if new_speed > s.TOP_SPEED:
         new_speed = s.TOP_SPEED
-    if new_speed < 0:
+    elif new_speed < 0:
         new_speed = 0
 
     return new_speed
 
 def position(position, speed, track_length):
-    """Returns a new Z position for the camera"""
+    """Returns a new Z position for the camera, looping the track if we reach the end"""
     new_pos = position + (s.FRAME_RATE * speed)
 
     while new_pos >= track_length:
         new_pos -= track_length
+
     while new_pos < 0:
         new_pos += track_length
 
