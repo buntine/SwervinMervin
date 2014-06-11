@@ -52,3 +52,15 @@ def position(position, speed, track_length):
         new_pos += track_length
 
     return new_pos
+
+def ease_in(a, b, p):
+    """Traditional ease-in motion function"""
+    pass
+
+def ease_out(a, b, p):
+    """Traditional ease-out motion function"""
+    pass
+
+def ease_in_out(a, b, p):
+    """Traditional ease-in-and-then-out motion function"""
+    pass

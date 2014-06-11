@@ -7,11 +7,12 @@ def build_segments():
        and alternating colour palette"""
     segments = []
 
-    for n in range(500):
+    for n in range(100):
         palette = "dark" if (n / s.RUMBLE_LENGTH) % 2 == 0 else "light"
 
         segments.append({
           "index":  n,
+          "curve": 0,
           "top":    {"world": {"z": ((n + 1) * s.SEGMENT_HEIGHT)},
                      "camera": {},
                      "screen": {}},
@@ -20,7 +21,17 @@ def build_segments():
                      "screen": {}},
           "colour": s.COLOURS[palette]})
 
+    #segments += add_curve(a, b, c, d)
+
     return segments
+
+def add_segment(curve):
+    """Adds a single segment to the segments array"""
+    pass
+
+def add_curve(enter, hold, exit, curve):
+    """Writes a curve into the segments array"""
+    pass
 
 def find_segment(z, segments):
     """Finds the correct segment for any given Z position"""
