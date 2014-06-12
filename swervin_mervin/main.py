@@ -28,10 +28,18 @@ window    = pygame.display.set_mode(s.DIMENSIONS)
 while True:
     window.fill(s.COLOURS["sky"])
 
-    position     = p.position(position, speed, track_length)
-    speed        = p.accelerate(speed, acceleration)
-    player_x     = p.steer(player_x, direction_x)
-    base_segment = se.find_segment(position, segments)
+    position        = p.position(position, speed, track_length)
+    speed           = p.accelerate(speed, acceleration)
+    speed_percent   = speed / s.TOP_SPEED
+    direction_speed = (s.FRAME_RATE * 2 * speed_percent)
+    player_x        = p.steer(player_x, direction_x)
+    base_segment    = se.find_segment(position, segments)
+    base_percent    = (position % s.SEGMENT_HEIGHT) / s.SEGMENT_HEIGHT
+
+     
+    player_x -= (direction_speed * speed_percent * base_segment["curve"] * s.CENTRIFUGAL_FORCE)
+    dx = -(base_segment["curve"] * base_percent)
+    x  = 0
 
     # Loop through segments we should draw for this frame.
     for i in range(s.DRAW_DISTANCE):
@@ -43,8 +51,11 @@ while True:
         if segment["index"] < base_segment["index"]:
             projected_position -= track_length
 
-        p.project_line(segment, "top", (player_x * s.ROAD_WIDTH), projected_position)
-        p.project_line(segment, "bottom", (player_x * s.ROAD_WIDTH), projected_position)
+        p.project_line(segment, "top", (player_x * s.ROAD_WIDTH) - x, projected_position)
+        p.project_line(segment, "bottom", (player_x * s.ROAD_WIDTH) - x - dx, projected_position)
+
+        x  += dx
+        dx += segment["curve"]
 
         # Segment is behind us, so ignore it.
         if segment["bottom"]["camera"]["z"] <= s.CAMERA_DEPTH:
@@ -61,11 +72,11 @@ while True:
         elif event.type == KEYDOWN:
             # Go left.
             if event.key == K_LEFT:
-                direction_x = -(s.FRAME_RATE * 2 * (speed / s.TOP_SPEED))
+                direction_x = -direction_speed
 
             # Go right.
             elif event.key == K_RIGHT:
-                direction_x = (s.FRAME_RATE * 2 * (speed / s.TOP_SPEED))
+                direction_x = direction_speed
 
             # Accelerate!
             elif event.key == K_UP:

@@ -58,6 +58,6 @@ def ease_in(a, b, p):
     """Traditional ease-in from a to b motion function"""
     return a + (b - a) * (p ** 2)
 
-def ease_in_out(a, b, p):
+def ease_out(a, b, p):
     """Traditional ease-in-and-then-out from a to b motion function"""
     return a + (b - a) * (-math.cos(p * math.pi) / 2) + 0.5
