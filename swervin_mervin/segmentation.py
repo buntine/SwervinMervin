@@ -11,7 +11,9 @@ def build_level():
     for n in range(100):
         segments.append(new_segment(n, 0))
 
-    segments += add_corner(len(segments), 50, 50, 50, 2)
+    segments += add_corner(len(segments), 50, 25, 100, 2)
+
+    segments += add_corner(len(segments), 50, 25, 100, -4)
 
     for n in range(len(segments), len(segments) + 100):
         segments.append(new_segment(n, 0))

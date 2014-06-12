@@ -36,7 +36,6 @@ while True:
     base_segment    = se.find_segment(position, segments)
     base_percent    = (position % s.SEGMENT_HEIGHT) / s.SEGMENT_HEIGHT
 
-     
     player_x -= (direction_speed * speed_percent * base_segment["curve"] * s.CENTRIFUGAL_FORCE)
     dx = -(base_segment["curve"] * base_percent)
     x  = 0
@@ -51,8 +50,8 @@ while True:
         if segment["index"] < base_segment["index"]:
             projected_position -= track_length
 
-        p.project_line(segment, "top", (player_x * s.ROAD_WIDTH) - x, projected_position)
-        p.project_line(segment, "bottom", (player_x * s.ROAD_WIDTH) - x - dx, projected_position)
+        p.project_line(segment, "top", (player_x * s.ROAD_WIDTH) - x - dx, projected_position)
+        p.project_line(segment, "bottom", (player_x * s.ROAD_WIDTH) - x, projected_position)
 
         x  += dx
         dx += segment["curve"]
