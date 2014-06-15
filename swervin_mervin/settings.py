@@ -3,7 +3,7 @@
 from pygame import Color
 import math
 
-FPS               = 50
+FPS               = 60
 FRAME_RATE        = (1.0 / FPS)
 DIMENSIONS        = (640, 480)
 SEGMENT_HEIGHT    = 260
@@ -15,6 +15,7 @@ BOUNDS            = 1.8
 CENTRIFUGAL_FORCE = 0.266
 TOP_SPEED         = (SEGMENT_HEIGHT / (1.0/FPS))
 ACCELERATION      = TOP_SPEED / 5.0
+DECELERATION      = 2.3
 FIELD_OF_VIEW     = 100 # Degrees
 CAMERA_HEIGHT     = 1400
 CAMERA_DEPTH      = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180);

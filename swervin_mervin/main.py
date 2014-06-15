@@ -80,7 +80,7 @@ while True:
         acceleration = -s.FRAME_RATE
 
     if keys[K_DOWN]:
-        acceleration = -s.FRAME_RATE
+        acceleration = -(s.FRAME_RATE * s.DECELERATION)
 
     if keys[K_LEFT]:
         direction_x = -direction_speed
@@ -90,4 +90,4 @@ while True:
         direction_x = 0
 
     pygame.display.update()
-    fps_clock.tick(s.FPS * 100)
+    fps_clock.tick(s.FPS)
