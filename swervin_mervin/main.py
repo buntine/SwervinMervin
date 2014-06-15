@@ -36,25 +36,28 @@ while True:
     base_segment    = se.find_segment(position, segments)
     base_percent    = (position % s.SEGMENT_HEIGHT) / s.SEGMENT_HEIGHT
 
-    player_x -= (direction_speed * speed_percent * base_segment["curve"] * s.CENTRIFUGAL_FORCE)
-    dx = -(base_segment["curve"] * base_percent)
-    x  = 0
+    player_x    -= (direction_speed * speed_percent * base_segment["curve"] * s.CENTRIFUGAL_FORCE)
+    curve_delta  = -(base_segment["curve"] * base_percent)
+    curve        = 0
+
+    r.render_background(window, curve_delta)
 
     # Loop through segments we should draw for this frame.
     for i in range(s.DRAW_DISTANCE):
         index              = (base_segment["index"] + i) % len(segments)
         segment            = segments[index]
         projected_position = position
+        camera_x           = player_x * s.ROAD_WIDTH
 
         # Past end of track and looped back.
         if segment["index"] < base_segment["index"]:
             projected_position -= track_length
 
-        p.project_line(segment, "top", (player_x * s.ROAD_WIDTH) - x - dx, projected_position)
-        p.project_line(segment, "bottom", (player_x * s.ROAD_WIDTH) - x, projected_position)
+        p.project_line(segment, "top", camera_x - curve - curve_delta, projected_position)
+        p.project_line(segment, "bottom", camera_x - curve, projected_position)
 
-        x  += dx
-        dx += segment["curve"]
+        curve       += curve_delta
+        curve_delta += segment["curve"]
 
         # Segment is behind us, so ignore it.
         if segment["bottom"]["camera"]["z"] <= s.CAMERA_DEPTH:

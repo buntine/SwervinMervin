@@ -71,3 +71,6 @@ def render_grass(window, segment):
 
 def render_player(window, segment):
     pass
+
+def render_background(window, curve):
+    pass
