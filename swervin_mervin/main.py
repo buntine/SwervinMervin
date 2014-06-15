@@ -18,7 +18,6 @@ speed        = 1
 player_x     = 0
 direction_x  = 0
 acceleration = 0
-player_z     = s.CAMERA_HEIGHT * s.CAMERA_DEPTH
 segments     = se.build_level()
 track_length = len(segments) * s.SEGMENT_HEIGHT
 
@@ -76,6 +75,11 @@ while True:
     keys         = pygame.key.get_pressed()
     acceleration = p.acceleration(keys)
     direction_x  = p.direction(keys, direction_speed)
+
+    # SLow player down if they are on the grass.
+    if player_x > 1.0 or player_x < -1.0:
+        if speed > s.OFFROAD_TOP_SPEED:
+            acceleration = -(acceleration * 3)
 
     pygame.display.update()
     fps_clock.tick(s.FPS)
