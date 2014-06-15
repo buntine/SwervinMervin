@@ -72,22 +72,10 @@ while True:
             pygame.quit()
             sys.exit()
 
-    keys = pygame.key.get_pressed()
-
-    if keys[K_UP]:
-        acceleration = s.FRAME_RATE
-    else:
-        acceleration = -s.FRAME_RATE
-
-    if keys[K_DOWN]:
-        acceleration = -(s.FRAME_RATE * s.DECELERATION)
-
-    if keys[K_LEFT]:
-        direction_x = -direction_speed
-    elif keys[K_RIGHT]:
-        direction_x = direction_speed
-    else:
-        direction_x = 0
+    # Steering, acceleration.
+    keys         = pygame.key.get_pressed()
+    acceleration = p.acceleration(keys)
+    direction_x  = p.direction(keys, direction_speed)
 
     pygame.display.update()
     fps_clock.tick(s.FPS)
