@@ -71,25 +71,23 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
-        elif event.type == KEYDOWN:
-            # Go left.
-            if event.key == K_LEFT:
-                direction_x = -direction_speed
 
-            # Go right.
-            elif event.key == K_RIGHT:
-                direction_x = direction_speed
+    keys = pygame.key.get_pressed()
 
-            # Accelerate!
-            elif event.key == K_UP:
-                acceleration = s.FRAME_RATE
+    if keys[K_UP]:
+        acceleration = s.FRAME_RATE
+    else:
+        acceleration = -s.FRAME_RATE
 
-            # Decelerate.
-            elif event.key == K_DOWN:
-                acceleration = -s.FRAME_RATE
-        else:
-            direction_x  = 0
-            acceleration = 0
+    if keys[K_DOWN]:
+        acceleration = -s.FRAME_RATE
+
+    if keys[K_LEFT]:
+        direction_x = -direction_speed
+    elif keys[K_RIGHT]:
+        direction_x = direction_speed
+    else:
+        direction_x = 0
 
     pygame.display.update()
-    fps_clock.tick(s.FPS)
+    fps_clock.tick(s.FPS * 100)
