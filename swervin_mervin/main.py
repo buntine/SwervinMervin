@@ -61,7 +61,7 @@ while True:
         curve       += curve_delta
         curve_delta += segment["curve"]
 
-        # Segment is behind us, so ignore it.
+        # Segment is behind us or over a hill, so ignore it.
         if segment["top"]["camera"]["z"] <= s.CAMERA_DEPTH or\
            segment["bottom"]["screen"]["y"] >= segment["top"]["screen"]["y"]:
             continue

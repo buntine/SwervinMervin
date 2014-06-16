@@ -12,45 +12,46 @@ def build_level():
     last_y = 0
     for n in range(25):
         last_y = y
-        y = p.ease_in_out(0, (20 * 260), n / 75.0)
+        y = p.ease_in_out(0, (40 * 260), n / 75.0)
         segments.append(new_segment(n, 0, last_y, y))
 
     for n in range(25):
         last_y = y
-        y = p.ease_in_out(0, (20 * 260), (n + 25) / 75.0)
+        y = p.ease_in_out(0, (40 * 260), (n + 25) / 75.0)
         segments.append(new_segment(n + 25, 0, last_y, y))
 
     for n in range(25):
         last_y = y
-        y = p.ease_in_out(0, (20 * 260), (n + 50) / 75.0)
-        print y
+        y = p.ease_in_out(0, (40 * 260), (n + 50) / 75.0)
         segments.append(new_segment(n + 50, 0, last_y, y))
 
     end_y = y
 
     for n in range(25):
-        last_y = y
-        y = p.ease_in_out(end_y, 0, n / 75.0)
-        segments.append(new_segment(n + 75, 0, last_y, y))
+        segments.append(new_segment(n + 75, 0, y, y))
 
     for n in range(25):
         last_y = y
-        y = p.ease_in_out(end_y, 0, (n + 25) / 75.0)
+        y = p.ease_in_out(end_y, 0, n / 75.0)
         segments.append(new_segment(n + 100, 0, last_y, y))
 
     for n in range(25):
         last_y = y
-        y = p.ease_in_out(end_y, 0, (n + 50) / 75.0)
-        print y
+        y = p.ease_in_out(end_y, 0, (n + 25) / 75.0)
         segments.append(new_segment(n + 125, 0, last_y, y))
 
+    for n in range(25):
+        last_y = y
+        y = p.ease_in_out(end_y, 0, (n + 50) / 75.0)
+        segments.append(new_segment(n + 150, 0, last_y, y))
 
-#    segments += add_corner(len(segments), 50, 25, 100, 2)
 
-#    segments += add_corner(len(segments), 50, 25, 100, -4)
+    segments += add_corner(len(segments), 50, 25, 100, 4)
 
-#    for n in range(len(segments), len(segments) + 100):
-#        segments.append(new_segment(n, 0))
+    segments += add_corner(len(segments), 50, 25, 100, -6)
+
+    for n in range(len(segments), len(segments) + 100):
+        segments.append(new_segment(n, 0))
 
     return segments
 
