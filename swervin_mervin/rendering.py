@@ -65,8 +65,7 @@ def render_grass(window, segment):
     y         = s.DIMENSIONS[1] - top["y"]
 
     if height <= 1:
-    #    pygame.draw.line(window, segment["colour"]["grass"], (0, y), (s.DIMENSIONS[0], y), 1)
-        pygame.draw.rect(window, segment["colour"]["grass"], (0, y, s.DIMENSIONS[0], height), 1)
+        pygame.draw.line(window, segment["colour"]["grass"], (0, y), (s.DIMENSIONS[0], y), 1)
     else:
         pygame.draw.rect(window, segment["colour"]["grass"], (0, y, s.DIMENSIONS[0], height), 0)
 

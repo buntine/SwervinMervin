@@ -41,6 +41,7 @@ while True:
     player_x    -= (direction_speed * speed_percent * base_segment["curve"] * s.CENTRIFUGAL_FORCE)
     curve_delta  = -(base_segment["curve"] * base_percent)
     curve        = 0
+    y_cov        = 0
 
     r.render_background(window, curve_delta)
 
@@ -63,8 +64,12 @@ while True:
 
         # Segment is behind us or over a hill, so ignore it.
         if segment["top"]["camera"]["z"] <= s.CAMERA_DEPTH or\
-           segment["bottom"]["screen"]["y"] >= segment["top"]["screen"]["y"]:
+           segment["bottom"]["screen"]["y"] >= segment["top"]["screen"]["y"] or\
+           segment["top"]["screen"]["y"] < y_cov:
             continue
+
+        if (segment["top"]["screen"]["y"] > y_cov):
+            y_cov = segment["top"]["screen"]["y"]
 
         r.render_grass(window, segment)
         r.render_road(window, segment)
