@@ -4,7 +4,7 @@ from pygame.locals import *
 import settings as s
 import math
 
-def project_line(segment, line, camera_x, camera_z):
+def project_line(segment, line, camera_x, camera_z, player_y):
     """Translates 3d coordinates to fit into a 2d surface.
        Modifies segment[line] in place."""
     p      = segment[line]
@@ -12,7 +12,7 @@ def project_line(segment, line, camera_x, camera_z):
     height = s.DIMENSIONS[1] / 2
 
     p["camera"]["x"] = p["world"].get("x", 0) - camera_x
-    p["camera"]["y"] = p["world"].get("y", 0) - s.CAMERA_HEIGHT
+    p["camera"]["y"] = p["world"].get("y", 0) - (s.CAMERA_HEIGHT + player_y)
     p["camera"]["z"] = p["world"].get("z", 0) - camera_z
     p["screen"]["s"] = s.CAMERA_DEPTH / p["camera"]["z"]
     p["screen"]["x"] = round(width + (p["screen"]["s"] * p["camera"]["x"] * width))
@@ -78,9 +78,13 @@ def position(position, speed, track_length):
     return new_pos
 
 def ease_in(a, b, p):
-    """Traditional ease-in from a to b motion function"""
+    """Ease-in from a to b motion function"""
     return a + (b - a) * (p ** 2)
 
 def ease_out(a, b, p):
-    """Traditional ease-in-and-then-out from a to b motion function"""
-    return a + (b - a) * (-math.cos(p * math.pi) / 2) + 0.5
+    """Ease-out from a to b motion functon"""
+    return a + (b - a) * (1 - ((1 - p) ** 2))
+
+def ease_in_out(a, b, p):
+    """Ease-in-and-then-out from a to b motion function"""
+    return a + (b - a) * ((-math.cos(p * math.pi) / 2) + 0.5)

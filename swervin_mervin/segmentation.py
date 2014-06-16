@@ -8,28 +8,62 @@ def build_level():
        and alternating colour palette"""
     segments = []
 
-    for n in range(100):
-        segments.append(new_segment(n, 0))
+    y = 0
+    last_y = 0
+    for n in range(25):
+        last_y = y
+        y = p.ease_in_out(0, (20 * 260), n / 75.0)
+        segments.append(new_segment(n, 0, last_y, y))
 
-    segments += add_corner(len(segments), 50, 25, 100, 2)
+    for n in range(25):
+        last_y = y
+        y = p.ease_in_out(0, (20 * 260), (n + 25) / 75.0)
+        segments.append(new_segment(n + 25, 0, last_y, y))
 
-    segments += add_corner(len(segments), 50, 25, 100, -4)
+    for n in range(25):
+        last_y = y
+        y = p.ease_in_out(0, (20 * 260), (n + 50) / 75.0)
+        print y
+        segments.append(new_segment(n + 50, 0, last_y, y))
 
-    for n in range(len(segments), len(segments) + 100):
-        segments.append(new_segment(n, 0))
+    end_y = y
+
+    for n in range(25):
+        last_y = y
+        y = p.ease_in_out(end_y, 0, n / 75.0)
+        segments.append(new_segment(n + 75, 0, last_y, y))
+
+    for n in range(25):
+        last_y = y
+        y = p.ease_in_out(end_y, 0, (n + 25) / 75.0)
+        segments.append(new_segment(n + 100, 0, last_y, y))
+
+    for n in range(25):
+        last_y = y
+        y = p.ease_in_out(end_y, 0, (n + 50) / 75.0)
+        print y
+        segments.append(new_segment(n + 125, 0, last_y, y))
+
+
+#    segments += add_corner(len(segments), 50, 25, 100, 2)
+
+#    segments += add_corner(len(segments), 50, 25, 100, -4)
+
+#    for n in range(len(segments), len(segments) + 100):
+#        segments.append(new_segment(n, 0))
 
     return segments
 
-def new_segment(index, curve):
+def new_segment(index, curve, start_y=0, end_y=0):
     """Returns a new segment for the segments array"""
     palette = "dark" if (index / s.RUMBLE_LENGTH) % 2 == 0 else "light"
     segment = {
       "index":  index,
       "curve": curve,
-      "top":    {"world": {"z": ((index + 1) * s.SEGMENT_HEIGHT)},
+      "top":    {"world": {"y": end_y, "z": ((index + 1) * s.SEGMENT_HEIGHT)},
                  "camera": {},
                  "screen": {}},
-      "bottom": {"world": {"z": (index * s.SEGMENT_HEIGHT)},
+      "bottom": {"world": {"y": start_y, "z": (index * s.SEGMENT_HEIGHT)},
                  "camera": {},
                  "screen": {}},
       "colour": s.COLOURS[palette]}
@@ -53,7 +87,7 @@ def add_corner(i, enter, hold, exit, curve):
 
     # Ease out of corner.
     for n in range(exit):
-        segments.append(new_segment(segs + n, p.ease_out(curve, 0, n / exit)))
+        segments.append(new_segment(segs + n, p.ease_in_out(curve, 0, n / exit)))
 
     return segments
 

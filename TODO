@@ -1,5 +1,8 @@
-- Draw player sprite.
+- Draw player sprite
 - Parallax background
+- Add hills / valleys
+- Background fog
+  - Also have whole game fog that fades in and out during night level.
 - Write simple level-editor
     straight 100
     corner left 20 40 20
