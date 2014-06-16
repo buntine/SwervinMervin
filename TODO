@@ -1,6 +1,8 @@
 - Draw player sprite
 - Parallax background
-- Add hills / valleys
+- Clean hills / valleys
+- Fix bug in hills with horizon
+- Fix bug in corners and hills with shaking
 - Background fog
   - Also have whole game fog that fades in and out during night level.
 - Write simple level-editor
