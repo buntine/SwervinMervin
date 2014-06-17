@@ -1,8 +1,8 @@
 - Draw player sprite
 - Parallax background
-- Clean hills / valleys
-- Fix bug in hills with horizon
 - Fix bug in corners and hills with shaking
+- Deceleration on grass not working if not accelerating
+- Rename files to make sense for what they contain (projection has utilities)
 - Background fog
   - Also have whole game fog that fades in and out during night level.
 - Write simple level-editor

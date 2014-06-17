@@ -33,15 +33,15 @@ while True:
     speed_percent   = speed / s.TOP_SPEED
     direction_speed = (s.FRAME_RATE * 2 * speed_percent)
     base_segment    = se.find_segment(position, segments)
+    player_segment  = se.find_segment((position + s.PLAYER_Z), segments)
     base_percent    = (position % s.SEGMENT_HEIGHT) / s.SEGMENT_HEIGHT
-    player_percent  = (position % track_length) / track_length
     player_x        = p.steer(player_x, direction_x)
-    player_y        = (base_segment["bottom"]["world"]["y"] + (base_segment["top"]["world"]["y"] - base_segment["bottom"]["world"]["y"]) * player_percent)
+    player_y        = p.player_y(player_segment, base_percent) # Note: I feel like this should be player_percent, but the maths was not working...
+    y_coverage      = 0
 
-    player_x    -= (direction_speed * speed_percent * base_segment["curve"] * s.CENTRIFUGAL_FORCE)
+    player_x    -= (direction_speed * speed_percent * player_segment["curve"] * s.CENTRIFUGAL_FORCE)
     curve_delta  = -(base_segment["curve"] * base_percent)
     curve        = 0
-    y_cov        = 0
 
     r.render_background(window, curve_delta)
 
@@ -64,12 +64,12 @@ while True:
 
         # Segment is behind us or over a hill, so ignore it.
         if segment["top"]["camera"]["z"] <= s.CAMERA_DEPTH or\
-           segment["bottom"]["screen"]["y"] >= segment["top"]["screen"]["y"] or\
-           segment["top"]["screen"]["y"] < y_cov:
+           segment["top"]["screen"]["y"] <= y_coverage or\
+           segment["bottom"]["screen"]["y"] >= segment["top"]["screen"]["y"]:
             continue
 
-        if (segment["top"]["screen"]["y"] > y_cov):
-            y_cov = segment["top"]["screen"]["y"]
+        if (segment["top"]["screen"]["y"] > y_coverage):
+            y_coverage = segment["top"]["screen"]["y"]
 
         r.render_grass(window, segment)
         r.render_road(window, segment)
@@ -85,7 +85,7 @@ while True:
     acceleration = p.acceleration(keys)
     direction_x  = p.direction(keys, direction_speed)
 
-    # SLow player down if they are on the grass.
+    # Slow player down if they are on the grass.
     if player_x > 1.0 or player_x < -1.0:
         if speed > s.OFFROAD_TOP_SPEED:
             acceleration = -(acceleration * 3)

@@ -20,6 +20,7 @@ DECELERATION      = 2.3
 FIELD_OF_VIEW     = 100 # Degrees
 CAMERA_HEIGHT     = 1400
 CAMERA_DEPTH      = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180);
+PLAYER_Z          = (CAMERA_HEIGHT * CAMERA_DEPTH)
 COLOURS           = {"white": Color(255, 255, 255),
                      "sky":   Color(142, 169, 232),
                      "light": {"road":   Color(193, 193, 193),

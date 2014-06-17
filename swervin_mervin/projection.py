@@ -77,6 +77,13 @@ def position(position, speed, track_length):
 
     return new_pos
 
+def player_y(segment, percent):
+    """Returns a new Y coordinate for the player given the current base segment"""
+    top_y    = segment["top"]["world"]["y"]
+    bottom_y = segment["bottom"]["world"]["y"]
+
+    return top_y + (top_y - bottom_y) * percent
+
 def ease_in(a, b, p):
     """Ease-in from a to b motion function"""
     return a + (b - a) * (p ** 2)
