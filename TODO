@@ -1,6 +1,5 @@
 - Draw player sprite
 - Parallax background
-- Fix bug in corners and hills with shaking
 - Deceleration on grass not working if not accelerating
 - Rename files to make sense for what they contain (projection has utilities)
 - Background fog

@@ -34,15 +34,13 @@ while True:
     direction_speed = (s.FRAME_RATE * 2 * speed_percent)
     base_segment    = se.find_segment(position, segments)
     player_segment  = se.find_segment((position + s.PLAYER_Z), segments)
-    base_percent    = (position % s.SEGMENT_HEIGHT) / s.SEGMENT_HEIGHT
     player_percent  = ((position + s.PLAYER_Z) % s.SEGMENT_HEIGHT) / s.SEGMENT_HEIGHT
     player_x        = p.steer(player_x, direction_x)
     player_y        = p.player_y(base_segment, player_percent) # I feel this should be player_segment, but the math is weirding me out.
-
     y_coverage      = 0
 
     player_x    -= (direction_speed * speed_percent * player_segment["curve"] * s.CENTRIFUGAL_FORCE)
-    curve_delta  = -(base_segment["curve"] * base_percent)
+    curve_delta  = -(base_segment["curve"] * player_percent)
     curve        = 0
 
     r.render_background(window, curve_delta)
