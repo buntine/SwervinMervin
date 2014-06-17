@@ -12,17 +12,17 @@ def build_level():
     last_y = 0
     for n in range(25):
         last_y = y
-        y = p.ease_in_out(0, (40 * 260), n / 75.0)
+        y = p.ease_in_out(0, (60 * 260), n / 75.0)
         segments.append(new_segment(n, 0, last_y, y))
 
     for n in range(25):
         last_y = y
-        y = p.ease_in_out(0, (40 * 260), (n + 25) / 75.0)
+        y = p.ease_in_out(0, (60 * 260), (n + 25) / 75.0)
         segments.append(new_segment(n + 25, 0, last_y, y))
 
     for n in range(25):
         last_y = y
-        y = p.ease_in_out(0, (40 * 260), (n + 50) / 75.0)
+        y = p.ease_in_out(0, (60 * 260), (n + 50) / 75.0)
         segments.append(new_segment(n + 50, 0, last_y, y))
 
     end_y = y
