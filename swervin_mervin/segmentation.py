@@ -1,7 +1,7 @@
 # Helper functions for generating / finding segments.
 
 import settings as s
-import projection as p
+import util as u
 
 def build_level():
     """Builds an array of segments, pre-populating each with a Z position
@@ -12,17 +12,17 @@ def build_level():
     last_y = 0
     for n in range(25):
         last_y = y
-        y = p.ease_in_out(0, (20 * 260), n / 75.0)
+        y = u.ease_in_out(0, (20 * 260), n / 75.0)
         segments.append(new_segment(n, 0, last_y, y))
 
     for n in range(25):
         last_y = y
-        y = p.ease_in_out(0, (20 * 260), (n + 25) / 75.0)
+        y = u.ease_in_out(0, (20 * 260), (n + 25) / 75.0)
         segments.append(new_segment(n + 25, 0, last_y, y))
 
     for n in range(25):
         last_y = y
-        y = p.ease_in_out(0, (20 * 260), (n + 50) / 75.0)
+        y = u.ease_in_out(0, (20 * 260), (n + 50) / 75.0)
         segments.append(new_segment(n + 50, 0, last_y, y))
 
     end_y = y
@@ -32,17 +32,17 @@ def build_level():
 
     for n in range(25):
         last_y = y
-        y = p.ease_in_out(end_y, 0, n / 75.0)
+        y = u.ease_in_out(end_y, 0, n / 75.0)
         segments.append(new_segment(n + 100, 0, last_y, y))
 
     for n in range(25):
         last_y = y
-        y = p.ease_in_out(end_y, 0, (n + 25) / 75.0)
+        y = u.ease_in_out(end_y, 0, (n + 25) / 75.0)
         segments.append(new_segment(n + 125, 0, last_y, y))
 
     for n in range(25):
         last_y = y
-        y = p.ease_in_out(end_y, 0, (n + 50) / 75.0)
+        y = u.ease_in_out(end_y, 0, (n + 50) / 75.0)
         segments.append(new_segment(n + 150, 0, last_y, y))
 
 
@@ -78,7 +78,7 @@ def add_corner(i, enter, hold, exit, curve):
 
     # Ease into corner.
     for n in range(enter):
-        segments.append(new_segment(segs + n, p.ease_in(0, curve, n / enter)))
+        segments.append(new_segment(segs + n, u.ease_in(0, curve, n / enter)))
     segs += enter
 
     # Hold.
@@ -88,7 +88,7 @@ def add_corner(i, enter, hold, exit, curve):
 
     # Ease out of corner.
     for n in range(exit):
-        segments.append(new_segment(segs + n, p.ease_in_out(curve, 0, n / exit)))
+        segments.append(new_segment(segs + n, u.ease_in_out(curve, 0, n / exit)))
 
     return segments
 
@@ -100,5 +100,3 @@ def find_segment(z, segments):
         i = 0
 
     return segments[i]
-
-

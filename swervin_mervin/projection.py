@@ -1,8 +1,6 @@
 # Helper functions for projection.
 
-from pygame.locals import *
 import settings as s
-import math
 
 def project_line(segment, line, camera_x, camera_z, player_y):
     """Translates 3d coordinates to fit into a 2d surface.
@@ -18,80 +16,3 @@ def project_line(segment, line, camera_x, camera_z, player_y):
     p["screen"]["x"] = round(width + (p["screen"]["s"] * p["camera"]["x"] * width))
     p["screen"]["y"] = round(height + (p["screen"]["s"] * p["camera"]["y"] * height))
     p["screen"]["w"] = round(p["screen"]["s"] * s.ROAD_WIDTH * width)
-
-def steer(x, direction):
-    """Returns a new X position for the player"""
-    new_x = x + direction
-
-    # Prevent player from going too far off track.
-    if new_x < -s.BOUNDS:
-        new_x = -s.BOUNDS
-    elif new_x > s.BOUNDS:
-        new_x = s.BOUNDS
-
-    return new_x
-
-def accelerate(speed, acceleration):
-    """Returns a new speed given the acceleration/deceleration value"""
-    new_speed = speed + (s.ACCELERATION * acceleration)
-
-    # Prevent player from going too fast.
-    if new_speed > s.TOP_SPEED:
-        new_speed = s.TOP_SPEED
-    elif new_speed < 0:
-        new_speed = 0
-
-    return new_speed
-
-def acceleration(keys):
-    """Accepts key-polling array and returns appropriate acceleration factor"""
-    a = -s.FRAME_RATE
-
-    if keys[K_UP]:
-        a = s.FRAME_RATE
-    elif keys[K_DOWN]:
-        a = -(s.FRAME_RATE * s.DECELERATION)
-
-    return a
-
-def direction(keys, dir_speed):
-    """Accepts key-polling array and returns appropriate direction factor"""
-    d = 0
-
-    if keys[K_LEFT]:
-        d = -dir_speed
-    elif keys[K_RIGHT]:
-        d = dir_speed
-
-    return d
-
-def position(position, speed, track_length):
-    """Returns a new Z position for the camera, looping the track if we reach the end"""
-    new_pos = position + (s.FRAME_RATE * speed)
-
-    while new_pos >= track_length:
-        new_pos -= track_length
-
-    while new_pos < 0:
-        new_pos += track_length
-
-    return new_pos
-
-def player_y(segment, percent):
-    """Returns a new Y coordinate for the player given the current base segment"""
-    top_y    = segment["top"]["world"]["y"]
-    bottom_y = segment["bottom"]["world"]["y"]
-
-    return top_y + (top_y - bottom_y) * percent
-
-def ease_in(a, b, p):
-    """Ease-in from a to b motion function"""
-    return a + (b - a) * (p ** 2)
-
-def ease_out(a, b, p):
-    """Ease-out from a to b motion functon"""
-    return a + (b - a) * (1 - ((1 - p) ** 2))
-
-def ease_in_out(a, b, p):
-    """Ease-in-and-then-out from a to b motion function"""
-    return a + (b - a) * ((-math.cos(p * math.pi) / 2) + 0.5)

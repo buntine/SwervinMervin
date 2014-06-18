@@ -6,6 +6,7 @@
 import pygame, sys
 from pygame.locals import *
 import projection as p
+import util as u
 import rendering as r
 import segmentation as se
 import settings as s
@@ -28,15 +29,15 @@ window    = pygame.display.set_mode(s.DIMENSIONS)
 while True:
     window.fill(s.COLOURS["sky"])
 
-    position        = p.position(position, speed, track_length)
-    speed           = p.accelerate(speed, acceleration)
+    position        = u.position(position, speed, track_length)
+    speed           = u.accelerate(speed, acceleration)
     speed_percent   = speed / s.TOP_SPEED
     direction_speed = (s.FRAME_RATE * 2 * speed_percent)
     base_segment    = se.find_segment(position, segments)
     player_segment  = se.find_segment((position + s.PLAYER_Z), segments)
     player_percent  = ((position + s.PLAYER_Z) % s.SEGMENT_HEIGHT) / s.SEGMENT_HEIGHT
-    player_x        = p.steer(player_x, direction_x)
-    player_y        = p.player_y(base_segment, player_percent) # I feel this should be player_segment, but the math is weirding me out.
+    player_x        = u.steer(player_x, direction_x)
+    player_y        = u.player_y(base_segment, player_percent) # I feel this should be player_segment, but the math is weirding me out.
     y_coverage      = 0
 
     player_x    -= (direction_speed * speed_percent * player_segment["curve"] * s.CENTRIFUGAL_FORCE)
@@ -82,8 +83,8 @@ while True:
 
     # Steering, acceleration.
     keys         = pygame.key.get_pressed()
-    acceleration = p.acceleration(keys)
-    direction_x  = p.direction(keys, direction_speed)
+    acceleration = u.acceleration(keys)
+    direction_x  = u.direction(keys, direction_speed)
 
     # Slow player down if they are on the grass.
     if player_x > 1.0 or player_x < -1.0:
