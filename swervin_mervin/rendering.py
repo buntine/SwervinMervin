@@ -39,17 +39,16 @@ def render_road(window, segment):
         # Road lanes.
         top_line_width    = (top["w"] / (s.LANES * 8))
         bottom_line_width = (bottom["w"] / (s.LANES * 8))
-        lane_top_w        = top["w"] / s.LANES
-        lane_bottom_w     = bottom["w"] / s.LANES
+        step              = (1 / float(s.LANES))
 
         # Render each lane separator.
         for lane in range(s.LANES - 1):
-            lane_bottom_w *= 2
-            lane_top_w    *= 2
-            bottom_left    = (bottom["x"] - bottom["w"] + lane_bottom_w)
-            bottom_right   = bottom_left + bottom_line_width
-            top_left       = (top["x"] - top["w"] + lane_top_w)
-            top_right      = top_left + top_line_width
+            lane_bottom_w = (bottom["w"] * 2) * (step * (lane + 1))
+            lane_top_w    = (top["w"] * 2) * (step * (lane + 1))
+            bottom_left   = bottom["x"] - bottom["w"] + lane_bottom_w
+            bottom_right  = bottom_left + bottom_line_width
+            top_left      = top["x"] - top["w"] + lane_top_w
+            top_right     = top_left + top_line_width
 
             points = [(bottom_left,  y_bottom),
                       (bottom_right, y_bottom),
@@ -70,6 +69,12 @@ def render_grass(window, segment):
         pygame.draw.rect(window, segment["colour"]["grass"], (0, y, s.DIMENSIONS[0], height), 0)
 
 def render_player(window, segment):
+    """Renders the players car to the screen, with appropriate scaling and rotation"""
+    dimensions = (int(s.DIMENSIONS[0] * 0.36), int((s.DIMENSIONS[0] * 0.36) / 2))
+    player = pygame.image.load("lib/straight.png")
+    player = pygame.transform.scale(player, dimensions)
+    window.blit(player, ((s.DIMENSIONS[0] / 2) - 100, s.DIMENSIONS[1] - 120))
+
     pass
 
 def render_background(window, curve):
