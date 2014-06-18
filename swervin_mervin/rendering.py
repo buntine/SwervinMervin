@@ -77,7 +77,10 @@ def render_player(window, segment, direction_x, uphill):
     else:
         sprite = "straight"
 
-    dimensions = (int(s.DIMENSIONS[0] * 0.36), int((s.DIMENSIONS[0] * 0.36) / 2))
+    if uphill:
+        sprite = "uphill_" + sprite
+
+    dimensions = (int(s.DIMENSIONS[0] * 0.26), int((s.DIMENSIONS[0] * 0.26) / 2))
     player = pygame.image.load("lib/" + sprite + ".png")
     player = pygame.transform.scale(player, dimensions)
     window.blit(player, ((s.DIMENSIONS[0] / 2) - 100, s.DIMENSIONS[1] - 120))
