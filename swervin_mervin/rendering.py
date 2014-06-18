@@ -68,7 +68,7 @@ def render_grass(window, segment):
     else:
         pygame.draw.rect(window, segment["colour"]["grass"], (0, y, s.DIMENSIONS[0], height), 0)
 
-def render_player(window, segment, direction_x, uphill):
+def render_player(window, segment, direction_x):
     """Renders the players car to the screen, with appropriate scaling and rotation"""
     if direction_x > 0:
         sprite = "right"
@@ -77,7 +77,7 @@ def render_player(window, segment, direction_x, uphill):
     else:
         sprite = "straight"
 
-    if uphill:
+    if segment["top"]["world"]["y"] > segment["bottom"]["world"]["y"]:
         sprite = "uphill_" + sprite
 
     dimensions = (int(s.DIMENSIONS[0] * 0.26), int((s.DIMENSIONS[0] * 0.26) / 2))

@@ -1,4 +1,4 @@
-- Draw player sprite
+- Fix projection for player sprite.
 - Parallax background
 - Deceleration on grass not working if not accelerating
 - Background fog
