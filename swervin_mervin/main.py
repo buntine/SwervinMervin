@@ -75,7 +75,7 @@ while True:
         r.render_grass(window, segment)
         r.render_road(window, segment)
 
-    r.render_player(window, base_segment, direction_x)
+    r.render_player(window, base_segment, direction_x, player_percent)
 
     for event in pygame.event.get():
         if event.type == QUIT:

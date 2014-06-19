@@ -20,6 +20,7 @@ DECELERATION      = 2.3
 FIELD_OF_VIEW     = 100 # Degrees
 CAMERA_HEIGHT     = 1400
 CAMERA_DEPTH      = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180);
+BOTTOM_OFFSET     = 5
 PLAYER_Z          = (CAMERA_HEIGHT * CAMERA_DEPTH)
 COLOURS           = {"white": Color(255, 255, 255),
                      "sky":   Color(142, 169, 232),
@@ -31,3 +32,39 @@ COLOURS           = {"white": Color(255, 255, 255),
                                "grass":  Color(55, 199, 66),
                                "rumble": Color(255, 255, 255),
                                "line":   Color(255, 255, 255)}}
+SPRITES           = {"straight": {
+                       "path": "straight.png",
+                       "width": 80,
+                       "height": 41},
+                     "left": {
+                       "path": "left.png",
+                       "width": 80,
+                       "height": 45},
+                     "right": {
+                       "path": "right.png",
+                       "width": 80,
+                       "height": 45},
+                     "uphill_straight": {
+                       "path": "uphill_straight.png",
+                       "width": 80,
+                       "height": 45},
+                     "uphill_left": {
+                       "path": "uphill_left.png",
+                       "width": 80,
+                       "height": 45},
+                     "uphill_right": {
+                       "path": "uphill_right.png",
+                       "width": 80,
+                       "height": 45},
+                     "downhill_straight": {
+                       "path": "downhill_straight.png",
+                       "width": 80,
+                       "height": 41},
+                     "downhill_left": {
+                       "path": "downhill_left.png",
+                       "width": 80,
+                       "height": 45},
+                     "downhill_right": {
+                       "path": "downhill_right.png",
+                       "width": 80,
+                       "height": 45}}

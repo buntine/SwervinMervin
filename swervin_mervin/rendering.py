@@ -43,8 +43,9 @@ def render_road(window, segment):
 
         # Render each lane separator.
         for lane in range(s.LANES - 1):
-            lane_bottom_w = (bottom["w"] * 2) * (step * (lane + 1))
-            lane_top_w    = (top["w"] * 2) * (step * (lane + 1))
+            lane_percent  = step * (lane + 1)
+            lane_bottom_w = (bottom["w"] * 2) * lane_percent
+            lane_top_w    = (top["w"] * 2) * lane_percent
             bottom_left   = bottom["x"] - bottom["w"] + lane_bottom_w
             bottom_right  = bottom_left + bottom_line_width
             top_left      = top["x"] - top["w"] + lane_top_w
@@ -58,39 +59,42 @@ def render_road(window, segment):
 
 def render_grass(window, segment):
     """Renders grass strip for the given segment"""
-    top       = segment["top"]["screen"]
-    bottom    = segment["bottom"]["screen"]
-    height    = top["y"] - bottom["y"]
-    y         = s.DIMENSIONS[1] - top["y"]
+    top    = segment["top"]["screen"]
+    bottom = segment["bottom"]["screen"]
+    height = top["y"] - bottom["y"]
+    y      = s.DIMENSIONS[1] - top["y"]
 
-    if height <= 1:
-        pygame.draw.line(window, segment["colour"]["grass"], (0, y), (s.DIMENSIONS[0], y), 1)
-    else:
-        pygame.draw.rect(window, segment["colour"]["grass"], (0, y, s.DIMENSIONS[0], height), 0)
+    pygame.draw.rect(window,
+      segment["colour"]["grass"],
+      (0, y, s.DIMENSIONS[0], height),
+      int(height <= 1))
 
-def render_player(window, segment, direction_x):
+def render_player(window, segment, direction_x, player_percent):
     """Renders the players car to the screen, with appropriate scaling and rotation"""
-    top_y    = segment["top"]["world"]["y"]
-    bottom_y = segment["bottom"]["world"]["y"]
+    top    = segment["top"]
+    bottom = segment["bottom"]
+    width  = s.DIMENSIONS[0] / 2
+    height = s.DIMENSIONS[1] / 2
+    scale  = s.CAMERA_DEPTH / (s.CAMERA_HEIGHT * s.CAMERA_DEPTH)
+    sprite = "straight"
 
     if direction_x > 0:
         sprite = "right"
     elif direction_x < 0:
         sprite = "left"
-    else:
-        sprite = "straight"
 
-    if top_y > bottom_y:
+    if top["world"]["y"] > bottom["world"]["y"]:
         sprite = "uphill_" + sprite
-    elif top_y < bottom_y:
+    elif top["world"]["y"] < bottom["world"]["y"]:
         sprite = "downhill_" + sprite
 
-    dimensions = (int(s.DIMENSIONS[0] * 0.26), int((s.DIMENSIONS[0] * 0.26) / 2))
-    player = pygame.image.load("lib/" + sprite + ".png")
-    player = pygame.transform.scale(player, dimensions)
-    window.blit(player, ((s.DIMENSIONS[0] / 2) - 100, s.DIMENSIONS[1] - 120))
+    sprite   = s.SPRITES[sprite]
+    s_width  = int(sprite["width"] * scale * s.ROAD_WIDTH * 1.2)
+    s_height = int(sprite["height"] * scale * s.ROAD_WIDTH * 1.2)
 
-    pass
+    player = pygame.image.load("lib/" + sprite["path"])
+    player = pygame.transform.scale(player, (s_width, s_height))
+    window.blit(player, (width - (s_width / 2), s.DIMENSIONS[1] - s_height - s.BOTTOM_OFFSET))
 
 def render_background(window, curve):
     pass
