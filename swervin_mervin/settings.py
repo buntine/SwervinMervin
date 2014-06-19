@@ -67,4 +67,8 @@ SPRITES           = {"straight": {
                      "downhill_right": {
                        "path": "downhill_right.png",
                        "width": 80,
-                       "height": 45}}
+                       "height": 45},
+                     "column": {
+                       "path": "column.png",
+                       "width": 80,
+                       "height": 126}}

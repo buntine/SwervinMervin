@@ -75,6 +75,13 @@ while True:
         r.render_grass(window, segment)
         r.render_road(window, segment)
 
+    # Draw sprites in from back to front (painters algorithm).
+    for i in reversed(range(1, s.DRAW_DISTANCE)):
+        index   = (base_segment["index"] + i) % len(segments)
+        segment = segments[index]
+ 
+        r.render_sprites(window, segment)
+
     r.render_player(window, base_segment, direction_x, player_percent)
 
     for event in pygame.event.get():

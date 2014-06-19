@@ -51,16 +51,22 @@ def build_level():
     segments += add_corner(len(segments), 50, 25, 100, -6)
 
     for n in range(len(segments), len(segments) + 100):
-        segments.append(new_segment(n, 0))
+        sprites = []
+
+        if (n % 10 == 0):
+            sprites.append({"sprite": s.SPRITES["column"], "offset": 0})
+
+        segments.append(new_segment(n, 0, 0, 0, sprites))
 
     return segments
 
-def new_segment(index, curve, start_y=0, end_y=0):
+def new_segment(index, curve, start_y=0, end_y=0, sprites=[]):
     """Returns a new segment for the segments array"""
     palette = "dark" if (index / s.RUMBLE_LENGTH) % 2 == 0 else "light"
     segment = {
       "index":  index,
       "curve": curve,
+      "sprites":  sprites,
       "top":    {"world": {"y": end_y, "z": ((index + 1) * s.SEGMENT_HEIGHT)},
                  "camera": {},
                  "screen": {}},

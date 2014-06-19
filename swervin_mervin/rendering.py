@@ -96,5 +96,19 @@ def render_player(window, segment, direction_x, player_percent):
     player = pygame.transform.scale(player, (s_width, s_height))
     window.blit(player, (width - (s_width / 2), s.DIMENSIONS[1] - s_height - s.BOTTOM_OFFSET))
 
+def render_sprites(window, segment):
+    """Renders the sprites with the appropriate scaling for the given segment"""
+    bottom = segment["bottom"]["screen"]
+
+    for sp in segment["sprites"]:
+        s_width  = int(sp["sprite"]["width"] * bottom["s"] * s.ROAD_WIDTH * 1.2)
+        s_height = int(sp["sprite"]["height"] * bottom["s"] * s.ROAD_WIDTH * 1.2)
+        sprite   = pygame.image.load("lib/" + sp["sprite"]["path"])
+        sprite   = pygame.transform.scale(sprite, (s_width, s_height))
+        x        = bottom["x"] - bottom["w"] - s_width
+        y        = s.DIMENSIONS[1] - bottom["y"] - s_height
+
+        window.blit(sprite, (x, y))
+
 def render_background(window, curve):
     pass
