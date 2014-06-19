@@ -54,7 +54,8 @@ def build_level():
         sprites = []
 
         if (n % 10 == 0):
-            sprites.append({"sprite": s.SPRITES["column"], "offset": 0})
+            sprites.append({"sprite": s.SPRITES["column"], "offset": -1.1})
+            sprites.append({"sprite": s.SPRITES["column"], "offset": 1.4})
 
         segments.append(new_segment(n, 0, 0, 0, sprites))
 
