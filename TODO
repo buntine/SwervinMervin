@@ -1,8 +1,9 @@
-- Fix projection for player sprite.
+- Fix width/height projection for sprites (or atleast understand it!)
 - Parallax background
 - Deceleration on grass not working if not accelerating
 - Background fog
   - Also have whole game fog that fades in and out during night level.
+- Collision detection
 - Write simple level-editor
     straight 100
     corner left 20 40 20
