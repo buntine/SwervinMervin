@@ -5,6 +5,7 @@
 
 import pygame, sys
 from pygame.locals import *
+import player as pl
 import projection as p
 import util as u
 import rendering as r
@@ -13,36 +14,27 @@ import settings as s
 
 pygame.init()
 
-# Game variables.
-position     = 0
-speed        = 1
-player_x     = 0
-player_y     = 0
-direction_x  = 0
-acceleration = 0
+player       = pl.Player()
 segments     = se.build_level()
 track_length = len(segments) * s.SEGMENT_HEIGHT
-
-fps_clock = pygame.time.Clock()
-window    = pygame.display.set_mode(s.DIMENSIONS)
+fps_clock    = pygame.time.Clock()
+window       = pygame.display.set_mode(s.DIMENSIONS)
 
 while True:
     window.fill(s.COLOURS["sky"])
 
-    position        = u.position(position, speed, track_length)
-    speed           = u.accelerate(speed, acceleration)
-    speed_percent   = speed / s.TOP_SPEED
-    direction_speed = (s.FRAME_RATE * 2 * speed_percent)
-    base_segment    = se.find_segment(position, segments)
-    player_segment  = se.find_segment((position + s.PLAYER_Z), segments)
-    player_percent  = ((position + s.PLAYER_Z) % s.SEGMENT_HEIGHT) / s.SEGMENT_HEIGHT
-    player_x        = u.steer(player_x, direction_x)
-    player_y        = u.player_y(base_segment, player_percent) # I feel this should be player_segment, but the math is weirding me out.
-    y_coverage      = 0
+    player.travel(track_length)
 
-    player_x    -= (direction_speed * speed_percent * player_segment["curve"] * s.CENTRIFUGAL_FORCE)
-    curve_delta  = -(base_segment["curve"] * player_percent)
-    curve        = 0
+    base_segment   = se.find_segment(player.position, segments)
+    player_segment = se.find_segment((player.position + s.PLAYER_Z), segments)
+
+    player.accelerate()
+    player.steer(player_segment)
+    player.climb(base_segment)
+ 
+    y_coverage  = 0
+    curve       = 0
+    curve_delta = -(base_segment["curve"] * player.segment_percent())
 
     r.render_background(window, curve_delta)
 
@@ -50,15 +42,15 @@ while True:
     for i in range(s.DRAW_DISTANCE):
         index              = (base_segment["index"] + i) % len(segments)
         segment            = segments[index]
-        projected_position = position
-        camera_x           = player_x * s.ROAD_WIDTH
+        projected_position = player.position
+        camera_x           = player.x * s.ROAD_WIDTH
 
         # Past end of track and looped back.
         if segment["index"] < base_segment["index"]:
             projected_position -= track_length
 
-        p.project_line(segment, "top", camera_x - curve - curve_delta, projected_position, player_y)
-        p.project_line(segment, "bottom", camera_x - curve, projected_position, player_y)
+        p.project_line(segment, "top", camera_x - curve - curve_delta, projected_position, player.y)
+        p.project_line(segment, "bottom", camera_x - curve, projected_position, player.y)
 
         curve       += curve_delta
         curve_delta += segment["curve"]
@@ -82,7 +74,7 @@ while True:
  
         r.render_sprites(window, segment)
 
-    r.render_player(window, base_segment, direction_x, player_percent)
+    player.render(window, base_segment)
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -90,14 +82,9 @@ while True:
             sys.exit()
 
     # Steering, acceleration.
-    keys         = pygame.key.get_pressed()
-    acceleration = u.acceleration(keys)
-    direction_x  = u.direction(keys, direction_speed)
-
-    # Slow player down if they are on the grass.
-    if player_x > 1.0 or player_x < -1.0:
-        if speed > s.OFFROAD_TOP_SPEED:
-            acceleration = -(acceleration * 3)
+    keys = pygame.key.get_pressed()
+    player.set_acceleration(keys)
+    player.set_direction(keys)
 
     pygame.display.update()
     fps_clock.tick(s.FPS)

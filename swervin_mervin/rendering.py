@@ -69,33 +69,6 @@ def render_grass(window, segment):
       (0, y, s.DIMENSIONS[0], height),
       int(height <= 1))
 
-def render_player(window, segment, direction_x, player_percent):
-    """Renders the players car to the screen, with appropriate scaling and rotation"""
-    top    = segment["top"]
-    bottom = segment["bottom"]
-    width  = s.DIMENSIONS[0] / 2
-    height = s.DIMENSIONS[1] / 2
-    scale  = s.CAMERA_DEPTH / (s.CAMERA_HEIGHT * s.CAMERA_DEPTH)
-    sprite = "straight"
-
-    if direction_x > 0:
-        sprite = "right"
-    elif direction_x < 0:
-        sprite = "left"
-
-    if top["world"]["y"] > bottom["world"]["y"]:
-        sprite = "uphill_" + sprite
-    elif top["world"]["y"] < bottom["world"]["y"]:
-        sprite = "downhill_" + sprite
-
-    sprite   = s.SPRITES[sprite]
-    s_width  = int(sprite["width"] * scale * s.ROAD_WIDTH * 1.2)
-    s_height = int(sprite["height"] * scale * s.ROAD_WIDTH * 1.2)
-
-    player = pygame.image.load("lib/" + sprite["path"])
-    player = pygame.transform.scale(player, (s_width, s_height))
-    window.blit(player, (width - (s_width / 2), s.DIMENSIONS[1] - s_height - s.BOTTOM_OFFSET))
-
 def render_sprites(window, segment):
     """Renders the sprites with the appropriate scaling for the given segment"""
     bottom = segment["bottom"]["screen"]
