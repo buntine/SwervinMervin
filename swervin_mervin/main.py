@@ -8,7 +8,7 @@ from pygame.locals import *
 import player as p
 import level as l
 import rendering as r
-import segmentation as se
+##import segmentation as se
 import settings as s
 
 pygame.init()
