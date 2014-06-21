@@ -8,7 +8,6 @@ from pygame.locals import *
 import player as p
 import level as l
 import rendering as r
-##import segmentation as se
 import settings as s
 
 pygame.init()
@@ -48,8 +47,11 @@ while True:
         if segment["index"] < base_segment["index"]:
             projected_position -= level.track_length()
 
-        segment.project(camera_x, curve, curve_delta, projected_position, player.y)
-        ##level.project_segment(segment["index"], camera_x, curve, curve_delta, projected_position, player.y)
+        segment.project(camera_x,
+          curve,
+          curve_delta,
+          projected_position,
+          player.y)
 
         curve       += curve_delta
         curve_delta += segment["curve"]
@@ -62,14 +64,11 @@ while True:
 
         segment.render_grass(window)
         segment.render_road(window)
-        ##r.render_grass(window, segment)
-        ##r.render_road(window, segment)
 
     # Draw sprites in from back to front (painters algorithm).
     for i in reversed(range(1, s.DRAW_DISTANCE)):
         segment = level.offset_segment(base_segment["index"] + i)
         segment.render_sprites(window)
-        ##r.render_sprites(window, segment)
 
     player.render(window, base_segment)
 
