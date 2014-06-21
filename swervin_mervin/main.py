@@ -26,7 +26,7 @@ level.build()
 while True:
     window.fill(s.COLOURS["sky"])
 
-    player.travel(track_length)
+    player.travel(level.track_length())
 
     ## base_segment   = se.find_segment(player.position, segments)
     ## player_segment = se.find_segment((player.position + s.PLAYER_Z), segments)
@@ -52,7 +52,7 @@ while True:
 
         # Past end of track and looped back.
         if segment["index"] < base_segment["index"]:
-            projected_position -= level.track_length
+            projected_position -= level.track_length()
 
         level.project_segment(segment["index"], camera_x, curve, curve_delta, projected_position, player.y)
         ##p.project_line(segment, "top", camera_x - curve - curve_delta, projected_position, player.y)
@@ -75,9 +75,7 @@ while True:
 
     # Draw sprites in from back to front (painters algorithm).
     for i in reversed(range(1, s.DRAW_DISTANCE)):
-        index   = (base_segment["index"] + i) % len(segments)
-        segment = segments[index]
- 
+        segment = level.offset_segment(base_segment["index"] + i)
         r.render_sprites(window, segment)
 
     player.render(window, base_segment)
