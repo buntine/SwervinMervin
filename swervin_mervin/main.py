@@ -6,8 +6,8 @@
 import pygame, sys
 from pygame.locals import *
 import player as pl
-import projection as p
-import util as u
+import level as l
+##import projection as p
 import rendering as r
 import segmentation as se
 import settings as s
@@ -15,18 +15,24 @@ import settings as s
 pygame.init()
 
 player       = pl.Player()
-segments     = se.build_level()
-track_length = len(segments) * s.SEGMENT_HEIGHT
+level        = l.Level("levels/city.lvl")
+##segments     = level.build()
+##track_length = len(segments) * s.SEGMENT_HEIGHT
 fps_clock    = pygame.time.Clock()
 window       = pygame.display.set_mode(s.DIMENSIONS)
+
+level.build()
 
 while True:
     window.fill(s.COLOURS["sky"])
 
     player.travel(track_length)
 
-    base_segment   = se.find_segment(player.position, segments)
-    player_segment = se.find_segment((player.position + s.PLAYER_Z), segments)
+    ## base_segment   = se.find_segment(player.position, segments)
+    ## player_segment = se.find_segment((player.position + s.PLAYER_Z), segments)
+
+    base_segment   = level.find_segment(player.position)
+    player_segment = level.find_segment(player.position + s.PLAYER_Z)
 
     player.accelerate()
     player.steer(player_segment)
@@ -40,17 +46,17 @@ while True:
 
     # Loop through segments we should draw for this frame.
     for i in range(s.DRAW_DISTANCE):
-        index              = (base_segment["index"] + i) % len(segments)
-        segment            = segments[index]
+        segment            = level.offset_segment(base_segment["index"] + i)
         projected_position = player.position
         camera_x           = player.x * s.ROAD_WIDTH
 
         # Past end of track and looped back.
         if segment["index"] < base_segment["index"]:
-            projected_position -= track_length
+            projected_position -= level.track_length
 
-        p.project_line(segment, "top", camera_x - curve - curve_delta, projected_position, player.y)
-        p.project_line(segment, "bottom", camera_x - curve, projected_position, player.y)
+        level.project_segment(segment["index"], camera_x, curve, curve_delta, projected_position, player.y)
+        ##p.project_line(segment, "top", camera_x - curve - curve_delta, projected_position, player.y)
+        ##p.project_line(segment, "bottom", camera_x - curve, projected_position, player.y)
 
         curve       += curve_delta
         curve_delta += segment["curve"]
