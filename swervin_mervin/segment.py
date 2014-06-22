@@ -1,13 +1,14 @@
 import pygame
+import settings as s
 
 class Segment:
     """Represents a single segment in a level."""
 
-    def __init__(palette, index, curve, start_y, end_y):
+    def __init__(self, palette, index, curve, start_y, end_y, sprites):
         self.index   = index
         self.curve   = curve
         self.sprites = sprites
-        self.colour  = palette
+        self.colour  = s.COLOURS[palette]
         self.top     = self.__initialize_line(end_y, index + 1)
         self.bottom  = self.__initialize_line(start_y, index)
 
@@ -92,7 +93,7 @@ class Segment:
         """Renders the sprites (if any) for this segment to the given surface."""
         bottom = self.bottom["screen"]
 
-        for sp in segment.sprites:
+        for sp in self.sprites:
             s_width  = int(sp["sprite"]["width"] * bottom["s"] * s.ROAD_WIDTH * 1.2)
             s_height = int(sp["sprite"]["height"] * bottom["s"] * s.ROAD_WIDTH * 1.2)
             x        = (bottom["x"] - s_width) + (bottom["w"] * sp["offset"])
@@ -116,7 +117,7 @@ class Segment:
         p["screen"]["y"] = round(height + (p["screen"]["s"] * p["camera"]["y"] * height))
         p["screen"]["w"] = round(p["screen"]["s"] * s.ROAD_WIDTH * width)
 
-    def __initialize_line(y, height)
+    def __initialize_line(self, y, height):
         return {"world": {"y": y,
                           "z": (height * s.SEGMENT_HEIGHT)},
                 "camera": {},

@@ -16,84 +16,69 @@ class Level:
         for n in range(25):
             last_y = y
             y = u.ease_in_out(0, (20 * 260), n / 75.0)
-            self.segments.append(self.new_segment(n, 0, last_y, y))
+            self.add_segment(0, last_y, y)
 
         for n in range(25):
             last_y = y
             y = u.ease_in_out(0, (20 * 260), (n + 25) / 75.0)
-            self.segments.append(self.new_segment(n + 25, 0, last_y, y))
+            self.add_segment(0, last_y, y)
 
         for n in range(25):
             last_y = y
             y = u.ease_in_out(0, (20 * 260), (n + 50) / 75.0)
-            self.segments.append(self.new_segment(n + 50, 0, last_y, y))
+            self.add_segment(0, last_y, y)
 
         end_y = y
-
         for n in range(25):
-            self.segments.append(self.new_segment(n + 75, 0, y, y))
+            self.add_segment(0, y, y)
 
         for n in range(25):
             last_y = y
             y = u.ease_in_out(end_y, 0, n / 75.0)
-            self.segments.append(self.new_segment(n + 100, 0, last_y, y))
+            self.add_segment(0, last_y, y)
 
         for n in range(25):
             last_y = y
             y = u.ease_in_out(end_y, 0, (n + 25) / 75.0)
-            self.segments.append(self.new_segment(n + 125, 0, last_y, y))
+            self.add_segment(0, last_y, y)
 
         for n in range(25):
             last_y = y
             y = u.ease_in_out(end_y, 0, (n + 50) / 75.0)
-            self.segments.append(self.new_segment(n + 150, 0, last_y, y))
+            self.add_segment(0, last_y, y)
 
-        self.add_corner(len(self.segments), 50, 25, 100, 4)
-        self.add_corner(len(self.segments), 50, 25, 100, -6)
+        self.add_corner(50, 25, 100, 4)
+        self.add_corner(50, 25, 100, -6)
 
-        for n in range(len(self.segments), len(self.segments) + 100):
+        for n in range(100):
             sprites = []
 
             if (n % 10 == 0):
                 sprites.append({"sprite": s.SPRITES["column"], "offset": -1.1})
                 sprites.append({"sprite": s.SPRITES["column"], "offset": 1.4})
 
-            self.segments.append(self.new_segment(n, 0, 0, 0, sprites))
+            self.add_segment(0, 0, 0, sprites)
 
-    def new_segment(self, index, curve, start_y=0, end_y=0, sprites=[]):
-        """Returns a new segment for the segments array"""
-        palette = "dark" if (index / s.RUMBLE_LENGTH) % 2 == 0 else "light"
-        segment = {
-          "index":  index,
-          "curve": curve,
-          "sprites":  sprites,
-          "top":    {"world": {"y": end_y, "z": ((index + 1) * s.SEGMENT_HEIGHT)},
-                     "camera": {},
-                     "screen": {}},
-          "bottom": {"world": {"y": start_y, "z": (index * s.SEGMENT_HEIGHT)},
-                     "camera": {},
-                     "screen": {}},
-          "colour": s.COLOURS[palette]}
+    def add_segment(self, curve, start_y=0, end_y=0, sprites=[]):
+        """Creates a new segment and pushes it to the segments array"""
+        palette = "dark" if (len(self.segments) / s.RUMBLE_LENGTH) % 2 == 0 else "light"
+        segment = seg.Segment(palette, len(self.segments), curve, start_y, end_y, sprites)
 
-        return segment
+        self.segments.append(segment)
 
-    def add_corner(self, i, enter, hold, exit, curve):
+    def add_corner(self, enter, hold, exit, curve):
         """Writes a curve (with easing) into the segments array"""
-        segs = i
-
         # Ease into corner.
         for n in range(enter):
-            self.segments.append(self.new_segment(segs + n, u.ease_in(0, curve, n / enter)))
-        segs += enter
+            self.add_segment(u.ease_in(0, curve, n / enter))
 
         # Hold.
         for n in range(hold):
-            self.segments.append(self.new_segment(segs + n, curve))
-        segs += hold
+            self.add_segment(curve)
 
         # Ease out of corner.
         for n in range(exit):
-            self.segments.append(self.new_segment(segs + n, u.ease_in_out(curve, 0, n / exit)))
+            self.add_segment(u.ease_in_out(curve, 0, n / exit))
 
     def track_length(self):
         return len(self.segments) * s.SEGMENT_HEIGHT

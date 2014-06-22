@@ -1,6 +1,5 @@
 - Fix width/height projection for sprites (or atleast understand it!)
 - Parallax background
-- Deceleration on grass not working if not accelerating
 - Background fog
   - Also have whole game fog that fades in and out during night level.
 - Collision detection
@@ -9,3 +8,5 @@
     corner left 20 40 20
     straight 80
     hill 20
+    sprite column 110 -0.2
+    sprite column 110 1.2

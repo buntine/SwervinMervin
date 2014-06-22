@@ -19,20 +19,20 @@ class Player:
         self.x = u.limit(self.x + self.direction, -s.BOUNDS, s.BOUNDS)
 
         # Apply centrifugal force if we are going around a corner.
-        if segment["curve"] != 0:
-            self.x -= (self.direction_speed() * self.speed_percent() * segment["curve"] * s.CENTRIFUGAL_FORCE)
+        if segment.curve != 0:
+            self.x -= (self.direction_speed() * self.speed_percent() * segment.curve * s.CENTRIFUGAL_FORCE)
 
     def climb(self, segment):
         """Updates y to simulate hill and valley ascension."""
-        top_y    = segment["top"]["world"]["y"]
-        bottom_y = segment["bottom"]["world"]["y"]
+        top_y    = segment.top["world"]["y"]
+        bottom_y = segment.bottom["world"]["y"]
 
         self.y = top_y + (top_y - bottom_y) * self.speed_percent()
 
     def render(self, window, segment):
         """Renders the player sprite to the given surface."""
-        top    = segment["top"]
-        bottom = segment["bottom"]
+        top    = segment.top
+        bottom = segment.bottom
         width  = s.DIMENSIONS[0] / 2
         height = s.DIMENSIONS[1] / 2
         scale  = s.CAMERA_DEPTH / (s.CAMERA_HEIGHT * s.CAMERA_DEPTH)
