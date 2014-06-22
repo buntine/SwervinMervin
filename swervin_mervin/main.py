@@ -13,7 +13,7 @@ import settings as s
 pygame.init()
 
 player    = p.Player()
-level     = l.Level("swervin_mervin/levels/test.csv")
+level     = l.Level("test")
 fps_clock = pygame.time.Clock()
 window    = pygame.display.set_mode(s.DIMENSIONS)
 

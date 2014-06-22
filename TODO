@@ -1,3 +1,4 @@
+- Bug in scaling sprites to negative sizes.
 - Fix width/height projection for sprites (or atleast understand it!)
 - Parallax background
 - Background fog
