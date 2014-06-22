@@ -16,7 +16,7 @@ class Level:
 
         with open(level_path, "r") as csvfile:
             for row in csv.reader(csvfile):
-                ints = map(lambda c: int(c), row)
+                ints = map(lambda c: float(c), row)
                 self.add_segment(*ints)
 
         with open(sprites_path, "r") as csvfile:
