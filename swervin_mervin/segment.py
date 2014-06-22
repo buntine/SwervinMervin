@@ -99,14 +99,12 @@ class Segment:
             s_height = int(sp["sprite"]["height"] * bottom["s"] * s.ROAD_WIDTH * 1.2)
             x        = (bottom["x"] - s_width) + (bottom["w"] * sp["offset"])
             y        = s.DIMENSIONS[1] - bottom["y"] - s_height
-            sprite   = pygame.image.load("lib/" + sp["sprite"]["path"])
-            sprite   = pygame.transform.scale(sprite, (s_width, s_height))
 
-            if self.index == 170:
-                print (y + s_height) - self.clip
-                print " "
+            if s_width > 0 and s_height > 0:
+                sprite = pygame.image.load("lib/" + sp["sprite"]["path"])
+                sprite = pygame.transform.scale(sprite, (s_width, s_height))
 
-            window.blit(sprite, (x, y), (0, 0, s_width, s_height))
+                window.blit(sprite, (x, y), (0, 0, s_width, s_height))
 
     def __project_line(self, line, camera_x, camera_z, player_y):
         """Projects a 3D world position into 2D coordinates for the given line."""
