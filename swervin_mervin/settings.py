@@ -13,6 +13,7 @@ ROAD_WIDTH        = 2100
 LANES             = 4
 BOUNDS            = 1.8
 CENTRIFUGAL_FORCE = 0.266
+PLAYER_HOLD       = 8
 TOP_SPEED         = (SEGMENT_HEIGHT / (1.0/FPS)) * 1.6
 OFFROAD_TOP_SPEED = TOP_SPEED / 2.0
 ACCELERATION      = TOP_SPEED / 5.0
@@ -32,39 +33,75 @@ COLOURS           = {"white": Color(255, 255, 255),
                                "grass":  Color(55, 199, 66),
                                "rumble": Color(255, 255, 255),
                                "line":   Color(255, 255, 255)}}
-SPRITES           = {"straight": {
-                       "path": "straight.png",
+SPRITES           = {"straight1": {
+                       "path": "straight1.png",
                        "width": 80,
-                       "height": 41},
-                     "left": {
+                       "height": 50},
+                     "straight2": {
+                       "path": "straight2.png",
+                       "width": 80,
+                       "height": 50},
+                     "left1": {
                        "path": "left.png",
                        "width": 80,
                        "height": 45},
-                     "right": {
-                       "path": "right.png",
+                     "left2": {
+                       "path": "left.png",
                        "width": 80,
                        "height": 45},
-                     "uphill_straight": {
+                     "right1": {
+                       "path": "right1.png",
+                       "width": 80,
+                       "height": 50},
+                     "right2": {
+                       "path": "right2.png",
+                       "width": 80,
+                       "height": 50},
+                     "uphill_straight1": {
                        "path": "uphill_straight.png",
                        "width": 80,
                        "height": 45},
-                     "uphill_left": {
+                     "uphill_straight2": {
+                       "path": "uphill_straight.png",
+                       "width": 80,
+                       "height": 45},
+                     "uphill_left1": {
                        "path": "uphill_left.png",
                        "width": 80,
                        "height": 45},
-                     "uphill_right": {
+                     "uphill_left2": {
+                       "path": "uphill_left.png",
+                       "width": 80,
+                       "height": 45},
+                     "uphill_right1": {
                        "path": "uphill_right.png",
                        "width": 80,
                        "height": 45},
-                     "downhill_straight": {
+                     "uphill_right2": {
+                       "path": "uphill_right.png",
+                       "width": 80,
+                       "height": 45},
+                     "downhill_straight1": {
                        "path": "downhill_straight.png",
                        "width": 80,
                        "height": 41},
-                     "downhill_left": {
+                     "downhill_straight2": {
+                       "path": "downhill_straight.png",
+                       "width": 80,
+                       "height": 41},
+                     "downhill_left1": {
                        "path": "downhill_left.png",
                        "width": 80,
                        "height": 45},
-                     "downhill_right": {
+                     "downhill_left2": {
+                       "path": "downhill_left.png",
+                       "width": 80,
+                       "height": 45},
+                     "downhill_right1": {
+                       "path": "downhill_right.png",
+                       "width": 80,
+                       "height": 45},
+                     "downhill_right2": {
                        "path": "downhill_right.png",
                        "width": 80,
                        "height": 45},

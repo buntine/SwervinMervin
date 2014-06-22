@@ -8,6 +8,7 @@ class Segment:
         self.index   = index
         self.curve   = curve
         self.sprites = []
+        self.clip    = 0
         self.colour  = s.COLOURS[palette]
         self.top     = self.__initialize_line(end_y, index + 1)
         self.bottom  = self.__initialize_line(start_y, index)
@@ -101,7 +102,11 @@ class Segment:
             sprite   = pygame.image.load("lib/" + sp["sprite"]["path"])
             sprite   = pygame.transform.scale(sprite, (s_width, s_height))
 
-            window.blit(sprite, (x, y))
+            if self.index == 170:
+                print (y + s_height) - self.clip
+                print " "
+
+            window.blit(sprite, (x, y), (0, 0, s_width, s_height))
 
     def __project_line(self, line, camera_x, camera_z, player_y):
         """Projects a 3D world position into 2D coordinates for the given line."""

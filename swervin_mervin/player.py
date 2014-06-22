@@ -7,12 +7,13 @@ class Player:
     """Represents the player in the game world."""
 
     def __init__(self):
-        self.x            = 0
-        self.y            = 0
-        self.position     = 0
-        self.direction    = 0
-        self.acceleration = 0
-        self.speed        = 1
+        self.x               = 0
+        self.y               = 0
+        self.position        = 0
+        self.direction       = 0
+        self.acceleration    = 0
+        self.speed           = 1
+        self.animation_frame = 1
 
     def steer(self, segment):
         """Updates x to simulate steering."""
@@ -47,7 +48,18 @@ class Player:
             sprite = "uphill_" + sprite
         elif top["world"]["y"] < bottom["world"]["y"]:
             sprite = "downhill_" + sprite
-    
+
+        if self.speed > 0:
+            self.animation_frame += 1
+
+        if self.animation_frame > (s.PLAYER_HOLD * 2):
+            self.animation_frame = 1
+
+        if self.animation_frame < s.PLAYER_HOLD:
+            sprite += "1"
+        else:
+            sprite += "2"
+
         sprite   = s.SPRITES[sprite]
         s_width  = int(sprite["width"] * scale * s.ROAD_WIDTH * 1.2)
         s_height = int(sprite["height"] * scale * s.ROAD_WIDTH * 1.2)
