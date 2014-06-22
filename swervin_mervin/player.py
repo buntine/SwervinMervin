@@ -52,13 +52,10 @@ class Player:
         if self.speed > 0:
             self.animation_frame += 1
 
-        if self.animation_frame > (s.PLAYER_HOLD * 2):
-            self.animation_frame = 1
+            if self.animation_frame > (s.PLAYER_ANIM_HOLD * 2):
+                self.animation_frame = 1
 
-        if self.animation_frame < s.PLAYER_HOLD:
-            sprite += "1"
-        else:
-            sprite += "2"
+        sprite += "1" if (self.animation_frame < s.PLAYER_ANIM_HOLD) else "2"
 
         sprite   = s.SPRITES[sprite]
         s_width  = int(sprite["width"] * scale * s.ROAD_WIDTH * 1.2)
