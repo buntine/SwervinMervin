@@ -1,6 +1,5 @@
 import settings as s
 import segment as seg
-import util as u
 import csv
 
 class Level:
