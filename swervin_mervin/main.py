@@ -40,7 +40,6 @@ while True:
     # Loop through segments we should draw for this frame.
     for i in range(s.DRAW_DISTANCE):
         segment            = level.offset_segment(base_segment.index + i)
-        segment.clip       = y_coverage
         projected_position = player.position
         camera_x           = player.x * s.ROAD_WIDTH
 
@@ -57,14 +56,16 @@ while True:
         curve       += curve_delta
         curve_delta += segment.curve
 
+        segment.clip = y_coverage
+
         if segment.should_ignore(y_coverage):
             continue
 
-        if (segment.bottom["screen"]["y"] > y_coverage):
-            y_coverage = segment.bottom["screen"]["y"]
-
         segment.render_grass(window)
         segment.render_road(window)
+
+        if (segment.top["screen"]["y"] > y_coverage):
+            y_coverage = segment.top["screen"]["y"]
 
     # Draw sprites in from back to front (painters algorithm).
     for i in reversed(range(1, s.DRAW_DISTANCE)):
