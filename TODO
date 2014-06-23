@@ -1,7 +1,6 @@
-- Bug in scaling sprites to negative sizes.
 - Fix width/height projection for sprites (or atleast understand it!)
 - Parallax background
 - Background fog
   - Also have whole game fog that fades in and out during night level.
 - Collision detection
-- Allow for sprites in the level reader.
+- 

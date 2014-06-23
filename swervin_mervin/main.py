@@ -56,6 +56,7 @@ while True:
         curve       += curve_delta
         curve_delta += segment.curve
 
+        # Remember highest Y coordinate so we can clip sprites later.
         segment.clip = y_coverage
 
         if segment.should_ignore(y_coverage):

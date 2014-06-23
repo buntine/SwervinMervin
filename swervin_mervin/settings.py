@@ -108,4 +108,12 @@ SPRITES           = {"straight1": {
                      "column": {
                        "path": "column.png",
                        "width": 80,
-                       "height": 126}}
+                       "height": 126},
+                     "boat_house": {
+                       "path": "boat_house.png",
+                       "width": 119,
+                       "height": 86},
+                     "bush1": {
+                       "path": "bush1.png",
+                       "width": 96,
+                       "height": 62}}
