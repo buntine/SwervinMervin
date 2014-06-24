@@ -3,7 +3,7 @@
 # (c) Andrew Buntine
 # https://github.com/buntine/swervin_mervin
 
-import pygame, sys
+import pygame, sys, numpy
 from pygame.locals import *
 import player as p
 import level as l
@@ -16,6 +16,7 @@ player    = p.Player()
 level     = l.Level("test")
 fps_clock = pygame.time.Clock()
 window    = pygame.display.set_mode(s.DIMENSIONS)
+curviture = 0
 
 level.build()
 
@@ -35,7 +36,10 @@ while True:
     curve       = 0
     curve_delta = -(base_segment.curve * player.segment_percent())
 
-    r.render_background(window, curve_delta)
+    if base_segment.curve != 0:
+        curviture += (base_segment.curve / s.PARALLAX_SPEED) * player.speed_percent()
+
+    r.render_background(window, curviture)
 
     # Loop through segments we should draw for this frame.
     for i in range(s.DRAW_DISTANCE):

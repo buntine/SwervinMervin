@@ -6,6 +6,7 @@ import math
 FPS               = 60
 FRAME_RATE        = (1.0 / FPS)
 DIMENSIONS        = (640, 480)
+PARALLAX_SPEED    = 6
 SEGMENT_HEIGHT    = 260
 RUMBLE_LENGTH     = 3
 DRAW_DISTANCE     = 200

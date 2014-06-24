@@ -12,20 +12,20 @@ def ease_out(a, b, p):
 def ease_in_out(a, b, p):
     return a + (b - a) * ((-math.cos(p * math.pi) / 2) + 0.5)
 
-def add_corner(enter, hold, exit, curve):
+def add_corner(enter, hold, exit, curve, y=0):
     segments = []
 
     # Ease into corner.
     for n in range(enter):
-        segments.append([ease_in(0, curve, n / enter), 0, 0])
+        segments.append([ease_in(0, curve, n / enter), y, y])
 
     # Hold.
     for n in range(hold):
-        segments.append([curve, 0, 0])
+        segments.append([curve, y, y])
 
     # Ease out of corner.
     for n in range(exit):
-        segments.append([ease_in_out(curve, 0, n / exit), 0, 0])
+        segments.append([ease_in_out(curve, 0, n / exit), y, y])
 
     return segments
 
