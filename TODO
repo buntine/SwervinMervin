@@ -1,6 +1,5 @@
 - Fix width/height projection for sprites (or atleast understand it!)
 - Fix frame rate with lots of sprites (probably don't load them all each frame)
-- Create Background class to internal scrolling logic (and allow for several layers)
 - Create start line.
 - Background fog
   - Also have whole game fog that fades in and out during night level.
