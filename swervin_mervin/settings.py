@@ -117,4 +117,8 @@ SPRITES           = {"straight1": {
                      "bush1": {
                        "path": "bush1.png",
                        "width": 96,
-                       "height": 62}}
+                       "height": 62},
+                     "boulder1": {
+                       "path": "boulder1.png",
+                       "width": 67,
+                       "height": 99}}

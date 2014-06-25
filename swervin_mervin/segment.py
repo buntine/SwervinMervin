@@ -95,8 +95,8 @@ class Segment:
         bottom = self.bottom["screen"]
 
         for sp in self.sprites:
-            s_width   = int(sp["sprite"]["width"] * bottom["s"] * s.ROAD_WIDTH * 1.2)
-            s_height  = int(sp["sprite"]["height"] * bottom["s"] * s.ROAD_WIDTH * 1.2)
+            s_width   = int(sp["sprite"]["width"] * bottom["s"] * s.ROAD_WIDTH * 3)
+            s_height  = int(sp["sprite"]["height"] * bottom["s"] * s.ROAD_WIDTH * 3)
             x         = (bottom["x"] - s_width) + (bottom["w"] * sp["offset"])
             y         = s.DIMENSIONS[1] - bottom["y"] - s_height
             clip_line = (s.DIMENSIONS[1] - self.clip) - y
