@@ -25,6 +25,7 @@ BOTTOM_OFFSET     = 5
 PLAYER_Z          = (CAMERA_HEIGHT * CAMERA_DEPTH)
 COLOURS           = {"white": Color(255, 255, 255),
                      "sky":   Color(142, 169, 232),
+                     "gutter":   Color(140, 140, 140),
                      "light": {"road":   Color(193, 193, 193),
                                "grass":  Color(61, 212, 76),
                                "rumble": Color(199, 199, 199),

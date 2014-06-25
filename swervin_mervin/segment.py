@@ -61,12 +61,20 @@ class Segment:
                   ((top["x"] - top["w"] - top_rumble_width),          y_top)]
         pygame.draw.polygon(window, colour["rumble"], points)
 
+        # Left gutter.
+        pygame.draw.line(window, s.COLOURS["gutter"],
+          (bottom["x"] - bottom["w"], y_bottom), (top["x"] - top["w"], y_top))
+
         # Right rumble strip.
         points = [((bottom["x"] + bottom["w"] + bottom_rumble_width), y_bottom),
                   ((bottom["x"] + bottom["w"]),                       y_bottom),
                   ((top["x"] + top["w"]),                             y_top),
                   ((top["x"] + top["w"] + top_rumble_width),          y_top)]
         pygame.draw.polygon(window, colour["rumble"], points)
+
+        # Right gutter.
+        pygame.draw.line(window, s.COLOURS["gutter"],
+          (bottom["x"] + bottom["w"], y_bottom), (top["x"] + top["w"], y_top))
 
         if (self.index / s.RUMBLE_LENGTH) % 2 == 0:
             # Road lanes.
