@@ -8,7 +8,6 @@ class Background:
         self.image          = pygame.image.load("lib/{0}.png".format(name))
         self.parallax_speed = parallax_speed
         self.y              = y
-
         self.width          = self.image.get_width()
         self.height         = self.image.get_height()
         self.curviture      = (self.width - s.DIMENSIONS[0]) / 2

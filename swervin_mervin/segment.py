@@ -51,26 +51,26 @@ class Segment:
                   ((top["x"] - top["w"]),       y_top)]
         pygame.draw.polygon(window, colour["road"], points)
 
-        top_rumble_width    = top["w"] / (s.LANES / 2.8)
-        bottom_rumble_width = bottom["w"] / (s.LANES / 2.8)
+        top_footpath_width    = top["w"] / (s.LANES / 2.8)
+        bottom_footpath_width = bottom["w"] / (s.LANES / 2.8)
 
-        # Left rumble strip.
-        points = [((bottom["x"] - bottom["w"] - bottom_rumble_width), y_bottom),
-                  ((bottom["x"] - bottom["w"]),                       y_bottom),
-                  ((top["x"] - top["w"]),                             y_top),
-                  ((top["x"] - top["w"] - top_rumble_width),          y_top)]
-        pygame.draw.polygon(window, colour["rumble"], points)
+        # Left footpath strip.
+        points = [((bottom["x"] - bottom["w"] - bottom_footpath_width), y_bottom),
+                  ((bottom["x"] - bottom["w"]),                         y_bottom),
+                  ((top["x"] - top["w"]),                               y_top),
+                  ((top["x"] - top["w"] - top_footpath_width),          y_top)]
+        pygame.draw.polygon(window, colour["footpath"], points)
 
         # Left gutter.
         pygame.draw.line(window, s.COLOURS["gutter"],
           (bottom["x"] - bottom["w"], y_bottom), (top["x"] - top["w"], y_top))
 
-        # Right rumble strip.
-        points = [((bottom["x"] + bottom["w"] + bottom_rumble_width), y_bottom),
-                  ((bottom["x"] + bottom["w"]),                       y_bottom),
-                  ((top["x"] + top["w"]),                             y_top),
-                  ((top["x"] + top["w"] + top_rumble_width),          y_top)]
-        pygame.draw.polygon(window, colour["rumble"], points)
+        # Right footpath strip.
+        points = [((bottom["x"] + bottom["w"] + bottom_footpath_width), y_bottom),
+                  ((bottom["x"] + bottom["w"]),                         y_bottom),
+                  ((top["x"] + top["w"]),                               y_top),
+                  ((top["x"] + top["w"] + top_footpath_width),          y_top)]
+        pygame.draw.polygon(window, colour["footpath"], points)
 
         # Right gutter.
         pygame.draw.line(window, s.COLOURS["gutter"],
