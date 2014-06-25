@@ -51,8 +51,8 @@ class Segment:
                   ((top["x"] - top["w"]),       y_top)]
         pygame.draw.polygon(window, colour["road"], points)
 
-        top_rumble_width    = top["w"] / (s.LANES * 2)
-        bottom_rumble_width = bottom["w"] / (s.LANES * 2)
+        top_rumble_width    = top["w"] / (s.LANES / 2.8)
+        bottom_rumble_width = bottom["w"] / (s.LANES / 2.8)
 
         # Left rumble strip.
         points = [((bottom["x"] - bottom["w"] - bottom_rumble_width), y_bottom),

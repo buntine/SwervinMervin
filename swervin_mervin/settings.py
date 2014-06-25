@@ -27,11 +27,11 @@ COLOURS           = {"white": Color(255, 255, 255),
                      "sky":   Color(142, 169, 232),
                      "light": {"road":   Color(193, 193, 193),
                                "grass":  Color(61, 212, 76),
-                               "rumble": Color(255, 51, 51),
+                               "rumble": Color(199, 199, 199),
                                "line":   Color(255, 255, 255)},
                      "dark":  {"road":   Color(188, 188, 188),
                                "grass":  Color(55, 199, 66),
-                               "rumble": Color(255, 255, 255),
+                               "rumble": Color(161, 164, 164),
                                "line":   Color(255, 255, 255)}}
 SPRITES           = {"straight1": {
                        "path": "straight1.png",
