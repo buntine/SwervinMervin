@@ -45,11 +45,11 @@ SPRITES           = {"straight1": {
                      "left1": {
                        "path": "left1.png",
                        "width": 80,
-                       "height": 45},
+                       "height": 50},
                      "left2": {
                        "path": "left2.png",
                        "width": 80,
-                       "height": 45},
+                       "height": 50},
                      "right1": {
                        "path": "right1.png",
                        "width": 80,
