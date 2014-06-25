@@ -1,7 +1,5 @@
 # Utility functions.
 
-import math
-
 def limit(v, low, high):
     """Returns v, limited to low/high threshold"""
     if v < low:

@@ -8,7 +8,6 @@ from pygame.locals import *
 import player as p
 import background as b
 import level as l
-import rendering as r
 import settings as s
 
 pygame.init()
