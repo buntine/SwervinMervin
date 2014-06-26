@@ -118,6 +118,22 @@ SPRITES           = {"straight1": {
                        "path": "bush1.png",
                        "width": 96,
                        "height": 62},
+                     "palm_tree": {
+                       "path": "palm_tree.png",
+                       "width": 86,
+                       "height": 216},
+                     "tree1": {
+                       "path": "tree1.png",
+                       "width": 144,
+                       "height": 144},
+                     "billboard3": {
+                       "path": "billboard03.png",
+                       "width": 92,
+                       "height": 88},
+                     "billboard4": {
+                       "path": "billboard04.png",
+                       "width": 107,
+                       "height": 68},
                      "boulder1": {
                        "path": "boulder1.png",
                        "width": 67,
