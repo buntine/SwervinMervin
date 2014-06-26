@@ -14,6 +14,7 @@ class Player:
         self.acceleration    = 0
         self.speed           = 1
         self.animation_frame = 1
+        self.crashed         = False
 
     def steer(self, segment):
         """Updates x to simulate steering."""
@@ -131,4 +132,5 @@ class Player:
 
     def __crash(self):
         """Handles a crash and resets the player."""
+        self.crashed = True
         self.speed = 0

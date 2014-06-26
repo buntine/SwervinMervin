@@ -4,4 +4,5 @@
 - Background fog
   - Also have whole game fog that fades in and out during night level.
 - Refine collision offsets for sprites.
+- Write correct crash function.
 - Sounds

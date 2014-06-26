@@ -32,7 +32,15 @@ while True:
     player.accelerate()
     player.steer(player_segment)
     player.climb(base_segment)
-    player.detect_collisions(level.offset_segment(player_segment.index + 1))
+    player.detect_collisions(player_segment)
+
+    if player.crashed:
+        step = -0.05 if player.x > 0 else 0.05
+
+        if round(player.x, 1) != 0:
+            player.x += step
+        else:
+            player.crashed = False
  
     y_coverage  = 0
     curve       = 0
