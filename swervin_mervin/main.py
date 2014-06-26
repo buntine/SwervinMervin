@@ -32,6 +32,7 @@ while True:
     player.accelerate()
     player.steer(player_segment)
     player.climb(base_segment)
+    player.detect_collisions(level.offset_segment(player_segment.index + 1))
  
     y_coverage  = 0
     curve       = 0

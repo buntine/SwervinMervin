@@ -30,6 +30,18 @@ class Player:
 
         self.y = top_y + (top_y - bottom_y) * self.speed_percent()
 
+    def detect_collisions(self, segment):
+        """Detects and handles player collisions with sprites."""
+        bottom = segment.bottom["screen"]
+
+        for sp in segment.sprites:
+            if self.x < (sp["offset"] + sp["sprite"]["collision_right_offset"]) and sp["offset"] < 0:
+                self.__crash()
+                break
+            elif self.x > (sp["offset"] + sp["sprite"]["collision_left_offset"]) and sp["offset"] > 0:
+                self.__crash()
+                break
+
     def render(self, window, segment):
         """Renders the player sprite to the given surface."""
         top    = segment.top
@@ -116,3 +128,7 @@ class Player:
     def segment_percent(self):
         """Returns a value between 0 and 1 indicating how far through the current segment we are."""
         return ((self.position + s.PLAYER_Z) % s.SEGMENT_HEIGHT) / s.SEGMENT_HEIGHT
+
+    def __crash(self):
+        """Handles a crash and resets the player."""
+        self.speed = 0
