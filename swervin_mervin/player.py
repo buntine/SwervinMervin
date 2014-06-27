@@ -123,7 +123,7 @@ class Player:
         return self.speed / s.TOP_SPEED
 
     def direction_speed(self):
-        return (s.FRAME_RATE * 2 * self.speed_percent())
+        return (s.FRAME_RATE * 3 * self.speed_percent())
 
     def segment_percent(self):
         """Returns a value between 0 and 1 indicating how far through the current segment we are."""
