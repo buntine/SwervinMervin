@@ -33,13 +33,10 @@ class Player:
 
     def detect_collisions(self, segment):
         """Detects and handles player collisions with sprites."""
-        bottom = segment.bottom["screen"]
-
         for sp in segment.sprites:
-            if (self.x < (sp["offset"] + sp["sprite"]["collision_right_offset"]) and sp["offset"] < 0) or\  # Left.
-               (self.x > (sp["offset"] + sp["sprite"]["collision_left_offset"]) and sp["offset"] > 0):      # Right.
+            if sp["sprite"].has_key("collision") and self.__collided_with(sp):
                 self.crashed = True
-                self.speed = 0
+                self.speed   = 0
                 break
 
     def render(self, window, segment):
@@ -98,13 +95,16 @@ class Player:
         a = -s.FRAME_RATE
 
         # Slow player down if they are on the grass.
-        if (self.x > 1.0 or self.x < -1.0) and self.speed > s.OFFROAD_TOP_SPEED:
-            a = a * 3
+        if self.crashed:
+            a = 0
         else:
-            if keys[K_UP]:
-                a = s.FRAME_RATE
-            elif keys[K_DOWN]:
-                a = -(s.FRAME_RATE * s.DECELERATION)
+            if (self.x > 1.0 or self.x < -1.0) and self.speed > s.OFFROAD_TOP_SPEED:
+                a = a * 3
+            else:
+                if keys[K_UP]:
+                    a = s.FRAME_RATE
+                elif keys[K_DOWN]:
+                    a = -(s.FRAME_RATE * s.DECELERATION)
 
         self.acceleration = a
 
@@ -132,9 +132,17 @@ class Player:
     def handle_crash(self):
         """Proceeds player through crash state."""
         if self.crashed:
-            step = -0.05 if self.x > 0 else 0.05
+            step = -0.03 if self.x > 0 else 0.03
 
             if round(self.x, 1) != 0:
                 self.x += step
             else:
                 self.crashed = False
+
+    def __collided_with(self, sprite):
+        s = sprite["sprite"]
+        o = sprite["offset"]
+
+        return (self.x < (o + s["collision"][1]) and o < 0) or\
+               (self.x > (o + s["collision"][0]) and o > 0)
+ 
