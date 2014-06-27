@@ -33,15 +33,8 @@ while True:
     player.steer(player_segment)
     player.climb(base_segment)
     player.detect_collisions(player_segment)
+    player.handle_crash()
 
-    if player.crashed:
-        step = -0.05 if player.x > 0 else 0.05
-
-        if round(player.x, 1) != 0:
-            player.x += step
-        else:
-            player.crashed = False
- 
     y_coverage  = 0
     curve       = 0
     curve_delta = -(base_segment.curve * player.segment_percent())

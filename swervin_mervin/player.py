@@ -36,11 +36,10 @@ class Player:
         bottom = segment.bottom["screen"]
 
         for sp in segment.sprites:
-            if self.x < (sp["offset"] + sp["sprite"]["collision_right_offset"]) and sp["offset"] < 0:
-                self.__crash()
-                break
-            elif self.x > (sp["offset"] + sp["sprite"]["collision_left_offset"]) and sp["offset"] > 0:
-                self.__crash()
+            if (self.x < (sp["offset"] + sp["sprite"]["collision_right_offset"]) and sp["offset"] < 0) or\  # Left.
+               (self.x > (sp["offset"] + sp["sprite"]["collision_left_offset"]) and sp["offset"] > 0):      # Right.
+                self.crashed = True
+                self.speed = 0
                 break
 
     def render(self, window, segment):
@@ -130,7 +129,12 @@ class Player:
         """Returns a value between 0 and 1 indicating how far through the current segment we are."""
         return ((self.position + s.PLAYER_Z) % s.SEGMENT_HEIGHT) / s.SEGMENT_HEIGHT
 
-    def __crash(self):
-        """Handles a crash and resets the player."""
-        self.crashed = True
-        self.speed = 0
+    def handle_crash(self):
+        """Proceeds player through crash state."""
+        if self.crashed:
+            step = -0.05 if self.x > 0 else 0.05
+
+            if round(self.x, 1) != 0:
+                self.x += step
+            else:
+                self.crashed = False
