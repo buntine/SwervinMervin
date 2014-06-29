@@ -34,16 +34,15 @@ class Player:
 
     def detect_collisions(self, segment):
         """Detects and handles player collisions with sprites."""
-        if self.speed > 0:
+        if not self.crashed:
             for sp in segment.sprites:
                 if sp["sprite"].has_key("collision") and self.__collided_with(sp):
                     pygame.mixer.music.set_volume(0.2)
-                    crash_sf     = pygame.mixer.Sound("lib/you_fool.ogg")
+                    crash_sfx    = pygame.mixer.Sound("lib/you_fool.ogg")
                     self.crashed = True
                     self.speed   = 0
-                    print "crash"
 
-                    crash_sf.play()
+                    crash_sfx.play()
                     break
 
     def render(self, window, segment):

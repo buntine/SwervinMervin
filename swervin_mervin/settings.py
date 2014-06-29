@@ -92,21 +92,21 @@ SPRITES           = {"straight1": {
                        "width": 80,
                        "height": 56},
                      "downhill_left1": {
-                       "path": "downhill_left.png",
+                       "path": "downhill_left1.png",
                        "width": 80,
-                       "height": 45},
+                       "height": 56},
                      "downhill_left2": {
-                       "path": "downhill_left.png",
+                       "path": "downhill_left2.png",
                        "width": 80,
-                       "height": 45},
+                       "height": 56},
                      "downhill_right1": {
-                       "path": "downhill_right.png",
+                       "path": "downhill_right1.png",
                        "width": 80,
-                       "height": 45},
+                       "height": 56},
                      "downhill_right2": {
-                       "path": "downhill_right.png",
+                       "path": "downhill_right2.png",
                        "width": 80,
-                       "height": 45},
+                       "height": 56},
                      "column": {
                        "path": "column.png",
                        "collision": [-0.9, 0.1],
