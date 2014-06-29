@@ -82,6 +82,7 @@ while True:
         segment.render_sprites(window)
 
     player.render(window, base_segment)
+    player.render_hud(window)
 
     for event in pygame.event.get():
         if event.type == QUIT:

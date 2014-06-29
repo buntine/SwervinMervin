@@ -74,6 +74,10 @@ class Player:
         p = pygame.transform.scale(p, (s_width, s_height))
         window.blit(p, (width - (s_width / 2), s.DIMENSIONS[1] - s_height - s.BOTTOM_OFFSET))
 
+    def render_hud(self, window):
+        """Renders a Head-Up display on the active window."""
+        pass
+
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""
         self.speed = u.limit(self.speed + (s.ACCELERATION * self.acceleration), 0, s.TOP_SPEED)
