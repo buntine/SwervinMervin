@@ -2,8 +2,12 @@
 - Fix frame rate with lots of sprites (probably don't load them all each frame)
 - Create start line.
 - HUD
+  - RPM
+  - Speed in KMPH
+  - Lap time
+  - Lap number
 - Background fog
   - Also have whole game fog that fades in and out during night level.
 - Refine collision offsets for sprites.
-- Write correct crash function.
-- Sounds
+- Car SFX
+- Other cars
