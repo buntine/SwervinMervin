@@ -76,7 +76,7 @@ class Player:
         window.blit(p, (width - (s_width / 2), s.DIMENSIONS[1] - s_height - s.BOTTOM_OFFSET))
 
     def circular_orbit(self, center, radius, t):
-        theta = math.fmod(t, math.pi * 2)
+        theta = math.fmod(t, math.pi * 3)
         c = math.cos(theta)
         s = math.sin(theta)
         return center[0] + radius * c, center[1] + radius * s
