@@ -2,6 +2,7 @@ import settings as s
 import util as u
 import pygame
 from pygame.locals import *
+import math
 
 class Player:
     """Represents the player in the game world."""
@@ -74,9 +75,23 @@ class Player:
         p = pygame.transform.scale(p, (s_width, s_height))
         window.blit(p, (width - (s_width / 2), s.DIMENSIONS[1] - s_height - s.BOTTOM_OFFSET))
 
+    def circular_orbit(self, center, radius, t):
+        theta = math.fmod(t, math.pi * 2)
+        c = math.cos(theta)
+        s = math.sin(theta)
+        return center[0] + radius * c, center[1] + radius * s
+
     def render_hud(self, window):
         """Renders a Head-Up display on the active window."""
-        pass
+        center = (70, s.DIMENSIONS[1] - 70)
+
+        pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
+        pygame.draw.circle(window, s.COLOURS["black"], center, 3)
+
+        start  = self.circular_orbit(center, -10, self.speed / 6000)
+        finish = self.circular_orbit(center, 25, self.speed / 6000)
+
+        pygame.draw.line(window, s.COLOURS["black"], start, finish, 2)
 
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""
