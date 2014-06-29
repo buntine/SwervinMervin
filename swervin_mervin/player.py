@@ -34,11 +34,17 @@ class Player:
 
     def detect_collisions(self, segment):
         """Detects and handles player collisions with sprites."""
-        for sp in segment.sprites:
-            if sp["sprite"].has_key("collision") and self.__collided_with(sp):
-                self.crashed = True
-                self.speed   = 0
-                break
+        if self.speed > 0:
+            for sp in segment.sprites:
+                if sp["sprite"].has_key("collision") and self.__collided_with(sp):
+                    pygame.mixer.music.set_volume(0.2)
+                    crash_sf     = pygame.mixer.Sound("lib/you_fool.ogg")
+                    self.crashed = True
+                    self.speed   = 0
+                    print "crash"
+
+                    crash_sf.play()
+                    break
 
     def render(self, window, segment):
         """Renders the player sprite to the given surface."""
@@ -75,23 +81,16 @@ class Player:
         p = pygame.transform.scale(p, (s_width, s_height))
         window.blit(p, (width - (s_width / 2), s.DIMENSIONS[1] - s_height - s.BOTTOM_OFFSET))
 
-    def circular_orbit(self, center, radius, t):
-        theta = math.fmod(t, math.pi * 3)
-        c = math.cos(theta)
-        s = math.sin(theta)
-        return center[0] + radius * c, center[1] + radius * s
-
     def render_hud(self, window):
         """Renders a Head-Up display on the active window."""
-        center = (70, s.DIMENSIONS[1] - 70)
+        center    = (70, s.DIMENSIONS[1] - 70)
+        orbit_pos = (self.speed / 6300) + 2.35
+        start     = self.__circular_orbit(center, -10, orbit_pos)
+        finish    = self.__circular_orbit(center, 36, orbit_pos)
 
         pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
-        pygame.draw.circle(window, s.COLOURS["black"], center, 3)
-
-        start  = self.circular_orbit(center, -10, self.speed / 6000)
-        finish = self.circular_orbit(center, 25, self.speed / 6000)
-
-        pygame.draw.line(window, s.COLOURS["black"], start, finish, 2)
+        pygame.draw.circle(window, s.COLOURS["black"], center, 4)
+        pygame.draw.line(window, s.COLOURS["black"], start, finish, 3)
 
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""
@@ -156,6 +155,7 @@ class Player:
             if round(self.x, 1) != 0:
                 self.x += step
             else:
+                pygame.mixer.music.set_volume(1.0)
                 self.crashed = False
 
     def __collided_with(self, sprite):
@@ -165,3 +165,10 @@ class Player:
         return (self.x < (o + s["collision"][1]) and o < 0) or\
                (self.x > (o + s["collision"][0]) and o > 0)
  
+    def __circular_orbit(self, center, radius, t):
+        """Returns the X/Y coordinate for a given time (t) in a circular orbit."""
+        theta = math.fmod(t, math.pi * 2)
+        c     = math.cos(theta)
+        s     = math.sin(theta)
+
+        return center[0] + radius * c, center[1] + radius * s

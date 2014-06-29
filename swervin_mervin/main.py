@@ -21,6 +21,9 @@ backgrounds = [b.Background("city", 80, 5),
 
 level.build()
 
+pygame.mixer.music.load("lib/lazerhawk-overdrive.mp3")
+pygame.mixer.music.play(-1)
+
 while True:
     window.fill(s.COLOURS["sky"])
 

@@ -84,13 +84,13 @@ SPRITES           = {"straight1": {
                        "width": 80,
                        "height": 56},
                      "downhill_straight1": {
-                       "path": "downhill_straight.png",
+                       "path": "downhill_straight1.png",
                        "width": 80,
-                       "height": 41},
+                       "height": 56},
                      "downhill_straight2": {
-                       "path": "downhill_straight.png",
+                       "path": "downhill_straight2.png",
                        "width": 80,
-                       "height": 41},
+                       "height": 56},
                      "downhill_left1": {
                        "path": "downhill_left.png",
                        "width": 80,
