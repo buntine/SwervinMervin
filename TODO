@@ -1,8 +1,10 @@
 - Fix width/height projection for sprites (or atleast understand it!)
 - Fix frame rate with lots of sprites (probably don't load them all each frame)
+- Intergrate LEAP
 - Create start line.
 - HUD
   - RPM
+  - Gear
   - Speed in KMPH
   - Lap time
   - Lap number

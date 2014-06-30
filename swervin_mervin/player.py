@@ -82,14 +82,21 @@ class Player:
 
     def render_hud(self, window):
         """Renders a Head-Up display on the active window."""
-        center    = (70, s.DIMENSIONS[1] - 70)
+        center    = (70, s.DIMENSIONS[1] - 75)
         orbit_pos = (self.speed / (s.TOP_SPEED / 4.7)) + 2.35
         start     = self.__circular_orbit(center, -10, orbit_pos)
         finish    = self.__circular_orbit(center, 36, orbit_pos)
+        speed     = round((self.speed / s.SEGMENT_HEIGHT) * 1.5, 1)
+        font      = pygame.font.Font(None, 22)
+        t_kmph    = font.render("kmph", 1, s.COLOURS["black"])
+        t_speed   = font.render(str(speed), 1, s.COLOURS["black"])
 
         pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
         pygame.draw.circle(window, s.COLOURS["black"], center, 4)
         pygame.draw.line(window, s.COLOURS["black"], start, finish, 3)
+
+        window.blit(t_speed, (29, s.DIMENSIONS[1] - 22))
+        window.blit(t_kmph, (68, s.DIMENSIONS[1] - 22))
 
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""
@@ -149,7 +156,7 @@ class Player:
     def handle_crash(self):
         """Proceeds player through crash state."""
         if self.crashed:
-            step = -0.03 if self.x > 0 else 0.03
+            step = -0.025 if self.x > 0 else 0.025
 
             if round(self.x, 1) != 0:
                 self.x += step
