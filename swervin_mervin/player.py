@@ -88,8 +88,8 @@ class Player:
         finish    = self.__circular_orbit(center, 36, orbit_pos)
         speed     = round((self.speed / s.SEGMENT_HEIGHT) * 1.5, 1)
         font      = pygame.font.Font("lib/br_font.ttf", 20)
-        t_kmph    = font.render("kmph", 1, s.COLOURS["sky"])
-        t_speed   = font.render(str(speed), 1, s.COLOURS["sky"])
+        t_kmph    = font.render("kmph", 1, s.COLOURS["text"])
+        t_speed   = font.render(str(speed), 1, s.COLOURS["text"])
 
         pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
         pygame.draw.circle(window, s.COLOURS["black"], center, 4)

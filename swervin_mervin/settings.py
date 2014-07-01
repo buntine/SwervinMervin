@@ -24,17 +24,18 @@ CAMERA_DEPTH      = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180);
 BOTTOM_OFFSET     = 5
 PLAYER_Z          = (CAMERA_HEIGHT * CAMERA_DEPTH)
 COLOURS           = {"white": Color(255, 255, 255),
-                     "sky":   Color(142, 169, 232),
-                     "gutter":   Color(140, 140, 140),
+                     "text":   Color(142, 169, 232),
+                     "sky":   Color(0, 15, 102),
+                     "gutter":   Color(100, 100, 100),
                      "black":   Color(0, 0, 0),
-                     "light": {"road":     Color(193, 193, 193),
-                               "grass":    Color(61, 212, 76),
-                               "footpath": Color(199, 199, 199),
-                               "line":     Color(255, 255, 255)},
-                     "dark":  {"road":     Color(188, 188, 188),
-                               "grass":    Color(55, 199, 66),
-                               "footpath": Color(161, 164, 164),
-                               "line":     Color(255, 255, 255)}}
+                     "light": {"road":     Color(34, 54, 56),
+                               "grass":    Color(0, 30, 70),
+                               "footpath": Color(82, 96, 115),
+                               "line":     Color(185, 185, 185)},
+                     "dark":  {"road":     Color(48, 64, 81),
+                               "grass":    Color(0, 16, 56),
+                               "footpath": Color(68, 84, 101),
+                               "line":     Color(185, 185, 185)}}
 SPRITES           = {"straight1": {
                        "path": "straight1.png",
                        "width": 80,
