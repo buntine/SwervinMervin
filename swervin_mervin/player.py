@@ -98,6 +98,8 @@ class Player:
         u.render_text(str(speed), window, font, s.COLOURS["text"], (10, s.DIMENSIONS[1] - 24))
         u.render_text("lap", window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 100, 10))
         u.render_text(str(self.lap), window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 28, 10))
+        u.render_text("time", window, font, s.COLOURS["text"], (10, 10))
+        u.render_text("45", window, font, s.COLOURS["text"], (90, 10))
 
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""

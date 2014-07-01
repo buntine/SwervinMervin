@@ -14,6 +14,7 @@ LANES             = 4
 BOUNDS            = 2.1
 CENTRIFUGAL_FORCE = 0.266
 PLAYER_ANIM_HOLD  = 8
+CHECKPOINT        = 45
 TOP_SPEED         = (SEGMENT_HEIGHT / (1.0/FPS)) * 1.9
 OFFROAD_TOP_SPEED = TOP_SPEED / 2.0
 ACCELERATION      = TOP_SPEED / 5.0
@@ -26,7 +27,7 @@ PLAYER_Z          = (CAMERA_HEIGHT * CAMERA_DEPTH)
 FONTS             = {"bladerunner": "lib/br_font.ttf"}
 COLOURS           = {"white": Color(255, 255, 255),
                      "text":   Color(172, 199, 252),
-                     "sky":   Color(0, 15, 102),
+                     "sky":   Color(10, 10, 10),
                      "gutter":   Color(100, 100, 100),
                      "black":   Color(0, 0, 0),
                      "light": {"road":     Color(34, 54, 56),

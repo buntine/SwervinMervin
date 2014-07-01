@@ -16,9 +16,8 @@ player      = p.Player()
 level       = l.Level("test")
 fps_clock   = pygame.time.Clock()
 window      = pygame.display.set_mode(s.DIMENSIONS)
-sky         = pygame.image.load("lib/sky.png").convert()
-backgrounds = [b.Background("city", 80, 5),
-               b.Background("city", 80, 16)]
+backgrounds = [b.Background("sky", 0, 3),
+               b.Background("sky", 80, 5, True)]
 
 level.build()
 
@@ -26,8 +25,6 @@ pygame.mixer.music.load("lib/lazerhawk-overdrive.mp3")
 pygame.mixer.music.play(-1)
 
 while True:
-    window.blit(sky, (0, 0))
-
     player.travel(level.track_length())
 
     base_segment   = level.find_segment(player.position)

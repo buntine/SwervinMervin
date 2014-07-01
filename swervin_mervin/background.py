@@ -4,13 +4,16 @@ import settings as s
 class Background:
     """Represents a single scrollable background in a level."""
 
-    def __init__(self, name, y, parallax_speed):
+    def __init__(self, name, y, parallax_speed, convert=False):
         self.image          = pygame.image.load("lib/{0}.png".format(name))
         self.parallax_speed = parallax_speed
         self.y              = y
         self.width          = self.image.get_width()
         self.height         = self.image.get_height()
         self.curviture      = (self.width - s.DIMENSIONS[0]) / 2
+
+        if convert:
+            self.image = self.image.convert()
 
     def step(self, curve, speed_percent):
         """Moves the background one step to simulate turning."""
