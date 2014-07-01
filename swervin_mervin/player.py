@@ -15,6 +15,7 @@ class Player:
         self.acceleration    = 0
         self.speed           = 1
         self.animation_frame = 1
+        self.lap             = 1
         self.crashed         = False
 
     def steer(self, segment):
@@ -90,13 +91,17 @@ class Player:
         font      = pygame.font.Font("lib/br_font.ttf", 20)
         t_kmph    = font.render("kmph", 1, s.COLOURS["text"])
         t_speed   = font.render(str(speed), 1, s.COLOURS["text"])
+        t_lap     = font.render("LAP", 1, s.COLOURS["text"])
+        t_lap_no  = font.render(str(self.lap), 1, s.COLOURS["text"])
 
         pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
         pygame.draw.circle(window, s.COLOURS["black"], center, 4)
         pygame.draw.line(window, s.COLOURS["black"], start, finish, 3)
 
-        window.blit(t_speed, (10, s.DIMENSIONS[1] - 22))
-        window.blit(t_kmph, (70, s.DIMENSIONS[1] - 22))
+        window.blit(t_speed, (10, s.DIMENSIONS[1] - 24))
+        window.blit(t_kmph, (70, s.DIMENSIONS[1] - 24))
+        window.blit(t_lap, (s.DIMENSIONS[0] - 100, s.DIMENSIONS[1] - 24))
+        window.blit(t_lap_no, (s.DIMENSIONS[0] - 28, s.DIMENSIONS[1] - 24))
 
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""
