@@ -89,19 +89,15 @@ class Player:
         finish    = self.__circular_orbit(center, 36, orbit_pos)
         speed     = round((self.speed / s.SEGMENT_HEIGHT) * 1.5, 1)
         font      = pygame.font.Font("lib/br_font.ttf", 20)
-        t_kmph    = font.render("kmph", 1, s.COLOURS["text"])
-        t_speed   = font.render(str(speed), 1, s.COLOURS["text"])
-        t_lap     = font.render("LAP", 1, s.COLOURS["text"])
-        t_lap_no  = font.render(str(self.lap), 1, s.COLOURS["text"])
 
         pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
         pygame.draw.circle(window, s.COLOURS["black"], center, 4)
         pygame.draw.line(window, s.COLOURS["black"], start, finish, 3)
 
-        window.blit(t_speed, (10, s.DIMENSIONS[1] - 24))
-        window.blit(t_kmph, (70, s.DIMENSIONS[1] - 24))
-        window.blit(t_lap, (s.DIMENSIONS[0] - 100, s.DIMENSIONS[1] - 24))
-        window.blit(t_lap_no, (s.DIMENSIONS[0] - 28, s.DIMENSIONS[1] - 24))
+        u.render_text("kmph", window, font, s.COLOURS["text"], (70, s.DIMENSIONS[1] - 24))
+        u.render_text(str(speed), window, font, s.COLOURS["text"], (10, s.DIMENSIONS[1] - 24))
+        u.render_text("lap", window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 100, 10))
+        u.render_text(str(self.lap), window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 28, 10))
 
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""
@@ -111,10 +107,11 @@ class Player:
         """Updates position, reflecting how far we've travelled since the last frame."""
         pos = self.position + (s.FRAME_RATE * self.speed)
 
-        while pos >= track_length:
+        if pos >= track_length:
+            self.lap += 1
             pos -= track_length
 
-        while pos < 0:
+        if pos < 0:
             pos += track_length
 
         self.position = pos

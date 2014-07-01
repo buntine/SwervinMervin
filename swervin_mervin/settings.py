@@ -23,8 +23,9 @@ CAMERA_HEIGHT     = 1400
 CAMERA_DEPTH      = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180);
 BOTTOM_OFFSET     = 5
 PLAYER_Z          = (CAMERA_HEIGHT * CAMERA_DEPTH)
+FONTS             = {"bladerunner": "lib/br_font.ttf"}
 COLOURS           = {"white": Color(255, 255, 255),
-                     "text":   Color(142, 169, 232),
+                     "text":   Color(172, 199, 252),
                      "sky":   Color(0, 15, 102),
                      "gutter":   Color(100, 100, 100),
                      "black":   Color(0, 0, 0),
