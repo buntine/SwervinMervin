@@ -16,6 +16,7 @@ class Player:
         self.speed           = 1
         self.animation_frame = 1
         self.lap             = 1
+        self.checkpoint      = s.CHECKPOINT
         self.crashed         = False
 
     def steer(self, segment):
@@ -99,7 +100,7 @@ class Player:
         u.render_text("lap", window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 100, 10))
         u.render_text(str(self.lap), window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 28, 10))
         u.render_text("time", window, font, s.COLOURS["text"], (10, 10))
-        u.render_text("45", window, font, s.COLOURS["text"], (90, 10))
+        u.render_text(str(self.checkpoint - (pygame.time.get_ticks() / 1000)), window, font, s.COLOURS["text"], (90, 10))
 
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""
