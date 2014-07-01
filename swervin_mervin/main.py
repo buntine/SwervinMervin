@@ -16,7 +16,8 @@ player      = p.Player()
 level       = l.Level("test")
 fps_clock   = pygame.time.Clock()
 window      = pygame.display.set_mode(s.DIMENSIONS)
-backgrounds = [b.Background("sky", 0, 5, True)]
+backgrounds = [b.Background("sky", 0, 5, True),
+               b.Background("city", 0, 3)]
 
 level.build()
 
