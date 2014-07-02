@@ -147,7 +147,7 @@ SPRITES           = {"straight1": {
                        "height": 68},
                      "start": {
                        "path": "start.png",
-                       "width": 180,
+                       "width": 174,
                        "height": 120},
                      "boulder1": {
                        "path": "boulder1.png",
