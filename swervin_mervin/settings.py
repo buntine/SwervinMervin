@@ -12,6 +12,7 @@ DRAW_DISTANCE     = 200
 ROAD_WIDTH        = 2100
 LANES             = 4
 BOUNDS            = 2.1
+AUTO_DRIVE        = False
 CENTRIFUGAL_FORCE = 0.266
 PLAYER_ANIM_HOLD  = 8
 CHECKPOINT        = 25

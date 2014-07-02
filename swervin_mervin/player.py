@@ -133,20 +133,20 @@ class Player:
             if (self.x > 1.0 or self.x < -1.0) and self.speed > s.OFFROAD_TOP_SPEED:
                 a = a * 3
             else:
-                if keys[K_UP]:
+                if keys[K_UP] or s.AUTO_DRIVE:
                     a = s.FRAME_RATE
                 elif keys[K_DOWN]:
                     a = -(s.FRAME_RATE * s.DECELERATION)
 
         self.acceleration = a
 
-    def set_direction(self, keys):
+    def set_direction(self, keys, leap_direction="straight"):
         """Updates the direction the player is going, accepts a key-map."""
         d = 0
 
-        if keys[K_LEFT]:
+        if keys[K_LEFT] or leap_direction == "left":
             d = -self.direction_speed()
-        elif keys[K_RIGHT]:
+        elif keys[K_RIGHT] or leap_direction == "right":
             d = self.direction_speed()
 
         self.direction = d

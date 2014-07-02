@@ -9,6 +9,8 @@ import player as p
 import background as b
 import level as l
 import settings as s
+import Leap
+import leap_listener as ll
 
 pygame.init()
 
@@ -18,7 +20,10 @@ fps_clock   = pygame.time.Clock()
 window      = pygame.display.set_mode(s.DIMENSIONS)
 backgrounds = [b.Background("sky", 0, 5, True),
                b.Background("city", 0, 3)]
+listener    = ll.LeapListener()
+controller  = Leap.Controller()
 
+controller.add_listener(listener)
 level.build()
 
 pygame.mixer.music.load("lib/lazerhawk-overdrive.mp3")
@@ -88,13 +93,14 @@ while True:
 
     for event in pygame.event.get():
         if event.type == QUIT:
+            controller.remove_listener(listener) 
             pygame.quit()
             sys.exit()
 
     # Steering, acceleration.
     keys = pygame.key.get_pressed()
     player.set_acceleration(keys)
-    player.set_direction(keys)
+    player.set_direction(keys, listener.direction)
 
     pygame.display.update()
     fps_clock.tick(s.FPS)
