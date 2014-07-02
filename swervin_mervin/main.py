@@ -1,5 +1,5 @@
 # Swervin' Mervin'
-# v0.5
+# v0.8
 # (c) Andrew Buntine
 # https://github.com/buntine/swervin_mervin
 

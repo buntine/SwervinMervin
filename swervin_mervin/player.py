@@ -1,8 +1,7 @@
 import settings as s
 import util as u
-import pygame
+import pygame, math, datetime
 from pygame.locals import *
-import math
 
 class Player:
     """Represents the player in the game world."""
@@ -16,8 +15,9 @@ class Player:
         self.speed           = 1
         self.animation_frame = 1
         self.lap             = 1
-        self.checkpoint      = s.CHECKPOINT
         self.crashed         = False
+
+        self.__set_checkpoint()
 
     def steer(self, segment):
         """Updates x to simulate steering."""
@@ -90,6 +90,7 @@ class Player:
         finish    = self.__circular_orbit(center, 36, orbit_pos)
         speed     = round((self.speed / s.SEGMENT_HEIGHT) * 1.5, 1)
         font      = pygame.font.Font("lib/br_font.ttf", 20)
+        secs_left = self.checkpoint - (datetime.datetime.now() - self.last_checkpoint).seconds
 
         pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
         pygame.draw.circle(window, s.COLOURS["black"], center, 4)
@@ -100,7 +101,7 @@ class Player:
         u.render_text("lap", window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 100, 10))
         u.render_text(str(self.lap), window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 28, 10))
         u.render_text("time", window, font, s.COLOURS["text"], (10, 10))
-        u.render_text(str(self.checkpoint - (pygame.time.get_ticks() / 1000)), window, font, s.COLOURS["text"], (90, 10))
+        u.render_text(str(secs_left), window, font, s.COLOURS["text"], (90, 10))
 
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""
@@ -111,6 +112,7 @@ class Player:
         pos = self.position + (s.FRAME_RATE * self.speed)
 
         if pos >= track_length:
+            self.__set_checkpoint()
             self.lap += 1
             pos -= track_length
 
@@ -183,3 +185,7 @@ class Player:
         s     = math.sin(theta)
 
         return center[0] + radius * c, center[1] + radius * s
+
+    def __set_checkpoint(self):
+        self.checkpoint      = s.CHECKPOINT
+        self.last_checkpoint = datetime.datetime.now()
