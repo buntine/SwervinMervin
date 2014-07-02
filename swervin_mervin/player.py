@@ -90,7 +90,8 @@ class Player:
         finish    = self.__circular_orbit(center, 36, orbit_pos)
         speed     = round((self.speed / s.SEGMENT_HEIGHT) * 1.5, 1)
         font      = pygame.font.Font("lib/br_font.ttf", 20)
-        secs_left = self.checkpoint - (datetime.datetime.now() - self.last_checkpoint).seconds
+        timedelta = (datetime.datetime.now() - self.last_checkpoint)
+        secs_left = round(s.CHECKPOINT - timedelta.total_seconds(), 1)
 
         pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
         pygame.draw.circle(window, s.COLOURS["black"], center, 4)
@@ -187,5 +188,4 @@ class Player:
         return center[0] + radius * c, center[1] + radius * s
 
     def __set_checkpoint(self):
-        self.checkpoint      = s.CHECKPOINT
         self.last_checkpoint = datetime.datetime.now()
