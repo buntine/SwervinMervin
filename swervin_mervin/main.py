@@ -78,12 +78,13 @@ while True:
             y_coverage = segment.top["screen"]["y"]
 
     # Draw sprites in from back to front (painters algorithm).
-    for i in reversed(range(1, s.DRAW_DISTANCE)):
-        segment = level.offset_segment(base_segment.index + i)
-        segment.render_sprites(window)
+    if segment.index != base_segment.index:
+        for i in reversed(range(1, s.DRAW_DISTANCE)):
+            segment = level.offset_segment(base_segment.index + i)
+            segment.render_sprites(window)
 
-    player.render(window, base_segment)
-    player.render_hud(window)
+        player.render(window, base_segment)
+        player.render_hud(window)
 
     for event in pygame.event.get():
         if event.type == QUIT:

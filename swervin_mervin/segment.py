@@ -109,7 +109,7 @@ class Segment:
             y         = s.DIMENSIONS[1] - bottom["y"] - s_height
             clip_line = (s.DIMENSIONS[1] - self.clip) - y
 
-            if s_width > 0 and s_height > 0 and clip_line > 0:
+            if s_width > 0 and s_height > 0 and clip_line > 0 and s_width < s.DIMENSIONS[0] * 2 and s_height < s.DIMENSIONS[1] * 2:
                 sprite = pygame.image.load("lib/" + sp["sprite"]["path"])
                 sprite = pygame.transform.scale(sprite, (s_width, s_height))
 
