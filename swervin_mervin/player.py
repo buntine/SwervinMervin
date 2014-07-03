@@ -84,18 +84,21 @@ class Player:
 
     def render_hud(self, window):
         """Renders a Head-Up display on the active window."""
-        center    = (75, s.DIMENSIONS[1] - 75)
-        orbit_pos = (self.speed / (s.TOP_SPEED / 4.7)) + 2.35
-        start     = self.__circular_orbit(center, -10, orbit_pos)
-        finish    = self.__circular_orbit(center, 36, orbit_pos)
-        speed     = round((self.speed / s.SEGMENT_HEIGHT) * 1.5, 1)
-        font      = pygame.font.Font("lib/br_font.ttf", 20)
-        timedelta = (datetime.datetime.now() - self.last_checkpoint)
-        secs_left = round(s.CHECKPOINT - timedelta.total_seconds(), 1)
+        center      = (75, s.DIMENSIONS[1] - 75)
+        speedo_rect = (35, s.DIMENSIONS[1] - 115, 80, 80)
+        orbit_pos   = (self.speed / (s.TOP_SPEED / 4.7)) + 2.35
+        start       = self.__circular_orbit(center, -10, orbit_pos)
+        finish      = self.__circular_orbit(center, 36, orbit_pos)
+        speed       = round((self.speed / s.SEGMENT_HEIGHT) * 1.5, 1)
+        font        = pygame.font.Font("lib/br_font.ttf", 20)
+        timedelta   = (datetime.datetime.now() - self.last_checkpoint)
+        secs_left   = round(s.CHECKPOINT - timedelta.total_seconds(), 1)
 
         pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
         pygame.draw.circle(window, s.COLOURS["black"], center, 4)
         pygame.draw.line(window, s.COLOURS["black"], start, finish, 3)
+        pygame.draw.arc(window, s.COLOURS["black"], speedo_rect, 0.2, math.pi * 1.25, 5)
+        pygame.draw.arc(window, s.COLOURS["red"], speedo_rect, -0.73, 0.2, 5)
 
         u.render_text("kmph", window, font, s.COLOURS["text"], (70, s.DIMENSIONS[1] - 24))
         u.render_text(str(speed), window, font, s.COLOURS["text"], (10, s.DIMENSIONS[1] - 24))
