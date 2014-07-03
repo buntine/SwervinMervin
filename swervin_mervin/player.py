@@ -118,6 +118,11 @@ class Player:
         if pos >= track_length:
             self.__set_checkpoint()
             self.lap += 1
+
+            if self.__fastest_lap():
+                lap_sfx = pygame.mixer.Sound("lib/jim.ogg")
+                lap_sfx.play()
+ 
             pos -= track_length
 
         if pos < 0:
@@ -192,3 +197,7 @@ class Player:
 
     def __set_checkpoint(self):
         self.last_checkpoint = datetime.datetime.now()
+
+    def __fastest_lap(self):
+        """Returns true if the given time is the fastest lap time for this session."""
+        return True
