@@ -119,6 +119,9 @@ class Player:
             if diff > 0:
                 colour = "green"
                 sign   = "+"
+
+                lap_sfx = pygame.mixer.Sound("lib/jim.ogg")
+                lap_sfx.play()
             else:
                 colour = "red"
                 sign   = "-"
@@ -141,9 +144,7 @@ class Player:
 
             if self.__fastest_lap():
                 self.fastest_lap = self.time_left
-                lap_sfx = pygame.mixer.Sound("lib/jim.ogg")
-                lap_sfx.play()
- 
+
             pos -= track_length
 
         if pos < 0:
