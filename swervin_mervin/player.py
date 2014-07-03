@@ -15,6 +15,10 @@ class Player:
         self.speed           = 1
         self.animation_frame = 1
         self.lap             = 1
+        self.fastest_lap     = 0
+        self.lap_difference  = 0
+        self.time_left       = s.CHECKPOINT
+        self.last_checkpoint = None
         self.crashed         = False
 
         self.__set_checkpoint()
@@ -92,7 +96,8 @@ class Player:
         speed       = round((self.speed / s.SEGMENT_HEIGHT) * 1.5, 1)
         font        = pygame.font.Font("lib/br_font.ttf", 20)
         timedelta   = (datetime.datetime.now() - self.last_checkpoint)
-        secs_left   = round(s.CHECKPOINT - timedelta.total_seconds(), 1)
+
+        self.time_left = round(s.CHECKPOINT - timedelta.total_seconds(), 1)
 
         pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
         pygame.draw.circle(window, s.COLOURS["black"], center, 4)
@@ -105,13 +110,26 @@ class Player:
         u.render_text("lap", window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 100, 10))
         u.render_text(str(self.lap), window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 28, 10))
         u.render_text("time", window, font, s.COLOURS["text"], (10, 10))
-        u.render_text(str(secs_left), window, font, s.COLOURS["text"], (90, 10))
+        u.render_text(str(self.time_left), window, font, s.COLOURS["text"], (90, 10))
+
+        # Display lap difference (unless we've only done one lap).
+        if self.lap_difference != 0 and self.lap > 2:
+            diff = self.lap_difference
+
+            if diff > 0:
+                colour = "green"
+                sign   = "+"
+            else:
+                colour = "red"
+                sign   = "-"
+
+            u.render_text(sign + str(abs(diff)), window, font, s.COLOURS[colour], (10, 40))
 
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""
         self.speed = u.limit(self.speed + (s.ACCELERATION * self.acceleration), 0, s.TOP_SPEED)
 
-    def travel(self, track_length):
+    def travel(self, track_length, window):
         """Updates position, reflecting how far we've travelled since the last frame."""
         pos = self.position + (s.FRAME_RATE * self.speed)
 
@@ -119,7 +137,10 @@ class Player:
             self.__set_checkpoint()
             self.lap += 1
 
+            self.lap_difference = self.time_left - self.fastest_lap;
+
             if self.__fastest_lap():
+                self.fastest_lap = self.time_left
                 lap_sfx = pygame.mixer.Sound("lib/jim.ogg")
                 lap_sfx.play()
  
@@ -199,5 +220,4 @@ class Player:
         self.last_checkpoint = datetime.datetime.now()
 
     def __fastest_lap(self):
-        """Returns true if the given time is the fastest lap time for this session."""
-        return True
+        return self.time_left > self.fastest_lap

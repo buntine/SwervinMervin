@@ -30,7 +30,7 @@ pygame.mixer.music.load("lib/lazerhawk-overdrive.mp3")
 pygame.mixer.music.play(-1)
 
 while True:
-    player.travel(level.track_length())
+    player.travel(level.track_length(), window)
 
     base_segment   = level.find_segment(player.position)
     player_segment = level.find_segment(player.position + s.PLAYER_Z)

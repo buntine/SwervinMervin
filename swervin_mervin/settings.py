@@ -26,12 +26,13 @@ CAMERA_DEPTH      = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180);
 BOTTOM_OFFSET     = 5
 PLAYER_Z          = (CAMERA_HEIGHT * CAMERA_DEPTH)
 FONTS             = {"bladerunner": "lib/br_font.ttf"}
-COLOURS           = {"white": Color(255, 255, 255),
+COLOURS           = {"white":  Color(255, 255, 255),
                      "text":   Color(172, 199, 252),
-                     "sky":   Color(10, 10, 10),
-                     "gutter":   Color(100, 100, 100),
-                     "red":   Color(204, 0, 0),
-                     "black":   Color(0, 0, 0),
+                     "sky":    Color(10, 10, 10),
+                     "gutter": Color(100, 100, 100),
+                     "red":    Color(204, 0, 0),
+                     "green":  Color(0, 204, 0),
+                     "black":  Color(0, 0, 0),
                      "light": {"road":     Color(34, 54, 56),
                                "grass":    Color(0, 30, 70),
                                "footpath": Color(82, 96, 115),
