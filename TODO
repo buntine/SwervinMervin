@@ -1,14 +1,8 @@
+- Start streen.
 - Fix width/height projection for sprites (or atleast understand it!)
 - Work out how to get backgrounds tiled (maybe only tile if X is > 0.
 - Refine LEAP
-- HUD
-  - RPM
-  - Gear
-  - Speed in KMPH
-  - Lap time
-  - Lap number
-- Background fog
-  - Also have whole game fog that fades in and out during night level.
 - Refine collision offsets for sprites.
 - Car SFX
 - Other cars
+- Design new level

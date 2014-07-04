@@ -121,7 +121,7 @@ class Player:
             y       = (s.DIMENSIONS[1] - go.get_size()[1]) / 2
             overlay = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
 
-            overlay.fill((255, 255, 255, 88))
+            overlay.fill((255, 255, 255, 90))
             overlay.blit(go, (x, y))
             window.blit(overlay, (0,0))
 

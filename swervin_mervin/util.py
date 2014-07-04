@@ -9,7 +9,6 @@ def limit(v, low, high):
     else:
         return v
 
-
 def render_text(text, window, font, color, position):
     """Renders a font and blits it to the given window"""
     text = font.render(text, 1, color)
