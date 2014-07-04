@@ -10,6 +10,7 @@ class Player:
         self.x               = 0
         self.y               = 0
         self.position        = 0
+        self.lap_percent     = 0
         self.direction       = 0
         self.acceleration    = 0
         self.speed           = 1
@@ -113,15 +114,12 @@ class Player:
         u.render_text(str(self.time_left), window, font, s.COLOURS["text"], (90, 10))
 
         # Display lap difference (unless we've only done one lap).
-        if self.lap_difference != 0 and self.lap > 2:
+        if self.lap_difference != 0 and self.lap > 2 and self.lap_percent < 20:
             diff = self.lap_difference
 
             if diff > 0:
                 colour = "green"
                 sign   = "+"
-
-                lap_sfx = pygame.mixer.Sound("lib/jim.ogg")
-                lap_sfx.play()
             else:
                 colour = "red"
                 sign   = "-"
@@ -143,6 +141,9 @@ class Player:
             self.lap_difference = self.time_left - self.fastest_lap;
 
             if self.__fastest_lap():
+                lap_sfx = pygame.mixer.Sound("lib/jim.ogg")
+                lap_sfx.play()
+
                 self.fastest_lap = self.time_left
 
             pos -= track_length
@@ -150,7 +151,8 @@ class Player:
         if pos < 0:
             pos += track_length
 
-        self.position = pos
+        self.position    = pos
+        self.lap_percent = round((pos / track_length) * 100)
 
     def set_acceleration(self, keys):
         """Updates the acceleration factor depending on world conditions."""
