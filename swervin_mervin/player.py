@@ -21,6 +21,7 @@ class Player:
         self.time_left       = s.CHECKPOINT
         self.last_checkpoint = None
         self.crashed         = False
+        self.game_over       = False
 
         self.__set_checkpoint()
 
@@ -29,7 +30,7 @@ class Player:
         self.x = u.limit(self.x + self.direction, -s.BOUNDS, s.BOUNDS)
 
         # Apply centrifugal force if we are going around a corner.
-        if segment.curve != 0:
+        if segment.curve != 0 and not self.game_over:
             self.x -= (self.direction_speed() * self.speed_percent() * segment.curve * s.CENTRIFUGAL_FORCE)
 
     def climb(self, segment):
@@ -113,6 +114,17 @@ class Player:
         u.render_text("time", window, font, s.COLOURS["text"], (10, 10))
         u.render_text(str(self.time_left), window, font, s.COLOURS["text"], (90, 10))
 
+        if self.game_over or True:
+            go_font = pygame.font.Font("lib/br_font.ttf", 44)
+            go      = go_font.render("Game Over", 1, s.COLOURS["red"]);
+            x       = (s.DIMENSIONS[0] - go.get_size()[0]) / 2
+            y       = (s.DIMENSIONS[1] - go.get_size()[1]) / 2
+            overlay = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
+
+            overlay.fill((255, 255, 255, 88))
+            overlay.blit(go, (x, y))
+            window.blit(overlay, (0,0))
+
         # Display lap difference (unless we've only done one lap).
         if self.lap_difference != 0 and self.lap > 2 and self.lap_percent < 20:
             diff = self.lap_difference
@@ -134,6 +146,9 @@ class Player:
         """Updates position, reflecting how far we've travelled since the last frame."""
         pos = self.position + (s.FRAME_RATE * self.speed)
 
+        if self.time_left <= 0:
+            self.game_over = True
+
         if pos >= track_length:
             self.__set_checkpoint()
             self.lap += 1
@@ -141,8 +156,9 @@ class Player:
             self.lap_difference = self.time_left - self.fastest_lap;
 
             if self.__fastest_lap():
-                lap_sfx = pygame.mixer.Sound("lib/jim.ogg")
-                lap_sfx.play()
+                if self.lap > 2:
+                    lap_sfx = pygame.mixer.Sound("lib/jim.ogg")
+                    lap_sfx.play()
 
                 self.fastest_lap = self.time_left
 
@@ -165,7 +181,7 @@ class Player:
             if (self.x > 1.0 or self.x < -1.0) and self.speed > s.OFFROAD_TOP_SPEED:
                 a = a * 3
             else:
-                if keys[K_UP] or s.AUTO_DRIVE:
+                if keys[K_UP] or s.AUTO_DRIVE or self.game_over:
                     a = s.FRAME_RATE
                 elif keys[K_DOWN]:
                     a = -(s.FRAME_RATE * s.DECELERATION)
@@ -176,10 +192,11 @@ class Player:
         """Updates the direction the player is going, accepts a key-map."""
         d = 0
 
-        if keys[K_LEFT] or leap_direction == "left":
-            d = -self.direction_speed()
-        elif keys[K_RIGHT] or leap_direction == "right":
-            d = self.direction_speed()
+        if not self.game_over:
+            if keys[K_LEFT] or leap_direction == "left":
+                d = -self.direction_speed()
+            elif keys[K_RIGHT] or leap_direction == "right":
+                d = self.direction_speed()
 
         self.direction = d
 
@@ -223,4 +240,4 @@ class Player:
         self.last_checkpoint = datetime.datetime.now()
 
     def __fastest_lap(self):
-        return self.time_left > self.fastest_lap
+        return not self.game_over and self.time_left > self.fastest_lap

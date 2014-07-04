@@ -1,6 +1,6 @@
 - Fix width/height projection for sprites (or atleast understand it!)
-- Fix frame rate with lots of sprites (probably don't load them all each frame)
-- Integrate LEAP
+- Work out how to get backgrounds tiled (maybe only tile if X is > 0.
+- Refine LEAP
 - HUD
   - RPM
   - Gear
@@ -12,4 +12,3 @@
 - Refine collision offsets for sprites.
 - Car SFX
 - Other cars
-- Fastest lap celebration!

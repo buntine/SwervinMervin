@@ -22,7 +22,7 @@ class LeapListener(Leap.Listener):
     def on_frame(self, controller):
         frame = controller.frame()
 
-        if len(frame.hands) == 2 and frame.id % 10 == 0:
+        if len(frame.hands) == 2:
             if frame.hands[0].is_left:
                 left  = frame.hands[0]
                 right = frame.hands[1]
