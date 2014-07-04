@@ -114,7 +114,7 @@ class Player:
         u.render_text("time", window, font, s.COLOURS["text"], (10, 10))
         u.render_text(str(self.time_left), window, font, s.COLOURS["text"], (90, 10))
 
-        if self.game_over or True:
+        if self.game_over:
             go_font = pygame.font.Font("lib/br_font.ttf", 44)
             go      = go_font.render("Game Over", 1, s.COLOURS["red"]);
             x       = (s.DIMENSIONS[0] - go.get_size()[0]) / 2
