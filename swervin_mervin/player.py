@@ -99,7 +99,8 @@ class Player:
         font        = pygame.font.Font("lib/br_font.ttf", 20)
         timedelta   = (datetime.datetime.now() - self.last_checkpoint)
 
-        self.time_left = round(s.CHECKPOINT - timedelta.total_seconds(), 1)
+        if not self.game_over:
+            self.time_left = round(s.CHECKPOINT - timedelta.total_seconds(), 1)
 
         pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
         pygame.draw.circle(window, s.COLOURS["black"], center, 4)
