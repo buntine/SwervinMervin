@@ -8,26 +8,46 @@ from pygame.locals import *
 import player as p
 import background as b
 import level as l
+import title_screen as ts
 import settings as s
 import Leap
 import leap_listener as ll
 
 pygame.init()
 
-player      = p.Player()
-level       = l.Level("test")
-fps_clock   = pygame.time.Clock()
-window      = pygame.display.set_mode(s.DIMENSIONS)
-backgrounds = [b.Background("sky", 0, 5, True),
-               b.Background("city", 0, 3)]
-listener    = ll.LeapListener()
-controller  = Leap.Controller()
+player       = p.Player()
+level        = l.Level("test")
+fps_clock    = pygame.time.Clock()
+window       = pygame.display.set_mode(s.DIMENSIONS)
+backgrounds  = [b.Background("sky", 0, 5, True),
+                b.Background("city", 0, 3)]
+listener     = ll.LeapListener()
+title_screen = ts.TitleScreen(window)
 
-controller.add_listener(listener)
 level.build()
 
 pygame.mixer.music.load("lib/lazerhawk-overdrive.mp3")
 pygame.mixer.music.play(-1)
+
+## Fire up the title screen.
+while not title_screen.finished:
+    window.fill(s.COLOURS["red"])
+
+    title_screen.progress()
+
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE and title_screen.ready:
+                title_screen.finished = True
+        elif event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+
+    pygame.display.update()
+    fps_clock.tick(s.TITLE_FPS)
+
+controller = Leap.Controller()
+controller.add_listener(listener)
 
 while True:
     player.travel(level.track_length(), window)

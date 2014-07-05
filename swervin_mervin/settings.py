@@ -4,6 +4,7 @@ from pygame import Color
 import math
 
 FPS               = 60
+TITLE_FPS         = 5
 FRAME_RATE        = (1.0 / FPS)
 DIMENSIONS        = (640, 480)
 SEGMENT_HEIGHT    = 260
@@ -150,7 +151,7 @@ SPRITES           = {"straight1": {
                        "height": 68},
                      "start": {
                        "path": "start.png",
-                       "width": 174,
+                       "width": 210,
                        "height": 120},
                      "boulder1": {
                        "path": "boulder1.png",
