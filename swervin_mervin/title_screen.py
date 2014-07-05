@@ -8,4 +8,4 @@ class TitleScreen():
         self.frame    = 0
 
     def progress(self):
-        pass
+        self.ready = True

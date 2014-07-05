@@ -132,10 +132,10 @@ class Player:
 
             if diff > 0:
                 colour = "green"
-                sign   = "+"
+                sign   = "-"
             else:
                 colour = "red"
-                sign   = "-"
+                sign   = "+"
 
             u.render_text(sign + str(abs(diff)), window, font, s.COLOURS[colour], (10, 40))
 

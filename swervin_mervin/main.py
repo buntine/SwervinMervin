@@ -49,6 +49,7 @@ while not title_screen.finished:
 controller = Leap.Controller()
 controller.add_listener(listener)
 
+## Now lets play!
 while True:
     player.travel(level.track_length(), window)
 
