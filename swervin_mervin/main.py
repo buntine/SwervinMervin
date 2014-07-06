@@ -38,8 +38,8 @@ while not title_screen.finished:
 
 player      = p.Player()
 level       = l.Level("test")
-backgrounds = [b.Background("sky", 0, 5, True),
-                b.Background("city", 0, 3)]
+backgrounds = [b.Background("sky", 0, 2, True),
+                b.Background("city", 0, 1)]
 listener    = ll.LeapListener()
 controller  = Leap.Controller()
 

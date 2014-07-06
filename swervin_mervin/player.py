@@ -130,12 +130,12 @@ class Player:
         if self.lap_difference != 0 and self.lap > 2 and self.lap_percent < 20:
             diff = self.lap_difference
 
-            if diff > 0:
-                colour = "green"
-                sign   = "-"
-            else:
+            if diff <= 0:
                 colour = "red"
                 sign   = "+"
+            else:
+                colour = "green"
+                sign   = "-"
 
             u.render_text(sign + str(abs(diff)), window, font, s.COLOURS[colour], (10, 40))
 
