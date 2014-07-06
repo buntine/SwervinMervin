@@ -15,19 +15,9 @@ import leap_listener as ll
 
 pygame.init()
 
-player       = p.Player()
-level        = l.Level("test")
 fps_clock    = pygame.time.Clock()
 window       = pygame.display.set_mode(s.DIMENSIONS)
-backgrounds  = [b.Background("sky", 0, 5, True),
-                b.Background("city", 0, 3)]
-listener     = ll.LeapListener()
 title_screen = ts.TitleScreen(window)
-
-level.build()
-
-pygame.mixer.music.load("lib/lazerhawk-overdrive.mp3")
-pygame.mixer.music.play(-1)
 
 ## Fire up the title screen.
 while not title_screen.finished:
@@ -46,8 +36,18 @@ while not title_screen.finished:
     pygame.display.update()
     fps_clock.tick(s.TITLE_FPS)
 
-controller = Leap.Controller()
+player      = p.Player()
+level       = l.Level("test")
+backgrounds = [b.Background("sky", 0, 5, True),
+                b.Background("city", 0, 3)]
+listener    = ll.LeapListener()
+controller  = Leap.Controller()
+
 controller.add_listener(listener)
+level.build()
+
+pygame.mixer.music.load("lib/lazerhawk-overdrive.mp3")
+pygame.mixer.music.play(-1)
 
 ## Now lets play!
 while True:

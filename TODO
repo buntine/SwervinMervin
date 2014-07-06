@@ -1,3 +1,4 @@
+- Start timer after start screen.
 - Start streen.
 - Fix width/height projection for sprites (or atleast understand it!)
 - Work out how to get backgrounds tiled (maybe only tile if X is > 0.
