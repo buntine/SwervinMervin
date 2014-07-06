@@ -1,8 +1,7 @@
-- Start streen.
+!- Start streen.
 - Fix width/height projection for sprites (or atleast understand it!)
-- Work out how to get backgrounds tiled (maybe only tile if X is > 0.
-- Refine LEAP
-- Refine collision offsets for sprites.
+!- Refine LEAP
+!- Refine collision offsets for sprites.
 - Car SFX
 - Other cars
-- Design new level
+!- Design new level
