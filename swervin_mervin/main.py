@@ -3,7 +3,7 @@
 # (c) Andrew Buntine
 # https://github.com/buntine/swervin_mervin
 
-import pygame, sys, numpy
+import pygame, sys 
 from pygame.locals import *
 import player as p
 import background as b
@@ -61,6 +61,16 @@ while True:
     player.climb(base_segment)
     player.detect_collisions(player_segment)
     player.handle_crash()
+
+    for c in level.competitors:
+        old_seg = level.find_segment(c.position)
+        c.travel(level.track_length())
+        new_seg = level.find_segment(c.position)
+
+        if old_seg.index != new_seg.index:
+            if c in old_seg.competitors:
+                old_seg.competitors.remove(c)
+            new_seg.competitors.append(c)
 
     y_coverage  = 0
     curve       = 0

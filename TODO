@@ -5,3 +5,8 @@
 - Car SFX
 - Other cars
 !- Design new level
+!- Lap time
+- Sprites:
+  - Road signs
+  - Buildings
+- Use file.join for all paths

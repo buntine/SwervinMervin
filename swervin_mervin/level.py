@@ -1,18 +1,21 @@
 import settings as s
 import segment as seg
+import competitor as c
 import csv
 
 class Level:
     """Represents a level in the game world."""
 
     def __init__(self, name):
-        self.name = name
-        self.segments = []
+        self.name        = name
+        self.segments    = []
+        self.competitors = []
 
     def build(self):
         """Reads the level file and builds a level by populating the segments array."""
-        level_path   = "swervin_mervin/levels/{0}.csv".format(self.name)
-        sprites_path = "swervin_mervin/levels/sprites/{0}.csv".format(self.name)
+        level_path       = "swervin_mervin/levels/{0}.csv".format(self.name)
+        sprites_path     = "swervin_mervin/levels/sprites/{0}.csv".format(self.name)
+        competitors_path = "swervin_mervin/levels/competitors/{0}.csv".format(self.name)
 
         with open(level_path, "r") as csvfile:
             for row in csv.reader(csvfile):
@@ -24,6 +27,10 @@ class Level:
                 segment = self.segments[int(row[0])]
                 self.add_sprite(segment, float(row[1]), row[2])
 
+        with open(competitors_path, "r") as csvfile:
+            for row in csv.reader(csvfile):
+                self.add_competitor(int(row[0]), float(row[1]), row[2], float(row[3]))
+
     def add_segment(self, curve, start_y=0, end_y=0):
         """Creates a new segment and pushes it to the segments array"""
         palette = "dark" if (len(self.segments) / s.RUMBLE_LENGTH) % 2 == 0 else "light"
@@ -34,6 +41,11 @@ class Level:
     def add_sprite(self, segment, offset, name):
         """Adds a sprite to the given segment."""
         segment.sprites.append({"offset": offset, "sprite": s.SPRITES[name]})
+
+    def add_competitor(self, position, offset, name, speed):
+        """Adds a competitor sprite to the given segment."""
+        competitor = c.Competitor(position, offset, name, speed)
+        self.competitors.append(competitor)
 
     def track_length(self):
         return len(self.segments) * s.SEGMENT_HEIGHT
