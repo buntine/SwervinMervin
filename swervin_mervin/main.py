@@ -118,6 +118,7 @@ while True:
         for i in reversed(range(1, s.DRAW_DISTANCE)):
             segment = level.offset_segment(base_segment.index + i)
             segment.render_sprites(window)
+            segment.render_competitors(window)
 
         player.render(window, base_segment)
         player.render_hud(window)

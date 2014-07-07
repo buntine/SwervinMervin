@@ -166,4 +166,8 @@ SPRITES           = {"straight1": {
                      "light_post": {
                        "path": "light_post.png",
                        "width": 40,
-                       "height": 90}}
+                       "height": 90},
+                     "competitor1": {
+                       "path": "competitor1.png",
+                       "width": 80,
+                       "height": 50}}

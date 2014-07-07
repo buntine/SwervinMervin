@@ -6,7 +6,7 @@ class Competitor:
     def __init__(self, position, offset, name, speed):
         self.position = position
         self.offset   = offset
-        self.name     = name
+        self.sprite   = s.SPRITES[name]
         self.speed    = speed
 
     def travel(self, track_length):

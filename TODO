@@ -3,7 +3,10 @@
 !- Refine LEAP
 !- Refine collision offsets for sprites.
 - Car SFX
-- Other cars
+- Finish Other cars
+  - Jumpy when close to player
+  - render_competitors nearly identical to render_sprites
+  - Should render_competitors actually be in Competitor class?
 !- Design new level
 !- Lap time
 - Sprites:

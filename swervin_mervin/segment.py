@@ -116,6 +116,23 @@ class Segment:
 
                 window.blit(sprite, (x, y), (0, 0, s_width, clip_line))
 
+    def render_competitors(self, window):
+        """Renders the competitor sprites (if any) for this segment to the given surface."""
+        bottom = self.bottom["screen"]
+
+        for comp in self.competitors:
+            s_width   = int(comp.sprite["width"] * bottom["s"] * s.ROAD_WIDTH * 1.8)
+            s_height  = int(comp.sprite["height"] * bottom["s"] * s.ROAD_WIDTH * 1.8)
+            x         = (bottom["x"] - s_width) + (bottom["w"] * comp.offset)
+            y         = s.DIMENSIONS[1] - bottom["y"] - s_height
+            clip_line = (s.DIMENSIONS[1] - self.clip) - y
+
+            if s_width > 0 and s_height > 0 and clip_line > 0 and s_width < s.DIMENSIONS[0] * 2 and s_height < s.DIMENSIONS[1] * 2:
+                sprite = pygame.image.load("lib/" + comp.sprite["path"])
+                sprite = pygame.transform.scale(sprite, (s_width, s_height))
+
+                window.blit(sprite, (x, y), (0, 0, s_width, clip_line))
+
     def __project_line(self, line, camera_x, camera_z, player_y):
         """Projects a 3D world position into 2D coordinates for the given line."""
         p      = getattr(self, line)
