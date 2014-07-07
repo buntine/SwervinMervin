@@ -5,11 +5,12 @@
 - Car SFX
 - Finish Other cars
   - Jumpy when close to player
+  - Collisions
   - render_competitors nearly identical to render_sprites
   - Should render_competitors actually be in Competitor class?
 !- Design new level
 !- Lap time
 - Sprites:
-  - Road signs
+!  - Road signs
   - Buildings
 - Use file.join for all paths
