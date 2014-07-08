@@ -5,12 +5,12 @@
 - Car SFX
 - Finish Other cars
   - Jumpy when close to player
-  - Collisions
-  - render_competitors nearly identical to render_sprites
   - Should render_competitors actually be in Competitor class?
+- Use class for sprites instead of dict (and refactor render_sprites / render_competitors).
 !- Design new level
 !- Lap time
+!- Position (number of laps + base_segment.index)
 - Sprites:
 !  - Road signs
   - Buildings
-- Use file.join for all paths
+!- Use file.join for all paths

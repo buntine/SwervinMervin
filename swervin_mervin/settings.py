@@ -16,7 +16,7 @@ BOUNDS            = 2.1
 AUTO_DRIVE        = False
 CENTRIFUGAL_FORCE = 0.266
 PLAYER_ANIM_HOLD  = 8
-CHECKPOINT        = 25
+CHECKPOINT        = 30
 TOP_SPEED         = (SEGMENT_HEIGHT / (1.0/FPS)) * 1.9
 OFFROAD_TOP_SPEED = TOP_SPEED / 2.0
 ACCELERATION      = TOP_SPEED / 5.0
@@ -163,8 +163,12 @@ SPRITES           = {"straight1": {
                        "collision": [-0.9, 0.1],
                        "width": 30,
                        "height": 56},
-                     "light_post": {
-                       "path": "light_post.png",
+                     "light_post1": {
+                       "path": "light_post1.png",
+                       "width": 40,
+                       "height": 90},
+                     "light_post2": {
+                       "path": "light_post2.png",
                        "width": 40,
                        "height": 90},
                      "competitor1": {

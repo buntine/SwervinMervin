@@ -101,37 +101,28 @@ class Segment:
 
     def render_sprites(self, window):
         """Renders the sprites (if any) for this segment to the given surface."""
-        bottom = self.bottom["screen"]
-
         for sp in self.sprites:
-            s_width   = int(sp["sprite"]["width"] * bottom["s"] * s.ROAD_WIDTH * 3)
-            s_height  = int(sp["sprite"]["height"] * bottom["s"] * s.ROAD_WIDTH * 3)
-            x         = (bottom["x"] - s_width) + (bottom["w"] * sp["offset"])
-            y         = s.DIMENSIONS[1] - bottom["y"] - s_height
-            clip_line = (s.DIMENSIONS[1] - self.clip) - y
-
-            if s_width > 0 and s_height > 0 and clip_line > 0 and s_width < s.DIMENSIONS[0] * 2 and s_height < s.DIMENSIONS[1] * 2:
-                sprite = pygame.image.load("lib/" + sp["sprite"]["path"])
-                sprite = pygame.transform.scale(sprite, (s_width, s_height))
-
-                window.blit(sprite, (x, y), (0, 0, s_width, clip_line))
+            self.__render_object(window, sp["sprite"], sp["offset"], 3)
 
     def render_competitors(self, window):
         """Renders the competitor sprites (if any) for this segment to the given surface."""
-        bottom = self.bottom["screen"]
-
         for comp in self.competitors:
-            s_width   = int(comp.sprite["width"] * bottom["s"] * s.ROAD_WIDTH * 1.8)
-            s_height  = int(comp.sprite["height"] * bottom["s"] * s.ROAD_WIDTH * 1.8)
-            x         = (bottom["x"] - s_width) + (bottom["w"] * comp.offset)
-            y         = s.DIMENSIONS[1] - bottom["y"] - s_height
-            clip_line = (s.DIMENSIONS[1] - self.clip) - y
+            self.__render_object(window, comp.sprite, comp.offset, 1.8)
 
-            if s_width > 0 and s_height > 0 and clip_line > 0 and s_width < s.DIMENSIONS[0] * 2 and s_height < s.DIMENSIONS[1] * 2:
-                sprite = pygame.image.load("lib/" + comp.sprite["path"])
-                sprite = pygame.transform.scale(sprite, (s_width, s_height))
+    def __render_object(self, window, sprite, offset, quantifier):
+        """Renders a sprite to the window with appropriate scaling, etc."""
+        bottom    = self.bottom["screen"]
+        s_width   = int(sprite["width"] * bottom["s"] * s.ROAD_WIDTH * quantifier)
+        s_height  = int(sprite["height"] * bottom["s"] * s.ROAD_WIDTH * quantifier)
+        x         = (bottom["x"] - s_width) + (bottom["w"] * offset)
+        y         = s.DIMENSIONS[1] - bottom["y"] - s_height
+        clip_line = (s.DIMENSIONS[1] - self.clip) - y
 
-                window.blit(sprite, (x, y), (0, 0, s_width, clip_line))
+        if s_width > 0 and s_height > 0 and clip_line > 0 and s_width < s.DIMENSIONS[0] * 2 and s_height < s.DIMENSIONS[1] * 2:
+            sprite = pygame.image.load("lib/" + sprite["path"])
+            sprite = pygame.transform.scale(sprite, (s_width, s_height))
+
+            window.blit(sprite, (x, y), (0, 0, s_width, clip_line))
 
     def __project_line(self, line, camera_x, camera_z, player_y):
         """Projects a 3D world position into 2D coordinates for the given line."""

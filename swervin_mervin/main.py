@@ -37,7 +37,7 @@ while not title_screen.finished:
     fps_clock.tick(s.TITLE_FPS)
 
 player      = p.Player()
-level       = l.Level("test")
+level       = l.Level("melbourne")
 backgrounds = [b.Background("sky", 0, 2, True),
                 b.Background("city", 0, 1)]
 listener    = ll.LeapListener()

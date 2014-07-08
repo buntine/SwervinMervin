@@ -44,13 +44,18 @@ class Player:
         """Detects and handles player collisions with sprites."""
         if not self.crashed:
             for sp in segment.sprites:
-                if sp["sprite"].has_key("collision") and self.__collided_with(sp):
+                if sp["sprite"].has_key("collision") and self.__collided_with_sprite(sp):
                     pygame.mixer.music.set_volume(0.2)
                     crash_sfx    = pygame.mixer.Sound("lib/you_fool.ogg")
                     self.crashed = True
                     self.speed   = 0
 
                     crash_sfx.play()
+                    break
+
+            for comp in segment.competitors:
+                if self.__collided_with_competitor(comp):
+                    self.speed = 0
                     break
 
     def render(self, window, segment):
@@ -222,12 +227,17 @@ class Player:
                 pygame.mixer.music.set_volume(1.0)
                 self.crashed = False
 
-    def __collided_with(self, sprite):
+    def __collided_with_sprite(self, sprite):
         s = sprite["sprite"]
         o = sprite["offset"]
 
         return (self.x < (o + s["collision"][1]) and o < 0) or\
                (self.x > (o + s["collision"][0]) and o > 0)
+ 
+    def __collided_with_competitor(self, c):
+        o = c.offset
+
+        return (self.x > o - 0.45) and (self.x < o + 0.23)
  
     def __circular_orbit(self, center, radius, t):
         """Returns the X/Y coordinate for a given time (t) in a circular orbit."""
