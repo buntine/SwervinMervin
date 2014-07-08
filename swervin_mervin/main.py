@@ -62,6 +62,7 @@ while True:
     player.detect_collisions(player_segment)
     player.handle_crash()
 
+    # Move the other players.
     for c in level.competitors:
         old_seg = level.find_segment(c.position)
         c.travel(level.track_length())
