@@ -1,6 +1,6 @@
 import settings as s
 import util as u
-import pygame, math, datetime
+import pygame, math, datetime, os
 from pygame.locals import *
 
 class Player:
@@ -46,7 +46,7 @@ class Player:
             for sp in segment.sprites:
                 if sp["sprite"].has_key("collision") and self.__collided_with_sprite(sp):
                     pygame.mixer.music.set_volume(0.2)
-                    crash_sfx    = pygame.mixer.Sound("lib/you_fool.ogg")
+                    crash_sfx    = pygame.mixer.Sound(os.path.join("lib", "you_fool.ogg"))
                     self.crashed = True
                     self.speed   = 0
 
@@ -89,7 +89,7 @@ class Player:
         s_width  = int(sprite["width"] * scale * s.ROAD_WIDTH * 1.2)
         s_height = int(sprite["height"] * scale * s.ROAD_WIDTH * 1.2)
 
-        p = pygame.image.load("lib/" + sprite["path"])
+        p = pygame.image.load(os.path.join("lib", sprite["path"]))
         p = pygame.transform.scale(p, (s_width, s_height))
         window.blit(p, (width - (s_width / 2), s.DIMENSIONS[1] - s_height - s.BOTTOM_OFFSET))
 
@@ -101,7 +101,7 @@ class Player:
         start       = self.__circular_orbit(center, -10, orbit_pos)
         finish      = self.__circular_orbit(center, 36, orbit_pos)
         speed       = round((self.speed / s.SEGMENT_HEIGHT) * 1.5, 1)
-        font        = pygame.font.Font("lib/br_font.ttf", 20)
+        font        = pygame.font.Font(os.path.join("lib", "br_font.ttf"), 20)
         timedelta   = (datetime.datetime.now() - self.last_checkpoint)
 
         if not self.game_over:
@@ -121,7 +121,7 @@ class Player:
         u.render_text(str(self.time_left), window, font, s.COLOURS["text"], (90, 10))
 
         if self.game_over:
-            go_font = pygame.font.Font("lib/br_font.ttf", 44)
+            go_font = pygame.font.Font(os.path.join("lib", "br_font.ttf"), 44)
             go      = go_font.render("Game Over", 1, s.COLOURS["red"]);
             x       = (s.DIMENSIONS[0] - go.get_size()[0]) / 2
             y       = (s.DIMENSIONS[1] - go.get_size()[1]) / 2
@@ -163,7 +163,7 @@ class Player:
 
             if self.__fastest_lap():
                 if self.lap > 2:
-                    lap_sfx = pygame.mixer.Sound("lib/jim.ogg")
+                    lap_sfx = pygame.mixer.Sound(os.path.join("lib", "jim.ogg"))
                     lap_sfx.play()
 
                 self.fastest_lap = self.time_left

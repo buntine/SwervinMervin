@@ -3,7 +3,7 @@
 # (c) Andrew Buntine
 # https://github.com/buntine/swervin_mervin
 
-import pygame, sys 
+import pygame, sys, os
 from pygame.locals import *
 import player as p
 import background as b
@@ -46,7 +46,7 @@ controller  = Leap.Controller()
 controller.add_listener(listener)
 level.build()
 
-pygame.mixer.music.load("lib/lazerhawk-overdrive.mp3")
+pygame.mixer.music.load(os.path.join("lib", "lazerhawk-overdrive.mp3"))
 pygame.mixer.music.play(-1)
 
 ## Now lets play!

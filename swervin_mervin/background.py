@@ -1,11 +1,12 @@
 import pygame
 import settings as s
+import os
 
 class Background:
     """Represents a single scrollable background in a level."""
 
     def __init__(self, name, y, parallax_speed, convert=False):
-        self.image          = pygame.image.load("lib/{0}.png".format(name))
+        self.image          = pygame.image.load(os.path.join("lib", "{0}.png".format(name)))
         self.parallax_speed = parallax_speed
         self.y              = y
         self.width          = self.image.get_width()

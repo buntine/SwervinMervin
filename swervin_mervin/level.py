@@ -1,7 +1,7 @@
 import settings as s
 import segment as seg
 import competitor as c
-import csv
+import csv, os
 
 class Level:
     """Represents a level in the game world."""
@@ -13,9 +13,9 @@ class Level:
 
     def build(self):
         """Reads the level file and builds a level by populating the segments array."""
-        level_path       = "swervin_mervin/levels/{0}.csv".format(self.name)
-        sprites_path     = "swervin_mervin/levels/sprites/{0}.csv".format(self.name)
-        competitors_path = "swervin_mervin/levels/competitors/{0}.csv".format(self.name)
+        level_path       = os.path.join("swervin_mervin", "levels", "{0}.csv".format(self.name))
+        sprites_path     = os.path.join("swervin_mervin", "levels", "sprites", "{0}.csv".format(self.name))
+        competitors_path = os.path.join("swervin_mervin", "levels", "competitors", "{0}.csv".format(self.name))
 
         with open(level_path, "r") as csvfile:
             for row in csv.reader(csvfile):
