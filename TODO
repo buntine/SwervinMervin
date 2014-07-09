@@ -13,3 +13,4 @@
 - Sprites:
 !  - Road signs
   - Buildings
+- Downhill sprite is getting stuck (Y never gets to 0?)
