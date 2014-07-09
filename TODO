@@ -7,7 +7,7 @@
   - Jumpy when close to player
   - Should render_competitors actually be in Competitor class?
 - Use class for sprites instead of dict (and refactor render_sprites / render_competitors).
-!- Design new level
+- Add sprites and competitors to new level.
 !- Lap time
 !- Position (number of laps + base_segment.index)
 - Sprites:
