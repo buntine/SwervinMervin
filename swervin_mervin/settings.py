@@ -1,10 +1,10 @@
 # Game constants.
 
 from pygame import Color
-import math
+import math, os
 
 FPS               = 60
-TITLE_FPS         = 5
+TITLE_FPS         = 20
 FRAME_RATE        = (1.0 / FPS)
 DIMENSIONS        = (640, 480)
 SEGMENT_HEIGHT    = 260
@@ -26,7 +26,8 @@ CAMERA_HEIGHT     = 1400
 CAMERA_DEPTH      = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180);
 BOTTOM_OFFSET     = 5
 PLAYER_Z          = (CAMERA_HEIGHT * CAMERA_DEPTH)
-FONTS             = {"bladerunner": "lib/br_font.ttf"}
+FONTS             = {"bladerunner": os.path.join("lib", "br_font.ttf"),
+                     "computer":    os.path.join("lib", "computer.ttf")}
 COLOURS           = {"white":  Color(255, 255, 255),
                      "text":   Color(172, 199, 252),
                      "sky":    Color(10, 10, 10),

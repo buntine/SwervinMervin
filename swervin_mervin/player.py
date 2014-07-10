@@ -101,7 +101,7 @@ class Player:
         start       = self.__circular_orbit(center, -10, orbit_pos)
         finish      = self.__circular_orbit(center, 36, orbit_pos)
         speed       = round((self.speed / s.SEGMENT_HEIGHT) * 1.5, 1)
-        font        = pygame.font.Font(os.path.join("lib", "br_font.ttf"), 20)
+        font        = pygame.font.Font(s.FONTS["bladerunner"], 20)
         timedelta   = (datetime.datetime.now() - self.last_checkpoint)
 
         if not self.game_over:
@@ -121,7 +121,7 @@ class Player:
         u.render_text(str(self.time_left), window, font, s.COLOURS["text"], (90, 10))
 
         if self.game_over:
-            go_font = pygame.font.Font(os.path.join("lib", "br_font.ttf"), 44)
+            go_font = pygame.font.Font(s.FONTS["bladerunner"], 44)
             go      = go_font.render("Game Over", 1, s.COLOURS["red"]);
             x       = (s.DIMENSIONS[0] - go.get_size()[0]) / 2
             y       = (s.DIMENSIONS[1] - go.get_size()[1]) / 2

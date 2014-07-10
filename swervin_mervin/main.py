@@ -17,17 +17,19 @@ pygame.init()
 
 fps_clock    = pygame.time.Clock()
 window       = pygame.display.set_mode(s.DIMENSIONS)
-title_screen = ts.TitleScreen(window)
+title_screen = ts.TitleScreen()
 
 ## Fire up the title screen.
-while not title_screen.finished:
-    window.fill(s.COLOURS["red"])
+pygame.mixer.music.load(os.path.join("lib", "mn84-theme.mp3"))
+pygame.mixer.music.play(-1)
 
-    title_screen.progress()
+while not title_screen.finished:
+    title_screen.progress(window)
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE and title_screen.ready:
+                pygame.mixer.music.fadeout(1500)
                 title_screen.finished = True
         elif event.type == QUIT:
             pygame.quit()
@@ -36,6 +38,7 @@ while not title_screen.finished:
     pygame.display.update()
     fps_clock.tick(s.TITLE_FPS)
 
+## Now lets play!
 player      = p.Player()
 level       = l.Level("melbourne")
 backgrounds = [b.Background("sky", 0, 2, True),
@@ -49,7 +52,6 @@ level.build()
 pygame.mixer.music.load(os.path.join("lib", "lazerhawk-overdrive.mp3"))
 pygame.mixer.music.play(-1)
 
-## Now lets play!
 while True:
     player.travel(level.track_length(), window)
 
