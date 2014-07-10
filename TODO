@@ -1,4 +1,3 @@
-!- Start streen.
 - Fix width/height projection for sprites (or atleast understand it!)
 !- Refine LEAP
 !- Refine collision offsets for sprites.

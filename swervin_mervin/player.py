@@ -74,7 +74,7 @@ class Player:
 
         if top["world"]["y"] > bottom["world"]["y"]:
             sprite = "uphill_" + sprite
-        elif top["world"]["y"] < bottom["world"]["y"]:
+        elif top["world"]["y"] < (bottom["world"]["y"] - 10):  # TODO: Fix this. Should not need -10 here.
             sprite = "downhill_" + sprite
 
         if self.speed > 0:
