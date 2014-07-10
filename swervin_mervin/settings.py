@@ -172,6 +172,18 @@ SPRITES           = {"straight1": {
                        "path": "light_post2.png",
                        "width": 40,
                        "height": 90},
+                     "left_sign": {
+                       "path": "left_sign.png",
+                       "width": 40,
+                       "height": 90},
+                     "right_sign": {
+                       "path": "right_sign.png",
+                       "width": 40,
+                       "height": 90},
+                     "traffic_light": {
+                       "path": "traffic_light.png",
+                       "width": 40,
+                       "height": 90},
                      "competitor1": {
                        "path": "competitor1.png",
                        "width": 80,

@@ -5,10 +5,13 @@
 60,-1.5,bush1
 80,-1.0,light_post1
 80,1.0,light_post2
+90,-1.0,right_sign
 100,2.4,bush1
 100,-1.5,bush1
+108,-1.0,right_sign
 110,-1.1,post
 120,-1.0,light_post1
+118,-1.0,right_sign
 120,1.0,light_post2
 140,2.4,bush1
 140,-1.5,bush1
@@ -52,11 +55,16 @@
 520,-1.0,light_post1
 520,1.0,light_post2
 540,2.4,bush1
+530,-1.0,left_sign
 540,-1.5,bush1
 560,-1.0,light_post1
+550,-1.0,left_sign
 560,1.0,light_post2
 580,2.4,bush1
 580,-1.5,bush1
+570,-1.0,left_sign
+580,-1.1,traffic_light
+580,1.7,traffic_light
 600,2.4,column
 600,-1.7,column
 610,2.4,column
@@ -131,6 +139,10 @@
 950,-1.7,column
 960,2.4,column
 960,-1.7,column
+970,-1.0,right_sign
+990,-1.0,right_sign
+1010,-1.0,right_sign
+1030,-1.0,right_sign
 1000,-1.0,light_post1
 1020,1.0,light_post2
 1040,-1.0,light_post1
@@ -150,6 +162,10 @@
 1300,1.0,light_post2
 1320,-1.0,light_post1
 1340,1.0,light_post2
+1330,-1.0,right_sign
+1350,-1.0,right_sign
+1370,-1.0,right_sign
+1390,-1.0,right_sign
 1400,2.4,column
 1404,2.4,column
 1408,2.4,column
@@ -364,6 +380,8 @@
 2925,2.8,palm_tree
 2930,-2.0,boat_house
 2935,2.8,palm_tree
+2940,-1.1,traffic_light
+2940,1.7,traffic_light
 2940,-2.0,boat_house
 2950,-2.0,boat_house
 2960,-2.0,boat_house
@@ -425,3 +443,5 @@
 3560,1.0,light_post2
 3580,-1.0,light_post1
 3580,1.0,light_post2
+3900,-1.1,traffic_light
+3900,1.7,traffic_light
