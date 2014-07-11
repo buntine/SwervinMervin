@@ -17,6 +17,7 @@ Accelleration and steering can be performed by integrating with a LEAP Motion Co
   * Jake at codeincomplete.com and Lou at extentofthejam.com for their fantastic articles on the subject.
   * My beautiful girlfriend, Mel, for all of the original pixel art.
   * LazerHawk and Miami Nights 1984 for the music.
+  * Out Run (1986) for letting me steal some sprites.
 
 ### TODO
   
