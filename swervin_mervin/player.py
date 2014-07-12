@@ -16,9 +16,11 @@ class Player:
         self.speed           = 1
         self.animation_frame = 1
         self.lap             = 1
-        self.fastest_lap     = 0
-        self.lap_difference  = 0
+        self.lap_time        = 0
+        self.lap_margin      = 0
         self.points          = 0
+        self.fastest_lap     = s.CHECKPOINT
+        self.checkpoint      = s.CHECKPOINT
         self.time_left       = s.CHECKPOINT
         self.last_checkpoint = None
         self.crashed         = False
@@ -109,10 +111,6 @@ class Player:
         finish      = self.__circular_orbit(center, 36, orbit_pos)
         speed       = round((self.speed / s.SEGMENT_HEIGHT) * 1.5, 1)
         font        = pygame.font.Font(s.FONTS["bladerunner"], 20)
-        timedelta   = (datetime.datetime.now() - self.last_checkpoint)
-
-        if not self.game_over:
-            self.time_left = round(s.CHECKPOINT - timedelta.total_seconds(), 1)
 
         pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
         pygame.draw.circle(window, s.COLOURS["black"], center, 4)
@@ -147,8 +145,8 @@ class Player:
             window.blit(overlay, (0,0))
 
         # Display lap difference (unless we've only done one lap).
-        if self.lap_difference != 0 and self.lap > 2 and self.lap_percent < 20:
-            diff = self.lap_difference
+        if self.lap_margin != 0 and self.lap > 2 and self.lap_percent < 20:
+            diff = self.lap_margin
 
             if diff <= 0:
                 colour = "red"
@@ -165,10 +163,14 @@ class Player:
 
     def travel(self, track_length, window):
         """Updates position, reflecting how far we've travelled since the last frame."""
-        pos = self.position + (s.FRAME_RATE * self.speed)
+        pos       = self.position + (s.FRAME_RATE * self.speed)
+        timedelta = (datetime.datetime.now() - self.last_checkpoint)
 
         if not self.game_over:
             self.points += (self.speed / s.SEGMENT_HEIGHT) / s.POINTS
+
+        if not self.game_over:
+            self.time_left = round(self.checkpoint - timedelta.total_seconds(), 1)
 
         if self.time_left <= 0:
             self.game_over = True
@@ -176,20 +178,23 @@ class Player:
         # New lap.
         if pos >= track_length:
             self.__set_checkpoint()
-            self.lap += 1
+
+            self.lap_time    = timedelta.total_seconds()
+            self.lap        += 1
+            self.lap_margin  = self.fastest_lap - self.lap_time
 
             if not self.game_over:
-                self.points += self.time_left * s.POINTS
-
-            self.lap_difference = self.time_left - self.fastest_lap;
+                # Reduce checkpoint time every lap to increase difficulty.
+                self.checkpoint -= 1
+                self.points     += self.time_left * s.POINTS * self.lap
 
             if self.__fastest_lap():
                 if self.lap > 2:
-                    self.points += (self.time_left - self.fastest_lap) * s.POINTS
+                    self.points += self.lap_margin * s.POINTS * self.lap
                     lap_sfx      = pygame.mixer.Sound(os.path.join("lib", "jim.ogg"))
                     lap_sfx.play()
 
-                self.fastest_lap = self.time_left
+                self.fastest_lap = self.lap_time
 
             pos -= track_length
 
@@ -274,4 +279,4 @@ class Player:
         self.last_checkpoint = datetime.datetime.now()
 
     def __fastest_lap(self):
-        return not self.game_over and self.time_left > self.fastest_lap
+        return not self.game_over and self.lap_time < self.fastest_lap
