@@ -23,7 +23,7 @@ title_screen = ts.TitleScreen()
 pygame.mixer.music.load(os.path.join("lib", "mn84-theme.mp3"))
 pygame.mixer.music.play(-1)
 
-while not title_screen.finished:
+while s.TITLE_SCREEN and not title_screen.finished:
     title_screen.progress(window)
 
     for event in pygame.event.get():

@@ -18,6 +18,7 @@ class Player:
         self.lap             = 1
         self.fastest_lap     = 0
         self.lap_difference  = 0
+        self.points          = 0
         self.time_left       = s.CHECKPOINT
         self.last_checkpoint = None
         self.crashed         = False
@@ -50,12 +51,18 @@ class Player:
                     self.crashed = True
                     self.speed   = 0
 
+                    if not self.game_over:
+                        self.points -= self.points * s.POINT_LOSS_SPRITE
+
                     crash_sfx.play()
                     break
 
             for comp in segment.competitors:
                 if self.__collided_with_competitor(comp):
                     self.speed = 0
+
+                    if not self.game_over:
+                        self.points -= self.points * s.POINT_LOSS_COMP
                     break
 
     def render(self, window, segment):
@@ -120,6 +127,14 @@ class Player:
         u.render_text("time", window, font, s.COLOURS["text"], (10, 10))
         u.render_text(str(self.time_left), window, font, s.COLOURS["text"], (90, 10))
 
+        # Points rendering needs more care because it grows so fast.
+        p_val_text  = font.render(str(math.trunc(self.points)), 1, s.COLOURS["text"])
+        p_name_text = font.render("points", 1, s.COLOURS["text"])
+        p_val_x     = s.DIMENSIONS[0] - p_val_text.get_width() - 10
+
+        window.blit(p_val_text, (p_val_x, s.DIMENSIONS[1] - 24))
+        window.blit(p_name_text, (p_val_x - 112, s.DIMENSIONS[1] - 24))
+
         if self.game_over:
             go_font = pygame.font.Font(s.FONTS["bladerunner"], 44)
             go      = go_font.render("Game Over", 1, s.COLOURS["red"]);
@@ -152,18 +167,26 @@ class Player:
         """Updates position, reflecting how far we've travelled since the last frame."""
         pos = self.position + (s.FRAME_RATE * self.speed)
 
+        if not self.game_over:
+            self.points += (self.speed / s.SEGMENT_HEIGHT) / s.POINTS
+
         if self.time_left <= 0:
             self.game_over = True
 
+        # New lap.
         if pos >= track_length:
             self.__set_checkpoint()
             self.lap += 1
+
+            if not self.game_over:
+                self.points += self.time_left * s.POINTS
 
             self.lap_difference = self.time_left - self.fastest_lap;
 
             if self.__fastest_lap():
                 if self.lap > 2:
-                    lap_sfx = pygame.mixer.Sound(os.path.join("lib", "jim.ogg"))
+                    self.points += (self.time_left - self.fastest_lap) * s.POINTS
+                    lap_sfx      = pygame.mixer.Sound(os.path.join("lib", "jim.ogg"))
                     lap_sfx.play()
 
                 self.fastest_lap = self.time_left

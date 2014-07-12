@@ -3,32 +3,36 @@
 from pygame import Color
 import math, os
 
-FPS               = 60
-TITLE_FPS         = 20
-FRAME_RATE        = (1.0 / FPS)
-DIMENSIONS        = (640, 480)
-SEGMENT_HEIGHT    = 260
-RUMBLE_LENGTH     = 3
-DRAW_DISTANCE     = 200
-ROAD_WIDTH        = 2100
-LANES             = 4
-BOUNDS            = 2.1
-AUTO_DRIVE        = True
-CENTRIFUGAL_FORCE = 0.266
-PLAYER_ANIM_HOLD  = 8
-CHECKPOINT        = 65
-TOP_SPEED         = (SEGMENT_HEIGHT / (1.0/FPS)) * 1.9
-OFFROAD_TOP_SPEED = TOP_SPEED / 2.0
-ACCELERATION      = TOP_SPEED / 5.0
-DECELERATION      = 2.3
-FIELD_OF_VIEW     = 100 # Degrees
-CAMERA_HEIGHT     = 1400
-CAMERA_DEPTH      = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180);
-BOTTOM_OFFSET     = 5
-PLAYER_Z          = (CAMERA_HEIGHT * CAMERA_DEPTH)
-FONTS             = {"bladerunner": os.path.join("lib", "br_font.ttf"),
+FPS                = 60
+TITLE_FPS          = 20
+TITLE_SCREEN       = False
+FRAME_RATE         = (1.0 / FPS)
+DIMENSIONS         = (640, 480)
+SEGMENT_HEIGHT     = 260
+RUMBLE_LENGTH      = 3
+DRAW_DISTANCE      = 200
+ROAD_WIDTH         = 2100
+LANES              = 4
+BOUNDS             = 2.1
+AUTO_DRIVE         = False
+CENTRIFUGAL_FORCE  = 0.266
+PLAYER_ANIM_HOLD   = 8
+CHECKPOINT         = 55
+POINTS             = 15
+POINT_LOSS_SPRITE  = 0.03
+POINT_LOSS_COMP    = 0.02
+TOP_SPEED          = (SEGMENT_HEIGHT / (1.0/FPS)) * 1.9
+OFFROAD_TOP_SPEED  = TOP_SPEED / 2.0
+ACCELERATION       = TOP_SPEED / 5.0
+DECELERATION       = 2.3
+FIELD_OF_VIEW      = 100 # Degrees
+CAMERA_HEIGHT      = 1400
+CAMERA_DEPTH       = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180);
+BOTTOM_OFFSET      = 5
+PLAYER_Z           = (CAMERA_HEIGHT * CAMERA_DEPTH)
+FONTS              = {"bladerunner": os.path.join("lib", "br_font.ttf"),
                      "arcade":    os.path.join("lib", "arcade.ttf")}
-COLOURS           = {"white":  Color(255, 255, 255),
+COLOURS            = {"white":  Color(255, 255, 255),
                      "text":   Color(172, 199, 252),
                      "sky":    Color(10, 10, 10),
                      "gutter": Color(100, 100, 100),
@@ -43,7 +47,7 @@ COLOURS           = {"white":  Color(255, 255, 255),
                                "grass":    Color(0, 16, 56),
                                "footpath": Color(68, 84, 101),
                                "line":     Color(185, 185, 185)}}
-SPRITES           = {"straight1": {
+SPRITES            = {"straight1": {
                        "path": "straight1.png",
                        "width": 80,
                        "height": 50},
