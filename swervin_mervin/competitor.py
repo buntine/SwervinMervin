@@ -1,13 +1,15 @@
 import settings as s
+import world_object as wo
 
-class Competitor:
+class Competitor(wo.WorldObject):
     """Represents a single competitor car in a level."""
 
     def __init__(self, position, offset, name, speed):
-        self.position = position * s.SEGMENT_HEIGHT
-        self.offset   = offset
-        self.sprite   = s.SPRITES[name]
-        self.speed    = speed
+        self.position   = position * s.SEGMENT_HEIGHT
+        self.offset     = offset
+        self.sprite     = s.SPRITES[name]
+        self.speed      = speed
+        self.quantifier = 1.8
 
     def travel(self, track_length):
         # Update Z position.

@@ -1,6 +1,7 @@
 import settings as s
 import segment as seg
 import competitor as c
+import sprite as sp
 import csv, os
 
 class Level:
@@ -40,7 +41,8 @@ class Level:
 
     def add_sprite(self, segment, offset, name):
         """Adds a sprite to the given segment."""
-        segment.sprites.append({"offset": offset, "sprite": s.SPRITES[name]})
+        sprite = sp.Sprite(offset, name)
+        segment.sprites.append(sprite)
 
     def add_competitor(self, position, offset, name, speed):
         """Adds a competitor sprite to the given segment."""

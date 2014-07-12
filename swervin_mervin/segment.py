@@ -99,30 +99,10 @@ class Segment:
                           (top_left,     y_top)]
                 pygame.draw.polygon(window, colour["line"], points)
 
-    def render_sprites(self, window):
-        """Renders the sprites (if any) for this segment to the given surface."""
-        for sp in self.sprites:
-            self.__render_object(window, sp["sprite"], sp["offset"], 3)
-
-    def render_competitors(self, window):
-        """Renders the competitor sprites (if any) for this segment to the given surface."""
-        for comp in self.competitors:
-            self.__render_object(window, comp.sprite, comp.offset, 1.8)
-
-    def __render_object(self, window, sprite, offset, quantifier):
-        """Renders a sprite to the window with appropriate scaling, etc."""
-        bottom    = self.bottom["screen"]
-        s_width   = int(sprite["width"] * bottom["s"] * s.ROAD_WIDTH * quantifier)
-        s_height  = int(sprite["height"] * bottom["s"] * s.ROAD_WIDTH * quantifier)
-        x         = (bottom["x"] - s_width) + (bottom["w"] * offset)
-        y         = s.DIMENSIONS[1] - bottom["y"] - s_height
-        clip_line = (s.DIMENSIONS[1] - self.clip) - y
-
-        if s_width > 0 and s_height > 0 and clip_line > 0 and s_width < s.DIMENSIONS[0] * 2 and s_height < s.DIMENSIONS[1] * 2:
-            sprite = pygame.image.load("lib/" + sprite["path"])
-            sprite = pygame.transform.scale(sprite, (s_width, s_height))
-
-            window.blit(sprite, (x, y), (0, 0, s_width, clip_line))
+    def render_world_objects(self, window):
+        """Renders the sprites/competitors (if any) for this segment to the given surface."""
+        for obj in (self.sprites + self.competitors):
+            obj.render(window, self.bottom["screen"], self.clip)
 
     def __project_line(self, line, camera_x, camera_z, player_y):
         """Projects a 3D world position into 2D coordinates for the given line."""

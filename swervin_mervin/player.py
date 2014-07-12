@@ -44,7 +44,7 @@ class Player:
         """Detects and handles player collisions with sprites."""
         if not self.crashed:
             for sp in segment.sprites:
-                if sp["sprite"].has_key("collision") and self.__collided_with_sprite(sp):
+                if sp.sprite.has_key("collision") and self.__collided_with_sprite(sp):
                     pygame.mixer.music.set_volume(0.2)
                     crash_sfx    = pygame.mixer.Sound(os.path.join("lib", "you_fool.ogg"))
                     self.crashed = True
@@ -228,8 +228,8 @@ class Player:
                 self.crashed = False
 
     def __collided_with_sprite(self, sprite):
-        s = sprite["sprite"]
-        o = sprite["offset"]
+        s = sprite.sprite
+        o = sprite.offset
 
         return (self.x < (o + s["collision"][1]) and o < 0) or\
                (self.x > (o + s["collision"][0]) and o > 0)
