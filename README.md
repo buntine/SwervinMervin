@@ -18,18 +18,22 @@ Accelleration and steering can be performed by integrating with a LEAP Motion Co
   * My beautiful girlfriend, Mel, for all of the original pixel art.
   * LazerHawk and Miami Nights 1984 for the music.
   * Out Run (1986) for letting me steal some sprites.
+  * Jim Gillette and Cary-Hiroyuki Tagawa for the sound bites.
 
 ### TODO
   
   * Accumulating point system
+    * Level system that lowers amount of time given for checkpoint
+    * Randomly placed "things" on road that give additional points
+    * Pedestrians that penalise points when hit
   * Leaderboard
   * Refine LEAP integration
   * Refine collision offsets for sprites
   * Car sound effects
+  * Countdown at start of game
+  * Smoke when playing accelerating from 0
   * Competitors jumpy when close to player
-  * Should `render_competitors` actually be in `Competitor` class?
-  * Use class for sprites instead of dict (and refactor `render_sprites` / `render_competitors`)
   * Position (number of `laps + base_segment.index`)
   * Building sprites
-  * Package better for distribution
+  * Package better for distribution (ship with Pygame?)
   * General refactor and Pythonify of sloppy code
