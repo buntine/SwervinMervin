@@ -51,4 +51,4 @@ segments += l.add_corner(20, 20, 20, 5, l.last_y(segments))
 segments += l.add_corner(20, 20, 20, -5, l.last_y(segments))
 segments += l.add_straight(100, l.last_y(segments))
 
-l.write("swervin_mervin/levels/{0}.csv".format(name), segments)
+l.write("swervin_mervin/levels/{0}/segments.csv".format(name), segments)

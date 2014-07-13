@@ -14,9 +14,10 @@ class Level:
 
     def build(self):
         """Reads the level file and builds a level by populating the segments array."""
-        level_path       = os.path.join("swervin_mervin", "levels", "{0}.csv".format(self.name))
-        sprites_path     = os.path.join("swervin_mervin", "levels", "sprites", "{0}.csv".format(self.name))
-        competitors_path = os.path.join("swervin_mervin", "levels", "competitors", "{0}.csv".format(self.name))
+        base_path        = os.path.join("swervin_mervin", "levels", self.name)
+        level_path       = os.path.join(base_path, "segments.csv")
+        sprites_path     = os.path.join(base_path, "sprites.csv")
+        competitors_path = os.path.join(base_path, "competitors.csv")
 
         with open(level_path, "r") as csvfile:
             for row in csv.reader(csvfile):
