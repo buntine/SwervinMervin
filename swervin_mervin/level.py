@@ -76,3 +76,7 @@ class Level:
     def offset_segment(self, i):
         """Returns a segment by i, wrapping back to the beginning if we go past the end of the level."""
         return self.segments[i % len(self.segments)]
+
+    def is_high_score(self, score):
+        "Returns true if the given score qualifies as a high score for this level."""
+        return True

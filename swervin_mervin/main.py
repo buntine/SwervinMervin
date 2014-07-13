@@ -11,7 +11,8 @@ import level as l
 import title_screen as ts
 import settings as s
 import Leap
-import leap_listener as ll
+import leap_direction_listener as ldl
+import leap_finger_listener as lfl
 
 pygame.init()
 
@@ -39,20 +40,21 @@ while s.TITLE_SCREEN and not title_screen.finished:
     fps_clock.tick(s.TITLE_FPS)
 
 ## Now lets play!
-player      = p.Player()
-level       = l.Level("melbourne")
-backgrounds = [b.Background("sky", 0, 2, True),
-                b.Background("city", 0, 1)]
-listener    = ll.LeapListener()
-controller  = Leap.Controller()
+player             = p.Player()
+level              = l.Level("melbourne")
+backgrounds        = [b.Background("sky", 0, 2, True),
+                     b.Background("city", 0, 1)]
+direction_listener = ldl.LeapDirectionListener()
+finger_listener    = lfl.LeapFingerListener()
+controller         = Leap.Controller()
 
-controller.add_listener(listener)
+controller.add_listener(direction_listener)
 level.build()
 
 pygame.mixer.music.load(os.path.join("lib", "lazerhawk-overdrive.mp3"))
 pygame.mixer.music.play(-1)
 
-while True:
+while not (player.game_over and level.is_high_score(player.points)):
     player.travel(level.track_length(), window)
 
     base_segment   = level.find_segment(player.position)
@@ -125,16 +127,37 @@ while True:
         player.render(window, base_segment)
         player.render_hud(window, level.high_scores)
 
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            controller.remove_listener(listener) 
-            pygame.quit()
-            sys.exit()
-
     # Steering, acceleration.
     keys = pygame.key.get_pressed()
     player.set_acceleration(keys)
-    player.set_direction(keys, listener.direction)
+    player.set_direction(keys, direction_listener.direction)
+
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            controller.remove_listener(direction_listener) 
+            pygame.quit()
+            sys.exit()
+
+    pygame.display.update()
+    fps_clock.tick(s.FPS)
+
+# Player has finished and achieved a high score.
+controller.remove_listener(direction_listener) 
+controller.add_listener(finger_listener)
+
+keyboard = pygame.image.load(os.path.join("lib", "keyboard.png"))
+
+while True:
+    window.fill(s.COLOURS["white"])
+    window.blit(keyboard, (0, 40))
+
+    pygame.draw.circle(window, s.COLOURS["red"], (finger_listener.x, finger_listener.y), 4)
+
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            controller.remove_listener(finger_listener) 
+            pygame.quit()
+            sys.exit()
 
     pygame.display.update()
     fps_clock.tick(s.FPS)

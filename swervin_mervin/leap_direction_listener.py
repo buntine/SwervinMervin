@@ -1,7 +1,7 @@
 import Leap, sys
 
-class LeapListener(Leap.Listener):
-    """Listens for and handles leap events."""
+class LeapDirectionListener(Leap.Listener):
+    """Listens for and handles leap events associated to steering."""
 
     def __init__(self):
         Leap.Listener.__init__(self)
@@ -11,10 +11,10 @@ class LeapListener(Leap.Listener):
         print "Leap Initialized"
 
     def on_connect(self, controller):
-        print "Leap Connected"
+        print "Leap Direction Connected"
 
     def on_disconnect(self, controller):
-        print "Leap Disconnected"
+        print "Leap Direction Disconnected"
 
     def on_exit(self, controller):
         print "Leap Exited"

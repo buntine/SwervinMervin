@@ -104,7 +104,6 @@ class Player:
 
     def render_hud(self, window, high_scores):
         """Renders a Head-Up display on the active window."""
-        pygame.font.init()
         center      = (75, s.DIMENSIONS[1] - 75)
         speedo_rect = (35, s.DIMENSIONS[1] - 115, 80, 80)
         orbit_pos   = (self.speed / (s.TOP_SPEED / 4.7)) + 2.35

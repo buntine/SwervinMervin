@@ -17,7 +17,7 @@ BOUNDS             = 2.1
 AUTO_DRIVE         = False
 CENTRIFUGAL_FORCE  = 0.266
 PLAYER_ANIM_HOLD   = 8
-CHECKPOINT         = 4
+CHECKPOINT         = 2
 POINTS             = 15
 POINT_LOSS_SPRITE  = 0.03
 POINT_LOSS_COMP    = 0.02
@@ -29,6 +29,8 @@ FIELD_OF_VIEW      = 100 # Degrees
 CAMERA_HEIGHT      = 1400
 CAMERA_DEPTH       = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180);
 BOTTOM_OFFSET      = 5
+HIGH_SCORE_LIMIT   = 8
+HIGH_SCORE_CHARS   = 6
 PLAYER_Z           = (CAMERA_HEIGHT * CAMERA_DEPTH)
 FONTS              = {"bladerunner": os.path.join("lib", "br_font.ttf"),
                      "arcade":    os.path.join("lib", "arcade.ttf")}
