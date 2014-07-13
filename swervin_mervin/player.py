@@ -148,6 +148,19 @@ class Player:
             overlay.fill((255, 255, 255, 99))
             overlay.blit(go, (go_x, go_y))
             overlay.blit(hs, (hs_x, hs_y))
+
+            record_offset = hs_y + hs.get_height() + 10
+            record_font   = pygame.font.Font(s.FONTS["bladerunner"], 24)
+
+            for record in high_scores:
+                r_name  = record_font.render(record[0], 1, s.COLOURS["dark_text"])
+                r_score = record_font.render(str(record[1]), 1, s.COLOURS["dark_text"])
+
+                overlay.blit(r_name, (hs_x, record_offset))
+                overlay.blit(r_score, (hs_x + hs.get_width() - r_score.get_width(), record_offset))
+
+                record_offset += r_name.get_height() + 10
+
             window.blit(overlay, (0,0))
 
         # Display lap difference (unless we've only done one lap).
