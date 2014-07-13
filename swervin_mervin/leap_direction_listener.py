@@ -22,17 +22,13 @@ class LeapDirectionListener(Leap.Listener):
     def on_frame(self, controller):
         frame = controller.frame()
 
-        if len(frame.hands) == 2:
-            if frame.hands[0].is_left:
-                left  = frame.hands[0]
-                right = frame.hands[1]
-            else:
-                left  = frame.hands[1]
-                right = frame.hands[0]
- 
-            if (left.palm_position[1] - 70) > right.palm_position[1]:
+        if len(frame.hands) == 1:
+            left = frame.hands[0]
+            pos  = left.palm_position[0]
+
+            if pos > 30:
                 self.direction = "right"
-            elif (right.palm_position[1] - 70) > left.palm_position[1]:
+            elif pos < -30:
                 self.direction = "left"
             else:
                 self.direction = "straight"
