@@ -17,7 +17,7 @@ BOUNDS             = 2.1
 AUTO_DRIVE         = False
 CENTRIFUGAL_FORCE  = 0.266
 PLAYER_ANIM_HOLD   = 8
-CHECKPOINT         = 55
+CHECKPOINT         = 4
 POINTS             = 15
 POINT_LOSS_SPRITE  = 0.03
 POINT_LOSS_COMP    = 0.02
@@ -32,13 +32,14 @@ BOTTOM_OFFSET      = 5
 PLAYER_Z           = (CAMERA_HEIGHT * CAMERA_DEPTH)
 FONTS              = {"bladerunner": os.path.join("lib", "br_font.ttf"),
                      "arcade":    os.path.join("lib", "arcade.ttf")}
-COLOURS            = {"white":  Color(255, 255, 255),
-                     "text":   Color(172, 199, 252),
-                     "sky":    Color(10, 10, 10),
-                     "gutter": Color(100, 100, 100),
-                     "red":    Color(204, 0, 0),
-                     "green":  Color(0, 204, 0),
-                     "black":  Color(0, 0, 0),
+COLOURS            = {"white":    Color(255, 255, 255),
+                     "text":      Color(172, 199, 252),
+                     "dark_text": Color(30, 40, 100),
+                     "sky":       Color(10, 10, 10),
+                     "gutter":    Color(100, 100, 100),
+                     "red":       Color(204, 0, 0),
+                     "green":     Color(0, 204, 0),
+                     "black":     Color(0, 0, 0),
                      "light": {"road":     Color(34, 54, 56),
                                "grass":    Color(0, 30, 70),
                                "footpath": Color(82, 96, 115),

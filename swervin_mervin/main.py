@@ -123,7 +123,7 @@ while True:
             segment.render_world_objects(window)
 
         player.render(window, base_segment)
-        player.render_hud(window)
+        player.render_hud(window, level.high_scores)
 
     for event in pygame.event.get():
         if event.type == QUIT:

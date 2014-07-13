@@ -2,7 +2,7 @@ import settings as s
 import segment as seg
 import competitor as c
 import sprite as sp
-import csv, os
+import csv, os, pygame
 
 class Level:
     """Represents a level in the game world."""
@@ -11,6 +11,7 @@ class Level:
         self.name        = name
         self.segments    = []
         self.competitors = []
+        self.high_scores = []
 
     def build(self):
         """Reads the level file and builds a level by populating the segments array."""
@@ -18,6 +19,7 @@ class Level:
         level_path       = os.path.join(base_path, "segments.csv")
         sprites_path     = os.path.join(base_path, "sprites.csv")
         competitors_path = os.path.join(base_path, "competitors.csv")
+        high_scores_path = os.path.join(base_path, "high_scores.csv")
 
         with open(level_path, "r") as csvfile:
             for row in csv.reader(csvfile):
@@ -32,6 +34,10 @@ class Level:
         with open(competitors_path, "r") as csvfile:
             for row in csv.reader(csvfile):
                 self.add_competitor(int(row[0]), float(row[1]), row[2], float(row[3]))
+
+        with open(high_scores_path, "r") as csvfile:
+            for row in csv.reader(csvfile):
+                self.add_high_score(row[0], int(row[1]))
 
     def add_segment(self, curve, start_y=0, end_y=0):
         """Creates a new segment and pushes it to the segments array"""
@@ -49,6 +55,10 @@ class Level:
         """Adds a competitor sprite to the given segment."""
         competitor = c.Competitor(position, offset, name, speed)
         self.competitors.append(competitor)
+
+    def add_high_score(self, name, score):
+        """Adds a high score to the level."""
+        self.high_scores.append([name, score])
 
     def track_length(self):
         return len(self.segments) * s.SEGMENT_HEIGHT

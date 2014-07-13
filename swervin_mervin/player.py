@@ -102,8 +102,9 @@ class Player:
         p = pygame.transform.scale(p, (s_width, s_height))
         window.blit(p, (width - (s_width / 2), s.DIMENSIONS[1] - s_height - s.BOTTOM_OFFSET))
 
-    def render_hud(self, window):
+    def render_hud(self, window, high_scores):
         """Renders a Head-Up display on the active window."""
+        pygame.font.init()
         center      = (75, s.DIMENSIONS[1] - 75)
         speedo_rect = (35, s.DIMENSIONS[1] - 115, 80, 80)
         orbit_pos   = (self.speed / (s.TOP_SPEED / 4.7)) + 2.35
@@ -134,14 +135,19 @@ class Player:
         window.blit(p_name_text, (p_val_x - 112, s.DIMENSIONS[1] - 24))
 
         if self.game_over:
-            go_font = pygame.font.Font(s.FONTS["bladerunner"], 44)
+            go_font = pygame.font.Font(s.FONTS["bladerunner"], 24)
             go      = go_font.render("Game Over", 1, s.COLOURS["red"]);
-            x       = (s.DIMENSIONS[0] - go.get_size()[0]) / 2
-            y       = (s.DIMENSIONS[1] - go.get_size()[1]) / 2
+            hs_font = pygame.font.Font(s.FONTS["bladerunner"], 44)
+            hs      = hs_font.render("High Scores", 1, s.COLOURS["dark_text"]);
+            go_x    = (s.DIMENSIONS[0] - go.get_size()[0]) / 2
+            go_y    = ((s.DIMENSIONS[1] * 0.2) - go.get_size()[1]) / 2 
+            hs_x    = (s.DIMENSIONS[0] - hs.get_size()[0]) / 2
+            hs_y    = go_y + 50
             overlay = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
 
-            overlay.fill((255, 255, 255, 90))
-            overlay.blit(go, (x, y))
+            overlay.fill((255, 255, 255, 99))
+            overlay.blit(go, (go_x, go_y))
+            overlay.blit(hs, (hs_x, hs_y))
             window.blit(overlay, (0,0))
 
         # Display lap difference (unless we've only done one lap).
@@ -174,6 +180,7 @@ class Player:
 
         if self.time_left <= 0:
             self.game_over = True
+            pygame.mixer.music.fadeout(6000)
 
         # New lap.
         if pos >= track_length:
