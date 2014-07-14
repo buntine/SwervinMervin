@@ -1,4 +1,4 @@
-import Leap, sys
+import Leap
 
 class LeapDirectionListener(Leap.Listener):
     """Listens for and handles leap events associated to steering."""

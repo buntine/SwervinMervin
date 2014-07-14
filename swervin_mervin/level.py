@@ -80,4 +80,4 @@ class Level:
     def is_high_score(self, score):
         "Returns true if the given score qualifies as a high score for this level."""
         # TODO: Implement.
-        return True
+        return score > 0

@@ -5,10 +5,11 @@ import background as b
 import settings as s
 import leap_direction_listener as ldl
 import leap_finger_listener as lfl
+import leap_player_listener as lpl
 import title_screen as ts
 import Leap
 
-def title_sequence(window):
+def title_sequence(window, level):
     fps_clock       = pygame.time.Clock()
     title_screen = ts.TitleScreen()
 
@@ -30,22 +31,34 @@ def title_sequence(window):
         pygame.display.update()
         fps_clock.tick(s.TITLE_FPS)
 
-def play(window, level):
+    play(window, level)
+
+def play(window, level, no_player=False):
     fps_clock       = pygame.time.Clock()
     player             = p.Player()
     backgrounds        = [b.Background("sky", 0, 2, True),
                          b.Background("city", 0, 1)]
-    direction_listener = ldl.LeapDirectionListener()
 
     leap_controller = Leap.Controller()
+    direction_listener = ldl.LeapDirectionListener()
+    player_listener = lpl.LeapPlayerListener()
 
-    leap_controller.add_listener(direction_listener)
     level.build()
 
-    pygame.mixer.music.load(os.path.join("lib", "lazerhawk-overdrive.mp3"))
-    pygame.mixer.music.play(-1)
+    if no_player:
+        player.game_over = True
+        leap_controller.add_listener(player_listener)
+    else:
+        leap_controller.add_listener(direction_listener)
+
+        pygame.mixer.music.load(os.path.join("lib", "lazerhawk-overdrive.mp3"))
+        pygame.mixer.music.play(-1)
 
     while not (player.game_over and level.is_high_score(player.points)):
+        if no_player and player_listener.ready:
+            leap_controller.remove_listener(player_listener) 
+            title_sequence(window, level)
+
         player.travel(level.track_length(), window)
 
         base_segment   = level.find_segment(player.position)
@@ -132,9 +145,14 @@ def play(window, level):
         pygame.display.update()
         fps_clock.tick(s.FPS)
 
-    leap_controller.remove_listener(direction_listener) 
+    if not no_player:
+        leap_controller.remove_listener(direction_listener) 
 
-    return player
+        if level.is_high_score(player.points):
+            #high_score_entry(window, player)
+            print "2"
+
+        play(window, level, True)
 
 def high_score_entry(window, player):
     fps_clock       = pygame.time.Clock()
