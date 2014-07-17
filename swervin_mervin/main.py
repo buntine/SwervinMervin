@@ -10,42 +10,46 @@ import settings as s
 
 pygame.init()
 
-window = pygame.display.set_mode(s.DIMENSIONS)
-level  = l.Level("melbourne")
+#window = pygame.display.set_mode(s.DIMENSIONS)
+#level  = l.Level("melbourne")
 
 # Maybe each stage shuldbe a class that can .setup() and .progress() while .alive() is true?
 
-title_sequence(window, level)
+#title_sequence(window, level)
 
-#ts = title_screen(window)
+###
 
-#while True:
-#    p  = Player()
-#    l  = Level()
-#    g  = Game(window, p, l)
+window       = pygame.display.set_mode(s.DIMENSIONS)
+level        = l.Level("melbourne")
+title_screen = ts.TitleScreen(window)
+player       = p.Player(window)
+game         = g.Game(window, player, level)
 
-#    Fire up the title screen.
-#    ts.setup()
-#    while not ts.finished:
-#        ts.progress()
-#    ts.clean()
+while True:
+    # Fire up the title screen.
+    title_screen.setup()
+    while not title_screen.finished:
+        title_screen.progress()
+    title_screen.clean()
 
-#    Play the game.
-#    g.setup()
-#    while not g.finished:
-#        g.progress()
-#    g.clean()
+    # Play the game.
+    game.setup()
+    while not game.finished():
+        game.progress()
 
-#    Enter name for high score entry.
-#    if p.high_score():
-#        h = HighScore(window, p, l)
-#        h.setup()
-#        while not h.finished():
-#            h.progress()
-#        h.clean()
+    # Enter name for high score entry.
+    if game.high_score():
+        high_score = hs.HighScore(window, player, level)
+        high_score.setup()
+        while not high_score.finished():
+            high_score.progress()
+        high_score.clean()
 
-#    Resume game in "game over" mode, waiting for new player.
-#    g.game_over()
-#    while not g.finished:
-#        g.progress()
-#    g.clean()
+    # Resume game in "game over" mode, waiting for new player.
+    game.game_over()
+    while not game.finished():
+        game.progress()
+
+    # New player found, reset everything and resume.
+    game.clean()
+    player.clean()
