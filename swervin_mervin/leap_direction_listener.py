@@ -1,12 +1,12 @@
 import Leap
+import settings as s
 
 class LeapDirectionListener(Leap.Listener):
     """Listens for and handles leap events associated to steering."""
 
     def __init__(self):
         Leap.Listener.__init__(self)
-        self.direction = "straight"
-        self.hand_id   = None
+        self.clean()
 
     def on_init(self, controller):
         print "Leap Initialized"
@@ -29,9 +29,9 @@ class LeapDirectionListener(Leap.Listener):
 
             self.hand_id = left.id
 
-            if pos > 40:
+            if pos > s.DIR_THRESHOLD:
                 self.direction = "right"
-            elif pos < -40:
+            elif pos < -s.DIR_THRESHOLD:
                 self.direction = "left"
             else:
                 self.direction = "straight"

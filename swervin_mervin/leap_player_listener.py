@@ -5,12 +5,7 @@ class LeapPlayerListener(Leap.Listener):
 
     def __init__(self):
         Leap.Listener.__init__(self)
-        self.ready  = False
-
-        # We store the Hand ID that we were last tracking with the directional listener.
-        # This way we ensure that we don't just automatically play again before the player
-        # removes their hand.
-        self.hand_id = None
+        self.clean()
 
     def on_init(self, controller):
         print "Leap Initialized"
@@ -34,5 +29,8 @@ class LeapPlayerListener(Leap.Listener):
                 self.ready = True
 
     def clean(self):
+        # We store the Hand ID that we were last tracking with the directional listener.
+        # This way we ensure that we don't just automatically play again before the player
+        # removes their hand.
         self.ready   = False
         self.hand_id = None

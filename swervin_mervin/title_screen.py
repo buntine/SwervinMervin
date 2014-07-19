@@ -5,6 +5,10 @@ import settings as s
 class TitleScreen():
     """Plays a title screen and waits for user to insert coin."""
 
+    # This class is horrible.
+    # Maybe one day I'll fix it.
+    # And then again... Maybe I won't.
+
     def __init__(self, window):
         self.background = pygame.image.load(os.path.join("lib", "title.png"))
         self.logo_a     = pygame.image.load(os.path.join("lib", "title_swervin.png"))
@@ -32,9 +36,9 @@ class TitleScreen():
 
         self.window.fill(s.COLOURS["black"])
 
-        self.state_0_step()
-        self.state_1_step()
-        self.state_2_step()
+        self.__state_0_step()
+        self.__state_1_step()
+        self.__state_2_step()
 
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
@@ -48,7 +52,7 @@ class TitleScreen():
         pygame.display.update()
         self.fps_clock.tick(s.TITLE_FPS)
 
-    def state_0_step(self):
+    def __state_0_step(self):
         w, h = s.DIMENSIONS
         colours = [(100, 100, 10), (120, 130, 10), (150, 160, 10), (170, 180, 10), (190, 200, 10)]
         colour  = colours[(self.frame / 5) % 5]
@@ -75,7 +79,7 @@ class TitleScreen():
             else:
                 self.bg_offset += 2
 
-    def state_1_step(self):
+    def __state_1_step(self):
         if not self.state == 0:
             center_a = ((s.DIMENSIONS[0] - self.logo_a.get_width()) / 2) - 34
             center_b = ((s.DIMENSIONS[0] - self.logo_b.get_width()) / 2) - 34
@@ -91,7 +95,7 @@ class TitleScreen():
                 else:
                     self.state = 2
     
-    def state_2_step(self):
+    def __state_2_step(self):
         if self.state == 2:
             w, h = s.DIMENSIONS
 

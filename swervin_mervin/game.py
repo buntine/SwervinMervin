@@ -130,7 +130,11 @@ class Game:
             return self.player.game_over
 
     def high_score(self):
-        return False
+        """Returns True if the current players score qualifies as a High Score"""
+        score       = self.player.points
+        high_scores = [hs[1] for hs in self.level.high_scores]
+
+        return len(high_scores) < s.HIGH_SCORE_LIMIT or any(map(lambda s: score > s, high_scores))
 
     def game_over(self):
         """Puts the game in 'Game Over' mode"""

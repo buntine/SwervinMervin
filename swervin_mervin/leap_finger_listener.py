@@ -7,12 +7,9 @@ class LeapFingerListener(Leap.Listener):
 
     def __init__(self):
         Leap.Listener.__init__(self)
-        self.x         = 0
-        self.y         = 0
-        self.finished  = False
-        self.key       = None
-        self.chars     = []
-        self.key_map   = {
+        self.clean()
+
+        self.key_map = {
           "Q": (0, 40, 63, 66),
           "W": (63, 40, 63, 66),
           "E": (126, 40, 63, 66),
@@ -76,6 +73,13 @@ class LeapFingerListener(Leap.Listener):
                 elif self.key == "DONE":
                     self.finished = True
                 print "".join(self.chars)
+
+    def clean(self):
+        self.x        = 0
+        self.y        = 0
+        self.finished = False
+        self.key      = None
+        self.chars    = []
 
     def __map_key(self):
         """Returns the character for the key the user is hovering over, if any."""

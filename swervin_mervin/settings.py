@@ -5,8 +5,9 @@ import math, os
 
 FPS                = 60
 TITLE_FPS          = 20
-TITLE_THRESHOLD    = 90
 FRAME_RATE         = (1.0 / FPS)
+TITLE_THRESHOLD    = 90
+DIR_THRESHOLD      = 40
 DIMENSIONS         = (640, 480)
 SEGMENT_HEIGHT     = 260
 RUMBLE_LENGTH      = 3
