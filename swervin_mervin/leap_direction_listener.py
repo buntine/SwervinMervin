@@ -32,3 +32,6 @@ class LeapDirectionListener(Leap.Listener):
                 self.direction = "left"
             else:
                 self.direction = "straight"
+
+    def reset(self):
+        self.direction = "straight"

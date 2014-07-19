@@ -27,3 +27,6 @@ class LeapPlayerListener(Leap.Listener):
 
             if not self.ready and left.time_visible > 1000:
                 self.ready = True
+
+    def reset(self):
+        self.ready = False

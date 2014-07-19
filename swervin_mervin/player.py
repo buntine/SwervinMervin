@@ -193,7 +193,6 @@ class Player:
 
         if self.time_left <= 0:
             self.game_over = True
-            pygame.mixer.music.fadeout(6000)
 
         # New lap.
         if pos >= track_length:

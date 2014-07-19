@@ -3,6 +3,7 @@ from pygame.locals import *
 import settings as s
 import background as b
 import leap_direction_listener as ldl
+import leap_player_listener as lpl
 import Leap
 
 class Game:
@@ -17,8 +18,14 @@ class Game:
                                 b.Background("city", 0, 1)]
         self.leap_controller    = Leap.Controller()
         self.direction_listener = ldl.LeapDirectionListener()
+        self.player_listener    = lpl.LeapPlayerListener()
 
     def setup(self):
+        self.waiting_for_player = False
+
+        self.direction_listener.reset()
+        self.player_listener.reset()
+
         self.leap_controller.add_listener(self.direction_listener)
         pygame.mixer.music.load(os.path.join("lib", "lazerhawk-overdrive.mp3"))
         pygame.mixer.music.play(-1)
@@ -112,14 +119,22 @@ class Game:
         self.fps_clock.tick(s.FPS)
 
     def finished(self):
-        return self.player.game_over
+        if self.waiting_for_player:
+            return self.player_listener.ready
+        else:
+            return self.player.game_over
 
     def high_score(self):
         return False
 
     def game_over(self):
         """Puts the game in 'Game Over' mode"""
-        pass
+        self.waiting_for_player = True
+
+        pygame.mixer.music.fadeout(6000)
+
+        self.leap_controller.remove_listener(self.direction_listener)
+        self.leap_controller.add_listener(self.player_listener)
 
     def clean(self):
         pass
