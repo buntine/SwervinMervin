@@ -68,7 +68,7 @@ class Player:
                         self.points -= self.points * s.POINT_LOSS_COMP
                     break
 
-    def render(self, window, segment):
+    def render(self, segment):
         """Renders the player sprite to the given surface."""
         top    = segment.top
         bottom = segment.bottom
@@ -101,9 +101,9 @@ class Player:
 
         p = pygame.image.load(os.path.join("lib", sprite["path"]))
         p = pygame.transform.scale(p, (s_width, s_height))
-        window.blit(p, (width - (s_width / 2), s.DIMENSIONS[1] - s_height - s.BOTTOM_OFFSET))
+        self.window.blit(p, (width - (s_width / 2), s.DIMENSIONS[1] - s_height - s.BOTTOM_OFFSET))
 
-    def render_hud(self, window, high_scores):
+    def render_hud(self, high_scores):
         """Renders a Head-Up display on the active window."""
         center      = (75, s.DIMENSIONS[1] - 75)
         speedo_rect = (35, s.DIMENSIONS[1] - 115, 80, 80)
@@ -113,26 +113,26 @@ class Player:
         speed       = round((self.speed / s.SEGMENT_HEIGHT) * 1.5, 1)
         font        = pygame.font.Font(s.FONTS["bladerunner"], 20)
 
-        pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
-        pygame.draw.circle(window, s.COLOURS["black"], center, 4)
-        pygame.draw.line(window, s.COLOURS["black"], start, finish, 3)
-        pygame.draw.arc(window, s.COLOURS["black"], speedo_rect, 0.2, math.pi * 1.25, 5)
-        pygame.draw.arc(window, s.COLOURS["red"], speedo_rect, -0.73, 0.2, 5)
+        pygame.draw.circle(self.window, s.COLOURS["black"], center, 50, 2)
+        pygame.draw.circle(self.window, s.COLOURS["black"], center, 4)
+        pygame.draw.line(self.window, s.COLOURS["black"], start, finish, 3)
+        pygame.draw.arc(self.window, s.COLOURS["black"], speedo_rect, 0.2, math.pi * 1.25, 5)
+        pygame.draw.arc(self.window, s.COLOURS["red"], speedo_rect, -0.73, 0.2, 5)
 
-        u.render_text("kmph", window, font, s.COLOURS["text"], (70, s.DIMENSIONS[1] - 24))
-        u.render_text(str(speed), window, font, s.COLOURS["text"], (10, s.DIMENSIONS[1] - 24))
-        u.render_text("lap", window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 100, 10))
-        u.render_text(str(self.lap), window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 28, 10))
-        u.render_text("time", window, font, s.COLOURS["text"], (10, 10))
-        u.render_text(str(self.time_left), window, font, s.COLOURS["text"], (90, 10))
+        u.render_text("kmph", self.window, font, s.COLOURS["text"], (70, s.DIMENSIONS[1] - 24))
+        u.render_text(str(speed), self.window, font, s.COLOURS["text"], (10, s.DIMENSIONS[1] - 24))
+        u.render_text("lap", self.window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 100, 10))
+        u.render_text(str(self.lap), self.window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 28, 10))
+        u.render_text("time", self.window, font, s.COLOURS["text"], (10, 10))
+        u.render_text(str(self.time_left), self.window, font, s.COLOURS["text"], (90, 10))
 
         # Points rendering needs more care because it grows so fast.
         p_val_text  = font.render(str(math.trunc(self.points)), 1, s.COLOURS["text"])
         p_name_text = font.render("points", 1, s.COLOURS["text"])
         p_val_x     = s.DIMENSIONS[0] - p_val_text.get_width() - 10
 
-        window.blit(p_val_text, (p_val_x, s.DIMENSIONS[1] - 24))
-        window.blit(p_name_text, (p_val_x - 112, s.DIMENSIONS[1] - 24))
+        self.window.blit(p_val_text, (p_val_x, s.DIMENSIONS[1] - 24))
+        self.window.blit(p_name_text, (p_val_x - 112, s.DIMENSIONS[1] - 24))
 
         if self.game_over:
             go_font = pygame.font.Font(s.FONTS["bladerunner"], 24)
@@ -161,7 +161,7 @@ class Player:
 
                 record_offset += r_name.get_height() + 10
 
-            window.blit(overlay, (0,0))
+            self.window.blit(overlay, (0,0))
 
         # Display lap difference (unless we've only done one lap).
         if self.lap_margin != 0 and self.lap > 2 and self.lap_percent < 20:
@@ -174,13 +174,13 @@ class Player:
                 colour = "green"
                 sign   = "-"
 
-            u.render_text(sign + str(abs(diff)), window, font, s.COLOURS[colour], (10, 40))
+            u.render_text(sign + str(abs(diff)), self.window, font, s.COLOURS[colour], (10, 40))
 
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""
         self.speed = u.limit(self.speed + (s.ACCELERATION * self.acceleration), 0, s.TOP_SPEED)
 
-    def travel(self, track_length, window):
+    def travel(self, track_length):
         """Updates position, reflecting how far we've travelled since the last frame."""
         pos       = self.position + (s.FRAME_RATE * self.speed)
         timedelta = (datetime.datetime.now() - self.last_checkpoint)

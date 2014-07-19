@@ -28,11 +28,13 @@ title_screen = ts.TitleScreen(window)
 player       = p.Player(window)
 game         = g.Game(window, player, level)
 
+level.build()
+
 while True:
     # Fire up the title screen.
-    title_screen.setup()
-    while not title_screen.finished:
-        title_screen.progress()
+ #   title_screen.setup()
+#    while not title_screen.finished:
+#        title_screen.progress()
 
     # Play the game.
     game.setup()
