@@ -1,4 +1,4 @@
-import pygame, os
+import pygame, os, sys
 from pygame.locals import *
 import settings as s
 

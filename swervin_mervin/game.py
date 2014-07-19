@@ -1,4 +1,4 @@
-import pygame, sys, os
+import pygame, sys, os, datetime
 from pygame.locals import *
 import settings as s
 import background as b
@@ -19,8 +19,10 @@ class Game:
         self.leap_controller    = Leap.Controller()
         self.direction_listener = ldl.LeapDirectionListener()
         self.player_listener    = lpl.LeapPlayerListener()
+        self.last_play          = None
 
     def setup(self):
+        self.last_play          = datetime.datetime.now()
         self.waiting_for_player = False
 
         self.direction_listener.clean()
@@ -113,7 +115,8 @@ class Game:
 
         for event in pygame.event.get():
             if event.type == QUIT:
-                self.leap_controller.remove_listener(self.direction_listener) 
+                self.leap_controller.remove_listener(self.player_listener) 
+                self.leap_controller.remove_listener(self.direction_listener)
                 pygame.quit()
                 sys.exit()
 
@@ -122,7 +125,6 @@ class Game:
 
     def finished(self):
         if self.waiting_for_player:
-            print self.player_listener.ready
             return self.player_listener.ready
         else:
             return self.player.game_over
@@ -134,7 +136,7 @@ class Game:
         """Puts the game in 'Game Over' mode"""
         self.waiting_for_player = True
 
-        ## It's blocking... Add thi back in later if it makes sense.
+        ## It's blocking... Add this back in later if it makes sense.
         ##pygame.mixer.music.fadeout(3000)
         pygame.mixer.music.stop()
 
@@ -142,3 +144,11 @@ class Game:
         self.leap_controller.add_listener(self.player_listener)
 
         self.player_listener.hand_id = self.direction_listener.hand_id
+
+    def new_round(self):
+        "Returns True if enough time has passed since the last play"""
+        if self.last_play:
+            diff = datetime.datetime.now() - self.last_play
+            return diff.total_seconds() > s.TITLE_THRESHOLD
+        else:
+            return True

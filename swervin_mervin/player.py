@@ -284,7 +284,7 @@ class Player:
     def __collided_with_competitor(self, c):
         o = c.offset
 
-        return (self.x > o - 0.45) and (self.x < o + 0.23)
+        return (self.x > o - 0.45) and (self.x < o + 0.23) and (self.speed > c.speed)
  
     def __circular_orbit(self, center, radius, t):
         """Returns the X/Y coordinate for a given time (t) in a circular orbit."""

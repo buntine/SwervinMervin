@@ -5,7 +5,7 @@ import math, os
 
 FPS                = 60
 TITLE_FPS          = 20
-TITLE_SCREEN       = False
+TITLE_THRESHOLD    = 90
 FRAME_RATE         = (1.0 / FPS)
 DIMENSIONS         = (640, 480)
 SEGMENT_HEIGHT     = 260
@@ -17,7 +17,7 @@ BOUNDS             = 2.1
 AUTO_DRIVE         = True
 CENTRIFUGAL_FORCE  = 0.266
 PLAYER_ANIM_HOLD   = 8
-CHECKPOINT         = 4
+CHECKPOINT         = 50
 POINTS             = 15
 POINT_LOSS_SPRITE  = 0.03
 POINT_LOSS_COMP    = 0.02
