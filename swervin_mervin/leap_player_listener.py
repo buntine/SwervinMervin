@@ -5,7 +5,12 @@ class LeapPlayerListener(Leap.Listener):
 
     def __init__(self):
         Leap.Listener.__init__(self)
-        self.ready = False
+        self.ready  = False
+
+        # We store the Hand ID that we were last tracking with the directional listener.
+        # This way we ensure that we don't just automatically play again before the player
+        # removes their hand.
+        self.hand_id = None
 
     def on_init(self, controller):
         print "Leap Initialized"
@@ -25,8 +30,11 @@ class LeapPlayerListener(Leap.Listener):
         if len(frame.hands) > 0:
             left = frame.hands[0]
 
-            if not self.ready and left.time_visible > 1000:
+            print "%s != %s" % (str(left.id), str(self.hand_id))
+
+            if not self.ready and left.id != self.hand_id and left.time_visible > 3000:
                 self.ready = True
 
-    def reset(self):
-        self.ready = False
+    def clean(self):
+        self.ready   = False
+        self.hand_id = None

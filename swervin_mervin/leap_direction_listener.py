@@ -6,6 +6,7 @@ class LeapDirectionListener(Leap.Listener):
     def __init__(self):
         Leap.Listener.__init__(self)
         self.direction = "straight"
+        self.hand_id   = None
 
     def on_init(self, controller):
         print "Leap Initialized"
@@ -26,6 +27,8 @@ class LeapDirectionListener(Leap.Listener):
             left = frame.hands[0]
             pos  = left.palm_position[0]
 
+            self.hand_id = left.id
+
             if pos > 30:
                 self.direction = "right"
             elif pos < -30:
@@ -33,5 +36,6 @@ class LeapDirectionListener(Leap.Listener):
             else:
                 self.direction = "straight"
 
-    def reset(self):
+    def clean(self):
         self.direction = "straight"
+        self.hand_id   = None

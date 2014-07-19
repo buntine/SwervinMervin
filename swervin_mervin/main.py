@@ -37,6 +37,7 @@ while True:
 #        title_screen.progress()
 
     # Play the game.
+    player.setup()
     game.setup()
     while not game.finished():
         game.progress()
@@ -53,7 +54,3 @@ while True:
     game.game_over()
     while not game.finished():
         game.progress()
-
-    # New player found, reset everything and resume.
-    game.clean()
-    player.clean()

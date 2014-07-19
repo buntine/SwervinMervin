@@ -23,10 +23,12 @@ class Game:
     def setup(self):
         self.waiting_for_player = False
 
-        self.direction_listener.reset()
-        self.player_listener.reset()
+        self.direction_listener.clean()
+        self.player_listener.clean()
 
+        self.leap_controller.remove_listener(self.player_listener)
         self.leap_controller.add_listener(self.direction_listener)
+
         pygame.mixer.music.load(os.path.join("lib", "lazerhawk-overdrive.mp3"))
         pygame.mixer.music.play(-1)
 
@@ -120,6 +122,7 @@ class Game:
 
     def finished(self):
         if self.waiting_for_player:
+            print self.player_listener.ready
             return self.player_listener.ready
         else:
             return self.player.game_over
@@ -131,10 +134,12 @@ class Game:
         """Puts the game in 'Game Over' mode"""
         self.waiting_for_player = True
 
-        pygame.mixer.music.fadeout(6000)
+        pygame.mixer.music.stop()
+
+        ## It's blocking... Add thi back in later if it makes sense.
+        ##pygame.mixer.music.fadeout(3000)
 
         self.leap_controller.remove_listener(self.direction_listener)
         self.leap_controller.add_listener(self.player_listener)
 
-    def clean(self):
-        pass
+        self.player_listener.hand_id = self.direction_listener.hand_id
