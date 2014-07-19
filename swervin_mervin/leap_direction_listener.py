@@ -29,9 +29,9 @@ class LeapDirectionListener(Leap.Listener):
 
             self.hand_id = left.id
 
-            if pos > 30:
+            if pos > 40:
                 self.direction = "right"
-            elif pos < -30:
+            elif pos < -40:
                 self.direction = "left"
             else:
                 self.direction = "straight"

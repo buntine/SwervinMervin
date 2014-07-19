@@ -1,7 +1,7 @@
+from pygame.locals import *
+import pygame, math, datetime, os
 import settings as s
 import util as u
-import pygame, math, datetime, os
-from pygame.locals import *
 
 class Player:
     """Represents the player in the game world."""
@@ -176,7 +176,7 @@ class Player:
                 colour = "green"
                 sign   = "-"
 
-            u.render_text(sign + str(abs(diff)), self.window, font, s.COLOURS[colour], (10, 40))
+            u.render_text(sign + str(abs(round(diff, 1))), self.window, font, s.COLOURS[colour], (10, 40))
 
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""
@@ -188,10 +188,8 @@ class Player:
         timedelta = (datetime.datetime.now() - self.last_checkpoint)
 
         if not self.game_over:
-            self.points += (self.speed / s.SEGMENT_HEIGHT) / s.POINTS
-
-        if not self.game_over:
-            self.time_left = round(self.checkpoint - timedelta.total_seconds(), 1)
+            self.points    += (self.speed / s.SEGMENT_HEIGHT) / s.POINTS
+            self.time_left  = round(self.checkpoint - timedelta.total_seconds(), 1)
 
         if self.time_left <= 0:
             self.game_over = True
@@ -200,11 +198,11 @@ class Player:
         if pos >= track_length:
             self.__set_checkpoint()
 
-            self.lap_time    = timedelta.total_seconds()
-            self.lap        += 1
-            self.lap_margin  = self.fastest_lap - self.lap_time
-
             if not self.game_over:
+                self.lap_time    = timedelta.total_seconds()
+                self.lap        += 1
+                self.lap_margin  = self.fastest_lap - self.lap_time
+
                 # Reduce checkpoint time every lap to increase difficulty.
                 self.checkpoint -= 1
                 self.points     += self.time_left * s.POINTS * self.lap

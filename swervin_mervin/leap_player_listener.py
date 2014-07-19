@@ -30,8 +30,6 @@ class LeapPlayerListener(Leap.Listener):
         if len(frame.hands) > 0:
             left = frame.hands[0]
 
-            print "%s != %s" % (str(left.id), str(self.hand_id))
-
             if not self.ready and left.id != self.hand_id and left.time_visible > 3000:
                 self.ready = True
 

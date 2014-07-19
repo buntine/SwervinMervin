@@ -134,10 +134,9 @@ class Game:
         """Puts the game in 'Game Over' mode"""
         self.waiting_for_player = True
 
-        pygame.mixer.music.stop()
-
         ## It's blocking... Add thi back in later if it makes sense.
         ##pygame.mixer.music.fadeout(3000)
+        pygame.mixer.music.stop()
 
         self.leap_controller.remove_listener(self.direction_listener)
         self.leap_controller.add_listener(self.player_listener)
