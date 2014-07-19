@@ -6,7 +6,7 @@ from pygame.locals import *
 class Player:
     """Represents the player in the game world."""
 
-    def __init__(self):
+    def __init__(self, window):
         self.x               = 0
         self.y               = 0
         self.position        = 0
@@ -25,6 +25,7 @@ class Player:
         self.last_checkpoint = None
         self.crashed         = False
         self.game_over       = False
+        self.window          = window
 
         self.__set_checkpoint()
 

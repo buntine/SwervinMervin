@@ -20,12 +20,5 @@ class Game:
     def finished(self):
         return False  
 
-    def high_score(self):
-        return False
-
-    def game_over(self):
-        """Puts the game in 'Game Over' mode"""
-        pass
-
     def clean(self):
         pass

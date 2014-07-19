@@ -3,10 +3,13 @@
 # (c) Andrew Buntine
 # https://github.com/buntine/swervin_mervin
 
-import pygame, sys, os
-from game import *
+import pygame
 import level as l
 import settings as s
+import game as g
+import player as p
+import high_score as hs
+import title_screen as ts
 
 pygame.init()
 
@@ -30,14 +33,13 @@ while True:
     title_screen.setup()
     while not title_screen.finished:
         title_screen.progress()
-    title_screen.clean()
 
     # Play the game.
     game.setup()
     while not game.finished():
         game.progress()
 
-    # Enter name for high score entry.
+    # Enter name for high score record.
     if game.high_score():
         high_score = hs.HighScore(window, player, level)
         high_score.setup()
