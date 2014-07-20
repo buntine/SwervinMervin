@@ -40,6 +40,7 @@ while True:
         high_score.setup()
         while not high_score.finished():
             high_score.progress()
+        high_score.reset()
 
     # Resume game in "game over" mode, waiting for new player.
     game.game_over()

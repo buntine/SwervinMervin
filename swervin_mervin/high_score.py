@@ -12,8 +12,9 @@ class HighScore:
         self.player          = player
         self.level           = level
         self.fps_clock       = pygame.time.Clock()
+        self.keyboard        = pygame.image.load(os.path.join("lib", "keyboard.png"))
         self.leap_controller = Leap.Controller()
-        self.player_listener = lfl.LeapFingerListener()
+        self.finger_listener = lfl.LeapFingerListener()
 
     def setup(self):
         self.finger_listener.clean()
@@ -22,7 +23,22 @@ class HighScore:
 
     def progress(self):
         """Animate the next frame"""
-        pass
+        self.window.fill(s.COLOURS["white"])
+        self.window.blit(self.keyboard, (0, 40))
+
+        pygame.draw.circle(self.window, s.COLOURS["red"], (self.finger_listener.x, self.finger_listener.y), 4)
+
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                self.leap_controller.remove_listener(self.finger_listener) 
+                pygame.quit()
+                sys.exit()
+
+        pygame.display.update()
+        self.fps_clock.tick(s.FPS)
 
     def finished(self):
-        return False  
+        return self.finger_listener.finished
+
+    def reset(self):
+        self.leap_controller.remove_listener(self.finger_listener) 
