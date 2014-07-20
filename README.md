@@ -22,12 +22,8 @@ Accelleration and steering can be performed by integrating with a LEAP Motion Co
 
 ### TODO
   
-  * Accumulating point system
-    * Level system that lowers amount of time given for checkpoint
-    * Randomly placed "things" on road that give additional points
-    * Pedestrians that penalise points when hit
-  * Leaderboard
-  * Refine LEAP integration
+  * Randomly placed "things" on road that give additional points
+  * Pedestrians that penalise points when hit
   * Refine collision offsets for sprites
   * Car sound effects
   * Countdown at start of game
