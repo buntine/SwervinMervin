@@ -12,14 +12,14 @@ class Level:
         self.segments    = []
         self.competitors = []
         self.high_scores = []
+        self.base_path   = os.path.join("swervin_mervin", "levels", self.name)
 
     def build(self):
         """Reads the level file and builds a level by populating the segments array."""
-        base_path        = os.path.join("swervin_mervin", "levels", self.name)
-        level_path       = os.path.join(base_path, "segments.csv")
-        sprites_path     = os.path.join(base_path, "sprites.csv")
-        competitors_path = os.path.join(base_path, "competitors.csv")
-        high_scores_path = os.path.join(base_path, "high_scores.csv")
+        level_path       = os.path.join(self.base_path, "segments.csv")
+        sprites_path     = os.path.join(self.base_path, "sprites.csv")
+        competitors_path = os.path.join(self.base_path, "competitors.csv")
+        high_scores_path = os.path.join(self.base_path, "high_scores.csv")
 
         with open(level_path, "r") as csvfile:
             for row in csv.reader(csvfile):
@@ -59,6 +59,18 @@ class Level:
     def add_high_score(self, name, score):
         """Adds a high score to the level."""
         self.high_scores.append([name, score])
+
+    def flush_high_scores(self):
+        """Writes current high scores to file"""
+        high_scores_path = os.path.join(self.base_path, "high_scores.csv")
+
+        self.high_scores.sort(key=lambda hs: hs[1], reverse=True)
+
+        with open(high_scores_path, "wb") as csvfile:
+            hsfile = csv.writer(csvfile)
+
+            for hs in self.high_scores:
+                hsfile.writerow(hs)
 
     def track_length(self):
         return len(self.segments) * s.SEGMENT_HEIGHT

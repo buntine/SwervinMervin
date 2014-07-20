@@ -74,6 +74,9 @@ class LeapFingerListener(Leap.Listener):
                     self.finished = True
                 print "".join(self.chars)
 
+    def name(self):
+        return "".join(self.chars)
+
     def clean(self):
         self.x        = 0
         self.y        = 0

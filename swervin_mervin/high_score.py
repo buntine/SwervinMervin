@@ -1,4 +1,4 @@
-import pygame, sys, os
+import pygame, sys, os, math
 from pygame.locals import *
 import settings as s
 import leap_finger_listener as lfl
@@ -39,6 +39,13 @@ class HighScore:
 
     def finished(self):
         return self.finger_listener.finished
+
+    def save(self):
+        """Writes high score to appropriate file"""
+        score = math.trunc(self.player.points)
+
+        self.level.add_high_score(self.finger_listener.name(), score)
+        self.level.flush_high_scores()
 
     def reset(self):
         self.leap_controller.remove_listener(self.finger_listener) 
