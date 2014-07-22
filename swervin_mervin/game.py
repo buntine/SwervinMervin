@@ -44,9 +44,11 @@ class Game:
         # TODO: Fix this.
         if self.countdown == s.FPS * 3 or self.countdown == s.FPS * 2 or self.countdown == s.FPS:
             beep = pygame.mixer.Sound(os.path.join("lib", "440.wav"))
+            beep.set_volume(0.2)
             beep.play()
         elif self.countdown == 1:
             beep = pygame.mixer.Sound(os.path.join("lib", "570.wav"))
+            beep.set_volume(0.2)
             beep.play()
 
         self.countdown -= 1

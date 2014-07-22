@@ -194,7 +194,7 @@ class Player:
 
         # New lap.
         if pos >= track_length:
-            self.__set_checkpoint()
+            self.set_checkpoint()
 
             if not self.game_over:
                 self.lap_time    = timedelta.total_seconds()

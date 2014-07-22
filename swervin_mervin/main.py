@@ -23,10 +23,10 @@ level.build()
 
 while True:
     # Fire up the title screen.
- #   if game.new_round():
- #       title_screen.setup()
- #       while not title_screen.finished:
- #           title_screen.progress()
+    if game.new_round():
+        title_screen.setup()
+        while not title_screen.finished:
+            title_screen.progress()
 
     # Play the game.
     player.setup()
