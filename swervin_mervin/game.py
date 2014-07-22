@@ -40,6 +40,15 @@ class Game:
 
         self.window.fill(s.COLOURS["black"])
         self.window.blit(countdown_text, (x, y))
+
+        # TODO: Fix this.
+        if self.countdown == s.FPS * 3 or self.countdown == s.FPS * 2 or self.countdown == s.FPS:
+            beep = pygame.mixer.Sound(os.path.join("lib", "440.wav"))
+            beep.play()
+        elif self.countdown == 1:
+            beep = pygame.mixer.Sound(os.path.join("lib", "570.wav"))
+            beep.play()
+
         self.countdown -= 1
 
         pygame.display.update()
