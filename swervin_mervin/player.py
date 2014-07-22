@@ -29,8 +29,6 @@ class Player:
         self.crashed         = False
         self.game_over       = False
 
-        self.__set_checkpoint()
-
     def steer(self, segment):
         """Updates x to simulate steering."""
         self.x = u.limit(self.x + self.direction, -s.BOUNDS, s.BOUNDS)
@@ -274,6 +272,9 @@ class Player:
                 pygame.mixer.music.set_volume(1.0)
                 self.crashed = False
 
+    def set_checkpoint(self):
+        self.last_checkpoint = datetime.datetime.now()
+
     def __collided_with_sprite(self, sprite):
         s = sprite.sprite
         o = sprite.offset
@@ -293,9 +294,6 @@ class Player:
         s     = math.sin(theta)
 
         return center[0] + radius * c, center[1] + radius * s
-
-    def __set_checkpoint(self):
-        self.last_checkpoint = datetime.datetime.now()
 
     def __fastest_lap(self):
         return not self.game_over and self.lap_time < self.fastest_lap

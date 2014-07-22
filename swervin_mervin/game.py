@@ -22,14 +22,33 @@ class Game:
         self.last_play          = None
 
     def setup(self):
-        self.last_play          = datetime.datetime.now()
         self.waiting_for_player = False
+        self.countdown          = s.FPS * 3
 
         self.direction_listener.clean()
         self.player_listener.clean()
 
         self.leap_controller.remove_listener(self.player_listener)
         self.leap_controller.add_listener(self.direction_listener)
+
+    def play_countdown(self):
+        remaining      = ((self.countdown / s.FPS) % 3) + 1
+        font           = pygame.font.Font(s.FONTS["bladerunner"], 300)
+        countdown_text = font.render(str(remaining), 1, s.COLOURS["text"])
+        x              = (s.DIMENSIONS[0] - countdown_text.get_width()) / 2
+        y              = (s.DIMENSIONS[1] - countdown_text.get_height()) / 2
+
+        self.window.fill(s.COLOURS["black"])
+        self.window.blit(countdown_text, (x, y))
+        self.countdown -= 1
+
+        pygame.display.update()
+        self.fps_clock.tick(s.FPS)
+
+    def start(self):
+        self.last_play = datetime.datetime.now()
+
+        self.player.set_checkpoint()
 
         pygame.mixer.music.load(os.path.join("lib", "lazerhawk-overdrive.mp3"))
         pygame.mixer.music.play(-1)
