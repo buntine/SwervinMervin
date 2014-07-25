@@ -57,8 +57,6 @@ class Game:
         self.fps_clock.tick(s.FPS)
 
     def start(self):
-        self.last_play = datetime.datetime.now()
-
         self.player.set_checkpoint()
 
         pygame.mixer.music.load(os.path.join("lib", "lazerhawk-overdrive.mp3"))
@@ -169,6 +167,7 @@ class Game:
     def game_over(self):
         """Puts the game in 'Game Over' mode"""
         self.waiting_for_player = True
+        self.last_play          = datetime.datetime.now()
 
         ## It's blocking... Add this back in later if it makes sense.
         ##pygame.mixer.music.fadeout(3000)

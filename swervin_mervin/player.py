@@ -135,12 +135,12 @@ class Player:
         self.window.blit(p_name_text, (p_val_x - 112, s.DIMENSIONS[1] - 24))
 
         if self.game_over:
-            go_font = pygame.font.Font(s.FONTS["bladerunner"], 24)
-            go      = go_font.render("Game Over", 1, s.COLOURS["red"]);
-            hs_font = pygame.font.Font(s.FONTS["bladerunner"], 44)
-            hs      = hs_font.render("High Scores", 1, s.COLOURS["dark_text"]);
+            go_font = pygame.font.Font(s.FONTS["star_force"], 24)
+            go      = go_font.render("GAME OVER", 1, s.COLOURS["red"]);
+            hs_font = pygame.font.Font(s.FONTS["star_force"], 44)
+            hs      = hs_font.render("HIGH SCORES", 1, s.COLOURS["dark_text"]);
             go_x    = (s.DIMENSIONS[0] - go.get_size()[0]) / 2
-            go_y    = ((s.DIMENSIONS[1] * 0.2) - go.get_size()[1]) / 2 
+            go_y    = ((s.DIMENSIONS[1] * 0.3) - go.get_size()[1]) / 2 
             hs_x    = (s.DIMENSIONS[0] - hs.get_size()[0]) / 2
             hs_y    = go_y + 50
             overlay = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
@@ -150,7 +150,7 @@ class Player:
             overlay.blit(hs, (hs_x, hs_y))
 
             record_offset = hs_y + hs.get_height() + 10
-            record_font   = pygame.font.Font(s.FONTS["bladerunner"], 24)
+            record_font   = pygame.font.Font(s.FONTS["star_force"], 24)
 
             for record in high_scores:
                 r_name  = record_font.render(record[0], 1, s.COLOURS["dark_text"])

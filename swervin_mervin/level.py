@@ -64,7 +64,9 @@ class Level:
         """Writes current high scores to file"""
         high_scores_path = os.path.join(self.base_path, "high_scores.csv")
 
+        # Sort and truncate.
         self.high_scores.sort(key=lambda hs: hs[1], reverse=True)
+        self.high_scores = self.high_scores[:s.HIGH_SCORE_LIMIT]
 
         with open(high_scores_path, "wb") as csvfile:
             hsfile = csv.writer(csvfile)
