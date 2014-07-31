@@ -22,13 +22,13 @@ Accelleration and steering can be performed by integrating with a LEAP Motion Co
 
 ### TODO
   
+  * Prevent time from going down while paused.
+
   * Randomly placed "things" on road that give additional points
   * Pedestrians that penalise points when hit
   * Refine collision offsets for sprites
   * Car sound effects
-  * Countdown at start of game
-  * Smoke when playing accelerating from 0
-  * Competitors jumpy when close to player
+  * Smoke when player accelerating from 0
   * Position (number of `laps + base_segment.index`)
   * Building sprites
   * Package better for distribution (ship with Pygame?)
