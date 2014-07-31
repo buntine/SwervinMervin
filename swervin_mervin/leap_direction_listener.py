@@ -1,5 +1,6 @@
 import Leap
 import settings as s
+import pygame
 
 class LeapDirectionListener(Leap.Listener):
     """Listens for and handles leap events associated to steering."""
@@ -23,9 +24,11 @@ class LeapDirectionListener(Leap.Listener):
     def on_frame(self, controller):
         frame = controller.frame()
 
-        if len(frame.hands) == 1:
+        if len(frame.hands) == 2:
+            self.active = True
             left = frame.hands[0]
-            pos  = left.palm_position[0]
+            right = frame.hands[1]
+            pos  = right.stabilized_palm_position[1] - left.stabilized_palm_position[1]
 
             self.hand_id = left.id
 
@@ -35,7 +38,10 @@ class LeapDirectionListener(Leap.Listener):
                 self.direction = "left"
             else:
                 self.direction = "straight"
+        else:
+            self.active = False
 
     def clean(self):
         self.direction = "straight"
         self.hand_id   = None
+        self.active    = True

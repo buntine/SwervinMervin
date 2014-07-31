@@ -35,7 +35,10 @@ while True:
         game.play_countdown()
     game.start()
     while not game.finished():
-        game.progress()
+        if not game.paused:
+            game.progress()
+        else:
+            game.check_for_hands()
 
     # Enter name for high score record.
     if game.high_score():

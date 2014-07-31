@@ -24,6 +24,7 @@ class Game:
     def setup(self):
         self.waiting_for_player = False
         self.countdown          = s.FPS * 3
+        self.paused             = False
 
         self.direction_listener.clean()
         self.player_listener.clean()
@@ -64,6 +65,8 @@ class Game:
 
     def progress(self):
         """Animate the next frame"""
+        self.check_for_hands()
+
         self.player.travel(self.level.track_length())
 
         base_segment   = self.level.find_segment(self.player.position)
@@ -185,3 +188,6 @@ class Game:
             return diff.total_seconds() > s.TITLE_THRESHOLD
         else:
             return True
+
+    def check_for_hands(self):
+        self.paused = not self.direction_listener.active
