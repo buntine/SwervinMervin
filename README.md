@@ -2,9 +2,13 @@
 
 Swervin Mervin: A recreation of 80's-style pseudo-3D arcade racing games, written in Python and Pygame.
 
-Accelleration and steering can be performed by integrating with a LEAP Motion Controller (if you have one), otherwise just use the arrow keys.
+Accelleration and steering is performed via the arrow keys.
+
+Note, this project is purely an exercise in enjoyment. Don't expect to find a lot of beautiful code within these walls!
 
 ### Playing
+
+Ensure that you have the pygame llibraries installed, and then:
 
 ```
   $ python swervin_mervin/main.py 
