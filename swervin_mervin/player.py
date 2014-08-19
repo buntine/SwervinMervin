@@ -222,14 +222,14 @@ class Player:
 
         self.acceleration = a
 
-    def set_direction(self, keys, leap_direction="straight"):
+    def set_direction(self, keys):
         """Updates the direction the player is going, accepts a key-map."""
         d = 0
 
         if not self.game_over:
-            if keys[K_LEFT] or leap_direction == "left":
+            if keys[K_LEFT]:
                 d = -self.direction_speed()
-            elif keys[K_RIGHT] or leap_direction == "right":
+            elif keys[K_RIGHT]:
                 d = self.direction_speed()
 
         self.direction = d
