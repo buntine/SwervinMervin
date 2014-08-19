@@ -5,7 +5,7 @@ import math, os
 
 FPS                = 60
 TITLE_FPS          = 20
-TITLE_SCREEN       = False
+TITLE_SCREEN       = True
 FRAME_RATE         = (1.0 / FPS)
 DIMENSIONS         = (640, 480)
 SEGMENT_HEIGHT     = 260
