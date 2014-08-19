@@ -1,8 +1,6 @@
-# SWERVIN' MERVIN
-
 ![Swervin' Mervin](/lib/box.png?raw=true "Swervin' Mervin")
 
-A recreation of 80's-style pseudo-3D arcade racing games, written in Python and Pygame.
+Swervin Mervin: A recreation of 80's-style pseudo-3D arcade racing games, written in Python and Pygame.
 
 Accelleration and steering can be performed by integrating with a LEAP Motion Controller (if you have one), otherwise just use the arrow keys.
 
@@ -14,10 +12,10 @@ Accelleration and steering can be performed by integrating with a LEAP Motion Co
 
 ### Credits
 
-  * Jake at codeincomplete.com and Lou at extentofthejam.com for their fantastic articles on the subject.
+  * [Jake at codeincomplete.com](http://codeincomplete.com/) and [Lou at extentofthejam.com](http://extentofthejam.com/) for their fantastic articles on the subject.
   * My beautiful girlfriend, Mel, for all of the original pixel art.
   * LazerHawk and Miami Nights 1984 for the music.
-  * Out Run (1986) for letting me steal some sprites.
+  * Out Run (1986) for "letting me" use some sprites.
   * Jim Gillette and Cary-Hiroyuki Tagawa for the sound bites.
 
 ### TODO
