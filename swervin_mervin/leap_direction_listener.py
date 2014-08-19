@@ -26,9 +26,10 @@ class LeapDirectionListener(Leap.Listener):
 
         if len(frame.hands) == 2:
             self.active = True
-            left = frame.hands[0]
-            right = frame.hands[1]
-            pos  = right.stabilized_palm_position[1] - left.stabilized_palm_position[1]
+
+            left  = frame.hands.leftmost
+            right = frame.hands.rightmost
+            pos   = right.stabilized_palm_position[1] - left.stabilized_palm_position[1]
 
             self.hand_id = left.id
 
