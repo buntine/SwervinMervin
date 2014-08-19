@@ -1,6 +1,6 @@
-# SWERVIN' MERVIN
-
 ![Swervin' Mervin](/lib/box.png?raw=true "Swervin' Mervin")
+
+This branch contains the office version of Swervin Mervin. It requires a Leap Motion Controller.
 
 A recreation of 80's-style pseudo-3D arcade racing games, written in Python and Pygame.
 
