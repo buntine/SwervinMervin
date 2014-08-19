@@ -163,14 +163,15 @@ class Player:
 
     def travel(self, track_length, window):
         """Updates position, reflecting how far we've travelled since the last frame."""
-        pos       = self.position + (s.FRAME_RATE * self.speed)
-        timedelta = (datetime.datetime.now() - self.last_checkpoint)
+        pos        = self.position + (s.FRAME_RATE * self.speed)
+        td         = (datetime.datetime.now() - self.last_checkpoint)
+        total_secs = (td.microseconds + (td.seconds + td.days * 24 * 3600) * 10**6) / 10**6 # td.total_seconds() not implemented in Python 2.6
 
         if not self.game_over:
             self.points += (self.speed / s.SEGMENT_HEIGHT) / s.POINTS
 
         if not self.game_over:
-            self.time_left = round(self.checkpoint - timedelta.total_seconds(), 1)
+            self.time_left = round(self.checkpoint - total_secs, 1)
 
         if self.time_left <= 0:
             self.game_over = True
@@ -179,7 +180,7 @@ class Player:
         if pos >= track_length:
             self.__set_checkpoint()
 
-            self.lap_time    = timedelta.total_seconds()
+            self.lap_time    = total_secs
             self.lap        += 1
             self.lap_margin  = self.fastest_lap - self.lap_time
 
