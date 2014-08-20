@@ -4,6 +4,8 @@ Swervin Mervin: A recreation of 80's-style pseudo-3D arcade racing games, writte
 
 Accelleration and steering is performed via the arrow keys.
 
+Here is a [small video of me playing](https://www.youtube.com/watch?v=T08Oe1l7nhk) (poorly).
+
 Note, this project is purely an exercise in enjoyment. Don't expect to find a lot of beautiful code within these walls!
 
 ### Playing
