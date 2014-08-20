@@ -18,7 +18,7 @@ window       = pygame.display.set_mode(s.DIMENSIONS)
 title_screen = ts.TitleScreen()
 
 ## Fire up the title screen.
-pygame.mixer.music.load(os.path.join("lib", "mn84-theme.mp3"))
+pygame.mixer.music.load(os.path.join("lib", "mn84-theme.ogg"))
 pygame.mixer.music.play(-1)
 
 while s.TITLE_SCREEN and not title_screen.finished:
@@ -44,7 +44,7 @@ backgrounds = [b.Background("sky", 0, 2, True),
 
 level.build()
 
-pygame.mixer.music.load(os.path.join("lib", "lazerhawk-overdrive.mp3"))
+pygame.mixer.music.load(os.path.join("lib", "lazerhawk-overdrive.ogg"))
 pygame.mixer.music.play(-1)
 
 while True:
