@@ -6,7 +6,7 @@ Accelleration and steering is performed via the arrow keys.
 
 Here is a [small video of me playing](https://www.youtube.com/watch?v=T08Oe1l7nhk) (poorly).
 
-Note, this project is purely an exercise in enjoyment. Don't expect to find a lot of beautiful code within these walls!
+Note, this project is purely an exercise in enjoyment and my first foray into Pygame. Any pointers are welcome!
 
 ### Playing
 
