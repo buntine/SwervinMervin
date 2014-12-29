@@ -199,4 +199,16 @@ SPRITES            = {"straight1": {
                      "competitor3": {
                        "path": "competitor3.png",
                        "width": 80,
+                       "height": 50},
+                     "hooker1": {
+                       "path": "hooker1.png",
+                       "width": 80,
+                       "height": 50},
+                     "hooker2": {
+                       "path": "hooker2.png",
+                       "width": 80,
+                       "height": 50},
+                     "hooker3": {
+                       "path": "hooker3.png",
+                       "width": 80,
                        "height": 50}}
