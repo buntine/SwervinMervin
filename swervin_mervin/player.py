@@ -1,7 +1,7 @@
-import settings as s
-import util as u
 import pygame, math, datetime, os
 from pygame.locals import *
+import settings as s
+import util as u
 
 class Player:
     """Represents the player in the game world."""
@@ -48,9 +48,10 @@ class Player:
         if not self.crashed:
             for sp in segment.sprites:
                 if sp.sprite.has_key("collision") and self.__collided_with_sprite(sp):
-                    if sp.is_hooker() and not sp.hit:
-                        crash_sfx = pygame.mixer.Sound(os.path.join("lib", "scream.ogg"))
-                        sp.hit    = True
+                    if sp.is_hooker():
+                        if not sp.hit:
+                            crash_sfx = pygame.mixer.Sound(os.path.join("lib", "scream.ogg"))
+                            sp.hit    = True
                     else:                        
                         pygame.mixer.music.set_volume(0.2)
 

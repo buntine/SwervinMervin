@@ -1,8 +1,8 @@
+import csv, os
 import settings as s
 import segment as seg
 import competitor as c
 import sprite as sp
-import csv, os
 
 class Level:
     """Represents a level in the game world."""

@@ -1,3 +1,4 @@
+import pygame, os
 import settings as s
 import world_object as wo
 

@@ -1,5 +1,5 @@
-import settings as s
 import pygame
+import settings as s
 
 class WorldObject:
     """Represents a single renderable object in a level. Should always be subclassed."""
