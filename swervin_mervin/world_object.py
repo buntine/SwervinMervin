@@ -1,5 +1,5 @@
 import settings as s
-import pygame, os
+import pygame
 
 class WorldObject:
     """Represents a single renderable object in a level. Should always be subclassed."""
@@ -14,7 +14,7 @@ class WorldObject:
 
         if s_width > 0 and s_height > 0 and clip_line > 0 and\
            s_width < s.DIMENSIONS[0] * 2 and s_height < s.DIMENSIONS[1] * 2:
-            img = pygame.image.load(os.path.join("lib", self.sprite["path"]))
+            img = self.path()
             img = pygame.transform.scale(img, (s_width, s_height))
 
             window.blit(img, (x, y), (0, 0, s_width, clip_line))

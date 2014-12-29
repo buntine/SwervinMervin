@@ -48,9 +48,9 @@ class Player:
         if not self.crashed:
             for sp in segment.sprites:
                 if sp.sprite.has_key("collision") and self.__collided_with_sprite(sp):
-                    if sp.is_hooker():
+                    if sp.is_hooker() and not sp.hit:
                         crash_sfx = pygame.mixer.Sound(os.path.join("lib", "scream.ogg"))
-                        # Replace live hooker with dead one.
+                        sp.hit    = True
                     else:                        
                         pygame.mixer.music.set_volume(0.2)
 

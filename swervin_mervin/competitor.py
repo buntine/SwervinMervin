@@ -1,5 +1,7 @@
 import settings as s
 import world_object as wo
+import pygame
+import os
 
 class Competitor(wo.WorldObject):
     """Represents a single competitor car in a level."""
@@ -22,3 +24,6 @@ class Competitor(wo.WorldObject):
             pos += track_length
 
         self.position = pos
+
+    def path(self):
+        return pygame.image.load(os.path.join("lib", self.sprite["path"]))
