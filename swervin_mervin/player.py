@@ -53,6 +53,9 @@ class Player:
                             crash_sfx = pygame.mixer.Sound(os.path.join("lib", "scream.ogg"))
                             sp.hit    = True
 
+                            # Yeah, I'm a sicko....
+                            self.points += s.POINT_GAIN_PROSTITUTE
+
                             crash_sfx.play()
                     else:                        
                         pygame.mixer.music.set_volume(0.2)
