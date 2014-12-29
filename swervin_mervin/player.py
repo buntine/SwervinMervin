@@ -52,6 +52,8 @@ class Player:
                         if not sp.hit:
                             crash_sfx = pygame.mixer.Sound(os.path.join("lib", "scream.ogg"))
                             sp.hit    = True
+
+                            crash_sfx.play()
                     else:                        
                         pygame.mixer.music.set_volume(0.2)
 
@@ -59,10 +61,11 @@ class Player:
                         self.crashed = True
                         self.speed   = 0
 
+                        crash_sfx.play()
+
                         if not self.game_over:
                             self.points -= self.points * s.POINT_LOSS_SPRITE
 
-                    crash_sfx.play()
                     break
 
             for comp in segment.competitors:

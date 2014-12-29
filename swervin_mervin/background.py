@@ -1,6 +1,5 @@
-import pygame
+import pygame, os
 import settings as s
-import os
 
 class Background:
     """Represents a single scrollable background in a level."""
