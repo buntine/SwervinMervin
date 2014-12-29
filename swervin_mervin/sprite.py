@@ -8,3 +8,7 @@ class Sprite(wo.WorldObject):
         self.offset     = offset
         self.sprite     = s.SPRITES[name]
         self.quantifier = 3
+
+    def is_hooker():
+        """Returns True if this sprite is a live hooker."""
+        return self.sprite.has_key("hooker")

@@ -202,13 +202,19 @@ SPRITES            = {"straight1": {
                        "height": 50},
                      "hooker1": {
                        "path": "hooker1.png",
+                       "collision": [-0.4, 0.1],
+                       "hooker": True,
                        "width": 25,
                        "height": 42},
                      "hooker2": {
                        "path": "hooker2.png",
+                       "collision": [-0.4, 0.1],
+                       "hooker": True,
                        "width": 25,
                        "height": 42},
                      "hooker3": {
                        "path": "hooker3.png",
+                       "collision": [-0.4, 0.1],
+                       "hooker": True,
                        "width": 25,
                        "height": 42}}
