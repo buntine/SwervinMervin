@@ -2,7 +2,10 @@
 40,-1.0,light_post1
 40,1.0,light_post2
 60,2.4,bush1
+64,-1.0,hooker1
 60,-1.5,bush1
+71,-1.0,hooker2
+78,-1.0,hooker3
 80,-1.0,light_post1
 80,1.0,light_post2
 90,-1.0,right_sign
@@ -10,11 +13,13 @@
 100,-1.5,bush1
 108,-1.0,right_sign
 110,-1.1,post
+112,1.5,hooker3
 120,-1.0,light_post1
 118,-1.0,right_sign
 120,1.0,light_post2
 140,2.4,bush1
 140,-1.5,bush1
+143,1.5,hooker2
 160,-1.0,light_post1
 160,1.0,light_post2
 180,2.4,bush1
@@ -99,10 +104,12 @@
 750,-1.7,column
 760,2.4,column
 760,-1.7,column
+762,-0.7,hooker1
 770,2.4,column
 770,-1.7,column
 780,2.4,column
 780,-1.7,column
+792,-0.5,hooker2
 790,2.4,column
 790,-1.7,column
 800,2.4,column
@@ -111,6 +118,7 @@
 810,-1.7,column
 820,2.4,column
 820,-1.7,column
+820,0.8,hooker2
 830,2.4,column
 830,-1.7,column
 840,2.4,column

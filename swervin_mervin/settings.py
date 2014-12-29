@@ -5,7 +5,7 @@ import math, os
 
 FPS                = 60
 TITLE_FPS          = 20
-TITLE_SCREEN       = True
+TITLE_SCREEN       = False
 FRAME_RATE         = (1.0 / FPS)
 DIMENSIONS         = (640, 480)
 SEGMENT_HEIGHT     = 260
@@ -202,13 +202,13 @@ SPRITES            = {"straight1": {
                        "height": 50},
                      "hooker1": {
                        "path": "hooker1.png",
-                       "width": 80,
-                       "height": 50},
+                       "width": 25,
+                       "height": 42},
                      "hooker2": {
                        "path": "hooker2.png",
-                       "width": 80,
-                       "height": 50},
+                       "width": 25,
+                       "height": 42},
                      "hooker3": {
                        "path": "hooker3.png",
-                       "width": 80,
-                       "height": 50}}
+                       "width": 25,
+                       "height": 42}}
