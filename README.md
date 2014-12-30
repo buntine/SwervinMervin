@@ -23,6 +23,7 @@ Ensure that you have the pygame llibraries installed, and then:
   * LazerHawk and Miami Nights 1984 for the music.
   * Out Run (1986) for "letting me" use some sprites.
   * Jim Gillette and Cary-Hiroyuki Tagawa for the sound bites.
+  * [SoundBible](http://soundbible.com) and [FreeSFX](http://freesfx.co.uk) for some sound bites.
 
 ### TODO
   
@@ -33,7 +34,6 @@ Ensure that you have the pygame llibraries installed, and then:
   * Fade out music during Game Over
   * Refine collision offsets for sprites
   * Car sound effects
-  * Sound effect when hitting car
   * Countdown at start of game
   * Smoke when player accelerating from 0
   * Position (number of `laps + base_segment.index`)

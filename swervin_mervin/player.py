@@ -73,10 +73,14 @@ class Player:
 
             for comp in segment.competitors:
                 if self.__collided_with_competitor(comp):
+                    crash_sfx = pygame.mixer.Sound(os.path.join("lib", "car_crash.ogg"))
+                    crash_sfx.play()
+
                     self.speed = 0
 
                     if not self.game_over:
                         self.points -= self.points * s.POINT_LOSS_COMP
+
                     break
 
     def render(self, window, segment):
@@ -167,7 +171,7 @@ class Player:
                 colour = "green"
                 sign   = "-"
 
-            u.render_text(sign + str(round((abs(diff), 1)), window, font, s.COLOURS[colour], (10, 40))
+            u.render_text(sign + str(round(abs(diff), 1)), window, font, s.COLOURS[colour], (10, 40))
 
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""
