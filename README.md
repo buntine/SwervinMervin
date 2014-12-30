@@ -26,18 +26,16 @@ Ensure that you have the pygame llibraries installed, and then:
 
 ### TODO
   
-  * Accumulating point system
-    * Level system that lowers amount of time given for checkpoint
-    * Randomly placed "things" on road that give additional points
+  * Point system
     * Pedestrians that penalise points when hit
-  * Leaderboard
-  * Refine LEAP integration
+  * High score display
+  * Start new game from Game Over screen
+  * Fade out music during Game Over
   * Refine collision offsets for sprites
   * Car sound effects
+  * Sound effect when hitting car
   * Countdown at start of game
-  * Smoke when playing accelerating from 0
-  * Competitors jumpy when close to player
+  * Smoke when player accelerating from 0
   * Position (number of `laps + base_segment.index`)
-  * Building sprites
   * Package better for distribution (ship with Pygame?)
   * General refactor and Pythonify of sloppy code

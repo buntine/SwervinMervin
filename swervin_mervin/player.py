@@ -167,7 +167,7 @@ class Player:
                 colour = "green"
                 sign   = "-"
 
-            u.render_text(sign + str(abs(diff)), window, font, s.COLOURS[colour], (10, 40))
+            u.render_text(sign + str(round((abs(diff), 1)), window, font, s.COLOURS[colour], (10, 40))
 
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""
@@ -198,7 +198,7 @@ class Player:
 
             if not self.game_over:
                 # Reduce checkpoint time every lap to increase difficulty.
-                self.checkpoint -= 1
+                self.checkpoint -= (self.checkpoint - self.lap_time) / s.LAP_DIFFICULTY_FACTOR
                 self.points     += self.time_left * s.POINTS * self.lap
 
             if self.__fastest_lap():
