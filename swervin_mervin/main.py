@@ -46,6 +46,7 @@ level.build()
 
 pygame.mixer.music.load(os.path.join("lib", "lazerhawk-overdrive.ogg"))
 pygame.mixer.music.play(-1)
+pygame.mixer.music.set_volume(s.MUSIC_VOLUME)
 
 while True:
     player.travel(level.track_length(), window)

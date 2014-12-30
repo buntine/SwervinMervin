@@ -8,6 +8,7 @@ TITLE_FPS             = 20
 TITLE_SCREEN          = False
 FRAME_RATE            = (1.0 / FPS)
 DIMENSIONS            = (640, 480)
+MUSIC_VOLUME          = 0.7
 SEGMENT_HEIGHT        = 260
 RUMBLE_LENGTH         = 3
 DRAW_DISTANCE         = 200

@@ -52,6 +52,7 @@ class Player:
                     if sp.is_hooker():
                         if not sp.hit:
                             crash_sfx        = pygame.mixer.Sound(os.path.join("lib", "scream.ogg"))
+                            splat_sfx        = pygame.mixer.Sound(os.path.join("lib", "blood.ogg"))
                             sp.hit           = True
                             self.blood_alpha = 255
 
@@ -59,6 +60,7 @@ class Player:
                             self.points += s.POINT_GAIN_PROSTITUTE
 
                             crash_sfx.play()
+                            splat_sfx.play()
                     else:                        
                         pygame.mixer.music.set_volume(0.2)
 
@@ -281,7 +283,7 @@ class Player:
             if round(self.x, 1) != 0:
                 self.x += step
             else:
-                pygame.mixer.music.set_volume(1.0)
+                pygame.mixer.music.set_volume(s.MUSIC_VOLUME)
                 self.crashed = False
 
     def __collided_with_sprite(self, sprite):
