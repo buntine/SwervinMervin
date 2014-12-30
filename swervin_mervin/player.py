@@ -19,6 +19,7 @@ class Player:
         self.lap_time        = 0
         self.lap_margin      = 0
         self.points          = 0
+        self.blood_alpha     = 0
         self.fastest_lap     = s.CHECKPOINT
         self.checkpoint      = s.CHECKPOINT
         self.time_left       = s.CHECKPOINT
@@ -50,8 +51,9 @@ class Player:
                 if sp.sprite.has_key("collision") and self.__collided_with_sprite(sp):
                     if sp.is_hooker():
                         if not sp.hit:
-                            crash_sfx = pygame.mixer.Sound(os.path.join("lib", "scream.ogg"))
-                            sp.hit    = True
+                            crash_sfx        = pygame.mixer.Sound(os.path.join("lib", "scream.ogg"))
+                            sp.hit           = True
+                            self.blood_alpha = 255
 
                             # Yeah, I'm a sicko....
                             self.points += s.POINT_GAIN_PROSTITUTE
@@ -116,6 +118,7 @@ class Player:
 
         p = pygame.image.load(os.path.join("lib", sprite["path"]))
         p = pygame.transform.scale(p, (s_width, s_height))
+
         window.blit(p, (width - (s_width / 2), s.DIMENSIONS[1] - s_height - s.BOTTOM_OFFSET))
 
     def render_hud(self, window):
@@ -172,6 +175,15 @@ class Player:
                 sign   = "-"
 
             u.render_text(sign + str(round(abs(diff), 1)), window, font, s.COLOURS[colour], (10, 40))
+
+    def render_blood(self, window):
+        """Renders a blood splatter if we've killed someone."""
+        b = pygame.image.load(os.path.join("lib", "blood.png"))
+        b.set_alpha(self.blood_alpha)
+
+        window.blit(b, (0, 0))
+
+        self.blood_alpha -= 1
 
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""

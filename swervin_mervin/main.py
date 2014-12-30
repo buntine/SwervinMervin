@@ -120,6 +120,9 @@ while True:
         player.render(window, base_segment)
         player.render_hud(window)
 
+        if player.blood_alpha > 0:
+            player.render_blood(window)
+
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
