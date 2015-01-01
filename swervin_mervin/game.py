@@ -154,11 +154,24 @@ class Game:
 
     def wait(self):
         """Shows high scores until a new player is ready."""
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-                sys.exit()
-            else:
-                self.waiting = False
+
+        font = pygame.font.Font(s.FONTS["bladerunner"], 50)
+
+        highscore_text = font.render("High Score", 1, s.COLOURS["text"])
+        x = (s.DIMENSIONS[0] - highscore_text.get_width()) / 2
+        y = (s.DIMENSIONS[1] - highscore_text.get_height()) / 2
+
+        self.window.fill(s.COLOURS["black"])
+        self.window.blit(highscore_text, (x, y))
+
+        pygame.display.update()
+
+        while self.waiting:
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
+                else:
+                    self.waiting = False
      
-        self.clock.tick(s.FPS)
+            self.clock.tick(s.FPS)

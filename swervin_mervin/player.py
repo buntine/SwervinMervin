@@ -189,7 +189,10 @@ class Player:
         b = pygame.image.load(os.path.join("lib", "blood.png"))
         b.set_alpha(self.blood_alpha)
 
-        window.blit(b, (0, 0))
+        x = (s.DIMENSIONS[0] - b.get_size()[0]) / 2
+        y = ((s.DIMENSIONS[1] - b.get_size()[1]) / 2) - 30
+ 
+        window.blit(b, (x, y))
 
         self.blood_alpha -= 1
 
