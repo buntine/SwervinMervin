@@ -171,7 +171,7 @@ class Game:
                 if event.type == QUIT:
                     pygame.quit()
                     sys.exit()
-                else:
+                elif event.type == KEYDOWN and event.key in [K_UP, K_SPACE]:
                     self.waiting = False
      
             self.clock.tick(s.FPS)

@@ -207,10 +207,8 @@ class Player:
         total_secs = (td.microseconds + (td.seconds + td.days * 24 * 3600) * 10**6) / 10**6 # td.total_seconds() not implemented in Python 2.6
 
         if not self.game_over:
-            self.points += (self.speed / s.SEGMENT_HEIGHT) / s.POINTS
-
-        if not self.game_over:
-            self.time_left = round(self.checkpoint - total_secs, 1)
+            self.points    += (self.speed / s.SEGMENT_HEIGHT) / s.POINTS
+            self.time_left  = round(self.checkpoint - total_secs, 1)
 
         if self.time_left <= 0:
             self.game_over = True
