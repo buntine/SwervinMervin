@@ -4,7 +4,6 @@
 # https://github.com/buntine/swervin_mervin
 
 import pygame
-#from pygame.locals import *
 import game as g
 import settings as s
 
