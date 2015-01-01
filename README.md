@@ -27,6 +27,7 @@ Ensure that you have the pygame llibraries installed, and then:
 
 ### TODO
   
+  * Fix logo spelling (HA!)
   * Point system
     * Pedestrians that penalise points when hit
   * High score display
@@ -34,7 +35,6 @@ Ensure that you have the pygame llibraries installed, and then:
   * Fade out music during Game Over
   * Refine collision offsets for sprites
   * Car sound effects
-  * Countdown at start of game
   * Smoke when player accelerating from 0
   * Position (number of `laps + base_segment.index`)
   * Package better for distribution (ship with Pygame?)
