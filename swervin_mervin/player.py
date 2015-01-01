@@ -26,6 +26,7 @@ class Player:
         self.last_checkpoint = None
         self.crashed         = False
         self.game_over       = False
+        self.game_over_lag   = s.GAME_OVER_LAG
 
         self.__set_checkpoint()
 
@@ -57,7 +58,8 @@ class Player:
                             self.blood_alpha = 255
 
                             # Yeah, I'm a sicko....
-                            self.points += s.POINT_GAIN_PROSTITUTE
+                            if not self.game_over:
+                                self.points += s.POINT_GAIN_PROSTITUTE
 
                             crash_sfx.play()
                             splat_sfx.play()
@@ -122,6 +124,10 @@ class Player:
         p = pygame.transform.scale(p, (s_width, s_height))
 
         window.blit(p, (width - (s_width / 2), s.DIMENSIONS[1] - s_height - s.BOTTOM_OFFSET))
+
+        # Finish up the round.
+        if self.game_over:
+            self.game_over_lag -= 1
 
     def render_hud(self, window):
         """Renders a Head-Up display on the active window."""
@@ -285,6 +291,9 @@ class Player:
             else:
                 pygame.mixer.music.set_volume(s.MUSIC_VOLUME)
                 self.crashed = False
+
+    def alive(self):
+        return self.game_over_lag > 0
 
     def __collided_with_sprite(self, sprite):
         s = sprite.sprite

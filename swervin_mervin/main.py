@@ -60,7 +60,7 @@ pygame.mixer.music.load(os.path.join("lib", "lazerhawk-overdrive.ogg"))
 pygame.mixer.music.play(-1)
 pygame.mixer.music.set_volume(s.MUSIC_VOLUME)
 
-while True:
+while player.alive():
     player.travel(level.track_length(), window)
 
     base_segment   = level.find_segment(player.position)
@@ -147,4 +147,10 @@ while True:
     player.set_direction(keys)
 
     pygame.display.update()
+    fps_clock.tick(s.FPS)
+
+## Post-game high scores and wait for new player.
+pygame.mixer.music.fadeout(1500)
+
+while True:
     fps_clock.tick(s.FPS)
