@@ -5,7 +5,9 @@ import math, os
 
 FPS                   = 60
 TITLE_FPS             = 20
+COUNTDOWN_FPS         = 1
 TITLE_SCREEN          = False
+COUNTDOWN             = True
 FRAME_RATE            = (1.0 / FPS)
 DIMENSIONS            = (640, 480)
 MUSIC_VOLUME          = 0.7

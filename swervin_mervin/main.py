@@ -9,15 +9,16 @@ import player as p
 import background as b
 import level as l
 import title_screen as ts
+import countdown as cd
 import settings as s
 
 pygame.init()
 
-fps_clock    = pygame.time.Clock()
-window       = pygame.display.set_mode(s.DIMENSIONS)
-title_screen = ts.TitleScreen()
+fps_clock = pygame.time.Clock()
+window    = pygame.display.set_mode(s.DIMENSIONS)
 
 ## Fire up the title screen.
+title_screen = ts.TitleScreen()
 pygame.mixer.music.load(os.path.join("lib", "mn84-theme.ogg"))
 pygame.mixer.music.play(-1)
 
@@ -35,6 +36,15 @@ while s.TITLE_SCREEN and not title_screen.finished:
 
     pygame.display.update()
     fps_clock.tick(s.TITLE_FPS)
+
+## Show countdown.
+countdown = cd.CountDown()
+
+while s.COUNTDOWN and not countdown.finished:
+    countdown.progress(window)
+
+    pygame.display.update()
+    fps_clock.tick(s.COUNTDOWN_FPS)
 
 ## Now lets play!
 player      = p.Player()
