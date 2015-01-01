@@ -10,9 +10,8 @@ class CountDown():
         self.font      = pygame.font.Font(s.FONTS["bladerunner"], 300)
         
     def progress(self, window):
-        self.remaining -= 1
-
-        countdown_text = self.font.render(str(self.remaining), 1, s.COLOURS["text"])
+        txt = str(self.remaining) if self.remaining > 0 else "GO"
+        countdown_text = self.font.render(txt, 1, s.COLOURS["text"])
         x = (s.DIMENSIONS[0] - countdown_text.get_width()) / 2
         y = (s.DIMENSIONS[1] - countdown_text.get_height()) / 2
 
@@ -25,5 +24,7 @@ class CountDown():
         beep.set_volume(0.2)
         beep.play()
 
-        if self.remaining == 0:
+        self.remaining -= 1
+
+        if self.remaining < 0:
             self.finished = True
