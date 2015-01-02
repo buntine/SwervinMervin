@@ -29,9 +29,7 @@ Ensure that you have the pygame llibraries installed, and then:
   
   * Point system
     * Pedestrians that penalise points when hit
-  * High score display
   * Allow for multiple levels (easy, regular, hard)
-  * Fade out music during Game Over
   * Refine collision offsets for sprites
   * Car sound effects
   * Smoke when player accelerating from 0

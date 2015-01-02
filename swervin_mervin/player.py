@@ -223,7 +223,8 @@ class Player:
 
             if not self.game_over:
                 # Reduce checkpoint time every lap to increase difficulty.
-                self.checkpoint -= (self.checkpoint - self.lap_time) / s.LAP_DIFFICULTY_FACTOR
+                checkpoint_diff  = (self.checkpoint - self.lap_time) / s.LAP_DIFFICULTY_FACTOR
+                self.checkpoint -= max(checkpoint_diff, s.MINIMUM_DIFFICULTY)
                 self.points     += self.time_left * s.POINTS * self.lap
 
             if self.__fastest_lap():
