@@ -1,4 +1,4 @@
-import pygame, sys, os
+import pygame, sys, os, math
 from pygame.locals import *
 import player as p
 import background as b
@@ -12,9 +12,10 @@ class Game:
     """Represents the game flow."""
 
     def __init__(self, window, clock):
-        self.window  = window
-        self.clock   = clock
-        self.waiting = False
+        self.window      = window
+        self.clock       = clock
+        self.waiting     = False
+        self.high_scores = hs.HighScores()
 
     def play(self):
         ## Fire up the title screen.
@@ -150,29 +151,31 @@ class Game:
             self.clock.tick(s.FPS)
 
         ## Post-game high scores and wait for new player.
+        if self.high_scores.is_high_score(player.points):
+            self.high_scores.add_high_score(math.trunc(player.points))
+
         pygame.mixer.music.fadeout(1500)
         self.waiting = True
 
     def wait(self):
         """Shows high scores until a new player is ready."""
 
-        heading_font = pygame.font.Font(s.FONTS["bladerunner"], 40)
+        heading_font = pygame.font.Font(s.FONTS["bladerunner"], 44)
         content_font = pygame.font.Font(s.FONTS["arcade"], 15)
         background   = pygame.image.load(os.path.join("lib", "title.png"))
         heading_text = heading_font.render("High Scores", 1, s.COLOURS["text"])
-        high_scores  = hs.HighScores()
-        y            = 90
+        y            = 100
 
         self.window.fill(s.COLOURS["black"])
         self.window.blit(background, (0, 0))
         self.window.blit(heading_text, (30, 30))
 
-        for score in high_scores.high_scores:
+        for score in self.high_scores.high_scores:
             date_text  = content_font.render(str(score[0]), 1, s.COLOURS["text"])
             score_text = content_font.render(str(score[1]), 1, s.COLOURS["text"])
 
             self.window.blit(date_text, (30, y))
-            self.window.blit(score_text, (225, y))
+            self.window.blit(score_text, (230, y))
             y += 35
 
         pygame.display.update()

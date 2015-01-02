@@ -18,7 +18,10 @@ class HighScores():
 
         self.high_scores.append([today, score])
         self.high_scores.sort(key=lambda hs: hs[1])
+        self.high_scores.reverse()
         self.high_scores.pop()
+
+        self.__write_high_scores()
 
     def __write_high_scores(self):
         hs = open(os.path.join("dat", "highscores"), "w")
