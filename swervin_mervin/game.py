@@ -155,14 +155,22 @@ class Game:
     def wait(self):
         """Shows high scores until a new player is ready."""
 
-        font = pygame.font.Font(s.FONTS["bladerunner"], 50)
-
-        highscore_text = font.render("High Score", 1, s.COLOURS["text"])
-        x = (s.DIMENSIONS[0] - highscore_text.get_width()) / 2
-        y = (s.DIMENSIONS[1] - highscore_text.get_height()) / 2
+        heading_font   = pygame.font.Font(s.FONTS["bladerunner"], 40)
+        content_font   = pygame.font.Font(s.FONTS["arcade"], 15)
+        background     = pygame.image.load(os.path.join("lib", "title.png"))
+        heading_text   = heading_font.render("High Scores", 1, s.COLOURS["text"])
+        date_text   = content_font.render("03/01/2015", 1, s.COLOURS["text"])
+        content_text   = content_font.render("46,340", 1, s.COLOURS["text"])
 
         self.window.fill(s.COLOURS["black"])
-        self.window.blit(highscore_text, (x, y))
+        self.window.blit(background, (0, 0))
+        self.window.blit(heading_text, (30, 30))
+        self.window.blit(date_text, (30, 100))
+        self.window.blit(content_text, (205, 100))
+        self.window.blit(date_text, (30, 130))
+        self.window.blit(content_text, (205, 130))
+        self.window.blit(date_text, (30, 160))
+        self.window.blit(content_text, (205, 160))
 
         pygame.display.update()
 
