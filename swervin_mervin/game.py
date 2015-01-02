@@ -6,6 +6,7 @@ import level as l
 import title_screen as ts
 import countdown as cd
 import settings as s
+import high_scores as hs
 
 class Game:
     """Represents the game flow."""
@@ -159,14 +160,20 @@ class Game:
         content_font = pygame.font.Font(s.FONTS["arcade"], 15)
         background   = pygame.image.load(os.path.join("lib", "title.png"))
         heading_text = heading_font.render("High Scores", 1, s.COLOURS["text"])
+        high_scores  = hs.HighScores()
+        y            = 90
 
         self.window.fill(s.COLOURS["black"])
         self.window.blit(background, (0, 0))
         self.window.blit(heading_text, (30, 30))
 
+        for score in high_scores.high_scores:
+            date_text  = content_font.render(str(score[0]), 1, s.COLOURS["text"])
+            score_text = content_font.render(str(score[1]), 1, s.COLOURS["text"])
 
-        self.window.blit(date_text, (30, 160))
-        self.window.blit(content_text, (205, 160))
+            self.window.blit(date_text, (30, y))
+            self.window.blit(score_text, (225, y))
+            y += 35
 
         pygame.display.update()
 
