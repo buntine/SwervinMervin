@@ -27,6 +27,7 @@ Ensure that you have the pygame llibraries installed, and then:
 
 ### TODO
   
+  * Random time extensions dropped onto road
   * Point system
     * Pedestrians that penalise points when hit
   * Allow for multiple levels (easy, regular, hard)
