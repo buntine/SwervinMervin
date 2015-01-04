@@ -27,9 +27,10 @@ Ensure that you have the pygame llibraries installed, and then:
 
 ### TODO
   
+  * User notification of + or - to score during gameplay
+  * User notification of high score either during or directly after game
   * Random time extensions dropped onto road
-  * Point system
-    * Pedestrians that penalise points when hit
+  * Pedestrians that penalise points when hit
   * Allow for multiple levels (easy, regular, hard)
   * Refine collision offsets for sprites
   * Car sound effects

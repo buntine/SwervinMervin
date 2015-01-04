@@ -171,7 +171,7 @@ class Game:
         self.window.blit(heading_text, (30, 30))
 
         for score in self.high_scores.high_scores:
-            date_text  = content_font.render(str(score[0]), 1, s.COLOURS["text"])
+            date_text  = content_font.render(score[0].strftime("%d %b %Y"), 1, s.COLOURS["text"])
             score_text = content_font.render(str(score[1]), 1, s.COLOURS["text"])
 
             self.window.blit(date_text, (30, y))

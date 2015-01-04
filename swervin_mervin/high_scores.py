@@ -1,5 +1,5 @@
 import json, os
-from datetime import date
+import datetime as dt
 
 class HighScores():
     """Wrapper over the high scores file."""
@@ -14,7 +14,7 @@ class HighScores():
 
     def add_high_score(self, score):
         """Adds given score to high scores, knocking off lowest score."""
-        today = date.today().strftime("%Y-%m-%d")
+        today = dt.date.today().strftime("%Y-%m-%d")
 
         self.high_scores.append([today, score])
         self.high_scores.sort(key=lambda hs: hs[1])
@@ -24,14 +24,15 @@ class HighScores():
         self.__write_high_scores()
 
     def __write_high_scores(self):
-        hs = open(os.path.join("dat", "highscores"), "w")
+        hs    = open(os.path.join("dat", "highscores"), "w")
+        jdata = map(lambda hs: [hs[0].strftime("%Y-%d-%m"), hs[1]], self.high_scores)
 
-        json.dump(self.high_scores, hs)
+        json.dump(jdata, hs)
         hs.close()
 
     def __read_high_scores(self):
         hs  = open(os.path.join("dat", "highscores"), "r")
-        jhs = json.load(hs)
+        jhs = map(lambda hs: [dt.datetime.strptime(hs[0], "%Y-%m-%d"), hs[1]], json.load(hs))
 
         hs.close()
 
