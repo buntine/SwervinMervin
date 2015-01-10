@@ -82,7 +82,7 @@ class Player:
                     crash_sfx = pygame.mixer.Sound(os.path.join("lib", "car_crash.ogg"))
                     crash_sfx.play()
 
-                    self.speed = 0
+                    self.speed = self.speed / s.CRASH_DIVISOR
 
                     if not self.game_over:
                         self.points -= self.points * s.POINT_LOSS_COMP
