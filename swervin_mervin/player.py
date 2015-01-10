@@ -160,6 +160,10 @@ class Player:
         window.blit(p_val_text, (p_val_x, s.DIMENSIONS[1] - 24))
         window.blit(p_name_text, (p_val_x - 112, s.DIMENSIONS[1] - 24))
 
+        # IF NOT GAME OVER AND POINTS > SOME_MILESTONE AND SOME_MILESTONE NOT HIT.
+        # PLAY SOUND
+        # AND MAYBE MAKE POINTS TEXT LOOK SWAG
+
         if self.game_over:
             go_font = pygame.font.Font(s.FONTS["bladerunner"], 44)
             go      = go_font.render("Game Over", 1, s.COLOURS["red"]);
