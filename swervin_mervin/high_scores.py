@@ -14,7 +14,7 @@ class HighScores():
 
     def add_high_score(self, score):
         """Adds given score to high scores, knocking off lowest score."""
-        today = dt.date.today().strftime("%Y-%m-%d")
+        today = dt.date.today()
 
         self.high_scores.append([today, score])
         self.high_scores.sort(key=lambda hs: hs[1])
