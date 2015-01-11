@@ -1,5 +1,5 @@
 # Swervin' Mervin'
-# v0.9
+# v1.0
 # (c) Andrew Buntine
 # https://github.com/buntine/swervin_mervin
 
@@ -9,10 +9,15 @@ import settings as s
 
 pygame.init()
 
-pygame.display.set_caption("Swervin Mervin: City Night")
+pygame.display.set_caption("Swervin Mervin")
+
+if s.FULLSCREEN:
+    w_flag = pygame.FULLSCREEN
+else:
+    w_flag = 0
 
 fps_clock = pygame.time.Clock()
-window    = pygame.display.set_mode(s.DIMENSIONS)
+window    = pygame.display.set_mode(s.DIMENSIONS, w_flag)
 game      = g.Game(window, fps_clock)
 
 while True:

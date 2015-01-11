@@ -10,6 +10,7 @@ COUNTDOWN_FPS         = 1
 GAME_OVER_LAG         = 5 * FPS
 TITLE_SCREEN          = True
 COUNTDOWN             = True
+FULLSCREEN            = True
 FRAME_RATE            = (1.0 / FPS)
 DIMENSIONS            = (640, 480)
 MUSIC_VOLUME          = 0.7
