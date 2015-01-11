@@ -9,6 +9,8 @@ import settings as s
 
 pygame.init()
 
+pygame.display.set_caption("Swervin Mervin: City Night")
+
 fps_clock = pygame.time.Clock()
 window    = pygame.display.set_mode(s.DIMENSIONS)
 game      = g.Game(window, fps_clock)
