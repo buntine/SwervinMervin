@@ -27,6 +27,7 @@ class Player:
         self.crashed         = False
         self.game_over       = False
         self.game_over_lag   = s.GAME_OVER_LAG
+        self.next_milestone  = s.POINT_MILESTONE
 
         self.__set_checkpoint()
 
@@ -163,6 +164,11 @@ class Player:
         # IF NOT GAME OVER AND POINTS > SOME_MILESTONE AND SOME_MILESTONE NOT HIT.
         # PLAY SOUND
         # AND MAYBE MAKE POINTS TEXT LOOK SWAG
+        if self.points > self.next_milestone and not self.game_over:
+            milestone_sfx = pygame.mixer.Sound(os.path.join("lib", "excellent.ogg"))
+            milestone_sfx.play()
+
+            self.next_milestone += s.POINT_MILESTONE
 
         if self.game_over:
             go_font = pygame.font.Font(s.FONTS["bladerunner"], 44)
