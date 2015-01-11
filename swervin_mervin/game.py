@@ -141,7 +141,7 @@ class Game:
                     player.render_blood(self.window)
 
             for event in pygame.event.get():
-                if event.type == QUIT:
+                if event.type == QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE and s.FULLSCREEN):
                     pygame.quit()
                     sys.exit()
 
@@ -185,7 +185,7 @@ class Game:
 
         while self.waiting:
             for event in pygame.event.get():
-                if event.type == QUIT:
+                if event.type == QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE and s.FULLSCREEN):
                     pygame.quit()
                     sys.exit()
                 elif event.type == KEYDOWN and event.key in [K_UP, K_SPACE]:
