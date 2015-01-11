@@ -32,7 +32,7 @@ class Game:
                         if event.key == pygame.K_SPACE and title_screen.ready:
                             pygame.mixer.music.fadeout(1500)
                             title_screen.finished = True
-                        elif event.key == pygame.ESCAPE and s.FULLSCREEN:
+                        elif event.key == pygame.K_ESCAPE and s.FULLSCREEN:
                             pygame.quit()
                             sys.exit()
                     elif event.type == QUIT:
