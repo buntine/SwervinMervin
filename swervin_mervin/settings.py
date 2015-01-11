@@ -3,12 +3,13 @@
 from pygame import Color
 import math, os
 
+DEV_MODE              = False
 FPS                   = 60
 TITLE_FPS             = 20
 COUNTDOWN_FPS         = 1
 GAME_OVER_LAG         = 5 * FPS
-TITLE_SCREEN          = False
-COUNTDOWN             = False
+TITLE_SCREEN          = True
+COUNTDOWN             = True
 FRAME_RATE            = (1.0 / FPS)
 DIMENSIONS            = (640, 480)
 MUSIC_VOLUME          = 0.7
@@ -29,7 +30,7 @@ POINTS                = 15
 POINT_GAIN_PROSTITUTE = 500
 POINT_LOSS_SPRITE     = 0.03
 POINT_LOSS_COMP       = 0.02
-POINT_MILESTONE       = 5000
+POINT_MILESTONE       = 10000
 TOP_SPEED             = (SEGMENT_HEIGHT / (1.0/FPS)) * 1.9
 OFFROAD_TOP_SPEED     = TOP_SPEED / 2.0
 ACCELERATION          = TOP_SPEED / 5.0
@@ -227,3 +228,8 @@ SPRITES            = {"straight1": {
                        "hooker": True,
                        "width": 25,
                        "height": 42}}
+
+if DEV_MODE:
+    TITLE_SCREEN = False
+    COUNTDOWN    = False
+    CHECKPOINT   = 10
