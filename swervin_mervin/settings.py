@@ -3,7 +3,7 @@
 from pygame import Color
 import math, os
 
-DEV_MODE              = True
+DEV_MODE              = False
 FPS                   = 60
 TITLE_FPS             = 20
 COUNTDOWN_FPS         = 1

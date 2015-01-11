@@ -27,9 +27,9 @@ Ensure that you have the pygame llibraries installed, and then:
 
 ### TODO
   
+  * Animate highscores in, fade them out on new game
   * User notification of + or - to score during gameplay
   * User notification of high score either during or directly after game
-  * Sound bite on hitting point milestones
   * Random time extensions dropped onto road
   * Pedestrians that penalise points when hit
   * Allow for multiple levels (easy, regular, hard)
