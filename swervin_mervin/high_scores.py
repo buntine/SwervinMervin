@@ -25,7 +25,7 @@ class HighScores():
 
     def __write_high_scores(self):
         hs    = open(os.path.join("dat", "highscores"), "w")
-        jdata = map(lambda hs: [hs[0].strftime("%Y-%d-%m"), hs[1]], self.high_scores)
+        jdata = map(lambda hs: [hs[0].strftime("%Y-%m-%d"), hs[1]], self.high_scores)
 
         json.dump(jdata, hs)
         hs.close()
