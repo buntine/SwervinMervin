@@ -12,8 +12,10 @@ class Sprite(wo.WorldObject):
         self.hit        = False
 
     def is_hooker(self):
-        """Returns True if this sprite is a live hooker."""
         return self.sprite.has_key("hooker")
+
+    def is_bonus(self):
+        return self.sprite.has_key("bonus")
 
     def path(self):
         sprite_name = self.sprite["path"]

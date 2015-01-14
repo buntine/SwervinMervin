@@ -212,6 +212,12 @@ SPRITES            = {"straight1": {
                        "path": "competitor3.png",
                        "width": 80,
                        "height": 50},
+                     "bonus": {
+                       "path": "bonus.png",
+                       "collision": [-0.4, 0.1],
+                       "bonus": True,
+                       "width": 25,
+                       "height": 25},
                      "hooker1": {
                        "path": "hooker1.png",
                        "collision": [-0.4, 0.1],

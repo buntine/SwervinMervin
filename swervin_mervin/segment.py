@@ -104,6 +104,13 @@ class Segment:
         for obj in (self.sprites + self.competitors):
             obj.render(window, self.bottom["screen"], self.clip)
 
+    def remove_sprite(self, sprite):
+        """Permanently removes the given sprite from this segment."""
+        try:
+            self.remove(sprite)
+        except Exception:
+            pass
+
     def __project_line(self, line, camera_x, camera_z, player_y):
         """Projects a 3D world position into 2D coordinates for the given line."""
         p      = getattr(self, line)

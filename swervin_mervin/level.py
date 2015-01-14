@@ -44,6 +44,10 @@ class Level:
         sprite = sp.Sprite(offset, name)
         segment.sprites.append(sprite)
 
+    def add_bonus(self, segment, offset):
+        """Adds a bonus sprite to the given segment."""
+        self.add_sprite(segment, offset, "bonus")
+
     def add_competitor(self, position, offset, name, speed):
         """Adds a competitor sprite to the given segment."""
         competitor = c.Competitor(position, offset, name, speed)
