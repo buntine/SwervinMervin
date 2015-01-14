@@ -65,6 +65,14 @@ class Player:
 
                             crash_sfx.play()
                             splat_sfx.play()
+                    elif sp.is_bonus():
+                        if not self.game_over:
+                            self.time_left += s.BONUS_AMOUNT
+
+                        bonus_sfx = pygame.mixer.Sound(os.path.join("lib", "oh_yeah.ogg"))
+                        bonus_sfx.play()
+                        
+                        segment.remove_sprite(sp)
                     else:                        
                         pygame.mixer.music.set_volume(0.2)
 
