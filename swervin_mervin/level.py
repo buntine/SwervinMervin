@@ -1,4 +1,4 @@
-import csv, os
+import csv, os, random
 import settings as s
 import segment as seg
 import competitor as c
@@ -44,9 +44,13 @@ class Level:
         sprite = sp.Sprite(offset, name)
         segment.sprites.append(sprite)
 
-    def add_bonus(self, segment, offset):
-        """Adds a bonus sprite to the given segment."""
-        self.add_sprite(segment, offset, "bonus")
+    def insert_bonuses(self):
+        """Adds a couple of bonuses into the track at random places."""
+        segs = random.sample(self.segments, 2)
+
+        for s in segs:
+            offset = random.randint(-10, 10) / 10.0
+            self.add_sprite(s, offset, "bonus")
 
     def add_competitor(self, position, offset, name, speed):
         """Adds a competitor sprite to the given segment."""

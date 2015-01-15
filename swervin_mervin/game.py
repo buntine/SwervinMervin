@@ -1,4 +1,4 @@
-import pygame, sys, os, math
+import pygame, sys, os, math, random
 from pygame.locals import *
 import player as p
 import background as b
@@ -76,9 +76,10 @@ class Game:
             player.detect_collisions(player_segment)
             player.handle_crash()
 
-            # Sprinkle some random bonuses into the next lap.
+            # Sprinkle some random bonuses into the next lap if we are lucky.
             if player.new_lap:
-                pass
+                if random.randint(1, s.CHANCE_OF_BONUSES) == 1:
+                    level.insert_bonuses()
 
             # Move the other players.
             for c in level.competitors:

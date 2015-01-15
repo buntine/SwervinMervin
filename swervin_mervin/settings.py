@@ -28,7 +28,8 @@ LAP_DIFFICULTY_FACTOR = 3
 MINIMUM_DIFFICULTY    = 2
 CRASH_DIVISOR         = 4
 POINTS                = 15
-BONUS_AMOUNT          = 2
+CHANCE_OF_BONUSES     = 3
+BONUS_AMOUNT          = 3
 POINT_GAIN_PROSTITUTE = 500
 POINT_LOSS_SPRITE     = 0.03
 POINT_LOSS_COMP       = 0.02
@@ -241,5 +242,6 @@ SPRITES            = {"straight1": {
 if DEV_MODE:
     TITLE_SCREEN    = False
     COUNTDOWN       = False
-    CHECKPOINT      = 30
+    FULLSCREEN      = False
+    CHECKPOINT      = 55
     POINT_MILESTONE = 3000
