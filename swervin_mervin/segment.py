@@ -107,7 +107,7 @@ class Segment:
     def remove_sprite(self, sprite):
         """Permanently removes the given sprite from this segment."""
         try:
-            self.remove(sprite)
+            self.sprites.remove(sprite)
         except Exception:
             pass
 
