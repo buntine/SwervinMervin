@@ -76,6 +76,10 @@ class Game:
             player.detect_collisions(player_segment)
             player.handle_crash()
 
+            # Sprinkle some random bonuses into the next lap.
+            if player.new_lap:
+                pass
+
             # Move the other players.
             for c in level.competitors:
                 old_seg = level.find_segment(c.position)

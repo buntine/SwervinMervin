@@ -15,6 +15,7 @@ class Player:
         self.acceleration    = 0
         self.speed           = 1
         self.animation_frame = 1
+        self.new_lap         = False
         self.lap             = 1
         self.lap_time        = 0
         self.lap_margin      = 0
@@ -229,6 +230,8 @@ class Player:
         td         = (datetime.datetime.now() - self.last_checkpoint)
         total_secs = (td.microseconds + (td.seconds + td.days * 24 * 3600) * 10**6) / 10**6 # td.total_seconds() not implemented in Python 2.6
 
+        self.new_lap = False
+
         if not self.game_over:
             self.points    += (self.speed / s.SEGMENT_HEIGHT) / s.POINTS
             self.time_left  = round(self.checkpoint - total_secs, 1)
@@ -240,6 +243,7 @@ class Player:
         if pos >= track_length:
             self.__set_checkpoint()
 
+            self.new_lap     = True
             self.lap_time    = total_secs
             self.lap        += 1
             self.lap_margin  = self.fastest_lap - self.lap_time
