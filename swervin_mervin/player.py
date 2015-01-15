@@ -16,6 +16,7 @@ class Player:
         self.speed           = 1
         self.animation_frame = 1
         self.new_lap         = False
+        self.lap_bonus       = 0
         self.lap             = 1
         self.lap_time        = 0
         self.lap_margin      = 0
@@ -68,7 +69,7 @@ class Player:
                             splat_sfx.play()
                     elif sp.is_bonus():
                         if not self.game_over:
-                            self.time_left += s.BONUS_AMOUNT
+                            self.lap_bonus += s.BONUS_AMOUNT
 
                         bonus_sfx = pygame.mixer.Sound(os.path.join("lib", "oh_yeah.ogg"))
                         bonus_sfx.play()
@@ -161,7 +162,7 @@ class Player:
         u.render_text("lap", window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 100, 10))
         u.render_text(str(self.lap), window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 28, 10))
         u.render_text("time", window, font, s.COLOURS["text"], (10, 10))
-        u.render_text(str(self.time_left), window, font, s.COLOURS["text"], (90, 10))
+        u.render_text(str(math.trunc(self.time_left)), window, font, s.COLOURS["text"], (90, 10))
 
         # Points rendering needs more care because it grows so fast.
         if self.highlight_points_until > 0 and self.time_left >= self.highlight_points_until:
@@ -234,7 +235,7 @@ class Player:
 
         if not self.game_over:
             self.points    += (self.speed / s.SEGMENT_HEIGHT) / s.POINTS
-            self.time_left  = round(self.checkpoint - total_secs, 1)
+            self.time_left  = round(self.checkpoint - total_secs, 1) + self.lap_bonus
 
         if self.time_left <= 0:
             self.game_over = True
@@ -243,6 +244,7 @@ class Player:
         if pos >= track_length:
             self.__set_checkpoint()
 
+            self.lap_bonus   = 0
             self.new_lap     = True
             self.lap_time    = total_secs
             self.lap        += 1

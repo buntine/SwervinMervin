@@ -31,6 +31,7 @@ Ensure that you have the pygame llibraries installed, and then:
   * Animate highscores in, fade them out on new game
   * User notification of + or - to score during gameplay
   * User notification of high score either during or directly after game
+  * Nice method for showing temporary text near top-left corner (for score notifications, bonus notifications, etc)
   * Pedestrians that penalise points when hit
   * Refine collision offsets for sprites
   * Car sound effects
