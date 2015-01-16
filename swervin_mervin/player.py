@@ -170,7 +170,7 @@ class Player:
         u.render_text(str(math.trunc(self.time_left)), window, font, s.COLOURS["text"], (90, 10))
 
         # Points rendering needs more care because it grows so fast.
-        p_val_text  = font.render(str(math.trunc(self.points)), 1, points_colour)
+        p_val_text  = font.render(str(math.trunc(self.points)), 1, s.COLOURS["text"])
         p_name_text = font.render("points", 1, s.COLOURS["text"])
         p_val_x     = s.DIMENSIONS[0] - p_val_text.get_width() - 10
 
