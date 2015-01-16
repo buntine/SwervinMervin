@@ -30,6 +30,7 @@ class Player:
         self.game_over       = False
         self.game_over_lag   = s.GAME_OVER_LAG
         self.next_milestone  = s.POINT_MILESTONE
+        self.special_text    = None
         self.highlight_points_until = 0
 
         self.__set_checkpoint()
@@ -335,7 +336,19 @@ class Player:
 
     def __set_special_text(self, text, time):
         """Defines the special text to show and for how long we should show it."""
-        pass
+        self.special_text = [datetime.datetime.now(), time, text]
+
+    def __get_special_text(self, text, time):
+        """Returns the special text to show, if any."""
+        st = self.special_text
+
+        if st:
+            td = (datetime.datetime.now() - st[0])
+
+            if td.seconds() > td[1]:
+                self.special_text = None
+            else:
+                return st[2]
 
     def __collided_with_sprite(self, sprite):
         s = sprite.sprite
