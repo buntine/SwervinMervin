@@ -155,7 +155,7 @@ class Player:
         finish      = self.__circular_orbit(center, 36, orbit_pos)
         speed       = round((self.speed / s.SEGMENT_HEIGHT) * 1.5, 1)
         font        = pygame.font.Font(s.FONTS["bladerunner"], 20)
-        st          = self.__get_special_text()
+        st          = self.special_text
 
         pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
         pygame.draw.circle(window, s.COLOURS["black"], center, 4)
@@ -171,7 +171,13 @@ class Player:
         u.render_text(str(math.trunc(self.time_left)), window, font, s.COLOURS["text"], (90, 10))
 
         if st:
-            u.render_text(st, window, font, s.COLOURS["bonus"], (10, 36))
+            td = (datetime.datetime.now() - st[0])
+
+            if td.seconds > st[1]:
+                self.special_text = None
+            else:
+                bonus_colour = "bonus_a" if (td.microseconds / 25000.0) % 10 > 5 else "bonus_b"
+                u.render_text(st[2], window, font, s.COLOURS[bonus_colour], (10, 36))
 
         # Points rendering needs more care because it grows so fast.
         p_val_text  = font.render(str(math.trunc(self.points)), 1, s.COLOURS["text"])

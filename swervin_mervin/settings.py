@@ -3,7 +3,7 @@
 from pygame import Color
 import math, os
 
-DEV_MODE              = False
+DEV_MODE              = True
 FPS                   = 60
 TITLE_FPS             = 20
 COUNTDOWN_FPS         = 1
@@ -50,7 +50,8 @@ COLOURS               = {"white":  Color(255, 255, 255),
                         "sky":    Color(10, 10, 10),
                         "gutter": Color(100, 100, 100),
                         "red":    Color(204, 0, 0),
-                        "bonus": Color(255, 78, 0),
+                        "bonus_a": Color(255, 78, 0),
+                        "bonus_b": Color(255, 178, 0),
                         "green":  Color(0, 204, 0),
                         "black":  Color(0, 0, 0),
                         "light": {"road":     Color(34, 54, 56),

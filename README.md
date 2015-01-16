@@ -27,11 +27,10 @@ Ensure that you have the pygame llibraries installed, and then:
 
 ### TODO
   
+  * Use timedelta to make special_text alternate between red and yellow (td.microseconds % 1000 > 500)
   * More levels. If player gets to lap N, then move onto next level.
   * Animate highscores in, fade them out on new game
-  * User notification of + or - to score during gameplay
   * User notification of high score either during or directly after game
-  * Nice method for showing temporary text near top-left corner (for score notifications, bonus notifications, etc)
   * Pedestrians that penalise points when hit
   * Refine collision offsets for sprites
   * Car sound effects
