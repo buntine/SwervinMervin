@@ -171,7 +171,7 @@ class Player:
         u.render_text(str(math.trunc(self.time_left)), window, font, s.COLOURS["text"], (90, 10))
 
         if st:
-            u.render_text(st[2], window, font, s.COLOURS["bonus"], (10, 35))
+            u.render_text(st, window, font, s.COLOURS["bonus"], (10, 36))
 
         # Points rendering needs more care because it grows so fast.
         p_val_text  = font.render(str(math.trunc(self.points)), 1, s.COLOURS["text"])
@@ -341,7 +341,7 @@ class Player:
         if st:
             td = (datetime.datetime.now() - st[0])
 
-            if td.seconds > td[1]:
+            if td.seconds > st[1]:
                 self.special_text = None
             else:
                 return st[2]
