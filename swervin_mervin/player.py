@@ -155,6 +155,7 @@ class Player:
         finish      = self.__circular_orbit(center, 36, orbit_pos)
         speed       = round((self.speed / s.SEGMENT_HEIGHT) * 1.5, 1)
         font        = pygame.font.Font(s.FONTS["bladerunner"], 20)
+        st          = self.__get_special_text()
 
         pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
         pygame.draw.circle(window, s.COLOURS["black"], center, 4)
@@ -168,6 +169,9 @@ class Player:
         u.render_text(str(self.lap), window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 28, 10))
         u.render_text("time", window, font, s.COLOURS["text"], (10, 10))
         u.render_text(str(math.trunc(self.time_left)), window, font, s.COLOURS["text"], (90, 10))
+
+        if st:
+            u.render_text(st[2], window, font, s.COLOURS["bonus"], (10, 35))
 
         # Points rendering needs more care because it grows so fast.
         p_val_text  = font.render(str(math.trunc(self.points)), 1, s.COLOURS["text"])
@@ -330,14 +334,14 @@ class Player:
         """Defines the special text to show and for how long we should show it."""
         self.special_text = [datetime.datetime.now(), time, text]
 
-    def __get_special_text(self, text, time):
+    def __get_special_text(self):
         """Returns the special text to show, if any."""
         st = self.special_text
 
         if st:
             td = (datetime.datetime.now() - st[0])
 
-            if td.seconds() > td[1]:
+            if td.seconds > td[1]:
                 self.special_text = None
             else:
                 return st[2]
