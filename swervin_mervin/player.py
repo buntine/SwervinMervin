@@ -340,18 +340,6 @@ class Player:
         """Defines the special text to show and for how long we should show it."""
         self.special_text = [datetime.datetime.now(), time, text]
 
-    def __get_special_text(self):
-        """Returns the special text to show, if any."""
-        st = self.special_text
-
-        if st:
-            td = (datetime.datetime.now() - st[0])
-
-            if td.seconds > st[1]:
-                self.special_text = None
-            else:
-                return st[2]
-
     def __collided_with_sprite(self, sprite):
         s = sprite.sprite
         o = sprite.offset
