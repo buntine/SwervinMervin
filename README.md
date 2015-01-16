@@ -27,7 +27,7 @@ Ensure that you have the pygame llibraries installed, and then:
 
 ### TODO
   
-  * Use timedelta to make special_text alternate between red and yellow (td.microseconds % 1000 > 500)
+  * Local settings and highscore file outside of git
   * More levels. If player gets to lap N, then move onto next level.
   * Animate highscores in, fade them out on new game
   * User notification of high score either during or directly after game
