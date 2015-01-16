@@ -31,7 +31,6 @@ class Player:
         self.game_over_lag   = s.GAME_OVER_LAG
         self.next_milestone  = s.POINT_MILESTONE
         self.special_text    = None
-        self.highlight_points_until = 0
 
         self.__set_checkpoint()
 
@@ -171,14 +170,8 @@ class Player:
         u.render_text(str(math.trunc(self.time_left)), window, font, s.COLOURS["text"], (90, 10))
 
         # Points rendering needs more care because it grows so fast.
-        if self.highlight_points_until > 0 and self.time_left >= self.highlight_points_until:
-            points_colour = s.COLOURS["milestone"]
-        else:
-            self.highlight_points_until = 0
-            points_colour = s.COLOURS["text"]
-
         p_val_text  = font.render(str(math.trunc(self.points)), 1, points_colour)
-        p_name_text = font.render("points", 1, points_colour)
+        p_name_text = font.render("points", 1, s.COLOURS["text"])
         p_val_x     = s.DIMENSIONS[0] - p_val_text.get_width() - 10
 
         window.blit(p_val_text, (p_val_x, s.DIMENSIONS[1] - 24))
@@ -189,7 +182,6 @@ class Player:
             milestone_sfx.play()
 
             self.next_milestone += s.POINT_MILESTONE
-            self.highlight_points_until = self.time_left - 1
 
             self.__set_special_text("Nice score!", 2)
 
