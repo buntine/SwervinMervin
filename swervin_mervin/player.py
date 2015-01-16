@@ -64,6 +64,7 @@ class Player:
                             # Yeah, I'm a sicko....
                             if not self.game_over:
                                 self.points += s.POINT_GAIN_PROSTITUTE
+                                self.__set_special_text("+%d points!" % s.POINT_GAIN_PROSTITUTE, 2)
 
                             crash_sfx.play()
                             splat_sfx.play()
@@ -75,6 +76,8 @@ class Player:
                         bonus_sfx.play()
                         
                         segment.remove_sprite(sp)
+
+                        self.__set_special_text("Bonus time!", 2)
                     else:                        
                         pygame.mixer.music.set_volume(0.2)
 
@@ -85,7 +88,9 @@ class Player:
                         crash_sfx.play()
 
                         if not self.game_over:
-                            self.points -= self.points * s.POINT_LOSS_SPRITE
+                            deduction    = self.points * s.POINT_LOSS_SPRITE
+                            self.points -= deduction
+                            self.__set_special_text("-%d points!" % deduction, 2)
 
                     break
 
@@ -184,6 +189,8 @@ class Player:
 
             self.next_milestone += s.POINT_MILESTONE
             self.highlight_points_until = self.time_left - 1
+
+            self.__set_special_text("Nice score!", 2)
 
         if self.game_over:
             go_font = pygame.font.Font(s.FONTS["bladerunner"], 44)
@@ -325,6 +332,10 @@ class Player:
 
     def alive(self):
         return self.game_over_lag > 0
+
+    def __set_special_text(self, text, time):
+        """Defines the special text to show and for how long we should show it."""
+        pass
 
     def __collided_with_sprite(self, sprite):
         s = sprite.sprite
