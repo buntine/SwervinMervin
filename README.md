@@ -28,12 +28,14 @@ Ensure that you have the pygame llibraries installed, and then:
 ### TODO
   
   * Local settings and highscore file outside of git
-  * More levels. If player gets to lap N, then move onto next level.
+  * More levels. If player gets to lap N, then move onto next level
   * Animate highscores in, fade them out on new game
   * User notification of high score either during or directly after game
+  * Get Mel to create bonus art
   * Pedestrians that penalise points when hit
   * Refine collision offsets for sprites
   * Car sound effects
+  * Tunnels
   * Smoke when player accelerating from 0
   * Position (number of `laps + base_segment.index`)
   * Package better for distribution (ship with Pygame?)

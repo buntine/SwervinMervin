@@ -193,7 +193,7 @@ class Player:
 
             self.next_milestone += s.POINT_MILESTONE
 
-            self.__set_special_text("Nice score!", 2)
+            self.__set_special_text("Nice driving!", 2)
 
         if self.game_over:
             go_font = pygame.font.Font(s.FONTS["bladerunner"], 44)
