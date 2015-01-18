@@ -53,7 +53,7 @@ class Game:
                 self.clock.tick(s.COUNTDOWN_FPS)
 
         ## Now lets play!
-        player      = p.Player()
+        player      = p.Player(self.high_scores)
         level       = l.Level("melbourne")
         backgrounds = [b.Background("sky", 0, 2, True),
                         b.Background("city", 0, 1)]

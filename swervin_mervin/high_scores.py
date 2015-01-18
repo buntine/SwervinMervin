@@ -12,6 +12,12 @@ class HighScores():
 
         return any(map(lambda n: score > n, scores))
 
+    def minimum_score(self):
+        """returns the minimum score required to be on the high score list."""
+        scores = self.__scores_only()
+
+        return scores[-1]
+
     def add_high_score(self, score):
         """Adds given score to high scores, knocking off lowest score."""
         today = dt.date.today()

@@ -6,7 +6,7 @@ import util as u
 class Player:
     """Represents the player in the game world."""
 
-    def __init__(self):
+    def __init__(self, high_score):
         self.x               = 0
         self.y               = 0
         self.position        = 0
@@ -22,6 +22,7 @@ class Player:
         self.lap_margin      = 0
         self.points          = 0
         self.blood_alpha     = 0
+        self.high_score      = high_score
         self.fastest_lap     = s.CHECKPOINT
         self.checkpoint      = s.CHECKPOINT
         self.time_left       = s.CHECKPOINT
@@ -54,55 +55,20 @@ class Player:
         if not self.crashed:
             for sp in segment.sprites:
                 if sp.sprite.has_key("collision") and self.__collided_with_sprite(sp):
-                    if sp.is_hooker():
-                        if not sp.hit:
-                            crash_sfx        = pygame.mixer.Sound(os.path.join("lib", "scream.ogg"))
-                            splat_sfx        = pygame.mixer.Sound(os.path.join("lib", "blood.ogg"))
-                            sp.hit           = True
-                            self.blood_alpha = 255
-
-                            # Yeah, I'm a sicko....
-                            if not self.game_over:
-                                self.points += s.POINT_GAIN_PROSTITUTE
-                                self.__set_special_text("+%d points!" % s.POINT_GAIN_PROSTITUTE, 2)
-
-                            crash_sfx.play()
-                            splat_sfx.play()
+                    if sp.is_hooker() and not sp.hit:
+                        sp.hit = True
+                        self.__hit_hooker()
                     elif sp.is_bonus():
-                        if not self.game_over:
-                            self.lap_bonus += s.BONUS_AMOUNT
-
-                        bonus_sfx = pygame.mixer.Sound(os.path.join("lib", "oh_yeah.ogg"))
-                        bonus_sfx.play()
-                        
                         segment.remove_sprite(sp)
-
-                        self.__set_special_text("Bonus time!", 2)
-                    else:                        
-                        pygame.mixer.music.set_volume(0.2)
-
-                        crash_sfx    = pygame.mixer.Sound(os.path.join("lib", "you_fool.ogg"))
-                        self.crashed = True
-                        self.speed   = 0
-
-                        crash_sfx.play()
-
-                        if not self.game_over:
-                            deduction    = self.points * s.POINT_LOSS_SPRITE
-                            self.points -= deduction
-                            self.__set_special_text("-%d points!" % deduction, 2)
+                        self.__hit_bonus()
+                    else:
+                        self.__hit_world_object()
 
                     break
 
             for comp in segment.competitors:
                 if self.__collided_with_competitor(comp):
-                    crash_sfx = pygame.mixer.Sound(os.path.join("lib", "car_crash.ogg"))
-                    crash_sfx.play()
-
-                    self.speed = self.speed / s.CRASH_DIVISOR
-
-                    if not self.game_over:
-                        self.points -= self.points * s.POINT_LOSS_COMP
+                    self.__hit_competitor()
 
                     break
 
@@ -362,6 +328,52 @@ class Player:
 
     def __set_checkpoint(self):
         self.last_checkpoint = datetime.datetime.now()
+
+    def __hit_hooker(self, sprite):
+        crash_sfx        = pygame.mixer.Sound(os.path.join("lib", "scream.ogg"))
+        splat_sfx        = pygame.mixer.Sound(os.path.join("lib", "blood.ogg"))
+        self.blood_alpha = 255
+        sprite.hit       = True
+
+        # Yeah, I'm a sicko....
+        if not self.game_over:
+            self.points += s.POINT_GAIN_PROSTITUTE
+            self.__set_special_text("+%d points!" % s.POINT_GAIN_PROSTITUTE, 2)
+
+        crash_sfx.play()
+        splat_sfx.play()
+
+    def __hit_bonus(self, segment):
+        if not self.game_over:
+            self.lap_bonus += s.BONUS_AMOUNT
+
+        bonus_sfx = pygame.mixer.Sound(os.path.join("lib", "oh_yeah.ogg"))
+        bonus_sfx.play()
+
+        self.__set_special_text("Bonus time!", 2)
+
+    def __hit_world_object(self):
+        pygame.mixer.music.set_volume(0.2)
+
+        crash_sfx    = pygame.mixer.Sound(os.path.join("lib", "you_fool.ogg"))
+        self.crashed = True
+        self.speed   = 0
+
+        crash_sfx.play()
+
+        if not self.game_over:
+            deduction    = self.points * s.POINT_LOSS_SPRITE
+            self.points -= deduction
+            self.__set_special_text("-%d points!" % deduction, 2)
+
+    def __hit_competitor(self):
+        crash_sfx = pygame.mixer.Sound(os.path.join("lib", "car_crash.ogg"))
+        crash_sfx.play()
+
+        self.speed = self.speed / s.CRASH_DIVISOR
+
+        if not self.game_over:
+            self.points -= self.points * s.POINT_LOSS_COMP
 
     def __fastest_lap(self):
         return not self.game_over and self.lap_time < self.fastest_lap
