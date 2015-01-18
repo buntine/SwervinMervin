@@ -245,4 +245,3 @@ if DEV_MODE:
     COUNTDOWN       = False
     FULLSCREEN      = False
     CHECKPOINT      = 55
-    POINT_MILESTONE = 3000

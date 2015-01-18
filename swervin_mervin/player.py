@@ -55,9 +55,10 @@ class Player:
         if not self.crashed:
             for sp in segment.sprites:
                 if sp.sprite.has_key("collision") and self.__collided_with_sprite(sp):
-                    if sp.is_hooker() and not sp.hit:
-                        sp.hit = True
-                        self.__hit_hooker()
+                    if sp.is_hooker():
+                        if not sp.hit:
+                            sp.hit = True
+                            self.__hit_hooker()
                     elif sp.is_bonus():
                         segment.remove_sprite(sp)
                         self.__hit_bonus()
