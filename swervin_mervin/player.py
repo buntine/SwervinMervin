@@ -136,6 +136,7 @@ class Player:
         u.render_text("time", window, font, s.COLOURS["text"], (10, 10))
         u.render_text(str(math.trunc(self.time_left)), window, font, s.COLOURS["text"], (90, 10))
 
+        # Render special text.
         if st:
             td = (datetime.datetime.now() - st[0])
 
@@ -153,6 +154,7 @@ class Player:
         window.blit(p_val_text, (p_val_x, s.DIMENSIONS[1] - 24))
         window.blit(p_name_text, (p_val_x - 112, s.DIMENSIONS[1] - 24))
 
+        # Hit a point milestone.
         if self.points > self.next_milestone and not self.game_over:
             milestone_sfx = pygame.mixer.Sound(os.path.join("lib", "excellent.ogg"))
             milestone_sfx.play()
@@ -160,6 +162,15 @@ class Player:
             self.next_milestone += s.POINT_MILESTONE
 
             self.__set_special_text("Nice driving!", 2)
+
+        # On the leaderboard!
+        if self.high_score > 0 and self.points > self.high_score:
+            high_score_sfx = pygame.mixer.Sound(os.path.join("lib", "excellent.ogg"))
+            high_score_sfx.play()
+
+            self.high_score = 0
+
+            self.__set_special_text("New High Score!", 2)
 
         if self.game_over:
             go_font = pygame.font.Font(s.FONTS["bladerunner"], 44)
@@ -329,11 +340,10 @@ class Player:
     def __set_checkpoint(self):
         self.last_checkpoint = datetime.datetime.now()
 
-    def __hit_hooker(self, sprite):
+    def __hit_hooker(self):
         crash_sfx        = pygame.mixer.Sound(os.path.join("lib", "scream.ogg"))
         splat_sfx        = pygame.mixer.Sound(os.path.join("lib", "blood.ogg"))
         self.blood_alpha = 255
-        sprite.hit       = True
 
         # Yeah, I'm a sicko....
         if not self.game_over:
@@ -343,7 +353,7 @@ class Player:
         crash_sfx.play()
         splat_sfx.play()
 
-    def __hit_bonus(self, segment):
+    def __hit_bonus(self):
         if not self.game_over:
             self.lap_bonus += s.BONUS_AMOUNT
 
