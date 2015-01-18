@@ -6,6 +6,7 @@ class HighScores():
 
     def __init__(self):
         self.high_scores = self.__read_high_scores()
+        self.__sort()
 
     def is_high_score(self, score):
         scores = self.__scores_only()
@@ -23,11 +24,14 @@ class HighScores():
         today = dt.date.today()
 
         self.high_scores.append([today, score])
-        self.high_scores.sort(key=lambda hs: hs[1])
-        self.high_scores.reverse()
+        self.__sort()
         self.high_scores.pop()
 
         self.__write_high_scores()
+
+    def __sort(self):
+        self.high_scores.sort(key=lambda hs: hs[1])
+        self.high_scores.reverse()
 
     def __write_high_scores(self):
         hs    = open(os.path.join("dat", "highscores"), "w")
