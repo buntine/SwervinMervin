@@ -10,6 +10,10 @@ class WorldObject:
         s_height  = int(self.sprite["height"] * coords["s"] * s.ROAD_WIDTH * self.quantifier)
         x         = (coords["x"] - s_width) + (coords["w"] * self.offset)
         y         = s.DIMENSIONS[1] - coords["y"] - s_height
+
+        if self.offset_y > 0:
+            y -= (self.offset_y * 100000 * coords["s"])
+ 
         clip_line = (s.DIMENSIONS[1] - clip) - y
 
         if s_width > 0 and s_height > 0 and clip_line > 0 and\

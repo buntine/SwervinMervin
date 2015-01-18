@@ -7,9 +7,9 @@ class Sprite(wo.WorldObject):
 
     def __init__(self, name, x, y):
         self.offset     = x
+        self.offset_y   = y
         self.sprite     = s.SPRITES[name]
         self.quantifier = 3
-        self.y          = y
         self.hit        = False
 
     def is_hooker(self):

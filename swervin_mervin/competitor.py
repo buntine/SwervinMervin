@@ -8,6 +8,7 @@ class Competitor(wo.WorldObject):
     def __init__(self, position, offset, name, speed):
         self.position   = position * s.SEGMENT_HEIGHT
         self.offset     = offset
+        self.offset_y   = 0.0
         self.sprite     = s.SPRITES[name]
         self.speed      = speed
         self.quantifier = 1.8
