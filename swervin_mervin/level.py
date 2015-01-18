@@ -26,7 +26,7 @@ class Level:
         with open(sprites_path, "r") as csvfile:
             for row in csv.reader(csvfile):
                 segment = self.segments[int(row[0])]
-                self.add_sprite(segment, float(row[1]), row[2])
+                self.add_sprite(segment, row[1], float(row[2]), float(row[3]))
 
         with open(competitors_path, "r") as csvfile:
             for row in csv.reader(csvfile):
@@ -39,9 +39,9 @@ class Level:
 
         self.segments.append(segment)
 
-    def add_sprite(self, segment, offset, name):
+    def add_sprite(self, segment, name, x, y):
         """Adds a sprite to the given segment."""
-        sprite = sp.Sprite(offset, name)
+        sprite = sp.Sprite(name, x, y)
         segment.sprites.append(sprite)
 
     def insert_bonuses(self):

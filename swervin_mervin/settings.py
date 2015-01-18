@@ -3,7 +3,7 @@
 from pygame import Color
 import math, os
 
-DEV_MODE              = False
+DEV_MODE              = True
 FPS                   = 60
 TITLE_FPS             = 20
 COUNTDOWN_FPS         = 1
@@ -16,7 +16,7 @@ DIMENSIONS            = (640, 480)
 MUSIC_VOLUME          = 0.7
 SEGMENT_HEIGHT        = 260
 RUMBLE_LENGTH         = 3
-DRAW_DISTANCE         = 200
+DRAW_DISTANCE         = 150
 ROAD_WIDTH            = 2100
 LANES                 = 4
 BOUNDS                = 2.1
@@ -26,7 +26,7 @@ PLAYER_ANIM_HOLD      = 8
 CHECKPOINT            = 50
 LAP_DIFFICULTY_FACTOR = 3
 MINIMUM_DIFFICULTY    = 2
-CRASH_DIVISOR         = 4
+CRASH_DIVISOR         = 2
 POINTS                = 15
 CHANCE_OF_BONUSES     = 3
 BONUS_AMOUNT          = 3
@@ -139,6 +139,10 @@ SPRITES            = {"straight1": {
                        "collision": [-0.9, 0.1],
                        "width": 80,
                        "height": 126},
+                     "tunnel": {
+                       "path": "tunnel.png",
+                       "width": 480,
+                       "height": 40},
                      "boat_house": {
                        "path": "boat_house.png",
                        "collision": [-0.9, 0.1],

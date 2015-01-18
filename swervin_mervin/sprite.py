@@ -5,10 +5,11 @@ import world_object as wo
 class Sprite(wo.WorldObject):
     """Represents a single sprite in a level."""
 
-    def __init__(self, offset, name):
-        self.offset     = offset
+    def __init__(self, name, x, y):
+        self.offset     = x
         self.sprite     = s.SPRITES[name]
         self.quantifier = 3
+        self.y          = y
         self.hit        = False
 
     def is_hooker(self):
