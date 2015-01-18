@@ -39,7 +39,7 @@ class Level:
 
         self.segments.append(segment)
 
-    def add_sprite(self, segment, name, x, y):
+    def add_sprite(self, segment, name, x, y=0.0):
         """Adds a sprite to the given segment."""
         sprite = sp.Sprite(name, x, y)
         segment.sprites.append(sprite)
@@ -50,7 +50,7 @@ class Level:
 
         for s in segs:
             offset = random.randint(-10, 10) / 10.0
-            self.add_sprite(s, offset, "bonus")
+            self.add_sprite(s, "bonus", offset)
 
     def add_competitor(self, position, offset, name, speed):
         """Adds a competitor sprite to the given segment."""
