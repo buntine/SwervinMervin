@@ -135,7 +135,7 @@ class Game:
 
             # Draw sprites in from back to front (painters algorithm).
             if segment.index != base_segment.index:
-                for i in reversed(range(1, s.DRAW_DISTANCE)):
+                for i in reversed(range(1, s.SPRITE_DRAW_DISTANCE)):
                     segment = level.offset_segment(base_segment.index + i)
                     segment.render_world_objects(self.window)
 
@@ -146,7 +146,10 @@ class Game:
                     player.render_blood(self.window)
 
             for event in pygame.event.get():
-                if event.type == QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE and s.FULLSCREEN):
+                if event.type == QUIT or\
+                   (event.type == pygame.KEYDOWN and\
+                    event.key == pygame.K_ESCAPE and\
+                    s.FULLSCREEN):
                     pygame.quit()
                     sys.exit()
 

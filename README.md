@@ -27,6 +27,7 @@ Ensure that you have the pygame libraries installed, and then:
 
 ### TODO
   
+  * Pause
   * Local highscore file outside of git
   * More levels. If player gets to lap N, then move onto next level
   * Animate highscores in, fade them out on new game
@@ -34,7 +35,7 @@ Ensure that you have the pygame libraries installed, and then:
   * Pedestrians that penalise points when hit
   * Refine collision offsets for sprites
   * Car sound effects
-  * Smoke when player accelerating from 0
+  * Car smoke when going around corners (player is turning and going around corner?)
   * Position (number of `laps + base_segment.index`)
   * Package better for distribution (ship with Pygame?)
   * General refactor and Pythonify of sloppy code
