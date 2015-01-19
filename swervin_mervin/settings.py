@@ -1,9 +1,6 @@
-
-
 from pygame import Color
 import math, os
 
-DEV_MODE              = False
 FPS                   = 60
 TITLE_FPS             = 20
 COUNTDOWN_FPS         = 1
@@ -244,8 +241,5 @@ SPRITES            = {"straight1": {
                        "width": 25,
                        "height": 42}}
 
-if DEV_MODE:
-    TITLE_SCREEN    = False
-    COUNTDOWN       = False
-    FULLSCREEN      = False
-    CHECKPOINT      = 55
+if os.path.isfile("swervin_mervin/settings_local.py"):
+    execfile("swervin_mervin/settings_local.py")

@@ -1,3 +1,4 @@
 *.swp
 *.swo
 *.pyc
+swervin_mervin/settings_local.py

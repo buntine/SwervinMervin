@@ -22,19 +22,18 @@ Ensure that you have the pygame libraries installed, and then:
   * My beautiful girlfriend, Mel, for all of the original pixel art.
   * LazerHawk and Miami Nights 1984 for the music.
   * Out Run (1986) for "letting me" use some sprites.
-  * Jim Gillette and Cary-Hiroyuki Tagawa for the sound bites.
-  * [SoundBible](http://soundbible.com) and [FreeSFX](http://freesfx.co.uk) for some sound bites.
+  * Jim Gillette, Macho Man Randy Savage and Cary-Hiroyuki Tagawa for the sound bites.
+  * [SoundBible](http://soundbible.com) and [FreeSFX](http://freesfx.co.uk) for some sound effects.
 
 ### TODO
   
-  * Local settings and highscore file outside of git
+  * Local highscore file outside of git
   * More levels. If player gets to lap N, then move onto next level
   * Animate highscores in, fade them out on new game
-  * Get Mel to create bonus art
+  * Get Mel to create art for: Bonuses, Tunnel roof
   * Pedestrians that penalise points when hit
   * Refine collision offsets for sprites
   * Car sound effects
-  * Tunnels
   * Smoke when player accelerating from 0
   * Position (number of `laps + base_segment.index`)
   * Package better for distribution (ship with Pygame?)
