@@ -98,6 +98,12 @@ class Player:
             if self.animation_frame > (s.PLAYER_ANIM_HOLD * 2):
                 self.animation_frame = 1
 
+        # Show smoke if player is fangin' it around a corner.
+        if abs(segment.curve) > s.MINIMUM_CORNER_SMOKE and\
+           self.direction != 0 and\
+           self.speed > (s.TOP_SPEED / 1.2):
+            sprite += "_smoke"
+
         sprite += "1" if (self.animation_frame < s.PLAYER_ANIM_HOLD) else "2"
 
         sprite   = s.SPRITES[sprite]

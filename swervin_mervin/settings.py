@@ -32,6 +32,7 @@ POINT_GAIN_PROSTITUTE = 500
 POINT_LOSS_SPRITE     = 0.03
 POINT_LOSS_COMP       = 0.02
 POINT_MILESTONE       = 20000
+MINIMUM_CORNER_SMOKE  = 3
 TOP_SPEED             = (SEGMENT_HEIGHT / (1.0/FPS)) * 1.9
 OFFROAD_TOP_SPEED     = TOP_SPEED / 2.0
 ACCELERATION          = TOP_SPEED / 5.0
@@ -84,6 +85,22 @@ SPRITES            = {"straight1": {
                        "path": "right2.png",
                        "width": 80,
                        "height": 50},
+                     "left_smoke1": {
+                       "path": "left1.png",
+                       "width": 80,
+                       "height": 50},
+                     "left_smoke2": {
+                       "path": "left2.png",
+                       "width": 80,
+                       "height": 50},
+                     "right_smoke1": {
+                       "path": "right1.png",
+                       "width": 80,
+                       "height": 50},
+                     "right_smoke2": {
+                       "path": "right2.png",
+                       "width": 80,
+                       "height": 50},
                      "uphill_straight1": {
                        "path": "uphill_straight1.png",
                        "width": 80,
@@ -108,6 +125,22 @@ SPRITES            = {"straight1": {
                        "path": "uphill_right2.png",
                        "width": 80,
                        "height": 56},
+                     "uphill_left_smoke1": {
+                       "path": "uphill_left1.png",
+                       "width": 80,
+                       "height": 56},
+                     "uphill_left_smoke2": {
+                       "path": "uphill_left2.png",
+                       "width": 80,
+                       "height": 56},
+                     "uphill_right_smoke1": {
+                       "path": "uphill_right1.png",
+                       "width": 80,
+                       "height": 56},
+                     "uphill_right_smoke2": {
+                       "path": "uphill_right2.png",
+                       "width": 80,
+                       "height": 56},
                      "downhill_straight1": {
                        "path": "downhill_straight1.png",
                        "width": 80,
@@ -129,6 +162,22 @@ SPRITES            = {"straight1": {
                        "width": 80,
                        "height": 56},
                      "downhill_right2": {
+                       "path": "downhill_right2.png",
+                       "width": 80,
+                       "height": 56},
+                     "downhill_left_smoke1": {
+                       "path": "downhill_left1.png",
+                       "width": 80,
+                       "height": 56},
+                     "downhill_left_smoke2": {
+                       "path": "downhill_left2.png",
+                       "width": 80,
+                       "height": 56},
+                     "downhill_right_smoke1": {
+                       "path": "downhill_right1.png",
+                       "width": 80,
+                       "height": 56},
+                     "downhill_right_smoke2": {
                        "path": "downhill_right2.png",
                        "width": 80,
                        "height": 56},

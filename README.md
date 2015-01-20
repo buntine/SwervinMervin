@@ -31,11 +31,10 @@ Ensure that you have the pygame libraries installed, and then:
   * Local highscore file outside of git
   * More levels. If player gets to lap N, then move onto next level
   * Animate highscores in, fade them out on new game
-  * Get Mel to create art for: Bonuses, Tunnel roof
+  * Get Mel to create art for: Bonuses, Tunnel roof, corner smoke
   * Pedestrians that penalise points when hit
   * Refine collision offsets for sprites
   * Car sound effects
-  * Car smoke when going around corners (player is turning and going around corner?)
   * Position (number of `laps + base_segment.index`)
   * Package better for distribution (ship with Pygame?)
   * General refactor and Pythonify of sloppy code
