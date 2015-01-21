@@ -24,6 +24,7 @@ Ensure that you have the pygame libraries installed, and then:
   * Out Run (1986) for "letting me" use some sprites.
   * Jim Gillette, Macho Man Randy Savage and Cary-Hiroyuki Tagawa for the sound bites.
   * [SoundBible](http://soundbible.com) and [FreeSFX](http://freesfx.co.uk) for some sound effects.
+  * This project is dedicated to Adam Hillier (RIP), for his love of retro video games, and Zak Harvey (RIP), for his love of reckless driving.
 
 ### TODO
   
