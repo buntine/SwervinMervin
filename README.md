@@ -34,7 +34,7 @@ Ensure that you have the pygame libraries installed, and then:
   * Get Mel to create art for: Bonuses, Tunnel roof, corner smoke
   * Pedestrians that penalise points when hit
   * Refine collision offsets for sprites
-  * Car sound effects
+  * Car sound effects (when player passes other car, when player is smoking around corner)
   * Position (number of `laps + base_segment.index`)
   * Package better for distribution (ship with Pygame?)
   * General refactor and Pythonify of sloppy code

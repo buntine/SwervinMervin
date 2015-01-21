@@ -14,45 +14,17 @@ class Game:
     def __init__(self, window, clock):
         self.window      = window
         self.clock       = clock
+        self.paused      = False
         self.waiting     = False
         self.high_scores = hs.HighScores()
 
     def play(self):
-        ## Fire up the title screen.
         if s.TITLE_SCREEN:
-            title_screen = ts.TitleScreen()
-            pygame.mixer.music.load(os.path.join("lib", "mn84-theme.ogg"))
-            pygame.mixer.music.play(-1)
+            self.__title_screen();
 
-            while not title_screen.finished:
-                title_screen.progress(self.window)
-
-                for event in pygame.event.get():
-                    if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_SPACE and title_screen.ready:
-                            pygame.mixer.music.fadeout(1500)
-                            title_screen.finished = True
-                        elif event.key == pygame.K_ESCAPE and s.FULLSCREEN:
-                            pygame.quit()
-                            sys.exit()
-                    elif event.type == QUIT:
-                        pygame.quit()
-                        sys.exit()
-
-                pygame.display.update()
-                self.clock.tick(s.TITLE_FPS)
-
-        ## Show countdown.
         if s.COUNTDOWN:
-            countdown = cd.CountDown()
+            self.__countdown();
 
-            while not countdown.finished:
-                countdown.progress(self.window)
-
-                pygame.display.update()
-                self.clock.tick(s.COUNTDOWN_FPS)
-
-        ## Now lets play!
         player      = p.Player(self.high_scores.minimum_score())
         level       = l.Level("melbourne")
         backgrounds = [b.Background("sky", 0, 2, True),
@@ -193,10 +165,44 @@ class Game:
 
         while self.waiting:
             for event in pygame.event.get():
-                if event.type == QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE and s.FULLSCREEN):
+                if event.type == QUIT or\
+                   (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE and s.FULLSCREEN):
                     pygame.quit()
                     sys.exit()
                 elif event.type == KEYDOWN and event.key in [K_UP, K_SPACE]:
                     self.waiting = False
      
             self.clock.tick(s.FPS)
+
+    def __title_screen(self):
+        title_screen = ts.TitleScreen()
+        pygame.mixer.music.load(os.path.join("lib", "mn84-theme.ogg"))
+        pygame.mixer.music.play(-1)
+
+        while not title_screen.finished:
+            title_screen.progress(self.window)
+
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE and title_screen.ready:
+                        pygame.mixer.music.fadeout(1500)
+                        title_screen.finished = True
+                    elif event.key == pygame.K_ESCAPE and s.FULLSCREEN:
+                        pygame.quit()
+                        sys.exit()
+                elif event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+            pygame.display.update()
+            self.clock.tick(s.TITLE_FPS)
+
+    def __countdown(self):
+        countdown = cd.CountDown()
+
+        while not countdown.finished:
+            countdown.progress(self.window)
+
+            pygame.display.update()
+            self.clock.tick(s.COUNTDOWN_FPS)
+
