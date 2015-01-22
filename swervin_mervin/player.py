@@ -32,6 +32,7 @@ class Player:
         self.game_over_lag   = s.GAME_OVER_LAG
         self.next_milestone  = s.POINT_MILESTONE
         self.special_text    = None
+        self.screech_sfx     = None
 
         self.__set_checkpoint()
 
@@ -103,6 +104,9 @@ class Player:
            self.direction != 0 and\
            self.speed > (s.TOP_SPEED / 1.2):
             sprite += "_smoke"
+            self.__run_screech()
+        elif self.screech_sfx:
+            self.__stop_screech()
 
         sprite += "1" if (self.animation_frame < s.PLAYER_ANIM_HOLD) else "2"
 
@@ -394,3 +398,13 @@ class Player:
 
     def __fastest_lap(self):
         return not self.game_over and self.lap_time < self.fastest_lap
+
+    def __run_screech(self):
+        if not self.screech_sfx:
+            self.screech_sfx = pygame.mixer.Sound(os.path.join("lib", "screech_short.ogg"))
+            self.screech_sfx.set_volume(0.4)
+            self.screech_sfx.play(-1)
+
+    def __stop_screech(self):
+        self.screech_sfx.stop()
+        self.screech_sfx = None
