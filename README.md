@@ -28,7 +28,7 @@ Ensure that you have the pygame libraries installed, and then:
 
 ### TODO
   
-  * Pause
+  * Rething player checkpoint logic to fix "time left" bug in pause and make countdown easy to disable/enable.
   * Local highscore file outside of git
   * More levels. If player gets to lap N, then move onto next level
   * Animate highscores in, fade them out on new game

@@ -194,6 +194,12 @@ class Game:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 pygame.mixer.music.unpause()
                 self.paused = False
+            elif event.type == QUIT or\
+               (event.type == pygame.KEYDOWN and\
+                event.key == pygame.K_ESCAPE and\
+                s.FULLSCREEN):
+                pygame.quit()
+                sys.exit()
 
     def __title_screen(self):
         title_screen = ts.TitleScreen()
