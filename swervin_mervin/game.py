@@ -190,6 +190,14 @@ class Game:
         p.set_direction(keys)
 
     def __pause_cycle(self):
+        pause_font = pygame.font.Font(s.FONTS["bladerunner"], 64)
+        pause_text = pause_font.render("Paused", 1, s.COLOURS["text"])
+        x          = (s.DIMENSIONS[0] - pause_text.get_width()) / 2
+        y          = (s.DIMENSIONS[1] - pause_text.get_height()) / 2
+
+        self.window.fill(s.COLOURS["black"])
+        self.window.blit(pause_text, (x, y))
+
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 pygame.mixer.music.unpause()
