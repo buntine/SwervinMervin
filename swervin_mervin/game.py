@@ -180,6 +180,9 @@ class Game:
                 s.FULLSCREEN):
                 pygame.quit()
                 sys.exit()
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                pygame.mixer.music.pause()
+                self.paused = True
 
         # Steering, acceleration.
         keys = pygame.key.get_pressed()
@@ -187,7 +190,10 @@ class Game:
         p.set_direction(keys)
 
     def __pause_cycle(self):
-        pass
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                pygame.mixer.music.unpause()
+                self.paused = False
 
     def __title_screen(self):
         title_screen = ts.TitleScreen()
