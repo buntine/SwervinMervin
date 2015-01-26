@@ -12,7 +12,7 @@ class Competitor(wo.WorldObject):
         self.sprite     = s.SPRITES[name]
         self.speed      = speed
         self.quantifier = 1.8
-        self.engine_sfx = pygame.mixer.Sound(os.path.join("lib", "screech_short.ogg"))
+        self.engine_sfx = pygame.mixer.Sound(os.path.join("lib", "engine.ogg"))
 
         self.engine_sfx.set_volume(0)
 
