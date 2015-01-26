@@ -80,7 +80,7 @@ class Game:
 
         while self.waiting:
             for e in pygame.event.get():
-                self.try_quit(e):
+                self.try_quit(e)
 
                 if e.type == KEYDOWN and e.key in [K_UP, K_SPACE]:
                     self.waiting = False
@@ -172,7 +172,7 @@ class Game:
                 p.render_blood(self.window)
 
         for e in pygame.event.get():
-            self.__try_quit(e):
+            self.__try_quit(e)
 
             if e.type == pygame.KEYDOWN and e.key == pygame.K_SPACE:
                 pygame.mixer.music.pause()
@@ -193,7 +193,7 @@ class Game:
         self.window.blit(pause_text, (x, y))
 
         for e in pygame.event.get():
-            self.__try_quit(event):
+            self.__try_quit(event)
 
             if e.type == pygame.KEYDOWN and e.key == pygame.K_SPACE:
                 pygame.mixer.music.unpause()
@@ -208,7 +208,7 @@ class Game:
             title_screen.progress(self.window)
 
             for e in pygame.event.get():
-                self.__try_quit(e):
+                self.__try_quit(e)
 
                 if e.type == pygame.KEYDOWN and e.key == pygame.K_SPACE and title_screen.ready:
                     pygame.mixer.music.fadeout(1500)
@@ -226,10 +226,10 @@ class Game:
             pygame.display.update()
             self.clock.tick(s.COUNTDOWN_FPS)
 
-    def __try_quit(e):
+    def __try_quit(self, e):
         if e.type == QUIT or\
-          (event.type == pygame.KEYDOWN and\
-           event.key == pygame.K_ESCAPE and\
-           s.FULLSCREEN)
+          (e.type == pygame.KEYDOWN and\
+           e.key == pygame.K_ESCAPE and\
+           s.FULLSCREEN):
             pygame.quit()
             sys.exit()
