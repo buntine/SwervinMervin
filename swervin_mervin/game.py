@@ -79,12 +79,10 @@ class Game:
         pygame.display.update()
 
         while self.waiting:
-            for event in pygame.event.get():
-                if event.type == QUIT or\
-                   (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE and s.FULLSCREEN):
-                    pygame.quit()
-                    sys.exit()
-                elif event.type == KEYDOWN and event.key in [K_UP, K_SPACE]:
+            for e in pygame.event.get():
+                self.try_quit(e):
+
+                if e.type == KEYDOWN and e.key in [K_UP, K_SPACE]:
                     self.waiting = False
      
             self.clock.tick(s.FPS)
@@ -173,14 +171,10 @@ class Game:
             if p.blood_alpha > 0:
                 p.render_blood(self.window)
 
-        for event in pygame.event.get():
-            if event.type == QUIT or\
-               (event.type == pygame.KEYDOWN and\
-                event.key == pygame.K_ESCAPE and\
-                s.FULLSCREEN):
-                pygame.quit()
-                sys.exit()
-            elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+        for e in pygame.event.get():
+            self.__try_quit(e):
+
+            if e.type == pygame.KEYDOWN and e.key == pygame.K_SPACE:
                 pygame.mixer.music.pause()
                 self.paused = True
 
@@ -198,16 +192,12 @@ class Game:
         self.window.fill(s.COLOURS["black"])
         self.window.blit(pause_text, (x, y))
 
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+        for e in pygame.event.get():
+            self.__try_quit(event):
+
+            if e.type == pygame.KEYDOWN and e.key == pygame.K_SPACE:
                 pygame.mixer.music.unpause()
                 self.paused = False
-            elif event.type == QUIT or\
-               (event.type == pygame.KEYDOWN and\
-                event.key == pygame.K_ESCAPE and\
-                s.FULLSCREEN):
-                pygame.quit()
-                sys.exit()
 
     def __title_screen(self):
         title_screen = ts.TitleScreen()
@@ -217,17 +207,12 @@ class Game:
         while not title_screen.finished:
             title_screen.progress(self.window)
 
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE and title_screen.ready:
-                        pygame.mixer.music.fadeout(1500)
-                        title_screen.finished = True
-                    elif event.key == pygame.K_ESCAPE and s.FULLSCREEN:
-                        pygame.quit()
-                        sys.exit()
-                elif event.type == QUIT:
-                    pygame.quit()
-                    sys.exit()
+            for e in pygame.event.get():
+                self.__try_quit(e):
+
+                if e.type == pygame.KEYDOWN and e.key == pygame.K_SPACE and title_screen.ready:
+                    pygame.mixer.music.fadeout(1500)
+                    title_screen.finished = True
 
             pygame.display.update()
             self.clock.tick(s.TITLE_FPS)
@@ -240,3 +225,11 @@ class Game:
 
             pygame.display.update()
             self.clock.tick(s.COUNTDOWN_FPS)
+
+    def __try_quit(e):
+        if e.type == QUIT or\
+          (event.type == pygame.KEYDOWN and\
+           event.key == pygame.K_ESCAPE and\
+           s.FULLSCREEN)
+            pygame.quit()
+            sys.exit()
