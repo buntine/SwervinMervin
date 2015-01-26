@@ -28,14 +28,16 @@ Ensure that you have the pygame libraries installed, and then:
 
 ### TODO
   
-  * Rething player checkpoint logic to fix "time left" bug in pause and make countdown easy to disable/enable.
+  * Rethink player checkpoint logic to fix "time left" bug in pause and make countdown easy to disable/enable.
+    * Move all time/checkpoint stuff into game (or maybe level?) and out of player.
   * Local highscore file outside of git
   * More levels. If player gets to lap N, then move onto next level
   * Animate highscores in, fade them out on new game
   * Get Mel to create art for: Bonuses, Tunnel roof, corner smoke
-  * Pedestrians that penalise points when hit
+  * Random boxes that penalise time-left when hit
+  * Random boxes that give player temporary speed boost
   * Refine collision offsets for sprites
-  * Car sound effects (when player passes other car, when player is smoking around corner)
+  * Car sound effects (when player passes other car)
   * Position (number of `laps + base_segment.index`)
   * Package better for distribution (ship with Pygame?)
   * General refactor and Pythonify of sloppy code

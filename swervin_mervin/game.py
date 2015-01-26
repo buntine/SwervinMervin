@@ -113,6 +113,8 @@ class Game:
             c.travel(l.track_length())
             new_seg = l.find_segment(c.position)
 
+            c.play_engine(p.position)
+
             if old_seg.index != new_seg.index:
                 if c in old_seg.competitors:
                     old_seg.competitors.remove(c)
