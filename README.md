@@ -37,7 +37,6 @@ Ensure that you have the pygame libraries installed, and then:
   * Random boxes that penalise time-left when hit
   * Random boxes that give player temporary speed boost
   * Refine collision offsets for sprites
-  * Car sound effects (when player passes other car)
   * Position (number of `laps + base_segment.index`)
   * Package better for distribution (ship with Pygame?)
   * General refactor and Pythonify of sloppy code

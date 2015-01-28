@@ -80,7 +80,7 @@ class Game:
 
         while self.waiting:
             for e in pygame.event.get():
-                self.try_quit(e)
+                self.__try_quit(e)
 
                 if e.type == KEYDOWN and e.key in [K_UP, K_SPACE]:
                     self.waiting = False
