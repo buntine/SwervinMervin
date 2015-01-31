@@ -13,6 +13,7 @@ pygame.display.set_caption("Swervin Mervin")
 
 if s.FULLSCREEN:
     w_flag = pygame.FULLSCREEN
+    pygame.mouse.set_visible(False)
 else:
     w_flag = 0
 
