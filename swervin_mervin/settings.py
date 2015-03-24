@@ -87,12 +87,12 @@ SPRITES            = {"straight1": {
                        "width": 80,
                        "height": 50},
                      "left_smoke1": {
-                       "path": "left1.png",
-                       "width": 80,
+                       "path": "left_smoke1.png",
+                       "width": 100,
                        "height": 50},
                      "left_smoke2": {
-                       "path": "left2.png",
-                       "width": 80,
+                       "path": "left_smoke1.png",
+                       "width": 100,
                        "height": 50},
                      "right_smoke1": {
                        "path": "right1.png",

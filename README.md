@@ -6,8 +6,6 @@ Accelleration and steering is performed via the arrow keys. Space Bar is akin to
 
 Here is a [small video of me playing](https://www.youtube.com/watch?v=T08Oe1l7nhk) (poorly).
 
-Note, this project is purely an exercise in enjoyment and my first foray into Pygame. Any pointers are welcome!
-
 ### Playing
 
 Ensure that you have the pygame libraries installed, and then:
@@ -32,6 +30,7 @@ Ensure that you have the pygame libraries installed, and then:
     * Move all time/checkpoint stuff into game (or maybe level?) and out of player.
   * Local highscore file outside of git
   * More levels. If player gets to lap N, then move onto next level
+  * Multiple player selection with different stats.
   * Animate highscores in, fade them out on new game
   * Get Mel to create art for: Bonuses, Tunnel roof, corner smoke
   * Random boxes that penalise time-left when hit
