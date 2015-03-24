@@ -93,19 +93,19 @@ PLAYERS            = [{"name": "Swervin Mervin",
                           "left_smoke1": {
                            "path": "left_smoke1.png",
                            "width": 100,
-                           "height": 50},
+                           "height": 56},
                           "left_smoke2": {
-                           "path": "left_smoke1.png",
+                           "path": "left_smoke2.png",
                            "width": 100,
-                           "height": 50},
+                           "height": 56},
                           "right_smoke1": {
-                           "path": "right1.png",
-                           "width": 80,
-                           "height": 50},
+                           "path": "right_smoke1.png",
+                           "width": 100,
+                           "height": 56},
                           "right_smoke2": {
-                           "path": "right2.png",
-                           "width": 80,
-                           "height": 50},
+                           "path": "right_smoke2.png",
+                           "width": 100,
+                           "height": 56},
                           "uphill_straight1": {
                            "path": "uphill_straight1.png",
                            "width": 80,
