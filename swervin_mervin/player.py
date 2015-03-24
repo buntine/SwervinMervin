@@ -221,7 +221,7 @@ class Player:
 
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""
-        self.speed = u.limit(self.speed + (s.ACCELERATION * self.acceleration), 0, s.TOP_SPEED)
+        self.speed = u.limit(self.speed + ((s.TOP_SPEED / s.ACCELERATION) * self.acceleration), 0, s.TOP_SPEED)
 
     def travel(self, track_length, window):
         """Updates position, reflecting how far we've travelled since the last frame."""
@@ -274,11 +274,11 @@ class Player:
         """Updates the acceleration factor depending on world conditions."""
         a = -s.FRAME_RATE
 
-        # Slow player down if they are on the grass.
+        # Slow player down if they are on the grass or crashed.
         if self.crashed:
             a = 0
         else:
-            if (self.x > 1.0 or self.x < -1.0) and self.speed > s.OFFROAD_TOP_SPEED:
+            if (self.x > 1.0 or self.x < -1.0) and self.speed > (s.TOP_SPEED / s.OFFROAD_TOP_SPEED_FACTOR):
                 a = a * 3
             else:
                 if keys[K_UP] or s.AUTO_DRIVE or self.game_over:
