@@ -12,23 +12,27 @@ class Game:
     """Represents the game flow."""
 
     def __init__(self, window, clock):
-        self.window      = window
-        self.clock       = clock
-        self.paused      = False
-        self.waiting     = False
-        self.player      = None
-        self.level       = None
-        self.backgrounds = None
-        self.high_scores = hs.HighScores()
+        self.window          = window
+        self.clock           = clock
+        self.paused          = False
+        self.waiting         = False
+        self.selected_player = 0
+        self.player          = None
+        self.level           = None
+        self.backgrounds     = None
+        self.high_scores     = hs.HighScores()
 
     def play(self):
         if s.TITLE_SCREEN:
-            self.__title_screen();
+            self.__title_screen()
+
+        if s.PLAYER_SELECT:
+            self.__player_select()
 
         if s.COUNTDOWN:
-            self.__countdown();
+            self.__countdown()
 
-        self.player      = p.Player(self.high_scores.minimum_score())
+        self.player      = p.Player(self.high_scores.minimum_score(), self.selected_player)
         self.level       = l.Level("melbourne")
         self.backgrounds = [b.Background("sky", 0, 2, True),
                             b.Background("city", 0, 1)]
@@ -227,6 +231,10 @@ class Game:
 
             pygame.display.update()
             self.clock.tick(s.COUNTDOWN_FPS)
+
+    def __player_select(self):
+        # TODO: Implement. Set self.selected_player.
+        pass
 
     def __try_quit(self, e):
         if e.type == QUIT or\

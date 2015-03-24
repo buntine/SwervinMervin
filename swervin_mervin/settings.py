@@ -7,6 +7,7 @@ COUNTDOWN_FPS         = 1
 GAME_OVER_LAG         = 5 * FPS
 TITLE_SCREEN          = True
 COUNTDOWN             = True
+PLAYER_SELECT         = True
 FULLSCREEN            = True
 FRAME_RATE            = (1.0 / FPS)
 DIMENSIONS            = (640, 480)
@@ -35,7 +36,7 @@ POINT_MILESTONE       = 20000
 MINIMUM_CORNER_SMOKE  = 3
 FIELD_OF_VIEW         = 100 # Degrees
 CAMERA_HEIGHT         = 1300
-CAMERA_DEPTH          = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180);
+CAMERA_DEPTH          = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180)
 BOTTOM_OFFSET         = 5
 PLAYER_Z              = (CAMERA_HEIGHT * CAMERA_DEPTH)
 FONTS                 = {"bladerunner": os.path.join("lib", "br_font.ttf"),
@@ -63,6 +64,7 @@ PLAYERS            = [{"name": "Swervin Mervin",
                         "acceleration_factor": 5.0,
                         "deceleration": 2.3,
                         "centrifugal_force": 0.266,
+                        "city": "Melbourne, Australia",
                         "sprites":
                          {"straight1": {
                            "path": "straight1.png",

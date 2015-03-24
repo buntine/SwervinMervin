@@ -6,9 +6,10 @@ import util as u
 class Player:
     """Represents the player in the game world."""
 
-    def __init__(self, high_score):
+    def __init__(self, high_score, selected_player):
         self.x               = 0
         self.y               = 0
+        self.settings        = s.PLAYERS[selected_player]
         self.position        = 0
         self.lap_percent     = 0
         self.direction       = 0
@@ -42,7 +43,7 @@ class Player:
 
         # Apply centrifugal force if we are going around a corner.
         if segment.curve != 0 and not self.game_over:
-            self.x -= (self.direction_speed() * self.speed_percent() * segment.curve * s.CENTRIFUGAL_FORCE)
+            self.x -= (self.direction_speed() * self.speed_percent() * segment.curve * self.settings["centrifugal_force"])
 
     def climb(self, segment):
         """Updates y to simulate hill and valley ascension."""
@@ -102,7 +103,7 @@ class Player:
         # Show smoke if player is fangin' it around a corner.
         if abs(segment.curve) > s.MINIMUM_CORNER_SMOKE and\
            self.direction != 0 and\
-           self.speed > (s.TOP_SPEED / 1.2):
+           self.speed > (self.settings["top_speed"] / 1.2):
             sprite += "_smoke"
             self.__run_screech()
         elif self.screech_sfx:
@@ -110,7 +111,7 @@ class Player:
 
         sprite += "1" if (self.animation_frame < s.PLAYER_ANIM_HOLD) else "2"
 
-        sprite   = s.SPRITES[sprite]
+        sprite   = self.settings["sprites"][sprite]
         s_width  = int(sprite["width"] * scale * s.ROAD_WIDTH * 1.2)
         s_height = int(sprite["height"] * scale * s.ROAD_WIDTH * 1.2)
 
@@ -127,7 +128,7 @@ class Player:
         """Renders a Head-Up display on the active window."""
         center      = (75, s.DIMENSIONS[1] - 75)
         speedo_rect = (35, s.DIMENSIONS[1] - 115, 80, 80)
-        orbit_pos   = (self.speed / (s.TOP_SPEED / 4.7)) + 2.35
+        orbit_pos   = (self.speed / (self.settings["top_speed"] / 4.7)) + 2.35
         start       = self.__circular_orbit(center, -10, orbit_pos)
         finish      = self.__circular_orbit(center, 36, orbit_pos)
         speed       = round((self.speed / s.SEGMENT_HEIGHT) * 1.5, 1)
@@ -185,7 +186,7 @@ class Player:
 
         if self.game_over:
             go_font = pygame.font.Font(s.FONTS["bladerunner"], 44)
-            go      = go_font.render("Game Over", 1, s.COLOURS["red"]);
+            go      = go_font.render("Game Over", 1, s.COLOURS["red"])
             x       = (s.DIMENSIONS[0] - go.get_size()[0]) / 2
             y       = (s.DIMENSIONS[1] - go.get_size()[1]) / 2
             overlay = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
@@ -221,7 +222,7 @@ class Player:
 
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""
-        self.speed = u.limit(self.speed + ((s.TOP_SPEED / s.ACCELERATION) * self.acceleration), 0, s.TOP_SPEED)
+        self.speed = u.limit(self.speed + ((self.settings["top_speed"] / self.settings["acceleration_factor"]) * self.acceleration), 0, self.settings["top_speed"])
 
     def travel(self, track_length, window):
         """Updates position, reflecting how far we've travelled since the last frame."""
@@ -278,13 +279,13 @@ class Player:
         if self.crashed:
             a = 0
         else:
-            if (self.x > 1.0 or self.x < -1.0) and self.speed > (s.TOP_SPEED / s.OFFROAD_TOP_SPEED_FACTOR):
+            if (self.x > 1.0 or self.x < -1.0) and self.speed > (self.settings["top_speed"] / self.settings["offroad_top_speed_factor"]):
                 a = a * 3
             else:
                 if keys[K_UP] or s.AUTO_DRIVE or self.game_over:
                     a = s.FRAME_RATE
                 elif keys[K_DOWN]:
-                    a = -(s.FRAME_RATE * s.DECELERATION)
+                    a = -(s.FRAME_RATE * self.settings["deceleration"])
 
         self.acceleration = a
 
@@ -301,7 +302,7 @@ class Player:
         self.direction = d
 
     def speed_percent(self):
-        return self.speed / s.TOP_SPEED
+        return self.speed / self.settings["top_speed"]
 
     def direction_speed(self):
         return (s.FRAME_RATE * 3 * self.speed_percent())
