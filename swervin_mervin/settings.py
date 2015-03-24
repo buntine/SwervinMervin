@@ -19,7 +19,6 @@ ROAD_WIDTH            = 2100
 LANES                 = 4
 BOUNDS                = 2.1
 AUTO_DRIVE            = False
-CENTRIFUGAL_FORCE     = 0.266
 PLAYER_ANIM_HOLD      = 8
 CHECKPOINT            = 50
 LAP_DIFFICULTY_FACTOR = 3
@@ -34,155 +33,159 @@ POINT_LOSS_SPRITE     = 0.03
 POINT_LOSS_COMP       = 0.02
 POINT_MILESTONE       = 20000
 MINIMUM_CORNER_SMOKE  = 3
-TOP_SPEED             = (SEGMENT_HEIGHT / (1.0/FPS)) * 1.9
-OFFROAD_TOP_SPEED     = TOP_SPEED / 2.0
-ACCELERATION          = TOP_SPEED / 5.0
-DECELERATION          = 2.3
 FIELD_OF_VIEW         = 100 # Degrees
 CAMERA_HEIGHT         = 1300
 CAMERA_DEPTH          = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180);
 BOTTOM_OFFSET         = 5
 PLAYER_Z              = (CAMERA_HEIGHT * CAMERA_DEPTH)
 FONTS                 = {"bladerunner": os.path.join("lib", "br_font.ttf"),
-                        "arcade":    os.path.join("lib", "arcade.ttf")}
+                         "arcade":    os.path.join("lib", "arcade.ttf")}
 COLOURS               = {"white":  Color(255, 255, 255),
-                        "text":   Color(172, 199, 252),
-                        "sky":    Color(10, 10, 10),
-                        "gutter": Color(100, 100, 100),
-                        "red":    Color(204, 0, 0),
-                        "bonus_a": Color(255, 78, 0),
-                        "bonus_b": Color(255, 178, 0),
-                        "green":  Color(0, 204, 0),
-                        "black":  Color(0, 0, 0),
-                        "light": {"road":     Color(34, 54, 56),
-                                  "grass":    Color(0, 30, 70),
-                                  "footpath": Color(82, 96, 115),
-                                  "line":     Color(185, 185, 185)},
-                        "dark":  {"road":     Color(48, 64, 81),
-                                  "grass":    Color(0, 16, 56),
-                                  "footpath": Color(68, 84, 101),
-                                  "line":     Color(185, 185, 185)}}
-SPRITES            = {"straight1": {
-                       "path": "straight1.png",
-                       "width": 80,
-                       "height": 50},
-                     "straight2": {
-                       "path": "straight2.png",
-                       "width": 80,
-                       "height": 50},
-                     "left1": {
-                       "path": "left1.png",
-                       "width": 80,
-                       "height": 50},
-                     "left2": {
-                       "path": "left2.png",
-                       "width": 80,
-                       "height": 50},
-                     "right1": {
-                       "path": "right1.png",
-                       "width": 80,
-                       "height": 50},
-                     "right2": {
-                       "path": "right2.png",
-                       "width": 80,
-                       "height": 50},
-                     "left_smoke1": {
-                       "path": "left_smoke1.png",
-                       "width": 100,
-                       "height": 50},
-                     "left_smoke2": {
-                       "path": "left_smoke1.png",
-                       "width": 100,
-                       "height": 50},
-                     "right_smoke1": {
-                       "path": "right1.png",
-                       "width": 80,
-                       "height": 50},
-                     "right_smoke2": {
-                       "path": "right2.png",
-                       "width": 80,
-                       "height": 50},
-                     "uphill_straight1": {
-                       "path": "uphill_straight1.png",
-                       "width": 80,
-                       "height": 56},
-                     "uphill_straight2": {
-                       "path": "uphill_straight2.png",
-                       "width": 80,
-                       "height": 56},
-                     "uphill_left1": {
-                       "path": "uphill_left1.png",
-                       "width": 80,
-                       "height": 56},
-                     "uphill_left2": {
-                       "path": "uphill_left2.png",
-                       "width": 80,
-                       "height": 56},
-                     "uphill_right1": {
-                       "path": "uphill_right1.png",
-                       "width": 80,
-                       "height": 56},
-                     "uphill_right2": {
-                       "path": "uphill_right2.png",
-                       "width": 80,
-                       "height": 56},
-                     "uphill_left_smoke1": {
-                       "path": "uphill_left1.png",
-                       "width": 80,
-                       "height": 56},
-                     "uphill_left_smoke2": {
-                       "path": "uphill_left2.png",
-                       "width": 80,
-                       "height": 56},
-                     "uphill_right_smoke1": {
-                       "path": "uphill_right1.png",
-                       "width": 80,
-                       "height": 56},
-                     "uphill_right_smoke2": {
-                       "path": "uphill_right2.png",
-                       "width": 80,
-                       "height": 56},
-                     "downhill_straight1": {
-                       "path": "downhill_straight1.png",
-                       "width": 80,
-                       "height": 56},
-                     "downhill_straight2": {
-                       "path": "downhill_straight2.png",
-                       "width": 80,
-                       "height": 56},
-                     "downhill_left1": {
-                       "path": "downhill_left1.png",
-                       "width": 80,
-                       "height": 56},
-                     "downhill_left2": {
-                       "path": "downhill_left2.png",
-                       "width": 80,
-                       "height": 56},
-                     "downhill_right1": {
-                       "path": "downhill_right1.png",
-                       "width": 80,
-                       "height": 56},
-                     "downhill_right2": {
-                       "path": "downhill_right2.png",
-                       "width": 80,
-                       "height": 56},
-                     "downhill_left_smoke1": {
-                       "path": "downhill_left1.png",
-                       "width": 80,
-                       "height": 56},
-                     "downhill_left_smoke2": {
-                       "path": "downhill_left2.png",
-                       "width": 80,
-                       "height": 56},
-                     "downhill_right_smoke1": {
-                       "path": "downhill_right1.png",
-                       "width": 80,
-                       "height": 56},
-                     "downhill_right_smoke2": {
-                       "path": "downhill_right2.png",
-                       "width": 80,
-                       "height": 56},
-                     "column": {
+                         "text":   Color(172, 199, 252),
+                         "sky":    Color(10, 10, 10),
+                         "gutter": Color(100, 100, 100),
+                         "red":    Color(204, 0, 0),
+                         "bonus_a": Color(255, 78, 0),
+                         "bonus_b": Color(255, 178, 0),
+                         "green":  Color(0, 204, 0),
+                         "black":  Color(0, 0, 0),
+                         "light": {"road":     Color(34, 54, 56),
+                                   "grass":    Color(0, 30, 70),
+                                   "footpath": Color(82, 96, 115),
+                                   "line":     Color(185, 185, 185)},
+                         "dark":  {"road":     Color(48, 64, 81),
+                                   "grass":    Color(0, 16, 56),
+                                   "footpath": Color(68, 84, 101),
+                                   "line":     Color(185, 185, 185)}}
+PLAYERS            = [{"name": "Swervin Mervin",
+                        "top_speed": (SEGMENT_HEIGHT / (1.0/FPS)) * 1.9,
+                        "offroad_top_speed_factor": 2.0,
+                        "acceleration_factor": 5.0,
+                        "deceleration": 2.3,
+                        "centrifugal_force": 0.266,
+                        "sprites":
+                         {"straight1": {
+                           "path": "straight1.png",
+                           "width": 80,
+                           "height": 50},
+                          "straight2": {
+                           "path": "straight2.png",
+                           "width": 80,
+                           "height": 50},
+                          "left1": {
+                           "path": "left1.png",
+                           "width": 80,
+                           "height": 50},
+                          "left2": {
+                           "path": "left2.png",
+                           "width": 80,
+                           "height": 50},
+                          "right1": {
+                           "path": "right1.png",
+                           "width": 80,
+                           "height": 50},
+                          "right2": {
+                           "path": "right2.png",
+                           "width": 80,
+                           "height": 50},
+                          "left_smoke1": {
+                           "path": "left_smoke1.png",
+                           "width": 100,
+                           "height": 50},
+                          "left_smoke2": {
+                           "path": "left_smoke1.png",
+                           "width": 100,
+                           "height": 50},
+                          "right_smoke1": {
+                           "path": "right1.png",
+                           "width": 80,
+                           "height": 50},
+                          "right_smoke2": {
+                           "path": "right2.png",
+                           "width": 80,
+                           "height": 50},
+                          "uphill_straight1": {
+                           "path": "uphill_straight1.png",
+                           "width": 80,
+                           "height": 56},
+                          "uphill_straight2": {
+                           "path": "uphill_straight2.png",
+                           "width": 80,
+                           "height": 56},
+                          "uphill_left1": {
+                           "path": "uphill_left1.png",
+                           "width": 80,
+                           "height": 56},
+                          "uphill_left2": {
+                           "path": "uphill_left2.png",
+                           "width": 80,
+                           "height": 56},
+                          "uphill_right1": {
+                           "path": "uphill_right1.png",
+                           "width": 80,
+                           "height": 56},
+                          "uphill_right2": {
+                           "path": "uphill_right2.png",
+                           "width": 80,
+                           "height": 56},
+                          "uphill_left_smoke1": {
+                           "path": "uphill_left1.png",
+                           "width": 80,
+                           "height": 56},
+                          "uphill_left_smoke2": {
+                           "path": "uphill_left2.png",
+                           "width": 80,
+                                "height": 56},
+                          "uphill_right_smoke1": {
+                           "path": "uphill_right1.png",
+                           "width": 80,
+                           "height": 56},
+                          "uphill_right_smoke2": {
+                           "path": "uphill_right2.png",
+                           "width": 80,
+                           "height": 56},
+                          "downhill_straight1": {
+                           "path": "downhill_straight1.png",
+                           "width": 80,
+                           "height": 56},
+                          "downhill_straight2": {
+                           "path": "downhill_straight2.png",
+                           "width": 80,
+                           "height": 56},
+                          "downhill_left1": {
+                           "path": "downhill_left1.png",
+                           "width": 80,
+                           "height": 56},
+                          "downhill_left2": {
+                           "path": "downhill_left2.png",
+                           "width": 80,
+                           "height": 56},
+                          "downhill_right1": {
+                           "path": "downhill_right1.png",
+                           "width": 80,
+                           "height": 56},
+                          "downhill_right2": {
+                           "path": "downhill_right2.png",
+                           "width": 80,
+                           "height": 56},
+                          "downhill_left_smoke1": {
+                           "path": "downhill_left1.png",
+                           "width": 80,
+                           "height": 56},
+                          "downhill_left_smoke2": {
+                           "path": "downhill_left2.png",
+                           "width": 80,
+                           "height": 56},
+                          "downhill_right_smoke1": {
+                           "path": "downhill_right1.png",
+                           "width": 80,
+                           "height": 56},
+                          "downhill_right_smoke2": {
+                           "path": "downhill_right2.png",
+                           "width": 80,
+                           "height": 56}}}]
+
+SPRITES           = {"column": {
                        "path": "column.png",
                        "collision": [-0.9, 0.1],
                        "width": 80,
