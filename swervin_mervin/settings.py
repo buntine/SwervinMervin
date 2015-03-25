@@ -131,20 +131,20 @@ PLAYERS            = [{"name": "Swervin Mervin",
                            "width": 80,
                            "height": 56},
                           "uphill_left_smoke1": {
-                           "path": "uphill_left1.png",
-                           "width": 80,
+                           "path": "uphill_left_smoke1.png",
+                           "width": 100,
                            "height": 56},
                           "uphill_left_smoke2": {
-                           "path": "uphill_left2.png",
-                           "width": 80,
+                           "path": "uphill_left_smoke2.png",
+                           "width": 100,
                                 "height": 56},
                           "uphill_right_smoke1": {
-                           "path": "uphill_right1.png",
-                           "width": 80,
+                           "path": "uphill_right_smoke1.png",
+                           "width": 100,
                            "height": 56},
                           "uphill_right_smoke2": {
-                           "path": "uphill_right2.png",
-                           "width": 80,
+                           "path": "uphill_right_smoke2.png",
+                           "width": 100,
                            "height": 56},
                           "downhill_straight1": {
                            "path": "downhill_straight1.png",
@@ -171,20 +171,20 @@ PLAYERS            = [{"name": "Swervin Mervin",
                            "width": 80,
                            "height": 56},
                           "downhill_left_smoke1": {
-                           "path": "downhill_left1.png",
-                           "width": 80,
+                           "path": "downhill_left_smoke1.png",
+                           "width": 100,
                            "height": 56},
                           "downhill_left_smoke2": {
-                           "path": "downhill_left2.png",
-                           "width": 80,
+                           "path": "downhill_left_smoke2.png",
+                           "width": 100,
                            "height": 56},
                           "downhill_right_smoke1": {
-                           "path": "downhill_right1.png",
-                           "width": 80,
+                           "path": "downhill_right_smoke1.png",
+                           "width": 100,
                            "height": 56},
                           "downhill_right_smoke2": {
-                           "path": "downhill_right2.png",
-                           "width": 80,
+                           "path": "downhill_right_smoke2.png",
+                           "width": 100,
                            "height": 56}}}]
 
 SPRITES           = {"column": {
