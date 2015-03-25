@@ -5,6 +5,7 @@ import background as b
 import level as l
 import title_screen as ts
 import countdown as cd
+import player_select as ps
 import settings as s
 import high_scores as hs
 
@@ -233,8 +234,15 @@ class Game:
             self.clock.tick(s.COUNTDOWN_FPS)
 
     def __player_select(self):
-        # TODO: Implement. Set self.selected_player.
-        pass
+        player_select = ps.PlayerSelect()
+
+        while not player_select.finished:
+            player_select.progress(self.window)
+
+            pygame.display.update()
+            self.clock.tick(s.FPS)
+
+        self.selected_player = player_select.selected
 
     def __try_quit(self, e):
         if e.type == QUIT or\
