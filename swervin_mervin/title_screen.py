@@ -1,5 +1,6 @@
 import pygame, os
 import settings as s
+import util as u
 
 class TitleScreen():
     """Plays a title screen and waits for user to insert coin."""
@@ -25,6 +26,13 @@ class TitleScreen():
         self.state_0_step(window)
         self.state_1_step(window)
         self.state_2_step(window)
+
+        for e in pygame.event.get():
+            u.try_quit(e)
+
+            if e.type == pygame.KEYDOWN and e.key == pygame.K_SPACE and self.ready:
+                pygame.mixer.music.fadeout(1500)
+                self.finished = True
 
     def state_0_step(self, window):
         w, h = s.DIMENSIONS

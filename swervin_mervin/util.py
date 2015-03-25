@@ -1,4 +1,15 @@
+import pygame, sys
+from pygame.locals import *
 from pygame.font import Font
+import settings as s
+
+def try_quit(e):
+    if e.type == QUIT or\
+      (e.type == pygame.KEYDOWN and\
+       e.key == pygame.K_ESCAPE and\
+       s.FULLSCREEN):
+        pygame.quit()
+        sys.exit()
 
 def limit(v, low, high):
     """Returns v, limited to low/high threshold"""
