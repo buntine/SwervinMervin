@@ -17,8 +17,13 @@ class PlayerSelect():
         for e in pygame.event.get():
             u.try_quit(e)
 
-            if e.type == pygame.KEYDOWN and e.key == pygame.K_SPACE:
-                self.selected += 1
+            if e.type == pygame.KEYDOWN: 
+                if e.key == pygame.K_LEFT and self.selected > 0:
+                    self.selected -= 1
+                elif e.key == pygame.K_RIGHT and self.selected < len(s.PLAYERS) - 1:
+                    self.selected += 1
+                elif e.key == pygame.K_SPACE:
+                    self.finished = True
  
         window.fill(s.COLOURS["black"])
         window.blit(text, (100, 100))
