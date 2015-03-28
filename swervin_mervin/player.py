@@ -65,6 +65,8 @@ class Player:
                     elif sp.is_bonus():
                         segment.remove_sprite(sp)
                         self.__hit_bonus()
+                    elif sp.is_speed_boost():
+                        self.__hit_speed_boost()
                     else:
                         self.__hit_world_object()
 
@@ -238,8 +240,8 @@ class Player:
             self.speed_boost -= s.SPEED_BOOST_DECREASE
 
         if not self.game_over:
-            self.points    += (self.speed / s.SEGMENT_HEIGHT) / s.POINTS
-            self.time_left  = round(self.checkpoint - total_secs, 1) + self.lap_bonus
+            self.points   += (self.speed / s.SEGMENT_HEIGHT) / s.POINTS
+            self.time_left = round(self.checkpoint - total_secs, 1) + self.lap_bonus
 
         if self.time_left <= 0:
             self.game_over = True
@@ -381,6 +383,16 @@ class Player:
         bonus_sfx.play()
 
         self.__set_special_text("Bonus time!", 2)
+
+    def __hit_speed_boost(self):
+        if not self.game_over:
+            self.speed_boost = 1.6
+
+        # TODO: Different sound.
+        boost_sfx = pygame.mixer.Sound(os.path.join("lib", "oh_yeah.ogg"))
+        boost_sfx.play()
+
+        self.__set_special_text("Speed boost!", 2)
 
     def __hit_world_object(self):
         pygame.mixer.music.set_volume(0.2)

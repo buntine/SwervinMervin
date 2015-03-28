@@ -15,6 +15,9 @@ class Sprite(wo.WorldObject):
     def is_hooker(self):
         return self.sprite.has_key("hooker")
 
+    def is_speed_boost(self):
+        return self.sprite.has_key("speed_boost")
+
     def is_bonus(self):
         return self.sprite.has_key("bonus")
 
