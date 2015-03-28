@@ -409,7 +409,7 @@ SPRITES           = {"column": {
                        "height": 25},
                      "speed_boost": {
                        "path": "speed_boost.png",
-                       "collision": [-0.9, 0.1],
+                       "collision": [-1.1, 0.7],
                        "speed_boost": True,
                        "width": 42,
                        "height": 42},
