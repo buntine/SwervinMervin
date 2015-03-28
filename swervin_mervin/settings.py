@@ -356,8 +356,8 @@ SPRITES           = {"column": {
                        "width": 107,
                        "height": 68},
                      "start": {
-                       "path": "start.png",
-                       "width": 210,
+                       "path": "toll_point.png",
+                       "width": 230,
                        "height": 120},
                      "boulder1": {
                        "path": "boulder1.png",
