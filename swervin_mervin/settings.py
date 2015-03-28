@@ -38,6 +38,7 @@ FIELD_OF_VIEW         = 100 # Degrees
 CAMERA_HEIGHT         = 1300
 CAMERA_DEPTH          = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180)
 BOTTOM_OFFSET         = 5
+SPEED_BOOST_DECREASE  = 0.004
 PLAYER_Z              = (CAMERA_HEIGHT * CAMERA_DEPTH)
 FONTS                 = {"bladerunner": os.path.join("lib", "br_font.ttf"),
                          "arcade":    os.path.join("lib", "arcade.ttf")}

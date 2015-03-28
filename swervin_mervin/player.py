@@ -15,6 +15,7 @@ class Player:
         self.direction       = 0
         self.acceleration    = 0
         self.speed           = 1
+        self.speed_boost     = 1
         self.animation_frame = 1
         self.new_lap         = False
         self.lap_bonus       = 0
@@ -222,7 +223,8 @@ class Player:
 
     def accelerate(self):
         """Updates speed at appropriate acceleration level."""
-        self.speed = u.limit(self.speed + ((self.settings["top_speed"] / self.settings["acceleration_factor"]) * self.acceleration), 0, self.settings["top_speed"])
+        curr_speed = self.speed_boost * (self.speed + ((self.settings["top_speed"] / self.settings["acceleration_factor"]) * self.acceleration))
+        self.speed = u.limit(curr_speed, 0, self.speed_boost * self.settings["top_speed"])
 
     def travel(self, track_length, window):
         """Updates position, reflecting how far we've travelled since the last frame."""
@@ -231,6 +233,9 @@ class Player:
         total_secs = (td.microseconds + (td.seconds + td.days * 24 * 3600) * 10**6) / 10**6 # td.total_seconds() not implemented in Python 2.6
 
         self.new_lap = False
+
+        if self.speed_boost > 1:
+            self.speed_boost -= s.SPEED_BOOST_DECREASE
 
         if not self.game_over:
             self.points    += (self.speed / s.SEGMENT_HEIGHT) / s.POINTS
@@ -243,11 +248,14 @@ class Player:
         if pos >= track_length:
             self.__set_checkpoint()
 
-            self.lap_bonus   = 0
-            self.new_lap     = True
-            self.lap_time    = total_secs
-            self.lap        += 1
-            self.lap_margin  = self.fastest_lap - self.lap_time
+            self.lap_bonus  = 0
+            self.new_lap    = True
+            self.lap_time   = total_secs
+            self.lap       += 1
+            self.lap_margin = self.fastest_lap - self.lap_time
+
+            lap_sfx = pygame.mixer.Sound(os.path.join("lib", "570.wav"))
+            lap_sfx.play()
 
             if not self.game_over:
                 # Reduce checkpoint time every lap to increase difficulty.
@@ -258,8 +266,8 @@ class Player:
             if self.__fastest_lap():
                 if self.lap > 2:
                     self.points += self.lap_margin * s.POINTS * self.lap
-                    lap_sfx      = pygame.mixer.Sound(os.path.join("lib", "jim.ogg"))
-                    lap_sfx.play()
+                    fast_lap_sfx = pygame.mixer.Sound(os.path.join("lib", "jim.ogg"))
+                    fast_lap_sfx.play()
 
                 self.fastest_lap = self.lap_time
 

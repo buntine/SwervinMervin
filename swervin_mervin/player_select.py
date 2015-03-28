@@ -7,8 +7,8 @@ class PlayerSelect():
 
     def __init__(self):
         self.selected = 0
-        self.finished  = False
-        self.font      = pygame.font.Font(s.FONTS["bladerunner"], 300)
+        self.finished = False
+        self.font     = pygame.font.Font(s.FONTS["bladerunner"], 300)
         
     def progress(self, window):
         txt = str(self.selected)
