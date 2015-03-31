@@ -138,7 +138,7 @@ PLAYERS            = [{"name": "Swervin Mervin",
                           "uphill_left_smoke2": {
                            "path": "uphill_left_smoke2.png",
                            "width": 100,
-                                "height": 56},
+                           "height": 56},
                           "uphill_right_smoke1": {
                            "path": "uphill_right_smoke1.png",
                            "width": 100,
@@ -194,6 +194,134 @@ PLAYERS            = [{"name": "Swervin Mervin",
                         "deceleration": 2.5,
                         "centrifugal_force": 0.366,
                         "city": "Surfers Paradise, Australia",
+                        "sprites":
+                         {"straight1": {
+                           "path": "straight1.png",
+                           "width": 80,
+                           "height": 50},
+                          "straight2": {
+                           "path": "straight2.png",
+                           "width": 80,
+                           "height": 50},
+                          "left1": {
+                           "path": "left1.png",
+                           "width": 80,
+                           "height": 50},
+                          "left2": {
+                           "path": "left2.png",
+                           "width": 80,
+                           "height": 50},
+                          "right1": {
+                           "path": "right1.png",
+                           "width": 80,
+                           "height": 50},
+                          "right2": {
+                           "path": "right2.png",
+                           "width": 80,
+                           "height": 50},
+                          "left_smoke1": {
+                           "path": "left_smoke1.png",
+                           "width": 100,
+                           "height": 56},
+                          "left_smoke2": {
+                           "path": "left_smoke2.png",
+                           "width": 100,
+                           "height": 56},
+                          "right_smoke1": {
+                           "path": "right_smoke1.png",
+                           "width": 100,
+                           "height": 56},
+                          "right_smoke2": {
+                           "path": "right_smoke2.png",
+                           "width": 100,
+                           "height": 56},
+                          "uphill_straight1": {
+                           "path": "uphill_straight1.png",
+                           "width": 80,
+                           "height": 56},
+                          "uphill_straight2": {
+                           "path": "uphill_straight2.png",
+                           "width": 80,
+                           "height": 56},
+                          "uphill_left1": {
+                           "path": "uphill_left1.png",
+                           "width": 80,
+                           "height": 56},
+                          "uphill_left2": {
+                           "path": "uphill_left2.png",
+                           "width": 80,
+                           "height": 56},
+                          "uphill_right1": {
+                           "path": "uphill_right1.png",
+                           "width": 80,
+                           "height": 56},
+                          "uphill_right2": {
+                           "path": "uphill_right2.png",
+                           "width": 80,
+                           "height": 56},
+                          "uphill_left_smoke1": {
+                           "path": "uphill_left_smoke1.png",
+                           "width": 100,
+                           "height": 56},
+                          "uphill_left_smoke2": {
+                           "path": "uphill_left_smoke2.png",
+                           "width": 100,
+                                "height": 56},
+                          "uphill_right_smoke1": {
+                           "path": "uphill_right_smoke1.png",
+                           "width": 100,
+                           "height": 56},
+                          "uphill_right_smoke2": {
+                           "path": "uphill_right_smoke2.png",
+                           "width": 100,
+                           "height": 56},
+                          "downhill_straight1": {
+                           "path": "downhill_straight1.png",
+                           "width": 80,
+                           "height": 56},
+                          "downhill_straight2": {
+                           "path": "downhill_straight2.png",
+                           "width": 80,
+                           "height": 56},
+                          "downhill_left1": {
+                           "path": "downhill_left1.png",
+                           "width": 80,
+                           "height": 56},
+                          "downhill_left2": {
+                           "path": "downhill_left2.png",
+                           "width": 80,
+                           "height": 56},
+                          "downhill_right1": {
+                           "path": "downhill_right1.png",
+                           "width": 80,
+                           "height": 56},
+                          "downhill_right2": {
+                           "path": "downhill_right2.png",
+                           "width": 80,
+                           "height": 56},
+                          "downhill_left_smoke1": {
+                           "path": "downhill_left_smoke1.png",
+                           "width": 100,
+                           "height": 56},
+                          "downhill_left_smoke2": {
+                           "path": "downhill_left_smoke2.png",
+                           "width": 100,
+                           "height": 56},
+                          "downhill_right_smoke1": {
+                           "path": "downhill_right_smoke1.png",
+                           "width": 100,
+                           "height": 56},
+                          "downhill_right_smoke2": {
+                           "path": "downhill_right_smoke2.png",
+                           "width": 100,
+                           "height": 56}}},
+                       {"name": "Burl",
+                        "top_speed": (SEGMENT_HEIGHT / (1.0/FPS)) * 1.73,
+                        "offroad_top_speed_factor": 1.75,
+                        "acceleration_factor": 3.8,
+                        "deceleration": 2.2,
+                        "centrifugal_force": 0.188,
+                        "city": "Nullarbor Roadhouse, Australia",
                         "sprites":
                          {"straight1": {
                            "path": "straight1.png",
