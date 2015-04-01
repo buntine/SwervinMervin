@@ -69,14 +69,23 @@ LEVELS             = [{"id": "melbourne",
                        "name": "Nullarbor Desert",
                        "song": "lazerhawk-overdrive.ogg"}]
 PLAYERS            = [{"name": "Swervin Mervin",
-                        "top_speed": (SEGMENT_HEIGHT / (1.0/FPS)) * 1.9,
-                        "offroad_top_speed_factor": 2.0,
-                        "acceleration_factor": 5.0,
-                        "deceleration": 2.3,
-                        "centrifugal_force": 0.266,
-                        "city": "Melbourne, Australia",
-                        "sprites":
-                         {"straight1": {
+                       "age": 48,
+                       "top_speed": (SEGMENT_HEIGHT / (1.0/FPS)) * 1.9,
+                       "offroad_top_speed_factor": 2.0,
+                       "acceleration_factor": 5.0,
+                       "deceleration": 2.3,
+                       "centrifugal_force": 0.266,
+                       "city": "Melbourne, Australia",
+                       "sprites":
+                         {"mugshot_small": {
+                           "path": "swervin_mervin_small.png",
+                           "width": 80,
+                           "height": 100},
+                          "mugshot_large": {
+                           "path": "swervin_mervin_large.png",
+                           "width": 320,
+                           "height": 400},
+                          "straight1": {
                            "path": "straight1.png",
                            "width": 80,
                            "height": 50},
@@ -197,6 +206,7 @@ PLAYERS            = [{"name": "Swervin Mervin",
                            "width": 100,
                            "height": 56}}},
                        {"name": "Candy",
+                        "age": 21,
                         "top_speed": (SEGMENT_HEIGHT / (1.0/FPS)) * 2.2,
                         "offroad_top_speed_factor": 1.8,
                         "acceleration_factor": 4.0,
@@ -204,7 +214,15 @@ PLAYERS            = [{"name": "Swervin Mervin",
                         "centrifugal_force": 0.366,
                         "city": "Surfers Paradise, Australia",
                         "sprites":
-                         {"straight1": {
+                         {"mugshot_small": {
+                           "path": "candy_small.png",
+                           "width": 80,
+                           "height": 100},
+                          "mugshot_large": {
+                           "path": "candy_large.png",
+                           "width": 320,
+                           "height": 400},
+                          "straight1": {
                            "path": "straight1.png",
                            "width": 80,
                            "height": 50},
@@ -325,6 +343,7 @@ PLAYERS            = [{"name": "Swervin Mervin",
                            "width": 100,
                            "height": 56}}},
                        {"name": "Burl",
+                        "age": 37,
                         "top_speed": (SEGMENT_HEIGHT / (1.0/FPS)) * 1.73,
                         "offroad_top_speed_factor": 1.75,
                         "acceleration_factor": 3.8,
@@ -332,7 +351,15 @@ PLAYERS            = [{"name": "Swervin Mervin",
                         "centrifugal_force": 0.188,
                         "city": "Nullarbor Roadhouse, Australia",
                         "sprites":
-                         {"straight1": {
+                         {"mugshot_small": {
+                           "path": "burl_small.png",
+                           "width": 80,
+                           "height": 100},
+                          "mugshot_large": {
+                           "path": "burl_large.png",
+                           "width": 320,
+                           "height": 400},
+                          "straight1": {
                            "path": "straight1.png",
                            "width": 80,
                            "height": 50},

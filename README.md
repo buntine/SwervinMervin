@@ -29,6 +29,8 @@ Ensure that you have the pygame libraries installed, and then:
   * Rethink player checkpoint logic to fix "time left" bug in pause and make countdown easy to disable/enable.
     * Move all time/checkpoint stuff into game (or maybe level?) and out of player.
   * Local highscore file outside of git
+  * Don't use sprite for speed up. Render triangles onto road
+    * Or just use sprite that can stand upright...
   * More levels. If player gets to lap N, then move onto next level
   * Multiple player selection with different stats.
   * Animate highscores in, fade them out on new game
