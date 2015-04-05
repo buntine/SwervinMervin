@@ -30,7 +30,7 @@ class TitleScreen():
         for e in pygame.event.get():
             u.try_quit(e)
 
-            if e.type == pygame.KEYDOWN and e.key == pygame.K_SPACE and self.ready:
+            if e.type == pygame.KEYDOWN and e.key == pygame.K_RETURN and self.ready:
                 pygame.mixer.music.fadeout(1500)
                 self.finished = True
 

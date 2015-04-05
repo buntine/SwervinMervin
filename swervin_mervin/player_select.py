@@ -22,7 +22,7 @@ class PlayerSelect():
                     self.selected -= 1
                 elif e.key == pygame.K_RIGHT and self.selected < len(s.PLAYERS) - 1:
                     self.selected += 1
-                elif e.key == pygame.K_SPACE:
+                elif e.key == pygame.K_RETURN:
                     self.finished = True
  
         window.fill(s.COLOURS["black"])

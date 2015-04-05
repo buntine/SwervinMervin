@@ -88,7 +88,7 @@ class Game:
             for e in pygame.event.get():
                 u.try_quit(e)
 
-                if e.type == KEYDOWN and e.key in [K_UP, K_SPACE]:
+                if e.type == KEYDOWN and e.key in [K_UP, K_RETURN]:
                     self.waiting = False
      
             self.clock.tick(s.FPS)
@@ -182,7 +182,7 @@ class Game:
         for e in pygame.event.get():
             u.try_quit(e)
 
-            if e.type == pygame.KEYDOWN and e.key == pygame.K_SPACE:
+            if e.type == pygame.KEYDOWN and e.key == pygame.K_RETURN:
                 pygame.mixer.music.pause()
                 self.paused = True
 
@@ -201,9 +201,9 @@ class Game:
         self.window.blit(pause_text, (x, y))
 
         for e in pygame.event.get():
-            u.try_quit(event)
+            u.try_quit(e)
 
-            if e.type == pygame.KEYDOWN and e.key == pygame.K_SPACE:
+            if e.type == pygame.KEYDOWN and e.key == pygame.K_RETURN:
                 pygame.mixer.music.unpause()
                 self.paused = False
 
