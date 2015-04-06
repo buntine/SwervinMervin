@@ -61,7 +61,7 @@ COLOURS               = {"white":  Color(255, 255, 255),
                                    "footpath": Color(68, 84, 101),
                                    "line":     Color(185, 185, 185)}}
 LEVELS             = [{"id": "melbourne",
-                       "name": "Melbourne, Australia",
+                       "name": "Melbourne, VIC",
                        "song": "lazerhawk-overdrive.ogg"},
                       {"id": "goldcoast",
                        "name": "Gold Coast",
@@ -69,14 +69,14 @@ LEVELS             = [{"id": "melbourne",
                       {"id": "nullarbor",
                        "name": "Nullarbor Desert",
                        "song": "lazerhawk-overdrive.ogg"}]
-PLAYERS            = [{"name": "Swervin Mervin",
+PLAYERS            = [{"name": "Swervin' Mervin",
                        "age": 48,
                        "top_speed": (SEGMENT_HEIGHT / (1.0/FPS)) * 1.9,
                        "offroad_top_speed_factor": 2.0,
                        "acceleration_factor": 5.0,
                        "deceleration": 2.3,
                        "centrifugal_force": 0.266,
-                       "city": "Melbourne, Australia",
+                       "city": "Melbourne",
                        "sprites":
                          {"mugshot_small": {
                            "path": "swervin_mervin_small.png",
@@ -213,7 +213,7 @@ PLAYERS            = [{"name": "Swervin Mervin",
                         "acceleration_factor": 4.0,
                         "deceleration": 2.5,
                         "centrifugal_force": 0.366,
-                        "city": "Surfers Paradise, Australia",
+                        "city": "Surfers Paradise, QLD",
                         "sprites":
                          {"mugshot_small": {
                            "path": "candy_small.png",
@@ -350,7 +350,7 @@ PLAYERS            = [{"name": "Swervin Mervin",
                         "acceleration_factor": 3.8,
                         "deceleration": 2.2,
                         "centrifugal_force": 0.188,
-                        "city": "Nullarbor Roadhouse, Australia",
+                        "city": "Nullarbor Roadhouse, SA",
                         "sprites":
                          {"mugshot_small": {
                            "path": "burl_small.png",
