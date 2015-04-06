@@ -40,8 +40,9 @@ CAMERA_DEPTH          = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180)
 BOTTOM_OFFSET         = 5
 SPEED_BOOST_DECREASE  = 0.004
 PLAYER_Z              = (CAMERA_HEIGHT * CAMERA_DEPTH)
-FONTS                 = {"bladerunner": os.path.join("lib", "br_font.ttf"),
-                         "arcade":    os.path.join("lib", "arcade.ttf")}
+FONTS                 = {"bladerunner":    os.path.join("lib", "br_font.ttf"),
+                         "arcade":         os.path.join("lib", "arcade.ttf"),
+                         "retro_computer": os.path.join("lib", "retro_computer.ttf")}
 COLOURS               = {"white":  Color(255, 255, 255),
                          "text":   Color(172, 199, 252),
                          "sky":    Color(10, 10, 10),
@@ -79,8 +80,8 @@ PLAYERS            = [{"name": "Swervin Mervin",
                        "sprites":
                          {"mugshot_small": {
                            "path": "swervin_mervin_small.png",
-                           "width": 80,
-                           "height": 100},
+                           "width": 60,
+                           "height": 60},
                           "mugshot_large": {
                            "path": "swervin_mervin_large.png",
                            "width": 320,
@@ -216,8 +217,8 @@ PLAYERS            = [{"name": "Swervin Mervin",
                         "sprites":
                          {"mugshot_small": {
                            "path": "candy_small.png",
-                           "width": 80,
-                           "height": 100},
+                           "width": 60,
+                           "height": 60},
                           "mugshot_large": {
                            "path": "candy_large.png",
                            "width": 320,
@@ -353,8 +354,8 @@ PLAYERS            = [{"name": "Swervin Mervin",
                         "sprites":
                          {"mugshot_small": {
                            "path": "burl_small.png",
-                           "width": 80,
-                           "height": 100},
+                           "width": 60,
+                           "height": 60},
                           "mugshot_large": {
                            "path": "burl_large.png",
                            "width": 320,
