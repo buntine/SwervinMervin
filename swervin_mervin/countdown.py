@@ -7,7 +7,7 @@ class CountDown():
     def __init__(self):
         self.remaining = 3
         self.finished  = False
-        self.font      = pygame.font.Font(s.FONTS["bladerunner"], 300)
+        self.font      = pygame.font.Font(s.FONTS["retro_computer"], 300)
         
     def progress(self, window):
         txt = str(self.remaining) if self.remaining > 0 else "GO"

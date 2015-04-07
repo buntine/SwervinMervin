@@ -135,7 +135,7 @@ class Player:
         start       = self.__circular_orbit(center, -10, orbit_pos)
         finish      = self.__circular_orbit(center, 36, orbit_pos)
         speed       = round((self.speed / s.SEGMENT_HEIGHT) * 1.5, 1)
-        font        = pygame.font.Font(s.FONTS["bladerunner"], 20)
+        font        = pygame.font.Font(s.FONTS["retro_computer"], 16)
         st          = self.special_text
 
         pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
@@ -144,11 +144,11 @@ class Player:
         pygame.draw.arc(window, s.COLOURS["black"], speedo_rect, 0.2, math.pi * 1.25, 5)
         pygame.draw.arc(window, s.COLOURS["red"], speedo_rect, -0.73, 0.2, 5)
 
-        u.render_text("kmph", window, font, s.COLOURS["text"], (70, s.DIMENSIONS[1] - 24))
+        u.render_text("kmph", window, font, s.COLOURS["text"], (110, s.DIMENSIONS[1] - 24))
         u.render_text(str(speed), window, font, s.COLOURS["text"], (10, s.DIMENSIONS[1] - 24))
-        u.render_text("lap", window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 100, 10))
+        u.render_text("Lap", window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 100, 10))
         u.render_text(str(self.lap), window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 28, 10))
-        u.render_text("time", window, font, s.COLOURS["text"], (10, 10))
+        u.render_text("Time", window, font, s.COLOURS["text"], (10, 10))
         u.render_text(str(math.trunc(self.time_left)), window, font, s.COLOURS["text"], (90, 10))
 
         # Render special text.
@@ -188,7 +188,7 @@ class Player:
             self.__set_special_text("New High Score!", 2)
 
         if self.game_over:
-            go_font = pygame.font.Font(s.FONTS["bladerunner"], 44)
+            go_font = pygame.font.Font(s.FONTS["retro_computer"], 44)
             go      = go_font.render("Game Over", 1, s.COLOURS["red"])
             x       = (s.DIMENSIONS[0] - go.get_size()[0]) / 2
             y       = (s.DIMENSIONS[1] - go.get_size()[1]) / 2

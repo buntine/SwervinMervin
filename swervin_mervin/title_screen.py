@@ -12,7 +12,7 @@ class TitleScreen():
         self.logo_a     = pygame.image.load(os.path.join("lib", "title_swervin.png"))
         self.logo_b     = pygame.image.load(os.path.join("lib", "title_mervin.png"))
         self.bg_offset  = 0
-        self.font       = pygame.font.Font(s.FONTS["arcade"], 22)
+        self.font       = pygame.font.Font(s.FONTS["retro_computer"], 22)
         self.state      = 0
         self.frame      = 0
         self.logo_a_off = -420

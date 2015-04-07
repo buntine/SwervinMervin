@@ -40,9 +40,8 @@ CAMERA_DEPTH          = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180)
 BOTTOM_OFFSET         = 5
 SPEED_BOOST_DECREASE  = 0.004
 PLAYER_Z              = (CAMERA_HEIGHT * CAMERA_DEPTH)
-FONTS                 = {"bladerunner":    os.path.join("lib", "br_font.ttf"),
-                         "arcade":         os.path.join("lib", "arcade.ttf"),
-                         "retro_computer": os.path.join("lib", "retro_computer.ttf")}
+FONTS                 = {"retro_computer": os.path.join("lib", "PressStart2P.ttf"),
+                         "fipps": os.path.join("lib", "Fipps-Regular.otf")}
 COLOURS               = {"white":  Color(255, 255, 255),
                          "text":   Color(172, 199, 252),
                          "sky":    Color(10, 10, 10),

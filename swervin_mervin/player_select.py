@@ -9,10 +9,10 @@ class PlayerSelect():
         self.selected   = 0
         self.finished   = False
         self.background = pygame.image.load(os.path.join("lib", "player_select.png"))
-        self.fonts      = {"title": pygame.font.Font(s.FONTS["retro_computer"], 38),
-                           "name": pygame.font.Font(s.FONTS["retro_computer"], 22),
-                           "details": pygame.font.Font(s.FONTS["retro_computer"], 14),
-                           "stats": pygame.font.Font(s.FONTS["retro_computer"], 12)}
+        self.fonts      = {"title": pygame.font.Font(s.FONTS["fipps"], 38),
+                           "name": pygame.font.Font(s.FONTS["retro_computer"], 18),
+                           "details": pygame.font.Font(s.FONTS["retro_computer"], 12),
+                           "stats": pygame.font.Font(s.FONTS["retro_computer"], 10)}
         
     def progress(self, window):
         txt_title     = self.fonts["title"].render("Player Select", 1, s.COLOURS["text"])

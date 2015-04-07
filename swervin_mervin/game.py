@@ -64,8 +64,8 @@ class Game:
     def wait(self):
         """Shows high scores until a new player is ready."""
 
-        heading_font = pygame.font.Font(s.FONTS["bladerunner"], 44)
-        content_font = pygame.font.Font(s.FONTS["arcade"], 15)
+        heading_font = pygame.font.Font(s.FONTS["fipps"], 44)
+        content_font = pygame.font.Font(s.FONTS["retro_computer"], 15)
         background   = pygame.image.load(os.path.join("lib", "title.png"))
         heading_text = heading_font.render("High Scores", 1, s.COLOURS["text"])
         y            = 100
@@ -192,7 +192,7 @@ class Game:
         p.set_direction(keys)
 
     def __pause_cycle(self):
-        pause_font = pygame.font.Font(s.FONTS["bladerunner"], 64)
+        pause_font = pygame.font.Font(s.FONTS["retro_computer"], 64)
         pause_text = pause_font.render("Paused", 1, s.COLOURS["text"])
         x          = (s.DIMENSIONS[0] - pause_text.get_width()) / 2
         y          = (s.DIMENSIONS[1] - pause_text.get_height()) / 2
