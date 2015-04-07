@@ -76,6 +76,7 @@ PLAYERS            = [{"name": "Swervin' Mervin",
                        "deceleration": 2.3,
                        "centrifugal_force": 0.266,
                        "city": "Melbourne",
+                       "select_sfx": "swervin_mervin_select.ogg",
                        "sprites":
                          {"mugshot_small": {
                            "path": "swervin_mervin_small.png",
@@ -213,6 +214,7 @@ PLAYERS            = [{"name": "Swervin' Mervin",
                         "deceleration": 2.5,
                         "centrifugal_force": 0.366,
                         "city": "Surfers Paradise, QLD",
+                        "select_sfx": "candy_select.ogg",
                         "sprites":
                          {"mugshot_small": {
                            "path": "candy_small.png",
@@ -350,6 +352,7 @@ PLAYERS            = [{"name": "Swervin' Mervin",
                         "deceleration": 2.2,
                         "centrifugal_force": 0.188,
                         "city": "Nullarbor Roadhouse, SA",
+                        "select_sfx": "burl_select.ogg",
                         "sprites":
                          {"mugshot_small": {
                            "path": "burl_small.png",
