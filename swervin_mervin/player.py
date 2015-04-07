@@ -129,8 +129,8 @@ class Player:
 
     def render_hud(self, window):
         """Renders a Head-Up display on the active window."""
-        center      = (75, s.DIMENSIONS[1] - 75)
-        speedo_rect = (35, s.DIMENSIONS[1] - 115, 80, 80)
+        center      = (75, s.DIMENSIONS[1] - 80)
+        speedo_rect = (35, s.DIMENSIONS[1] - 120, 80, 80)
         orbit_pos   = (self.speed / (self.settings["top_speed"] / 4.7)) + 2.35
         start       = self.__circular_orbit(center, -10, orbit_pos)
         finish      = self.__circular_orbit(center, 36, orbit_pos)
