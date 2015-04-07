@@ -68,11 +68,11 @@ class Game:
         content_font = pygame.font.Font(s.FONTS["retro_computer"], 15)
         background   = pygame.image.load(os.path.join("lib", "title.png"))
         heading_text = heading_font.render("High Scores", 1, s.COLOURS["text"])
-        y            = 100
+        y            = 120
 
         self.window.fill(s.COLOURS["black"])
         self.window.blit(background, (0, 0))
-        self.window.blit(heading_text, (30, 30))
+        self.window.blit(heading_text, (30, 3))
 
         for score in self.high_scores.high_scores:
             date_text  = content_font.render(score[0].strftime("%d %b %Y"), 1, s.COLOURS["text"])
