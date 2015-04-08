@@ -234,6 +234,6 @@ class Game:
             player_select.progress(self.window)
 
             pygame.display.update()
-            self.clock.tick(s.FPS)
+            self.clock.tick(s.PLAYER_SELECT_FPS)
 
         self.selected_player = player_select.selected

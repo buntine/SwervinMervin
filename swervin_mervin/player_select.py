@@ -6,14 +6,15 @@ class PlayerSelect():
     """Displays a player selection screen."""
 
     def __init__(self):
-        self.selected   = 0
-        self.finished   = False
-        self.player_chosen = False
-        self.background = pygame.image.load(os.path.join("lib", "player_select.png"))
-        self.fonts      = {"title": pygame.font.Font(s.FONTS["fipps"], 38),
-                           "name": pygame.font.Font(s.FONTS["retro_computer"], 18),
-                           "details": pygame.font.Font(s.FONTS["retro_computer"], 12),
-                           "stats": pygame.font.Font(s.FONTS["retro_computer"], 10)}
+        self.selected         = 0
+        self.finished         = False
+        self.player_chosen    = False
+        self.selection_colour = 0
+        self.background       = pygame.image.load(os.path.join("lib", "player_select.png"))
+        self.fonts            = {"title": pygame.font.Font(s.FONTS["fipps"], 38),
+                                 "name": pygame.font.Font(s.FONTS["retro_computer"], 18),
+                                 "details": pygame.font.Font(s.FONTS["retro_computer"], 12),
+                                 "stats": pygame.font.Font(s.FONTS["retro_computer"], 10)}
         
     def progress(self, window):
         txt_title     = self.fonts["title"].render("Player Select", 1, s.COLOURS["text"])
@@ -23,15 +24,24 @@ class PlayerSelect():
         step          = player["sprites"]["mugshot_small"]["width"]
         large_mugshot = pygame.image.load(os.path.join("lib", player["sprites"]["mugshot_large"]["path"]))
 
+        self.selection_colour = 1 if self.selection_colour == 0 else 0
+
         window.blit(self.background, (0, 0))
         window.blit(txt_title, ((s.DIMENSIONS[0] / 2) - (txt_title.get_size()[0] / 2), 10))
 
         for i, p in enumerate(s.PLAYERS):
-            mugshot = pygame.image.load(os.path.join("lib", p["sprites"]["mugshot_small"]["path"]))
+            details = p["sprites"]["mugshot_small"]
+            mugshot = pygame.image.load(os.path.join("lib", details["path"]))
             x       = start_point + (i * (step + lpad))
             y       = 120
 
             window.blit(mugshot, (x, y))
+
+            if i == self.selected:
+                bw = 10
+                pygame.draw.rect(window, 
+                  s.COLOURS["selection"][self.selection_colour],
+                  [x - (bw / 2), y - (bw / 2), details["width"] + bw, details["width"] + bw], bw)
 
         window.blit(large_mugshot, (0, s.DIMENSIONS[1] - player["sprites"]["mugshot_large"]["height"]))
         window.blit(self.fonts["name"].render(player["name"], 1, s.COLOURS["text"]), (start_point, 200))

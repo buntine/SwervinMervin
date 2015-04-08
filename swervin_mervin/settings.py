@@ -4,6 +4,7 @@ import math, os
 FPS                   = 60
 TITLE_FPS             = 20
 COUNTDOWN_FPS         = 1
+PLAYER_SELECT_FPS     = 10
 GAME_OVER_LAG         = 5 * FPS
 TITLE_SCREEN          = True
 COUNTDOWN             = True
@@ -42,15 +43,16 @@ SPEED_BOOST_DECREASE  = 0.004
 PLAYER_Z              = (CAMERA_HEIGHT * CAMERA_DEPTH)
 FONTS                 = {"retro_computer": os.path.join("lib", "PressStart2P.ttf"),
                          "fipps": os.path.join("lib", "Fipps-Regular.otf")}
-COLOURS               = {"white":  Color(255, 255, 255),
-                         "text":   Color(172, 199, 252),
-                         "sky":    Color(10, 10, 10),
+COLOURS               = {"white": Color(255, 255, 255),
+                         "text": Color(172, 199, 252),
+                         "selection": [Color(172, 199, 252),Color(100, 149, 252)],
+                         "sky": Color(10, 10, 10),
                          "gutter": Color(100, 100, 100),
-                         "red":    Color(204, 0, 0),
+                         "red": Color(204, 0, 0),
                          "bonus_a": Color(255, 78, 0),
                          "bonus_b": Color(255, 178, 0),
-                         "green":  Color(0, 204, 0),
-                         "black":  Color(0, 0, 0),
+                         "green": Color(0, 204, 0),
+                         "black": Color(0, 0, 0),
                          "light": {"road":     Color(34, 54, 56),
                                    "grass":    Color(0, 30, 70),
                                    "footpath": Color(82, 96, 115),
