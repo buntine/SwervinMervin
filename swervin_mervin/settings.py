@@ -40,6 +40,9 @@ CAMERA_HEIGHT         = 1300
 CAMERA_DEPTH          = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180)
 BOTTOM_OFFSET         = 5
 SPEED_BOOST_DECREASE  = 0.004
+HARD_TOP_SPEED        = [(SEGMENT_HEIGHT / (1.0/FPS)) * 1.5, (SEGMENT_HEIGHT / (1.0/FPS)) * 2.4]
+HARD_HANDLING         = [0.1, 0.45]
+HARD_ACCELERATION     = [2.0, 7.0]
 PLAYER_Z              = (CAMERA_HEIGHT * CAMERA_DEPTH)
 FONTS                 = {"retro_computer": os.path.join("lib", "PressStart2P.ttf"),
                          "fipps": os.path.join("lib", "Fipps-Regular.otf")}
@@ -75,9 +78,9 @@ PLAYERS            = [{"name": "Swervin' Mervin",
                        "age": 48,
                        "top_speed": (SEGMENT_HEIGHT / (1.0/FPS)) * 1.9,
                        "offroad_top_speed_factor": 2.0,
-                       "acceleration_factor": 5.0,
+                       "acceleration_factor": 4.6,
                        "deceleration": 2.3,
-                       "centrifugal_force": 0.266,
+                       "centrifugal_force": 0.261,
                        "city": "Melbourne",
                        "select_sfx": "swervin_mervin_select.ogg",
                        "sprites":
@@ -213,7 +216,7 @@ PLAYERS            = [{"name": "Swervin' Mervin",
                         "age": 21,
                         "top_speed": (SEGMENT_HEIGHT / (1.0/FPS)) * 2.2,
                         "offroad_top_speed_factor": 1.8,
-                        "acceleration_factor": 4.0,
+                        "acceleration_factor": 5.2,
                         "deceleration": 2.5,
                         "centrifugal_force": 0.366,
                         "city": "Surfers Paradise, QLD",

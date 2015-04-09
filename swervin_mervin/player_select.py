@@ -49,6 +49,10 @@ class PlayerSelect():
         window.blit(self.fonts["details"].render(player["city"], 1, s.COLOURS["text"]), (start_point - bw, 228))
 
         # Player stats.
+        desired_acceleration = int(self.normalise(player["acceleration_factor"], *s.HARD_ACCELERATION) * 155)
+        desired_handling = int(self.normalise(player["centrifugal_force"], *s.HARD_HANDLING) * 155) # TODO: centrifugal_force needs to be inverted.
+        desired_top_speed = int(self.normalise(player["top_speed"], *s.HARD_TOP_SPEED) * 155)
+
         window.blit(self.fonts["stats"].render("Acceleration", 1, s.COLOURS["text"]), (start_point - bw, 290))
         window.blit(self.fonts["stats"].render("Handling", 1, s.COLOURS["text"]), (start_point - bw, 312))
         window.blit(self.fonts["stats"].render("Speed", 1, s.COLOURS["text"]), (start_point - bw, 334))
@@ -59,6 +63,18 @@ class PlayerSelect():
         window.blit(su, (start_point + 105, 285))
         window.blit(su, (start_point + 105, 307))
         window.blit(su, (start_point + 105, 329))
+
+        pygame.draw.rect(window, 
+          s.COLOURS["text"],
+          [start_point + 105, 285, desired_acceleration, 18])
+
+        pygame.draw.rect(window, 
+          s.COLOURS["text"],
+          [start_point + 105, 307, desired_handling, 18])
+
+        pygame.draw.rect(window, 
+          s.COLOURS["text"],
+          [start_point + 105, 329, desired_top_speed, 18])
 
         if self.player_chosen:
             self.finalise_selection(player)
@@ -83,3 +99,6 @@ class PlayerSelect():
             continue
 
         self.finished = True
+
+    def normalise(self, v, low, high):
+        return (v - low) / (high - low)
