@@ -44,6 +44,7 @@ PLAYER_Z              = (CAMERA_HEIGHT * CAMERA_DEPTH)
 FONTS                 = {"retro_computer": os.path.join("lib", "PressStart2P.ttf"),
                          "fipps": os.path.join("lib", "Fipps-Regular.otf")}
 COLOURS               = {"white": Color(255, 255, 255),
+                         "opaque_white": Color(255, 255, 255, 80),
                          "text": Color(172, 199, 252),
                          "selection": [Color(172, 199, 252),Color(100, 149, 252)],
                          "sky": Color(10, 10, 10),

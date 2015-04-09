@@ -14,7 +14,7 @@ class PlayerSelect():
         self.fonts            = {"title": pygame.font.Font(s.FONTS["fipps"], 38),
                                  "name": pygame.font.Font(s.FONTS["retro_computer"], 18),
                                  "details": pygame.font.Font(s.FONTS["retro_computer"], 12),
-                                 "stats": pygame.font.Font(s.FONTS["retro_computer"], 10)}
+                                 "stats": pygame.font.Font(s.FONTS["retro_computer"], 8)}
         
     def progress(self, window):
         txt_title     = self.fonts["title"].render("Player Select", 1, s.COLOURS["text"])
@@ -43,9 +43,22 @@ class PlayerSelect():
                   s.COLOURS["selection"][self.selection_colour],
                   [x - (bw / 2), y - (bw / 2), details["width"] + bw, details["width"] + bw], bw)
 
+        # Player name and picture.
         window.blit(large_mugshot, (0, s.DIMENSIONS[1] - player["sprites"]["mugshot_large"]["height"]))
-        window.blit(self.fonts["name"].render(player["name"], 1, s.COLOURS["text"]), (start_point, 200))
-        window.blit(self.fonts["details"].render(player["city"], 1, s.COLOURS["text"]), (start_point, 228))
+        window.blit(self.fonts["name"].render(player["name"], 1, s.COLOURS["text"]), (start_point - bw, 200))
+        window.blit(self.fonts["details"].render(player["city"], 1, s.COLOURS["text"]), (start_point - bw, 228))
+
+        # Player stats.
+        window.blit(self.fonts["stats"].render("Acceleration", 1, s.COLOURS["text"]), (start_point - bw, 290))
+        window.blit(self.fonts["stats"].render("Handling", 1, s.COLOURS["text"]), (start_point - bw, 312))
+        window.blit(self.fonts["stats"].render("Speed", 1, s.COLOURS["text"]), (start_point - bw, 334))
+
+        su = pygame.Surface((155, 18), pygame.SRCALPHA)
+        su.fill(s.COLOURS["opaque_white"])
+
+        window.blit(su, (start_point + 105, 285))
+        window.blit(su, (start_point + 105, 307))
+        window.blit(su, (start_point + 105, 329))
 
         if self.player_chosen:
             self.finalise_selection(player)
