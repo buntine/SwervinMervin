@@ -54,15 +54,15 @@ class PlayerSelect():
         desired_top_speed = int(self.normalise(player["top_speed"], *s.HARD_TOP_SPEED) * 155)
 
         window.blit(self.fonts["stats"].render("Acceleration", 1, s.COLOURS["text"]), (start_point - bw, 290))
-        window.blit(self.fonts["stats"].render("Handling", 1, s.COLOURS["text"]), (start_point - bw, 312))
-        window.blit(self.fonts["stats"].render("Speed", 1, s.COLOURS["text"]), (start_point - bw, 334))
+        window.blit(self.fonts["stats"].render("Handling", 1, s.COLOURS["text"]), (start_point - bw, 314))
+        window.blit(self.fonts["stats"].render("Speed", 1, s.COLOURS["text"]), (start_point - bw, 338))
 
         su = pygame.Surface((155, 18), pygame.SRCALPHA)
         su.fill(s.COLOURS["opaque_white"])
 
         window.blit(su, (start_point + 105, 285))
-        window.blit(su, (start_point + 105, 307))
-        window.blit(su, (start_point + 105, 329))
+        window.blit(su, (start_point + 105, 309))
+        window.blit(su, (start_point + 105, 333))
 
         pygame.draw.rect(window, 
           s.COLOURS["text"],
@@ -70,11 +70,11 @@ class PlayerSelect():
 
         pygame.draw.rect(window, 
           s.COLOURS["text"],
-          [start_point + 105, 307, desired_handling, 18])
+          [start_point + 105, 309, desired_handling, 18])
 
         pygame.draw.rect(window, 
           s.COLOURS["text"],
-          [start_point + 105, 329, desired_top_speed, 18])
+          [start_point + 105, 333, desired_top_speed, 18])
 
         if self.player_chosen:
             self.finalise_selection(player)
