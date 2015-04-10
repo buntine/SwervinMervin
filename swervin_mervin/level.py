@@ -7,16 +7,18 @@ import sprite as sp
 class Level:
     """Represents a level in the game world."""
 
-    def __init__(self, name):
-        self.name        = name
+    def __init__(self, details):
+        self.name        = details["name"]
+        self.slug        = details["id"]
+        self.song        = details["song"]
         self.segments    = []
         self.competitors = []
 
     def build(self):
         """Reads the level file and builds a level by populating the segments array."""
-        level_path       = os.path.join("swervin_mervin", "levels", "{0}.csv".format(self.name))
-        sprites_path     = os.path.join("swervin_mervin", "levels", "sprites", "{0}.csv".format(self.name))
-        competitors_path = os.path.join("swervin_mervin", "levels", "competitors", "{0}.csv".format(self.name))
+        level_path       = os.path.join("swervin_mervin", "levels", "{0}.csv".format(self.slug))
+        sprites_path     = os.path.join("swervin_mervin", "levels", "sprites", "{0}.csv".format(self.slug))
+        competitors_path = os.path.join("swervin_mervin", "levels", "competitors", "{0}.csv".format(self.slug))
 
         with open(level_path, "r") as csvfile:
             for row in csv.reader(csvfile):

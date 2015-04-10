@@ -35,7 +35,7 @@ class Game:
             self.__countdown()
 
         self.player      = p.Player(self.high_scores.minimum_score(), self.selected_player)
-        self.level       = l.Level("melbourne")
+        self.level       = l.Level(s.LEVELS[0])
         self.backgrounds = [b.Background("sky", 0, 2, True),
                             b.Background("city", 0, 1)]
 

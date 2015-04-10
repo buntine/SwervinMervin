@@ -32,7 +32,6 @@ Ensure that you have the pygame libraries installed, and then:
   * Don't use sprite for speed up. Render triangles onto road
     * Or just use sprite that can stand upright...
   * More levels. If player gets to lap N, then move onto next level
-  * Multiple player selection with different stats.
   * Animate highscores in, fade them out on new game
   * Get Mel to create art for: Bonuses, Tunnel roof
   * Random boxes that penalise time-left when hit
