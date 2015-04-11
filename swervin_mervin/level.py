@@ -2,6 +2,7 @@ import csv, os, random
 import settings as s
 import segment as seg
 import competitor as c
+import background as b
 import sprite as sp
 
 class Level:
@@ -11,6 +12,7 @@ class Level:
         self.name        = details["name"]
         self.slug        = details["id"]
         self.song        = details["song"]
+        self.backgrounds = map(lambda bg: b.Background(bg["id"], bg["speed"], bg["convert"]), details["backgrounds"])
         self.segments    = []
         self.competitors = []
 

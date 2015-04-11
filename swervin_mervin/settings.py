@@ -67,13 +67,38 @@ COLOURS               = {"white": Color(255, 255, 255),
                                    "line":     Color(185, 185, 185)}}
 LEVELS             = [{"id": "melbourne",
                        "name": "Melbourne, VIC",
-                       "song": "lazerhawk-overdrive.ogg"},
+                       "song": "lazerhawk-overdrive.ogg",
+                       "backgrounds": [
+                         {"id": "sky",
+                          "speed": 2,
+                          "convert": True},
+                         {"id": "city",
+                          "speed": 1,
+                          "convert": False}
+                       ]},
                       {"id": "goldcoast",
                        "name": "Gold Coast",
-                       "song": "lazerhawk-overdrive.ogg"},
+                       "song": "lazerhawk-overdrive.ogg",
+                       "backgrounds": [
+                         {"id": "sky",
+                          "speed": 2,
+                          "convert": True},
+                         {"id": "city",
+                          "speed": 1,
+                          "convert": False}
+                       ]},
                       {"id": "nullarbor",
                        "name": "Nullarbor Desert",
-                       "song": "lazerhawk-overdrive.ogg"}]
+                       "song": "lazerhawk-overdrive.ogg",
+                       "backgrounds": [
+                         {"id": "sky",
+                          "speed": 2,
+                          "convert": True},
+                         {"id": "city",
+                          "speed": 1,
+                          "convert": False}
+                       ]}
+                     ]
 PLAYERS            = [{"name": "Swervin' Mervin",
                        "age": 48,
                        "top_speed": (SEGMENT_HEIGHT / (1.0/FPS)) * 1.9,

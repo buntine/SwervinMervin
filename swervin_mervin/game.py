@@ -1,7 +1,6 @@
 import pygame, sys, os, math, random
 from pygame.locals import *
 import player as p
-import background as b
 import level as l
 import title_screen as ts
 import countdown as cd
@@ -21,7 +20,6 @@ class Game:
         self.selected_player = 0
         self.player          = None
         self.level           = None
-        self.backgrounds     = None
         self.high_scores     = hs.HighScores()
 
     def play(self):
@@ -36,8 +34,6 @@ class Game:
 
         self.player      = p.Player(self.high_scores.minimum_score(), self.selected_player)
         self.level       = l.Level(s.LEVELS[0])
-        self.backgrounds = [b.Background("sky", 0, 2, True),
-                            b.Background("city", 0, 1)]
 
         self.level.build()
 
@@ -131,7 +127,7 @@ class Game:
         curve_delta = -(base_segment.curve * p.segment_percent())
 
         # Position backgrounds according to current curve.
-        for bg in self.backgrounds:
+        for bg in l.backgrounds:
             if base_segment.curve != 0:
                 bg.step(base_segment.curve, p.speed_percent())
             bg.render(self.window)
