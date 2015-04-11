@@ -29,15 +29,15 @@ class Game:
         if s.PLAYER_SELECT:
             self.__player_select()
 
-        if s.COUNTDOWN:
-            self.__countdown()
-
         self.player = p.Player(self.high_scores.minimum_score(), self.selected_player)
 
-        for lvl in s.LEVELS:
+        for i, lvl in enumerate(s.LEVELS):
             self.level = l.Level(lvl)
 
             self.level.build()
+
+            if s.COUNTDOWN:
+                self.__countdown(i)
 
             pygame.mixer.music.load(os.path.join("lib", self.level.song))
             pygame.mixer.music.play(-1)
@@ -223,8 +223,8 @@ class Game:
             pygame.display.update()
             self.clock.tick(s.TITLE_FPS)
 
-    def __countdown(self):
-        countdown = cd.CountDown()
+    def __countdown(self, level_number):
+        countdown = cd.CountDown(level_number, self.level.name)
 
         while not countdown.finished:
             countdown.progress(self.window)
