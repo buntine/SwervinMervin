@@ -32,29 +32,38 @@ class Game:
         if s.COUNTDOWN:
             self.__countdown()
 
-        self.player      = p.Player(self.high_scores.minimum_score(), self.selected_player)
-        self.level       = l.Level(s.LEVELS[0])
+        self.player = p.Player(self.high_scores.minimum_score(), self.selected_player)
 
-        self.level.build()
+        for lvl in s.LEVELS:
+            self.level = l.Level(lvl)
 
-        pygame.mixer.music.load(os.path.join("lib", "lazerhawk-overdrive.ogg"))
-        pygame.mixer.music.play(-1)
-        pygame.mixer.music.set_volume(s.MUSIC_VOLUME)
+            self.level.build()
 
-        while self.player.alive():
-            if self.paused:
-                self.__pause_cycle()
+            pygame.mixer.music.load(os.path.join("lib", self.level.song))
+            pygame.mixer.music.play(-1)
+            pygame.mixer.music.set_volume(s.MUSIC_VOLUME)
+
+            while self.player.alive() and not self.level.finished:
+                if self.paused:
+                    self.__pause_cycle()
+                else:
+                    self.__game_cycle()
+
+                pygame.display.update()
+                self.clock.tick(s.FPS)
+
+            pygame.mixer.music.fadeout(1500)
+
+            if self.player.alive():
+                # TODO: Post-level contratulations sequence.
+                pass
             else:
-                self.__game_cycle()
-
-            pygame.display.update()
-            self.clock.tick(s.FPS)
+                break
 
         ## Post-game high scores and wait for new player.
         if self.high_scores.is_high_score(self.player.points):
             self.high_scores.add_high_score(math.trunc(self.player.points))
 
-        pygame.mixer.music.fadeout(1500)
         self.waiting = True
 
     def wait(self):
