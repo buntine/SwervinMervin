@@ -12,6 +12,7 @@ class Level:
         self.name        = details["name"]
         self.slug        = details["id"]
         self.song        = details["song"]
+        self.laps        = details["laps"]
         self.backgrounds = map(lambda bg: b.Background(bg["id"], bg["speed"], bg["convert"]), details["backgrounds"])
         self.finished    = False
         self.segments    = []

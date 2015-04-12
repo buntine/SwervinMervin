@@ -15,7 +15,6 @@ class Player:
         self.next_milestone = s.POINT_MILESTONE
 
         self.reset()
-        self.__set_checkpoint()
 
     def reset(self):
         """Resets player variables for the start of a new level."""
@@ -41,6 +40,8 @@ class Player:
         self.crashed         = False
         self.special_text    = None
         self.screech_sfx     = None
+
+        self.__set_checkpoint()
 
     def steer(self, segment):
         """Updates x to simulate steering."""
