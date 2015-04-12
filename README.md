@@ -18,7 +18,7 @@ Ensure that you have the pygame libraries installed, and then:
 
   * [Jake at codeincomplete.com](http://codeincomplete.com/) and [Lou at extentofthejam.com](http://extentofthejam.com/) for their fantastic articles on the subject.
   * My beautiful girlfriend, Mel, for all of the original pixel art.
-  * LazerHawk and Miami Nights 1984 for the music.
+  * LazerHawk, Miami Nights 1984, Timecop 1983 and Alverna Gunn for the excellent music.
   * Out Run (1986) for "letting me" use some sprites.
   * Jim Gillette, Macho Man Randy Savage and Cary-Hiroyuki Tagawa for the sound bites.
   * [SoundBible](http://soundbible.com) and [FreeSFX](http://freesfx.co.uk) for some sound effects.
