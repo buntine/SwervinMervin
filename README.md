@@ -31,9 +31,12 @@ Ensure that you have the pygame libraries installed, and then:
   * Local highscore file outside of git
   * Don't use sprite for speed up. Render triangles onto road
     * Or just use sprite that can stand upright...
-  * More levels. If player gets to lap N, then move onto next level
+  * Congratulations sequence when level is finished
+  * Congratulations sequence when game is finished
+  * Engine sounds based on speed
+  * Proper tunnels
   * Animate highscores in, fade them out on new game
-  * Get Mel to create art for: Bonuses, Tunnel roof
+  * Get Mel to create art for: Bonuses, Tunnel roof, Other players, Other levels
   * Random boxes that penalise time-left when hit
   * Random boxes that give player temporary speed boost
   * Refine collision offsets for sprites
