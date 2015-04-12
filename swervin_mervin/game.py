@@ -37,7 +37,7 @@ class Game:
             self.level.build()
 
             if s.COUNTDOWN:
-                self.__countdown(i)
+                self.__countdown(i + 1)
 
             pygame.mixer.music.load(os.path.join("lib", self.level.song))
             pygame.mixer.music.play(-1)
