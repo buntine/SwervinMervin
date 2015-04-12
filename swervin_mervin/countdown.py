@@ -22,7 +22,7 @@ class CountDown():
         beep       = pygame.mixer.Sound(os.path.join("lib", "%d.wav" % freq))
 
         window.fill(s.COLOURS["black"])
-        window.blit(level_text, u.middle(level_text, y=20))
+        window.blit(level_text, u.middle(level_text, y=25))
         window.blit(cd_text, u.middle(cd_text, y_offset=(level_text.get_height())))
 
         beep.set_volume(0.2)

@@ -7,9 +7,20 @@ class Player:
     """Represents the player in the game world."""
 
     def __init__(self, high_score, selected_player):
+        self.settings       = s.PLAYERS[selected_player]
+        self.points         = 0
+        self.high_score     = high_score
+        self.game_over      = False
+        self.game_over_lag  = s.GAME_OVER_LAG
+        self.next_milestone = s.POINT_MILESTONE
+
+        self.reset()
+        self.__set_checkpoint()
+
+    def reset(self):
+        """Resets player variables for the start of a new level."""
         self.x               = 0
         self.y               = 0
-        self.settings        = s.PLAYERS[selected_player]
         self.position        = 0
         self.lap_percent     = 0
         self.direction       = 0
@@ -22,21 +33,14 @@ class Player:
         self.lap             = 1
         self.lap_time        = 0
         self.lap_margin      = 0
-        self.points          = 0
         self.blood_alpha     = 0
-        self.high_score      = high_score
         self.fastest_lap     = s.CHECKPOINT
         self.checkpoint      = s.CHECKPOINT
         self.time_left       = s.CHECKPOINT
         self.last_checkpoint = None
         self.crashed         = False
-        self.game_over       = False
-        self.game_over_lag   = s.GAME_OVER_LAG
-        self.next_milestone  = s.POINT_MILESTONE
         self.special_text    = None
         self.screech_sfx     = None
-
-        self.__set_checkpoint()
 
     def steer(self, segment):
         """Updates x to simulate steering."""

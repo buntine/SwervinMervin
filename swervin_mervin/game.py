@@ -34,6 +34,7 @@ class Game:
         for i, lvl in enumerate(s.LEVELS):
             self.level = l.Level(lvl)
 
+            self.player.reset()
             self.level.build()
 
             if s.COUNTDOWN:
@@ -43,7 +44,7 @@ class Game:
             pygame.mixer.music.play(-1)
             pygame.mixer.music.set_volume(s.MUSIC_VOLUME)
 
-            while self.player.alive() and not self.level.finished:
+            while self.player.alive() and self.player.laps <= self.level.laps
                 if self.paused:
                     self.__pause_cycle()
                 else:
