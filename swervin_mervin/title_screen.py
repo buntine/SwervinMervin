@@ -16,7 +16,7 @@ class TitleScreen():
         self.state      = 0
         self.frame      = 0
         self.logo_a_off = -420
-        self.logo_b_off = s.DIMENSIONS[0] - 100
+        self.logo_b_off = s.DIMENSIONS[0]
         
     def progress(self, window):
         self.frame += 1
@@ -63,10 +63,10 @@ class TitleScreen():
 
     def state_1_step(self, window):
         if not self.state == 0:
-            center_a = ((s.DIMENSIONS[0] - self.logo_a.get_width()) / 2) - 34
-            center_b = ((s.DIMENSIONS[0] - self.logo_b.get_width()) / 2) - 34
+            center_a = ((s.DIMENSIONS[0] - self.logo_a.get_width()) / 2)
+            center_b = ((s.DIMENSIONS[0] - self.logo_b.get_width()) / 2)
 
-            window.blit(self.logo_b, (self.logo_b_off, 130))
+            window.blit(self.logo_b, (self.logo_b_off, 158))
             window.blit(self.logo_a, (self.logo_a_off, 34))
 
             if self.state == 1: 
@@ -84,7 +84,7 @@ class TitleScreen():
             if (self.frame / 20) % 2 == 1:
                 self.ready = True
 
-                ic = self.font.render("Insert Coin", 1, s.COLOURS["red"])
+                ic = self.font.render("Press Start", 1, s.COLOURS["red"])
                 x  = (w - ic.get_size()[0]) / 2
                 y  = (h - ic.get_size()[1]) - 120
 

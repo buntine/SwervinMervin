@@ -2,7 +2,7 @@
 
 Swervin Mervin: A recreation of 80's-style pseudo-3D arcade racing games, written in Python and Pygame.
 
-Accelleration and steering is performed via the arrow keys. [ENTER] is akin to inserting coins. [ESC] to kill the game in fullscreen mode.
+Accelleration and steering is performed via the arrow keys. [ENTER] to start, [ESC] to kill the game in fullscreen mode.
 
 Here is a [small video of me playing](https://www.youtube.com/watch?v=T08Oe1l7nhk) (poorly).
 
