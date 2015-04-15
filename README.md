@@ -10,7 +10,7 @@ Here is a [small video of me playing](https://www.youtube.com/watch?v=T08Oe1l7nh
 
 ![Swervin' Mervin Arcade Edition](/lib/arcade.jpg?raw=true "Swervin' Mervin Arcade Edition")
 
-Yes, it's real. Ships with MAME and SNES and NES (1000+ games). Want one for the office? Email me.
+Yes, it's real. Ships with MAME and SNES and NES (1000+ games). Want something similar for the office? Email me.
 
 ### Playing
 
