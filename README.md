@@ -6,6 +6,12 @@ Accelleration and steering is performed via the arrow keys. [ENTER] to start, [E
 
 Here is a [small video of me playing](https://www.youtube.com/watch?v=T08Oe1l7nhk) (poorly).
 
+### The Arcade Edition
+
+![Swervin' Mervin Arcade Edition](/lib/arcade.jpg?raw=true "Swervin' Mervin Arcade Edition")
+
+Yes, it's real. Ships with MAME and SNES and NES (1000+ games). Want one for the office? Email me.
+
 ### Playing
 
 Ensure that you have the pygame libraries installed, and then:
