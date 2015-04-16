@@ -4,12 +4,13 @@ import settings as s
 class Segment:
     """Represents a single segment in a level."""
 
-    def __init__(self, palette, index, curve, start_y, end_y):
+    def __init__(self, palette, index, curve, start_y, end_y, in_tunnel=False):
         self.index       = index
         self.curve       = curve
         self.sprites     = []
         self.competitors = []
         self.clip        = 0
+        self.in_tunnel   = (self.index > 500 and self.index < 800)
         self.colour      = s.COLOURS[palette]
         self.top         = self.__initialize_line(end_y, index + 1)
         self.bottom      = self.__initialize_line(start_y, index)
@@ -31,9 +32,9 @@ class Segment:
         bottom = self.bottom["screen"]
         height = top["y"] - bottom["y"]
         y      = s.DIMENSIONS[1] - top["y"]
+        col    = s.COLOURS["tunnel"] if self.in_tunnel else self.colour["grass"]
 
-        pygame.draw.rect(window,
-          self.colour["grass"],
+        pygame.draw.rect(window, col,
           (0, y, s.DIMENSIONS[0], height),
           int(height <= 1))
 
@@ -56,26 +57,27 @@ class Segment:
         bottom_footpath_width = bottom["w"] / (s.LANES / 2.8)
 
         # Left footpath strip.
-        points = [((bottom["x"] - bottom["w"] - bottom_footpath_width), y_bottom),
-                  ((bottom["x"] - bottom["w"]),                         y_bottom),
-                  ((top["x"] - top["w"]),                               y_top),
-                  ((top["x"] - top["w"] - top_footpath_width),          y_top)]
-        pygame.draw.polygon(window, colour["footpath"], points)
+        if not self.in_tunnel:
+            points = [((bottom["x"] - bottom["w"] - bottom_footpath_width), y_bottom),
+                      ((bottom["x"] - bottom["w"]),                         y_bottom),
+                      ((top["x"] - top["w"]),                               y_top),
+                      ((top["x"] - top["w"] - top_footpath_width),          y_top)]
+            pygame.draw.polygon(window, colour["footpath"], points)
 
-        # Left gutter.
-        pygame.draw.line(window, s.COLOURS["gutter"],
-          (bottom["x"] - bottom["w"], y_bottom), (top["x"] - top["w"], y_top))
+            # Left gutter.
+            pygame.draw.line(window, s.COLOURS["gutter"],
+              (bottom["x"] - bottom["w"], y_bottom), (top["x"] - top["w"], y_top))
 
-        # Right footpath strip.
-        points = [((bottom["x"] + bottom["w"] + bottom_footpath_width), y_bottom),
-                  ((bottom["x"] + bottom["w"]),                         y_bottom),
-                  ((top["x"] + top["w"]),                               y_top),
-                  ((top["x"] + top["w"] + top_footpath_width),          y_top)]
-        pygame.draw.polygon(window, colour["footpath"], points)
+            # Right footpath strip.
+            points = [((bottom["x"] + bottom["w"] + bottom_footpath_width), y_bottom),
+                      ((bottom["x"] + bottom["w"]),                         y_bottom),
+                      ((top["x"] + top["w"]),                               y_top),
+                      ((top["x"] + top["w"] + top_footpath_width),          y_top)]
+            pygame.draw.polygon(window, colour["footpath"], points)
 
-        # Right gutter.
-        pygame.draw.line(window, s.COLOURS["gutter"],
-          (bottom["x"] + bottom["w"], y_bottom), (top["x"] + top["w"], y_top))
+            # Right gutter.
+            pygame.draw.line(window, s.COLOURS["gutter"],
+              (bottom["x"] + bottom["w"], y_bottom), (top["x"] + top["w"], y_top))
 
         if (self.index / s.RUMBLE_LENGTH) % 2 == 0:
             # Road lanes.

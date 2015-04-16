@@ -56,7 +56,7 @@ class Game:
             pygame.mixer.music.fadeout(1500)
 
             if self.player.alive():
-                # TODO: Post-level contratulations sequence.
+                # TODO: Post-level congratulations sequence.
                 pass
             else:
                 break
