@@ -4,13 +4,13 @@ import settings as s
 class Segment:
     """Represents a single segment in a level."""
 
-    def __init__(self, palette, index, curve, start_y, end_y, in_tunnel=False):
+    def __init__(self, palette, index, curve, start_y, end_y):
         self.index       = index
         self.curve       = curve
         self.sprites     = []
         self.competitors = []
         self.clip        = 0
-        self.in_tunnel   = (self.index > 500 and self.index < 800)
+        self.in_tunnel   = False
         self.colour      = s.COLOURS[palette]
         self.top         = self.__initialize_line(end_y, index + 1)
         self.bottom      = self.__initialize_line(start_y, index)

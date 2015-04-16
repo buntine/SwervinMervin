@@ -20,23 +20,25 @@ class Level:
 
     def build(self):
         """Reads the level file and builds a level by populating the segments array."""
-        level_path       = os.path.join("swervin_mervin", "levels", "{0}.csv".format(self.slug))
-        sprites_path     = os.path.join("swervin_mervin", "levels", "sprites", "{0}.csv".format(self.slug))
-        competitors_path = os.path.join("swervin_mervin", "levels", "competitors", "{0}.csv".format(self.slug))
+        build_path = lambda p: os.path.join("swervin_mervin", "levels", p, "{0}.csv".format(self.slug))
 
-        with open(level_path, "r") as csvfile:
+        with open(build_path("tracks"), "r") as csvfile:
             for row in csv.reader(csvfile):
-                ints = map(lambda c: float(c), row)
-                self.add_segment(*ints)
+                flts = map(lambda c: float(c), row)
+                self.add_segment(*flts)
 
-        with open(sprites_path, "r") as csvfile:
+        with open(build_path("sprites"), "r") as csvfile:
             for row in csv.reader(csvfile):
                 segment = self.segments[int(row[0])]
                 self.add_sprite(segment, row[1], float(row[2]), float(row[3]))
 
-        with open(competitors_path, "r") as csvfile:
+        with open(build_path("competitors"), "r") as csvfile:
             for row in csv.reader(csvfile):
                 self.add_competitor(int(row[0]), float(row[1]), row[2], float(row[3]))
+
+        with open(build_path("tunnels"), "r") as csvfile:
+            for row in csv.reader(csvfile):
+                self.add_tunnel(int(row[0]), int(row[1]))
 
     def add_segment(self, curve, start_y=0, end_y=0):
         """Creates a new segment and pushes it to the segments array"""
@@ -62,6 +64,11 @@ class Level:
         """Adds a competitor sprite to the given segment."""
         competitor = c.Competitor(position, offset, name, speed)
         self.competitors.append(competitor)
+
+    def add_tunnel(self, start, end):
+        """Tells the appropriate segments they are in a tunnel."""
+        for segment in self.segments[start:end]:
+            segment.in_tunnel = True
 
     def track_length(self):
         return len(self.segments) * s.SEGMENT_HEIGHT
