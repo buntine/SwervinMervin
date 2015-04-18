@@ -112,10 +112,12 @@ class Segment:
             pygame.draw.rect(window, s.COLOURS["tunnel"],
               (0, 0, s.DIMENSIONS[0], s.DIMENSIONS[1] - highest_y))
         else:
+            scale = self.top["screen"]["s"]
+
             # TODO: Scale height of roof based on distance of segment from camera.
-            #       Render rect like above but subtract some N from the last value that
-            #       grows as this segment approaches the camera.
-            pass
+            pygame.draw.rect(window, s.COLOURS["tunnel"],
+              (0, 0, s.DIMENSIONS[0], s.DIMENSIONS[1] - highest_y - scale))
+
     def render_left_tunnel(self, window):
         bottom   = self.bottom["screen"]
         y_bottom = (s.DIMENSIONS[1] - bottom["y"])

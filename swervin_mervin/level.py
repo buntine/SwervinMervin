@@ -70,7 +70,7 @@ class Level:
         for segment in self.segments[start:end]:
             segment.in_tunnel = True
 
-        self.segments[end].tunnel_end = True
+        self.segments[end-1].tunnel_end = True
 
     def track_length(self):
         return len(self.segments) * s.SEGMENT_HEIGHT

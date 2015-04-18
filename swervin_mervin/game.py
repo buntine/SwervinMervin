@@ -196,6 +196,7 @@ class Game:
         # Draw tunnel roof and walls.
         if base_segment.in_tunnel:
             self.player.in_tunnel = True
+
             tunnel_exit.render_tunnel_roof(self.window, y_coverage)
             
             if l_tunnel_wall:
