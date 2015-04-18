@@ -190,7 +190,7 @@ class Game:
                     if (segment.bottom["screen"]["x"] + segment.bottom["screen"]["w"]) < (r_tunnel_wall.bottom["screen"]["x"] + r_tunnel_wall.bottom["screen"]["w"]):
                         r_tunnel_wall = segment
 
-            if segment.end_tunnel:
+            if segment.tunnel_end:
                 tunnel_exit = segment
 
         # Draw tunnel roof and walls.
