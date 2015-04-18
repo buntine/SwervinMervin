@@ -167,6 +167,9 @@ class Game:
             # Remember highest Y coordinate so we can clip sprites later.
             segment.clip = y_coverage
 
+            if segment.tunnel_end:
+                tunnel_exit = segment
+
             if segment.should_ignore(y_coverage):
                 continue
 
@@ -190,11 +193,9 @@ class Game:
                     if (segment.bottom["screen"]["x"] + segment.bottom["screen"]["w"]) < (r_tunnel_wall.bottom["screen"]["x"] + r_tunnel_wall.bottom["screen"]["w"]):
                         r_tunnel_wall = segment
 
-            if segment.tunnel_end:
-                tunnel_exit = segment
-
         # Draw tunnel roof and walls.
         if base_segment.in_tunnel:
+            self.player.in_tunnel = True
             tunnel_exit.render_tunnel_roof(self.window, y_coverage)
             
             if l_tunnel_wall:
@@ -202,6 +203,8 @@ class Game:
 
             if r_tunnel_wall:
                 r_tunnel_wall.render_right_tunnel(self.window)
+        else:
+            self.player.in_tunnel = False
 
         # Draw sprites in from back to front (painters algorithm).
         if segment.index != base_segment.index:

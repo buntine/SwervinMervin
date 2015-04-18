@@ -33,6 +33,7 @@ class Player:
         self.lap_time        = 0
         self.lap_margin      = 0
         self.blood_alpha     = 0
+	self.in_tunnel       = False
         self.fastest_lap     = s.CHECKPOINT
         self.checkpoint      = s.CHECKPOINT
         self.time_left       = s.CHECKPOINT
@@ -45,7 +46,8 @@ class Player:
 
     def steer(self, segment):
         """Updates x to simulate steering."""
-        self.x = u.limit(self.x + self.direction, -s.BOUNDS, s.BOUNDS)
+	bounds = s.TUNNEL_BOUNDS if self.in_tunnel else s.BOUNDS
+        self.x = u.limit(self.x + self.direction, -bounds, bounds)
 
         # Apply centrifugal force if we are going around a corner.
         if segment.curve != 0 and not self.game_over:

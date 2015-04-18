@@ -20,6 +20,7 @@ SPRITE_DRAW_DISTANCE  = 110
 ROAD_WIDTH            = 2100
 LANES                 = 4
 BOUNDS                = 2.1
+TUNNEL_BOUNDS         = 0.85
 AUTO_DRIVE            = False
 PLAYER_ANIM_HOLD      = 8
 CHECKPOINT            = 47
