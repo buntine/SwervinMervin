@@ -133,8 +133,9 @@ class Game:
                 new_seg.competitors.append(c)
 
         y_coverage    = 0
-        l_tunnel_wall = base_segment
-        r_tunnel_wall = base_segment
+        l_tunnel_wall = None
+        r_tunnel_wall = None
+        tunnel_exit   = base_segment
         curve         = 0
         curve_delta   = -(base_segment.curve * p.segment_percent())
 
@@ -175,23 +176,32 @@ class Game:
             if (segment.top["screen"]["y"] > y_coverage):
                 y_coverage = segment.top["screen"]["y"]
 
-            if segment.in_tunnel and\
-                (segment.bottom["screen"]["x"] - segment.bottom["screen"]["w"]) > (l_tunnel_wall.bottom["screen"]["x"] - l_tunnel_wall.bottom["screen"]["w"]):
-                l_tunnel_wall = segment
+            if segment.in_tunnel:
+                if not l_tunnel_wall:
+                    l_tunnel_wall = segment
+                else:
+                    if (segment.bottom["screen"]["x"] - segment.bottom["screen"]["w"]) > (l_tunnel_wall.bottom["screen"]["x"] - l_tunnel_wall.bottom["screen"]["w"]):
+                        l_tunnel_wall = segment
 
-            if segment.in_tunnel and\
-                (segment.bottom["screen"]["x"] + segment.bottom["screen"]["w"]) < (r_tunnel_wall.bottom["screen"]["x"] + r_tunnel_wall.bottom["screen"]["w"]):
-                r_tunnel_wall = segment
+            if segment.in_tunnel:
+                if not r_tunnel_wall:
+                    r_tunnel_wall = segment
+                else:
+                    if (segment.bottom["screen"]["x"] + segment.bottom["screen"]["w"]) < (r_tunnel_wall.bottom["screen"]["x"] + r_tunnel_wall.bottom["screen"]["w"]):
+                        r_tunnel_wall = segment
+
+            if segment.end_tunnel:
+                tunnel_exit = segment
 
         # Draw tunnel roof and walls.
-        if base_segment.in_tunnel and l_tunnel_wall.index != base_segment.index:
-            l_tunnel_wall.render_left_tunnel(window)
-#            print l_tunnel_wall.bottom["screen"]["x"] - l_tunnel_wall.bottom["screen"]["w"]
-#            pygame.draw.rect(self.window, s.COLOURS["tunnel"],
-#              (0, 0, s.DIMENSIONS[0], s.DIMENSIONS[1] - y_coverage))
-        if base_segment.in_tunnel and r_tunnel_wall.index != base_segment.index:
-            r_tunnel_wall.render_right_tunnel(window)
-            #print r_tunnel_wall.bottom["screen"]["x"] + r_tunnel_wall.bottom["screen"]["w"]
+        if base_segment.in_tunnel:
+            tunnel_exit.render_tunnel_roof(self.window, y_coverage)
+            
+            if l_tunnel_wall:
+                l_tunnel_wall.render_left_tunnel(self.window)
+
+            if r_tunnel_wall:
+                r_tunnel_wall.render_right_tunnel(self.window)
 
         # Draw sprites in from back to front (painters algorithm).
         if segment.index != base_segment.index:

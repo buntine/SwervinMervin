@@ -11,6 +11,7 @@ class Segment:
         self.competitors = []
         self.clip        = 0
         self.in_tunnel   = False
+        self.tunnel_end  = False
         self.colour      = s.COLOURS[palette]
         self.top         = self.__initialize_line(end_y, index + 1)
         self.bottom      = self.__initialize_line(start_y, index)
@@ -105,6 +106,31 @@ class Segment:
         """Renders the sprites/competitors (if any) for this segment to the given surface."""
         for obj in (self.sprites + self.competitors):
             obj.render(window, self.bottom["screen"], self.clip)
+
+    def render_tunnel_roof(self, window, highest_y):
+        if not self.tunnel_end:
+            pygame.draw.rect(window, s.COLOURS["tunnel"],
+              (0, 0, s.DIMENSIONS[0], s.DIMENSIONS[1] - highest_y))
+
+    def render_left_tunnel(self, window):
+        bottom   = self.bottom["screen"]
+        y_bottom = (s.DIMENSIONS[1] - bottom["y"])
+
+        points = [(0, y_bottom),
+                  ((bottom["x"] - bottom["w"]), y_bottom),
+                  ((bottom["x"] - bottom["w"]), 0),
+                  (0, 0)]
+        pygame.draw.polygon(window, s.COLOURS["tunnel"], points)
+
+    def render_right_tunnel(self, window):
+        bottom   = self.bottom["screen"]
+        y_bottom = (s.DIMENSIONS[1] - bottom["y"])
+
+        points = [((bottom["x"] + bottom["w"]), y_bottom),
+                  (s.DIMENSIONS[0], y_bottom),
+                  (s.DIMENSIONS[0], 0),
+                  ((bottom["x"] + bottom["w"]), 0)]
+        pygame.draw.polygon(window, s.COLOURS["tunnel"], points)
 
     def remove_sprite(self, sprite):
         """Permanently removes the given sprite from this segment."""
