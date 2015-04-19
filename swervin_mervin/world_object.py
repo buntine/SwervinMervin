@@ -5,7 +5,7 @@ class WorldObject:
     """Represents a single renderable object in a level. Should always be subclassed."""
 
     def render(self, window, coords, clip):
-        """Renders an object to the window with appropriate scaling, etc."""
+        """Renders an object to the window with appropriate scaling, clipping, etc."""
         s_width   = int(self.sprite["width"] * coords["s"] * s.ROAD_WIDTH * self.quantifier)
         s_height  = int(self.sprite["height"] * coords["s"] * s.ROAD_WIDTH * self.quantifier)
         x         = (coords["x"] - s_width) + (coords["w"] * self.offset)
