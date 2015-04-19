@@ -9,7 +9,7 @@ class Segment:
         self.curve       = curve
         self.sprites     = []
         self.competitors = []
-        self.clip        = 0
+        self.clip        = [0, 0, 0] # Left, Top, Right.
         self.in_tunnel   = False
         self.tunnel_end  = False
         self.colour      = s.COLOURS[palette]
