@@ -70,6 +70,10 @@ class Level:
         for segment in self.segments[start:end]:
             segment.in_tunnel = True
 
+            if segment.index % s.TUNNEL_LIGHT_FREQ == 0:
+                self.add_sprite(segment, "tunnel_light", -1.0, 2.0)
+                self.add_sprite(segment, "tunnel_light", 1.0, 2.0)
+
         self.segments[end-1].tunnel_end = True
 
     def track_length(self):

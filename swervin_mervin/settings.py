@@ -22,6 +22,7 @@ LANES                 = 4
 BOUNDS                = 2.1
 TUNNEL_BOUNDS         = 0.85
 TUNNEL_HEIGHT         = 20
+TUNNEL_LIGHT_FREQ     = 15
 AUTO_DRIVE            = False
 PLAYER_ANIM_HOLD      = 8
 CHECKPOINT            = 47
@@ -526,6 +527,10 @@ SPRITES           = {"column": {
                        "collision": [-0.9, 0.1],
                        "width": 80,
                        "height": 126},
+                     "tunnel_light": {
+                       "path": "tunnel_light.png",
+                       "width": 8,
+                       "height": 8},
                      "tunnel": {
                        "path": "tunnel.png",
                        "width": 480,
