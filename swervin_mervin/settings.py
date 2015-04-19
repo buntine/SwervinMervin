@@ -532,7 +532,7 @@ SPRITES           = {"column": {
                        "width": 8,
                        "height": 8},
                      "tunnel_sign": {
-                       "path": "tunnel_light.png",
+                       "path": "bush1.png",
                        "width": 8,
                        "height": 8},
                      "tunnel": {

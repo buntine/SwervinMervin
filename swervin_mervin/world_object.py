@@ -15,10 +15,14 @@ class WorldObject:
             y -= (self.offset_y * 100000 * coords["s"])
  
         top_clip_line = (s.DIMENSIONS[1] - clip[1]) - y
+        left_clip_line = max(x, 0) - clip[0]
 
         if s_width > 0 and s_height > 0 and top_clip_line > 0 and\
-           s_width < s.DIMENSIONS[0] * 2 and s_height < s.DIMENSIONS[1] * 2:
+           s_width < s.DIMENSIONS[0] * 2 and s_height < s.DIMENSIONS[1] * 2 and\
+           (left_clip_line >= 0 or abs(left_clip_line) < s_width):
             img = self.path()
             img = pygame.transform.scale(img, (s_width, s_height))
 
-            window.blit(img, (x, y), (0, 0, s_width, top_clip_line))
+            offset_x = 0 if left_clip_line >= 0 else abs(left_clip_line)
+
+            window.blit(img, (x, y), (offset_x, 0, s_width, top_clip_line))

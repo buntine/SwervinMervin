@@ -133,6 +133,8 @@ class Game:
                 new_seg.competitors.append(c)
 
         y_coverage    = 0
+        l_coverage    = 0
+        r_coverage    = 0
         l_tunnel_wall = None
         r_tunnel_wall = None
         tunnel_exit   = base_segment
@@ -164,8 +166,10 @@ class Game:
             curve       += curve_delta
             curve_delta += segment.curve
 
-            # Remember highest Y coordinate so we can clip sprites later.
+            # Remember biggest LEFT,TOP,RIGHT coordinates so we can clip sprites later.
+            segment.clip[0] = l_coverage
             segment.clip[1] = y_coverage
+            segment.clip[2] = r_coverage
 
             if segment.tunnel_end:
                 tunnel_exit = segment
@@ -188,16 +192,14 @@ class Game:
                 else:
                     if (bottom_x - bottom_w) > (l_tunnel_wall.bottom["screen"]["x"] - l_tunnel_wall.bottom["screen"]["w"]):
                         l_tunnel_wall = segment
-
-                segment.clip[0] = (bottom_x - bottom_w)
+                        l_coverage    = (l_tunnel_wall.bottom["screen"]["x"] - l_tunnel_wall.bottom["screen"]["w"])
 
                 if not r_tunnel_wall:
                     r_tunnel_wall = segment
                 else:
                     if (bottom_x + bottom_w) < (r_tunnel_wall.bottom["screen"]["x"] + r_tunnel_wall.bottom["screen"]["w"]):
                         r_tunnel_wall = segment
-
-                segment.clip[2] = (bottom_x + bottom_w)
+                        r_coverage    = (r_tunnel_wall.bottom["screen"]["x"] + r_tunnel_wall.bottom["screen"]["w"])
 
         # Draw tunnel roof and walls.
         if base_segment.in_tunnel:
