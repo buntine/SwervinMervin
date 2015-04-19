@@ -166,7 +166,7 @@ class Game:
             curve       += curve_delta
             curve_delta += segment.curve
 
-            # Remember biggest LEFT,TOP,RIGHT coordinates so we can clip sprites later.
+            # Remember biggest LEFT, TOP, RIGHT coordinates so we can clip sprites later.
             segment.clip = [l_coverage, t_coverage, r_coverage]
 
             if segment.tunnel_end:
@@ -184,7 +184,7 @@ class Game:
             # Remember where we should draw the left and right tunnel walls.
             if segment.in_tunnel:
                 s_bottom = segment.top["screen"]
-		
+
                 if not l_tunnel_wall:
                    l_tunnel_wall = segment
                 else:

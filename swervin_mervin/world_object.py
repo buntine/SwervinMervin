@@ -6,23 +6,25 @@ class WorldObject:
 
     def render(self, window, coords, clip):
         """Renders an object to the window with appropriate scaling, clipping, etc."""
-        s_width   = int(self.sprite["width"] * coords["s"] * s.ROAD_WIDTH * self.quantifier)
-        s_height  = int(self.sprite["height"] * coords["s"] * s.ROAD_WIDTH * self.quantifier)
-        x         = (coords["x"] - s_width) + (coords["w"] * self.offset)
-        y         = s.DIMENSIONS[1] - coords["y"] - s_height
+        s_width    = int(self.sprite["width"] * coords["s"] * s.ROAD_WIDTH * self.quantifier)
+        s_height   = int(self.sprite["height"] * coords["s"] * s.ROAD_WIDTH * self.quantifier)
+        x          = (coords["x"] - s_width) + (coords["w"] * self.offset)
+        y          = s.DIMENSIONS[1] - coords["y"] - s_height
+        top_clip   = (s.DIMENSIONS[1] - clip[1]) - y
+        left_clip  = max(x, 0) - clip[0]
+        right_clip = clip[2]
+
+        if right_clip > 0 and right_clip < (x + s_width):
+            s_width -= int((x + s_width) - right_clip)
 
         if self.offset_y > 0:
             y -= (self.offset_y * 100000 * coords["s"])
  
-        top_clip_line = (s.DIMENSIONS[1] - clip[1]) - y
-        left_clip_line = max(x, 0) - clip[0]
-
-        if s_width > 0 and s_height > 0 and top_clip_line > 0 and\
+        if s_width > 0 and s_height > 0 and top_clip > 0 and\
            s_width < s.DIMENSIONS[0] * 2 and s_height < s.DIMENSIONS[1] * 2 and\
-           (left_clip_line >= 0 or abs(left_clip_line) < s_width):
-            img = self.path()
-            img = pygame.transform.scale(img, (s_width, s_height))
+           (left_clip >= 0 or abs(left_clip) < s_width):
+            img      = self.path()
+            img      = pygame.transform.scale(img, (s_width, s_height))
+            offset_x = 0 if left_clip >= 0 else abs(left_clip)
 
-            offset_x = 0 if left_clip_line >= 0 else abs(left_clip_line)
-
-            window.blit(img, (x, y), (offset_x, 0, s_width, top_clip_line))
+            window.blit(img, (x, y), (offset_x, 0, s_width, top_clip))
