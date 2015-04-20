@@ -15,15 +15,14 @@ class TunnelEntrance:
         top_clip   = s.DIMENSIONS[1] - clip[1] - y
 
         if top_clip > 0:
-            e_width  = coords["w"]
             e_height = int(s_height * 0.7)
             surf     = pygame.Surface([s_width, s_height], pygame.SRCALPHA, 32)
             surf     = surf.convert_alpha()
             points   = [(s_width, s_height),
-                        ((s_width / 2) + (e_width / 2), s_height),
-                        ((s_width / 2) + (e_width / 2), s_height - e_height),
-                        ((s_width / 2) - (e_width / 2), s_height - e_height),
-                        ((s_width / 2) - (e_width / 2), s_height),
+                        (coords["x"] + coords["w"], s_height),
+                        (coords["x"] + coords["w"], s_height - e_height),
+                        (coords["x"] - coords["w"], s_height - e_height),
+                        (coords["x"] - coords["w"], s_height),
                         (0, s_height),
                         (0, 0),
                         (s_width, 0)] 
