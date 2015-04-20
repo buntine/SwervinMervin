@@ -117,7 +117,7 @@ class Segment:
             # I am mirroring the roof and road segment heights here.
             # Not sure if this will work in all circumstances (hills, etc).
             pygame.draw.rect(window, s.COLOURS["tunnel"],
-              (0, 0, s.DIMENSIONS[0], self.top["screen"]["y"] - s.TUNNEL_HEIGHT))
+              (0, 0, s.DIMENSIONS[0], self.top["screen"]["y"] - (s.TUNNEL_HEIGHT / 4)))
 
     def render_left_tunnel(self, window):
         bottom   = self.bottom["screen"]
