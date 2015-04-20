@@ -12,15 +12,11 @@ class TunnelEntrance:
         s_height   = int(120 * coords["s"] * s.ROAD_WIDTH * self.quantifier)
         x          = 0
         y          = s.DIMENSIONS[1] - coords["y"] - s_height
-        top_clip   = (s.DIMENSIONS[1] - clip[1]) - y
-        left_clip  = max(x, 0) - clip[0]
-        right_clip = clip[2]
+        top_clip   = s.DIMENSIONS[1] - clip[1] - y
 
-        pygame.draw.rect(window, s.COLOURS["black"],
-          (x, y, s_width, s_height))
-
-#        if right_clip > 0 and right_clip < (x + s_width):
-#            s_width -= int((x + s_width) - right_clip)
+        if top_clip > 0:
+            pygame.draw.rect(window, s.COLOURS["black"],
+              (x, y, s_width, s_height))
 
 #        if self.offset_y > 0:
 #            y -= (self.offset_y * 100000 * coords["s"])
