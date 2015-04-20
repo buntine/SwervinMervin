@@ -5,16 +5,17 @@ class Segment:
     """Represents a single segment in a level."""
 
     def __init__(self, palette, index, curve, start_y, end_y):
-        self.index       = index
-        self.curve       = curve
-        self.sprites     = []
-        self.competitors = []
-        self.clip        = [0, 0, 0] # Left, Top, Right.
-        self.in_tunnel   = False
-        self.tunnel_end  = False
-        self.colour      = s.COLOURS[palette]
-        self.top         = self.__initialize_line(end_y, index + 1)
-        self.bottom      = self.__initialize_line(start_y, index)
+        self.index         = index
+        self.curve         = curve
+        self.sprites       = []
+        self.competitors   = []
+        self.clip          = [0, 0, 0] # Left, Top, Right.
+        self.in_tunnel     = False
+        self.tunnel_end    = False
+        self.tunnel_start  = False
+        self.colour        = s.COLOURS[palette]
+        self.top           = self.__initialize_line(end_y, index + 1)
+        self.bottom        = self.__initialize_line(start_y, index)
 
     def project(self, camera_x, curve, curve_delta, position, player_y):
         """Modifies the segment lines in place, projecting them to 2D coordinates."""
@@ -106,6 +107,10 @@ class Segment:
         """Renders the sprites/competitors (if any) for this segment to the given surface."""
         for obj in (self.sprites + self.competitors):
             obj.render(window, self.bottom["screen"], self.clip)
+
+    def render_tunnel_entrance(self, window):
+        """Renders a polygon of the tunnel entrance, scaled depending on distance from camera."""
+        pass
 
     def render_tunnel_roof(self, window, highest_y):
         if not self.tunnel_end:

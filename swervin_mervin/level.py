@@ -74,7 +74,8 @@ class Level:
                 self.add_sprite(segment, "tunnel_light", -1.0, 2.0)
                 self.add_sprite(segment, "tunnel_light", 1.0, 2.0)
 
-        self.segments[end-1].tunnel_end = True
+        self.segments[end-1].tunnel_end   = True
+        self.segments[start].tunnel_start = True
 
     def track_length(self):
         return len(self.segments) * s.SEGMENT_HEIGHT
