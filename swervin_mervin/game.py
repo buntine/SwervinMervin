@@ -178,9 +178,6 @@ class Game:
             segment.render_grass(self.window)
             segment.render_road(self.window)
 
-            if segment.tunnel_start:
-                segment.render_tunnel_entrance(self.window)
-
             if (segment.top["screen"]["y"] > t_coverage):
                 t_coverage = segment.top["screen"]["y"]
 
@@ -218,6 +215,7 @@ class Game:
             if r_tunnel_wall:
                 r_tunnel_wall.render_right_tunnel(self.window)
         else:
+
             self.player.in_tunnel = False
 
         # Draw sprites in from back to front (painters algorithm).

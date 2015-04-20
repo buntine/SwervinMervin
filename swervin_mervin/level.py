@@ -4,6 +4,7 @@ import segment as seg
 import competitor as c
 import background as b
 import sprite as sp
+import tunnel_entrance as te
 
 class Level:
     """Represents a level in the game world."""
@@ -52,6 +53,11 @@ class Level:
         sprite = sp.Sprite(name, x, y)
         segment.sprites.append(sprite)
 
+    def add_renderable_object(self, segment, klass):
+        """Adds a miscallaneous non-sprite renderable object to the given segment."""
+        obj = klass()
+	segment.renderables.append(obj)
+
     def insert_bonuses(self):
         """Adds a couple of bonuses into the track at random places."""
         segs = random.sample(self.segments, 2)
@@ -74,8 +80,8 @@ class Level:
                 self.add_sprite(segment, "tunnel_light", -1.0, 2.0)
                 self.add_sprite(segment, "tunnel_light", 1.0, 2.0)
 
-        self.segments[end-1].tunnel_end   = True
-        self.segments[start].tunnel_start = True
+        self.segments[end-1].tunnel_end = True
+        self.add_renderable_object(self.segments[start], te.TunnelEntrance)
 
     def track_length(self):
         return len(self.segments) * s.SEGMENT_HEIGHT

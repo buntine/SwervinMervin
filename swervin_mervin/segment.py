@@ -9,10 +9,10 @@ class Segment:
         self.curve         = curve
         self.sprites       = []
         self.competitors   = []
+        self.renderables   = []
         self.clip          = [0, 0, 0] # Left, Top, Right.
         self.in_tunnel     = False
         self.tunnel_end    = False
-        self.tunnel_start  = False
         self.colour        = s.COLOURS[palette]
         self.top           = self.__initialize_line(end_y, index + 1)
         self.bottom        = self.__initialize_line(start_y, index)
@@ -105,14 +105,11 @@ class Segment:
 
     def render_world_objects(self, window):
         """Renders the sprites/competitors (if any) for this segment to the given surface."""
-        for obj in (self.sprites + self.competitors):
+        for obj in (self.sprites + self.competitors + self.renderables):
             obj.render(window, self.bottom["screen"], self.clip)
 
-    def render_tunnel_entrance(self, window):
-        """Renders a polygon of the tunnel entrance, scaled depending on distance from camera."""
-        pass
-
     def render_tunnel_roof(self, window, highest_y):
+        """Renders the tunnel roof, accounting for the exit hole if it's visible."""
         if not self.tunnel_end:
             pygame.draw.rect(window, s.COLOURS["tunnel"],
               (0, 0, s.DIMENSIONS[0], s.DIMENSIONS[1] - highest_y))
