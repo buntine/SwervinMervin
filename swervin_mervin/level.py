@@ -5,6 +5,7 @@ import competitor as c
 import background as b
 import sprite as sp
 import tunnel_entrance as te
+import tunnel_inside as ti
 
 class Level:
     """Represents a level in the game world."""
@@ -58,9 +59,9 @@ class Level:
         obj = klass()
 
         if when == "pre":
-            segment.pre_renderables.append(obj)
+            segment.pre_polygons.append(obj)
         else:
-            segment.post_renderables.append(obj)
+            segment.post_polygons.append(obj)
 
     def insert_bonuses(self):
         """Adds a couple of bonuses into the track at random places."""
@@ -85,7 +86,7 @@ class Level:
                 self.add_sprite(segment, "tunnel_light", 1.0, 2.0)
 
         self.segments[end-1].tunnel_end = True
-        self.add_polygon(self.segments[start], te.TunnelInside, "pre")
+        self.add_polygon(self.segments[start], ti.TunnelInside, "pre")
         self.add_polygon(self.segments[start], te.TunnelEntrance, "post")
 
     def track_length(self):

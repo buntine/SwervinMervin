@@ -104,9 +104,15 @@ class Segment:
                           (top_left,     y_top)]
                 pygame.draw.polygon(window, colour["line"], points)
 
+    def render_polygons(self, window, full_clip):
+        """Renders the polygons/shapes (if any) for this segment to the given surface.
+           These are rendered after the track, but before the sprites."""
+        for obj in self.pre_polygons:
+            obj.render(window, self.bottom["screen"], self.clip, full_clip)
+
     def render_world_objects(self, window):
         """Renders the sprites/competitors (if any) for this segment to the given surface."""
-        for obj in (self.pre_polygons, self.sprites + self.competitors + self.post_polygons):
+        for obj in (self.sprites + self.competitors + self.post_polygons):
             obj.render(window, self.bottom["screen"], self.clip)
 
     def render_tunnel_roof(self, window, highest_y):

@@ -132,12 +132,11 @@ class Game:
                     old_seg.competitors.remove(c)
                 new_seg.competitors.append(c)
 
-        t_coverage    = 0
-        l_coverage    = 0
-        r_coverage    = 0
+        coverage      = [0, 0, 0]
         l_tunnel_wall = None
         r_tunnel_wall = None
         tunnel_exit   = base_segment
+        pre_renders   = []
         curve         = 0
         curve_delta   = -(base_segment.curve * p.segment_percent())
 
@@ -167,19 +166,22 @@ class Game:
             curve_delta += segment.curve
 
             # Remember biggest LEFT, TOP, RIGHT coordinates so we can clip sprites later.
-            segment.clip = [l_coverage, t_coverage, r_coverage]
+            segment.clip = coverage[:]
+
+            if len(segment.pre_polygons) > 0:
+                pre_renders.append(segment)
 
             if segment.tunnel_end:
                 tunnel_exit = segment
 
-            if segment.should_ignore(t_coverage):
+            if segment.should_ignore(coverage[1]):
                 continue
 
             segment.render_grass(self.window)
             segment.render_road(self.window)
 
-            if (segment.top["screen"]["y"] > t_coverage):
-                t_coverage = segment.top["screen"]["y"]
+            if (segment.top["screen"]["y"] > coverage[1]):
+                coverage[1] = segment.top["screen"]["y"]
 
             # Remember where we should draw the left and right tunnel walls.
             if segment.in_tunnel:
@@ -192,7 +194,7 @@ class Game:
 
                     if (s_bottom["x"] - s_bottom["w"]) > (tl_bottom["x"] - tl_bottom["w"]):
                         l_tunnel_wall = segment
-                        l_coverage    = tl_bottom["x"] - tl_bottom["w"]
+                        coverage[0]   = tl_bottom["x"] - tl_bottom["w"]
 
                 if not r_tunnel_wall:
                     r_tunnel_wall = segment
@@ -201,13 +203,13 @@ class Game:
 
                     if (s_bottom["x"] + s_bottom["w"]) < (tr_bottom["x"] + tr_bottom["w"]):
                         r_tunnel_wall = segment
-                        r_coverage    = tr_bottom["x"] + tr_bottom["w"]
+                        coverage[2]   = tr_bottom["x"] + tr_bottom["w"]
 
         # Draw tunnel roof and walls.
         if base_segment.in_tunnel:
             self.player.in_tunnel = True
 
-            tunnel_exit.render_tunnel_roof(self.window, t_coverage)
+            tunnel_exit.render_tunnel_roof(self.window, coverage[1])
             
             if l_tunnel_wall:
                 l_tunnel_wall.render_left_tunnel(self.window)
@@ -219,6 +221,9 @@ class Game:
 
         # Draw sprites in from back to front (painters algorithm).
         if segment.index != base_segment.index:
+            for segment in reversed(pre_renders):
+                segment.render_polygons(self.window, coverage)
+
             for i in reversed(range(1, s.SPRITE_DRAW_DISTANCE)):
                 segment = l.offset_segment(base_segment.index + i)
                 segment.render_world_objects(self.window)
