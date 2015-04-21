@@ -215,7 +215,6 @@ class Game:
             if r_tunnel_wall:
                 r_tunnel_wall.render_right_tunnel(self.window)
         else:
-
             self.player.in_tunnel = False
 
         # Draw sprites in from back to front (painters algorithm).

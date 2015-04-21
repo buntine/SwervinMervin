@@ -2,7 +2,7 @@ import pygame
 import settings as s
 
 class TunnelEntrance:
-    """Represents a Tunnel Entrance polygon."""
+    """Represents a Tunnel Entrance polygon as we approach it."""
 
     def __init__(self):
         self.quantifier = 3

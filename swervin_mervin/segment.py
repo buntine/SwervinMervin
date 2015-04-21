@@ -9,7 +9,8 @@ class Segment:
         self.curve         = curve
         self.sprites       = []
         self.competitors   = []
-        self.renderables   = []
+        self.pre_polygons  = []
+        self.post_polygons = []
         self.clip          = [0, 0, 0] # Left, Top, Right.
         self.in_tunnel     = False
         self.tunnel_end    = False
@@ -105,7 +106,7 @@ class Segment:
 
     def render_world_objects(self, window):
         """Renders the sprites/competitors (if any) for this segment to the given surface."""
-        for obj in (self.sprites + self.competitors + self.renderables):
+        for obj in (self.pre_polygons, self.sprites + self.competitors + self.post_polygons):
             obj.render(window, self.bottom["screen"], self.clip)
 
     def render_tunnel_roof(self, window, highest_y):
