@@ -40,7 +40,9 @@ Ensure that you have the pygame libraries installed, and then:
   * Congratulations sequence when level is finished
   * Congratulations sequence when game is finished
   * Engine sounds based on speed
-  * Multiple roads with forks.
+  * Screech sound and sprite when hitting tunnel wall
+  * Walls
+  * Multiple roads with forks
   * Animate highscores in, fade them out on new game
   * Get Mel to create art for: Bonuses, Tunnel roof, Other players, Other levels
   * Random boxes that penalise time-left when hit

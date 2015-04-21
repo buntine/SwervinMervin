@@ -27,5 +27,5 @@ class TunnelEntrance:
                         (0, 0),
                         (s_width, 0)] 
 
-            pygame.draw.polygon(surf, s.COLOURS["black"], points)
+            pygame.draw.polygon(surf, s.COLOURS["wall"], points)
             window.blit(surf, (x, y), (0, 0, s_width, top_clip))
