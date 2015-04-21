@@ -4,8 +4,16 @@ import settings as s
 class WorldObject:
     """Represents a single renderable object in a level. Should always be subclassed."""
 
+    def non_renderable(self):
+        """Returns True if this object doesn't actually have a sprite that appears on
+           screen (usually means it's only there for collision detection)."""
+        return self.sprite["path"] == None
+
     def render(self, window, coords, clip):
         """Renders an object to the window with appropriate scaling, clipping, etc."""
+        if self.non_renderable():
+            return
+
         s_width    = int(self.sprite["width"] * coords["s"] * s.ROAD_WIDTH * self.quantifier)
         s_height   = int(self.sprite["height"] * coords["s"] * s.ROAD_WIDTH * self.quantifier)
         x          = (coords["x"] - s_width) + (coords["w"] * self.offset)

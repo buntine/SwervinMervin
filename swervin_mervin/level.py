@@ -89,6 +89,9 @@ class Level:
         self.add_polygon(self.segments[start], ti.TunnelInside, "pre")
         self.add_polygon(self.segments[start], te.TunnelEntrance, "post")
 
+        self.add_sprite(self.segments[start], "tunnel_entrance", -1.0)
+        self.add_sprite(self.segments[start], "tunnel_entrance", 1.0)
+
     def track_length(self):
         return len(self.segments) * s.SEGMENT_HEIGHT
 

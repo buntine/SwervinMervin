@@ -15,5 +15,6 @@ class TunnelInside:
         top_clip = s.DIMENSIONS[1] - full_clip[1]
 
         s_height -= ((y + s_height) - top_clip)
+
         points = (x, y, s_width, s_height)
         pygame.draw.rect(window, s.COLOURS["tunnel"], points)
