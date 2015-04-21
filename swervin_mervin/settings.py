@@ -15,8 +15,7 @@ DIMENSIONS            = (640, 480)
 MUSIC_VOLUME          = 0.7
 SEGMENT_HEIGHT        = 260
 RUMBLE_LENGTH         = 3
-DRAW_DISTANCE         = 140
-SPRITE_DRAW_DISTANCE  = 110
+DRAW_DISTANCE         = 125
 ROAD_WIDTH            = 2100
 LANES                 = 4
 BOUNDS                = 2.1
@@ -61,7 +60,7 @@ COLOURS               = {"white": Color(255, 255, 255),
                          "bonus_b": Color(255, 178, 0),
                          "green": Color(0, 204, 0),
                          "black": Color(0, 0, 0),
-                         "tunnel": Color(0, 30, 70),
+                         "tunnel": Color(40, 16, 8),
                          "light": {"road":     Color(34, 54, 56),
                                    "grass":    Color(0, 30, 70),
                                    "footpath": Color(82, 96, 115),

@@ -224,7 +224,7 @@ class Game:
             for segment in reversed(pre_renders):
                 segment.render_polygons(self.window, coverage)
 
-            for i in reversed(range(1, s.SPRITE_DRAW_DISTANCE)):
+            for i in reversed(range(1, s.DRAW_DISTANCE)):
                 segment = l.offset_segment(base_segment.index + i)
                 segment.render_world_objects(self.window)
 
