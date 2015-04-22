@@ -189,7 +189,7 @@ class Game:
                 s_top  = segment.top["screen"]
                 tl_top = coverage[0].top["screen"]
                 tr_top = coverage[2].top["screen"]
-
+                
                 if (s_top["x"] - s_top["w"]) > (tl_top["x"] - tl_top["w"]):
                     coverage[0] = segment
 
