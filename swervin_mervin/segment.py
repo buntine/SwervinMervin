@@ -11,7 +11,7 @@ class Segment:
         self.competitors   = []
         self.pre_polygons  = []
         self.post_polygons = []
-        self.clip          = [0, 0, 0] # Left, Top, Right.
+        self.clip          = [0, 0, 0]
         self.in_tunnel     = False
         self.tunnel_end    = False
         self.colour        = s.COLOURS[palette]
@@ -23,10 +23,10 @@ class Segment:
         self.__project_line("top", camera_x - curve - curve_delta, position, player_y)
         self.__project_line("bottom", camera_x - curve, position, player_y)
 
-    def should_ignore(self, y_coverage):
+    def should_ignore(self, segment):
         """Returns true if this segment will be projected behind a hill, or behind us, etc."""
         return self.top["camera"]["z"] <= s.CAMERA_DEPTH or\
-               self.top["screen"]["y"] <= y_coverage or\
+               self.top["screen"]["y"] <= segment.top["screen"]["y"] or\
                self.bottom["screen"]["y"] >= self.top["screen"]["y"]
 
     def render_grass(self, window):
