@@ -165,9 +165,9 @@ class Game:
 
             # Remember biggest LEFT, TOP, RIGHT coordinates so we can clip sprites later.
             segment.clip = [
-              coverage[0].top["screen"]["x"] - coverage[0].top["screen"]["w"],
+              coverage[0].bottom["screen"]["x"] - coverage[0].bottom["screen"]["w"],
               coverage[1].top["screen"]["y"],
-              coverage[2].top["screen"]["x"] + coverage[2].top["screen"]["w"]]
+              coverage[2].bottom["screen"]["x"] + coverage[2].bottom["screen"]["w"]]
 
             if len(segment.pre_polygons) > 0:
                 pre_renders.append(segment)

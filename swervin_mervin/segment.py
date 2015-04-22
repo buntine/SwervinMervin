@@ -113,7 +113,7 @@ class Segment:
     def render_world_objects(self, window):
         """Renders the sprites/competitors (if any) for this segment to the given surface."""
         for obj in (self.sprites + self.competitors + self.post_polygons):
-            obj.render(window, self.bottom["screen"], self.clip)
+            obj.render(window, self)
 
     def render_tunnel_roof(self, window, highest_y):
         """Renders the tunnel roof, accounting for the exit hole if it's visible."""

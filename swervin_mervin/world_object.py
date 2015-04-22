@@ -9,18 +9,19 @@ class WorldObject:
            screen (usually means it's only there for collision detection)."""
         return self.sprite["path"] == None
 
-    def render(self, window, coords, clip):
+    def render(self, window, segment):
         """Renders an object to the window with appropriate scaling, clipping, etc."""
         if self.non_renderable():
             return
 
+        coords     = segment.bottom["screen"]
         s_width    = int(self.sprite["width"] * coords["s"] * s.ROAD_WIDTH * self.quantifier)
         s_height   = int(self.sprite["height"] * coords["s"] * s.ROAD_WIDTH * self.quantifier)
         x          = (coords["x"] - s_width) + (coords["w"] * self.offset)
         y          = s.DIMENSIONS[1] - coords["y"] - s_height
-        top_clip   = s.DIMENSIONS[1] - clip[1] - y
-        left_clip  = max(x, 0) - clip[0]
-        right_clip = clip[2]
+        top_clip   = s.DIMENSIONS[1] - segment.clip[1] - y
+        left_clip  = 0 if not segment.in_tunnel else max(x, 0) - segment.clip[0]
+        right_clip = 0 if not segment.in_tunnel else segment.clip[2]
 
         if right_clip > 0 and right_clip < (x + s_width):
             s_width -= int((x + s_width) - right_clip)
