@@ -201,9 +201,7 @@ class Game:
             self.player.in_tunnel = True
 
             tunnel_exit.render_tunnel_roof(self.window, coverage[1].top["screen"]["y"])
-            
             coverage[0].render_left_tunnel(self.window)
-
             coverage[2].render_right_tunnel(self.window)
         else:
             self.player.in_tunnel = False
