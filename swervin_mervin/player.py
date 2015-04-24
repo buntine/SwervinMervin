@@ -33,7 +33,7 @@ class Player:
         self.lap_time        = 0
         self.lap_margin      = 0
         self.blood_alpha     = 0
-	self.in_tunnel       = False
+        self.in_tunnel       = False
         self.fastest_lap     = s.CHECKPOINT
         self.checkpoint      = s.CHECKPOINT
         self.time_left       = s.CHECKPOINT
@@ -46,7 +46,7 @@ class Player:
 
     def steer(self, segment):
         """Updates x to simulate steering."""
-	bounds = s.TUNNEL_BOUNDS if self.in_tunnel else s.BOUNDS
+        bounds = s.TUNNEL_BOUNDS if self.in_tunnel else s.BOUNDS
         self.x = u.limit(self.x + self.direction, -bounds, bounds)
 
         # Apply centrifugal force if we are going around a corner.
@@ -272,13 +272,13 @@ class Player:
                 self.checkpoint -= max(checkpoint_diff, s.MINIMUM_DIFFICULTY)
                 self.points     += self.time_left * s.POINTS * self.lap
 
-            if self.__fastest_lap():
-                if self.lap > 2:
-                    self.points += self.lap_margin * s.POINTS * self.lap
-                    fast_lap_sfx = pygame.mixer.Sound(os.path.join("lib", "jim.ogg"))
-                    fast_lap_sfx.play()
+                if self.__fastest_lap():
+                    if self.lap > 2:
+                        self.points += self.lap_margin * s.POINTS * self.lap
+                        fast_lap_sfx = pygame.mixer.Sound(os.path.join("lib", "jim.ogg"))
+                        fast_lap_sfx.play()
 
-                self.fastest_lap = self.lap_time
+                    self.fastest_lap = self.lap_time
 
             pos -= track_length
 
