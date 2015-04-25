@@ -250,8 +250,8 @@ class Player:
             self.points   += (self.speed / s.SEGMENT_HEIGHT) / s.POINTS
             self.time_left = round(self.checkpoint - total_secs, 1) + self.lap_bonus
 
-        if self.time_left <= 0:
-            self.game_over = True
+            if self.time_left <= 0:
+                self.game_over = True
 
         # New lap.
         if pos >= track_length:
