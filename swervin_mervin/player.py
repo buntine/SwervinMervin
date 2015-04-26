@@ -472,12 +472,12 @@ class Player:
         overlay      = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
 
         overlay.fill((255, 255, 255, 150))
-        overlay.blit(txt_lo, (s.DIMENSIONS[0] / 2 - txt_lo.get_size()[0] / 2, 10))
+        overlay.blit(txt_lo, (s.DIMENSIONS[0] / 2 - txt_lo.get_size()[0] / 2, 20))
         overlay.blit(txt_lap, (20, 180))
-        overlay.blit(txt_lap_v, (s.DIMENSIONS[0] - txt_lap_v.get_size()[0] - 10, 180))
+        overlay.blit(txt_lap_v, (s.DIMENSIONS[0] - txt_lap_v.get_size()[0] - 10, 190))
         overlay.blit(txt_bonus, (20, 260))
-        overlay.blit(txt_bonus_v, (s.DIMENSIONS[0] - txt_bonus_v.get_size()[0] - 10, 260))
+        overlay.blit(txt_bonus_v, (s.DIMENSIONS[0] - txt_bonus_v.get_size()[0] - 10, 270))
         overlay.blit(txt_points, (20, 340))
-        overlay.blit(txt_points_v, (s.DIMENSIONS[0] - txt_points_v.get_size()[0] - 10, 340))
+        overlay.blit(txt_points_v, (s.DIMENSIONS[0] - txt_points_v.get_size()[0] - 10, 350))
 
         window.blit(overlay, (0,0))
