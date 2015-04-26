@@ -24,9 +24,13 @@ Ensure that you have the pygame libraries installed, and then:
 
 > "It's no Sonic the Hedgehog"
 
+And...
+
 > "You actually get points for killing people?"
 
-> "I've taken dumps that were more fun than this..."
+And even...
+
+> "I've taken dumps that were better than this steaming pile of assmilk..."
 
 ### Credits
 
