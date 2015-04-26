@@ -359,7 +359,7 @@ class Player:
                 self.crashed = False
 
     def finished(self):
-        return self.level_over_lag > 0
+        return self.level_over_lag == 0
 
     def alive(self):
         return self.status != self.GAME_OVER
