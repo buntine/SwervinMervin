@@ -270,14 +270,14 @@ class Player:
                 lap_sfx = pygame.mixer.Sound(os.path.join("lib", "570.wav"))
                 lap_sfx.play()
 
-            if self.status == self.ALIVE:
+            if self.status != self.GAME_OVER:
                 # Reduce checkpoint time every lap to increase difficulty.
                 checkpoint_diff  = (self.checkpoint - self.lap_time) / s.LAP_DIFFICULTY_FACTOR
                 self.checkpoint -= max(checkpoint_diff, s.MINIMUM_DIFFICULTY)
                 self.points     += self.time_left * s.POINTS * self.lap
 
                 if self.__fastest_lap():
-                    if self.lap > 2:
+                    if self.lap > 2 and self.lap <= self.laps:
                         self.points += self.lap_margin * s.POINTS * self.lap
                         fast_lap_sfx = pygame.mixer.Sound(os.path.join("lib", "jim.ogg"))
                         fast_lap_sfx.play()
