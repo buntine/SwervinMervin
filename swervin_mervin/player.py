@@ -318,7 +318,7 @@ class Player:
             if (self.x > 1.0 or self.x < -1.0) and self.speed > (self.settings["top_speed"] / self.settings["offroad_top_speed_factor"]):
                 a = a * 3
             else:
-                if keys[K_UP] or s.AUTO_DRIVE or self.status == self.GAME_OVER:
+                if keys[K_UP] or s.AUTO_DRIVE or self.status != self.ALIVE:
                     a = s.FRAME_RATE
                 elif keys[K_DOWN]:
                     a = -(s.FRAME_RATE * self.settings["deceleration"])
@@ -358,8 +358,11 @@ class Player:
                 pygame.mixer.music.set_volume(s.MUSIC_VOLUME)
                 self.crashed = False
 
-    def alive(self):
+    def finished(self):
         return self.level_over_lag > 0
+
+    def alive(self):
+        return self.status != self.GAME_OVER
 
     def __set_special_text(self, text, time):
         """Defines the special text to show and for how long we should show it."""
