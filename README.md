@@ -44,22 +44,19 @@ And even...
 
 ### TODO
   
+  * !Refine collision offsets for sprites
+  * !Don't use sprite for speed up. Render triangles onto road
+    * !Or just use sprite that can stand upright...
+  * !Congratulations sequence when game is finished
   * Rethink player checkpoint logic to fix "time left" bug in pause and make countdown easy to disable/enable.
     * Move all time/checkpoint stuff into game (or maybe level?) and out of player.
   * Local highscore file outside of git
-  * Don't use sprite for speed up. Render triangles onto road
-    * Or just use sprite that can stand upright...
-  * Congratulations sequence when level is finished
-  * Congratulations sequence when game is finished
   * Engine sounds based on speed
   * Screech sound and sprite when hitting tunnel wall
   * Walls
   * Multiple roads with forks
-  * Animate highscores in, fade them out on new game
   * Get Mel to create art for: Bonuses, Tunnel roof, Other players, Other levels
   * Random boxes that penalise time-left when hit
   * Random boxes that give player temporary speed boost
-  * Refine collision offsets for sprites
-  * Position (number of `laps + base_segment.index`)
   * Package better for distribution (ship with Pygame?)
   * General refactor and Pythonify of sloppy code
