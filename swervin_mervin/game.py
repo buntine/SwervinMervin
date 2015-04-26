@@ -34,7 +34,7 @@ class Game:
         for i, lvl in enumerate(s.LEVELS):
             self.level = l.Level(lvl)
 
-            self.player.reset()
+            self.player.reset(self.level.laps)
             self.level.build()
 
             if s.COUNTDOWN:
@@ -44,7 +44,7 @@ class Game:
             pygame.mixer.music.play(-1)
             pygame.mixer.music.set_volume(s.MUSIC_VOLUME)
 
-            while self.player.alive() and self.player.lap <= self.level.laps:
+            while self.player.alive() and not self.player.finished():
                 if self.paused:
                     self.__pause_cycle()
                 else:
@@ -55,10 +55,7 @@ class Game:
 
             pygame.mixer.music.fadeout(1500)
 
-            if self.player.alive():
-                # TODO: Post-level congratulations sequence.
-                pass
-            else:
+            if not self.player.alive():
                 break
 
         ## Post-game high scores and wait for new player.
