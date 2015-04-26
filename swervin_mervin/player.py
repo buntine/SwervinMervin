@@ -33,6 +33,7 @@ class Player:
         self.animation_frame = 1
         self.new_lap         = False
         self.lap_bonus       = 0
+        self.time_bonus      = 0
         self.lap             = 1
         self.total_laps      = total_laps
         self.lap_time        = 0
@@ -272,9 +273,12 @@ class Player:
 
             if self.status != self.GAME_OVER:
                 # Reduce checkpoint time every lap to increase difficulty.
-                checkpoint_diff  = (self.checkpoint - self.lap_time) / s.LAP_DIFFICULTY_FACTOR
+                checkpoint_diff = (self.checkpoint - self.lap_time) / s.LAP_DIFFICULTY_FACTOR
+                bonus_points    = self.time_left * s.POINTS * self.lap
+
                 self.checkpoint -= max(checkpoint_diff, s.MINIMUM_DIFFICULTY)
-                self.points     += self.time_left * s.POINTS * self.lap
+                self.time_bonus += bonus_points
+                self.points     += bonus_points
 
                 if self.__fastest_lap():
                     if self.lap > 2 and self.lap <= self.laps:
@@ -462,7 +466,7 @@ class Player:
         txt_lap      = s_font.render("Best Lap", 1, s.COLOURS["dark_text"])
         txt_lap_v    = s_font.render("%.1fs" % round(self.fastest_lap, 1), 1, s.COLOURS["dark_text"])
         txt_bonus    = s_font.render("Time bonus", 1, s.COLOURS["dark_text"])
-        txt_bonus_v  = s_font.render("3900", 1, s.COLOURS["dark_text"]) # TODO: Actually store time_bonus and use value here.
+        txt_bonus_v  = s_font.render(str(math.trunc(self.time_bonus)), 1, s.COLOURS["dark_text"])
         txt_points   = s_font.render("Points", 1, s.COLOURS["dark_text"])
         txt_points_v = s_font.render(str(math.trunc(self.points)), 1, s.COLOURS["dark_text"])
         overlay      = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
