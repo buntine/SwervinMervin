@@ -20,6 +20,14 @@ Ensure that you have the pygame libraries installed, and then:
   $ python swervin_mervin/main.py 
 ```
 
+### What people are saying
+
+> "It's no Sonic the Hedgehog"
+
+> "You actually get points for killing people?"
+
+> "I've taken dumps that were more fun than this..."
+
 ### Credits
 
   * [Jake at codeincomplete.com](http://codeincomplete.com/) and [Lou at extentofthejam.com](http://extentofthejam.com/) for their fantastic articles on pseudo-3d racing games.
