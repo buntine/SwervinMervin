@@ -462,7 +462,7 @@ class Player:
         txt_lap      = s_font.render("Best Lap", 1, s.COLOURS["dark_text"])
         txt_lap_v    = s_font.render("%.1fs" % round(self.fastest_lap, 1), 1, s.COLOURS["dark_text"])
         txt_bonus    = s_font.render("Time bonus", 1, s.COLOURS["dark_text"])
-        txt_bonus_v  = s_font.render("3900", 1, s.COLOURS["dark_text"])
+        txt_bonus_v  = s_font.render("3900", 1, s.COLOURS["dark_text"]) # TODO: Actually store time_bonus and use value here.
         txt_points   = s_font.render("Points", 1, s.COLOURS["dark_text"])
         txt_points_v = s_font.render(str(math.trunc(self.points)), 1, s.COLOURS["dark_text"])
         overlay      = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
