@@ -14,7 +14,6 @@ class Player:
         self.settings       = s.PLAYERS[selected_player]
         self.points         = 0
         self.high_score     = high_score
-        self.level_over_lag = s.LEVEL_OVER_LAG
         self.next_milestone = s.POINT_MILESTONE
 
         self.reset()
@@ -22,6 +21,7 @@ class Player:
     def reset(self, total_laps=s.LAPS_PER_LEVEL):
         """Resets player variables for the start of a new level."""
         self.status          = self.ALIVE
+        self.level_over_lag  = s.LEVEL_OVER_LAG
         self.x               = 0
         self.y               = 0
         self.position        = 0
