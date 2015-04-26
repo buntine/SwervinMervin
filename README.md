@@ -10,7 +10,7 @@ Here is a [small video of me playing](https://www.youtube.com/watch?v=T08Oe1l7nh
 
 ![Swervin' Mervin Arcade Edition](/lib/arcade.jpg?raw=true "Swervin' Mervin Arcade Edition")
 
-Yes, it's real. Ships with MAME and SNES and NES (1000+ games). Want something similar for the office? Email me.
+Yes, it's real. Ships with MAME, SNES and NES (1000+ games). Want something similar for the office? Email me.
 
 ### Playing
 
@@ -23,7 +23,7 @@ Ensure that you have the pygame libraries installed, and then:
 ### Credits
 
   * [Jake at codeincomplete.com](http://codeincomplete.com/) and [Lou at extentofthejam.com](http://extentofthejam.com/) for their fantastic articles on pseudo-3d racing games.
-  * My beautiful girlfriend, [Mel](http://melaniehuang.com), for all of the original pixel art.
+  * My beautiful girlfriend, [Mel](http://melaniehuang.com), for all of the original pixel art. [See here](http://melaniehuang.com/projects/swervinmervin.html) for more information.
   * [LazerHawk](https://lazerhawk.bandcamp.com/), [Miami Nights 1984](https://soundcloud.com/miami-nights-1984), [Timecop 1983](https://timecop1983.bandcamp.com/) and [Alverna Gunn](http://www.metal-archives.com/bands/Alverna_Gunn/10011) for the excellent music.
   * Out Run (1986) for "letting me" use some sprites.
   * Jim Gillette, Macho Man Randy Savage and Cary-Hiroyuki Tagawa and Myself for the sound bites.
