@@ -52,6 +52,7 @@ FONTS                 = {"retro_computer": os.path.join("lib", "PressStart2P.ttf
 COLOURS               = {"white": Color(255, 255, 255),
                          "opaque_white": Color(255, 255, 255, 80),
                          "text": Color(172, 199, 252),
+                         "dark_text": Color(57, 84, 137),
                          "selection": [Color(172, 199, 252),Color(100, 149, 252)],
                          "sky": Color(10, 10, 10),
                          "gutter": Color(100, 100, 100),

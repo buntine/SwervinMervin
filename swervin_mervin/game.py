@@ -48,6 +48,7 @@ class Game:
                 if self.paused:
                     self.__pause_cycle()
                 else:
+                    self.player.status=2
                     self.__game_cycle()
 
                 pygame.display.update()

@@ -200,9 +200,9 @@ class Player:
             self.__set_special_text("New High Score!", 2)
 
         if self.status == self.GAME_OVER:
-            self.__game_over_overlay()
+            self.__game_over_overlay(window)
         elif self.status == self.LEVEL_OVER:
-            self.__level_over_overlay()
+            self.__level_over_overlay(window)
 
         # Display lap difference (unless we've only done one lap).
         if self.lap_margin != 0 and self.lap > 2 and self.lap_percent < 20:
@@ -445,22 +445,28 @@ class Player:
 
     def __game_over_overlay(self, window):
         go_font = pygame.font.Font(s.FONTS["retro_computer"], 44)
-        go      = go_font.render("Game Over", 1, s.COLOURS["red"])
-        x       = (s.DIMENSIONS[0] - go.get_size()[0]) / 2
-        y       = (s.DIMENSIONS[1] - go.get_size()[1]) / 2
+        txt_go  = go_font.render("Game Over", 1, s.COLOURS["red"])
+        x       = (s.DIMENSIONS[0] - txt_go.get_size()[0]) / 2
+        y       = (s.DIMENSIONS[1] - txt_go.get_size()[1]) / 2
         overlay = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
 
         overlay.fill((255, 255, 255, 90))
-        overlay.blit(go, (x, y))
+        overlay.blit(txt_go, (x, y))
         window.blit(overlay, (0,0))
 
     def __level_over_overlay(self, window):
-        go_font = pygame.font.Font(s.FONTS["retro_computer"], 44)
-        go      = go_font.render("Level Over", 1, s.COLOURS["red"])
-        x       = (s.DIMENSIONS[0] - go.get_size()[0]) / 2
-        y       = (s.DIMENSIONS[1] - go.get_size()[1]) / 2
-        overlay = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
+        lo_font    = pygame.font.Font(s.FONTS["fipps"], 38)
+        s_font     = pygame.font.Font(s.FONTS["retro_computer"], 30)
+        txt_lo     = lo_font.render("Level Complete!", 1, s.COLOURS["dark_text"])
+        txt_lap    = s_font.render("Best Lap", 1, s.COLOURS["dark_text"])
+        txt_bonus  = s_font.render("Time bonus", 1, s.COLOURS["dark_text"])
+        txt_points = s_font.render("Points", 1, s.COLOURS["dark_text"])
+        overlay    = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
 
-        overlay.fill((255, 255, 255, 90))
-        overlay.blit(go, (x, y))
+        overlay.fill((255, 255, 255, 150))
+        overlay.blit(txt_lo, ((s.DIMENSIONS[0] / 2 - txt_lo.get_size()[0] / 2), 10))
+        overlay.blit(txt_lap, (20, 180))
+        overlay.blit(txt_bonus, (20, 260))
+        overlay.blit(txt_points, (20, 340))
+
         window.blit(overlay, (0,0))
