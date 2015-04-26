@@ -200,25 +200,9 @@ class Player:
             self.__set_special_text("New High Score!", 2)
 
         if self.status == self.GAME_OVER:
-            go_font = pygame.font.Font(s.FONTS["retro_computer"], 44)
-            go      = go_font.render("Game Over", 1, s.COLOURS["red"])
-            x       = (s.DIMENSIONS[0] - go.get_size()[0]) / 2
-            y       = (s.DIMENSIONS[1] - go.get_size()[1]) / 2
-            overlay = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
-
-            overlay.fill((255, 255, 255, 90))
-            overlay.blit(go, (x, y))
-            window.blit(overlay, (0,0))
+            self.__game_over_overlay()
         elif self.status == self.LEVEL_OVER:
-            go_font = pygame.font.Font(s.FONTS["retro_computer"], 44)
-            go      = go_font.render("Level Over", 1, s.COLOURS["red"])
-            x       = (s.DIMENSIONS[0] - go.get_size()[0]) / 2
-            y       = (s.DIMENSIONS[1] - go.get_size()[1]) / 2
-            overlay = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
-
-            overlay.fill((255, 255, 255, 90))
-            overlay.blit(go, (x, y))
-            window.blit(overlay, (0,0))
+            self.__level_over_overlay()
 
         # Display lap difference (unless we've only done one lap).
         if self.lap_margin != 0 and self.lap > 2 and self.lap_percent < 20:
@@ -458,3 +442,25 @@ class Player:
     def __stop_screech(self):
         self.screech_sfx.stop()
         self.screech_sfx = None
+
+    def __game_over_overlay(self, window):
+        go_font = pygame.font.Font(s.FONTS["retro_computer"], 44)
+        go      = go_font.render("Game Over", 1, s.COLOURS["red"])
+        x       = (s.DIMENSIONS[0] - go.get_size()[0]) / 2
+        y       = (s.DIMENSIONS[1] - go.get_size()[1]) / 2
+        overlay = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
+
+        overlay.fill((255, 255, 255, 90))
+        overlay.blit(go, (x, y))
+        window.blit(overlay, (0,0))
+
+    def __level_over_overlay(self, window):
+        go_font = pygame.font.Font(s.FONTS["retro_computer"], 44)
+        go      = go_font.render("Level Over", 1, s.COLOURS["red"])
+        x       = (s.DIMENSIONS[0] - go.get_size()[0]) / 2
+        y       = (s.DIMENSIONS[1] - go.get_size()[1]) / 2
+        overlay = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
+
+        overlay.fill((255, 255, 255, 90))
+        overlay.blit(go, (x, y))
+        window.blit(overlay, (0,0))
