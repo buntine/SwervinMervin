@@ -44,7 +44,7 @@ class Game:
             pygame.mixer.music.play(-1)
             pygame.mixer.music.set_volume(s.MUSIC_VOLUME)
 
-            while self.player.alive() and not self.player.finished():
+            while self.player.alive():
                 if self.paused:
                     self.__pause_cycle()
                 else:

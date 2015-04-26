@@ -14,7 +14,6 @@ class Player:
         self.settings       = s.PLAYERS[selected_player]
         self.points         = 0
         self.high_score     = high_score
-        self.status         = self.ALIVE
         self.level_over_lag = s.LEVEL_OVER_LAG
         self.next_milestone = s.POINT_MILESTONE
 
@@ -22,7 +21,7 @@ class Player:
 
     def reset(self, total_laps=s.LAPS_PER_LEVEL):
         """Resets player variables for the start of a new level."""
-        self.finished        = False
+        self.status          = self.ALIVE
         self.x               = 0
         self.y               = 0
         self.position        = 0
@@ -200,9 +199,19 @@ class Player:
 
             self.__set_special_text("New High Score!", 2)
 
-        if self.status == self.GAME_OVER
+        if self.status == self.GAME_OVER:
             go_font = pygame.font.Font(s.FONTS["retro_computer"], 44)
             go      = go_font.render("Game Over", 1, s.COLOURS["red"])
+            x       = (s.DIMENSIONS[0] - go.get_size()[0]) / 2
+            y       = (s.DIMENSIONS[1] - go.get_size()[1]) / 2
+            overlay = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
+
+            overlay.fill((255, 255, 255, 90))
+            overlay.blit(go, (x, y))
+            window.blit(overlay, (0,0))
+        elif self.status == self.LEVEL_OVER:
+            go_font = pygame.font.Font(s.FONTS["retro_computer"], 44)
+            go      = go_font.render("Level Over", 1, s.COLOURS["red"])
             x       = (s.DIMENSIONS[0] - go.get_size()[0]) / 2
             y       = (s.DIMENSIONS[1] - go.get_size()[1]) / 2
             overlay = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
@@ -269,8 +278,12 @@ class Player:
             self.lap       += 1
             self.lap_margin = self.fastest_lap - self.lap_time
 
-            lap_sfx = pygame.mixer.Sound(os.path.join("lib", "570.wav"))
-            lap_sfx.play()
+            # Finished level.
+            if self.lap > self.total_laps:
+                self.status = self.LEVEL_OVER
+            else:    
+                lap_sfx = pygame.mixer.Sound(os.path.join("lib", "570.wav"))
+                lap_sfx.play()
 
             if self.status == self.ALIVE:
                 # Reduce checkpoint time every lap to increase difficulty.
