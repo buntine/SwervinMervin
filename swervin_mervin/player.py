@@ -264,6 +264,7 @@ class Player:
 
             # Finished level.
             if self.lap > self.total_laps:
+                # TODO: Play sound for end of level.
                 self.status = self.LEVEL_OVER
             else:    
                 lap_sfx = pygame.mixer.Sound(os.path.join("lib", "570.wav"))
@@ -455,18 +456,24 @@ class Player:
         window.blit(overlay, (0,0))
 
     def __level_over_overlay(self, window):
-        lo_font    = pygame.font.Font(s.FONTS["fipps"], 38)
-        s_font     = pygame.font.Font(s.FONTS["retro_computer"], 30)
-        txt_lo     = lo_font.render("Level Complete!", 1, s.COLOURS["dark_text"])
-        txt_lap    = s_font.render("Best Lap", 1, s.COLOURS["dark_text"])
-        txt_bonus  = s_font.render("Time bonus", 1, s.COLOURS["dark_text"])
-        txt_points = s_font.render("Points", 1, s.COLOURS["dark_text"])
-        overlay    = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
+        lo_font      = pygame.font.Font(s.FONTS["fipps"], 38)
+        s_font       = pygame.font.Font(s.FONTS["retro_computer"], 30)
+        txt_lo       = lo_font.render("Level Complete!", 1, s.COLOURS["dark_text"])
+        txt_lap      = s_font.render("Best Lap", 1, s.COLOURS["dark_text"])
+        txt_lap_v    = s_font.render("%.1fs" % round(self.fastest_lap, 1), 1, s.COLOURS["dark_text"])
+        txt_bonus    = s_font.render("Time bonus", 1, s.COLOURS["dark_text"])
+        txt_bonus_v  = s_font.render("3900", 1, s.COLOURS["dark_text"])
+        txt_points   = s_font.render("Points", 1, s.COLOURS["dark_text"])
+        txt_points_v = s_font.render(str(math.trunc(self.points)), 1, s.COLOURS["dark_text"])
+        overlay      = pygame.Surface(s.DIMENSIONS, pygame.SRCALPHA)
 
         overlay.fill((255, 255, 255, 150))
-        overlay.blit(txt_lo, ((s.DIMENSIONS[0] / 2 - txt_lo.get_size()[0] / 2), 10))
+        overlay.blit(txt_lo, (s.DIMENSIONS[0] / 2 - txt_lo.get_size()[0] / 2, 10))
         overlay.blit(txt_lap, (20, 180))
+        overlay.blit(txt_lap_v, (s.DIMENSIONS[0] - txt_lap_v.get_size()[0] - 10, 180))
         overlay.blit(txt_bonus, (20, 260))
+        overlay.blit(txt_bonus_v, (s.DIMENSIONS[0] - txt_bonus_v.get_size()[0] - 10, 260))
         overlay.blit(txt_points, (20, 340))
+        overlay.blit(txt_points_v, (s.DIMENSIONS[0] - txt_points_v.get_size()[0] - 10, 340))
 
         window.blit(overlay, (0,0))
