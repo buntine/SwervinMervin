@@ -359,14 +359,8 @@ class Player:
         self.special_text = [datetime.datetime.now(), time, text]
 
     def __collided_with_sprite(self, sprite):
-        hit = (self.rendered_area[0] < sprite.rendered_area[1] and\
-               self.rendered_area[1] > sprite.rendered_area[0])
-
-        if hit:
-            print self.rendered_area
-            print sprite.rendered_area
-
-        return hit
+        return (self.rendered_area[0] < sprite.rendered_area[1] and\
+                self.rendered_area[1] > sprite.rendered_area[0])
  
     def __circular_orbit(self, center, radius, t):
         """Returns the X/Y coordinate for a given time (t) in a circular orbit."""
