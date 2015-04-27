@@ -526,9 +526,11 @@ PLAYERS            = [{"name": "Swervin' Mervin",
 SPRITES           = {"column": {
                        "path": "column.png",
                        "collision": [-0.9, 0.1],
-                       "width": 80,
+                       "width": 90,
                        "height": 126},
                      "tunnel_entrance": {
+                       "width": 80,
+                       "height": 10,
                        "path": None,
                        "collision": [-0.7, 0.1],
                        "width": 50},

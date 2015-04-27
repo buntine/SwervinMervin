@@ -15,9 +15,6 @@ class WorldObject:
 
     def render(self, window, segment):
         """Renders an object to the window with appropriate scaling, clipping, etc."""
-        if self.non_renderable():
-            return
-
         coords     = segment.bottom["screen"]
         s_width    = int(self.sprite["width"] * coords["s"] * s.ROAD_WIDTH * self.quantifier)
         s_height   = int(self.sprite["height"] * coords["s"] * s.ROAD_WIDTH * self.quantifier)
@@ -36,10 +33,10 @@ class WorldObject:
         if s_width > 0 and s_height > 0 and top_clip > 0 and\
            s_width < s.DIMENSIONS[0] * 2 and s_height < s.DIMENSIONS[1] * 2 and\
            (left_clip >= 0 or abs(left_clip) < s_width):
-            img      = self.path()
-            img      = pygame.transform.scale(img, (s_width, s_height))
-            offset_x = 0 if left_clip >= 0 else abs(left_clip)
-
             self.rendered_area = [x, x + s_width]
 
-            window.blit(img, (x, y), (offset_x, 0, s_width, top_clip))
+            if not self.non_renderable():
+                offset_x = 0 if left_clip >= 0 else abs(left_clip)
+                img      = self.path()
+                img      = pygame.transform.scale(img, (s_width, s_height))
+                window.blit(img, (x, y), (offset_x, 0, s_width, top_clip))
