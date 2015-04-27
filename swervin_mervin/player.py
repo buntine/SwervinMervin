@@ -362,6 +362,10 @@ class Player:
         hit = (self.rendered_area[0] < sprite.rendered_area[1] and\
                self.rendered_area[1] > sprite.rendered_area[0])
 
+        if hit:
+            print self.rendered_area
+            print sprite.rendered_area
+
         return hit
  
     def __circular_orbit(self, center, radius, t):
