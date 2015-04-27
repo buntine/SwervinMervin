@@ -44,6 +44,7 @@ And even...
 
 ### TODO
   
+  * !Design 2nd and 3rd level properly
   * !Refine collision offsets for sprites
   * !Don't use sprite for speed up. Render triangles onto road
     * !Or just use sprite that can stand upright...

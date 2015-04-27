@@ -361,8 +361,13 @@ class Player:
         s = sprite.sprite
         o = sprite.offset
 
-        return (self.x < (o + s["collision"][1]) and o < 0) or\
+        hit = (self.x < (o + s["collision"][1]) and o < 0) or\
                (self.x > (o + s["collision"][0]) and o > 0)
+
+        if hit:
+            print self.x
+            print o
+        return hit
  
     def __collided_with_competitor(self, c):
         o = c.offset
