@@ -86,7 +86,7 @@ class Player:
                     break
 
             for comp in segment.competitors:
-                if self.__collided_with_competitor(comp):
+                if self.__collided_with_sprite(comp):
                     self.__hit_competitor()
 
                     break
@@ -360,23 +360,10 @@ class Player:
         self.special_text = [datetime.datetime.now(), time, text]
 
     def __collided_with_sprite(self, sprite):
-        s = sprite.sprite
-        o = sprite.offset
-
-        hit = (self.x < (o + s["collision"][1]) and o < 0) or\
-               (self.x > (o + s["collision"][0]) and o > 0)
-        
-        if self.rendered_area[0] < sprite.rendered_area[1] and\
-           self.rendered_area[1] > sprite.rendered_area[0]:
-            print sprite.rendered_area
-            print self.rendered_area
+        hit = (self.rendered_area[0] < sprite.rendered_area[1] and\
+               self.rendered_area[1] > sprite.rendered_area[0])
 
         return hit
- 
-    def __collided_with_competitor(self, c):
-        o = c.offset
-
-        return (self.x > o - 0.45) and (self.x < o + 0.23)
  
     def __circular_orbit(self, center, radius, t):
         """Returns the X/Y coordinate for a given time (t) in a circular orbit."""
