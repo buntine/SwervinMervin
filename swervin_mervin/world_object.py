@@ -4,6 +4,10 @@ import settings as s
 class WorldObject:
     """Represents a single renderable object in a level. Should always be subclassed."""
 
+    def __init__(self, quant=3):
+        self.rendered_area = 0
+        self.quantifier    = quant
+
     def non_renderable(self):
         """Returns True if this object doesn't actually have a sprite that appears on
            screen (usually means it's only there for collision detection)."""
@@ -35,5 +39,7 @@ class WorldObject:
             img      = self.path()
             img      = pygame.transform.scale(img, (s_width, s_height))
             offset_x = 0 if left_clip >= 0 else abs(left_clip)
+
+            self.rendered_area = [x, x + s_width]
 
             window.blit(img, (x, y), (offset_x, 0, s_width, top_clip))

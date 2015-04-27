@@ -634,19 +634,19 @@ SPRITES           = {"column": {
                        "height": 42},
                      "hooker1": {
                        "path": "hooker1.png",
-                       "collision": [-0.4, 0.1],
+                       "collision": [-0.4, 0.07],
                        "hooker": True,
                        "width": 25,
                        "height": 42},
                      "hooker2": {
                        "path": "hooker2.png",
-                       "collision": [-0.4, 0.1],
+                       "collision": [-0.4, 0.07],
                        "hooker": True,
                        "width": 25,
                        "height": 42},
                      "hooker3": {
                        "path": "hooker3.png",
-                       "collision": [-0.4, 0.1],
+                       "collision": [-0.4, 0.07],
                        "hooker": True,
                        "width": 25,
                        "height": 42}}

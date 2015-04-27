@@ -134,6 +134,8 @@ class Player:
         p = pygame.image.load(os.path.join("lib", sprite["path"]))
         p = pygame.transform.scale(p, (s_width, s_height))
 
+        self.rendered_area = [width - (s_width / 2), width + (s_width / 2)]
+
         window.blit(p, (width - (s_width / 2), s.DIMENSIONS[1] - s_height - s.BOTTOM_OFFSET))
 
         # Finish up the round.
@@ -363,10 +365,12 @@ class Player:
 
         hit = (self.x < (o + s["collision"][1]) and o < 0) or\
                (self.x > (o + s["collision"][0]) and o > 0)
+        
+        if self.rendered_area[0] < sprite.rendered_area[1] and\
+           self.rendered_area[1] > sprite.rendered_area[0]:
+            print sprite.rendered_area
+            print self.rendered_area
 
-        if hit:
-            print self.x
-            print o
         return hit
  
     def __collided_with_competitor(self, c):

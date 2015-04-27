@@ -11,10 +11,11 @@ class Competitor(wo.WorldObject):
         self.offset_y   = 0.0
         self.sprite     = s.SPRITES[name]
         self.speed      = speed
-        self.quantifier = 1.8
         self.engine_sfx = pygame.mixer.Sound(os.path.join("lib", "engine.ogg"))
 
         self.engine_sfx.set_volume(0)
+
+        wo.WorldObject.__init__(self, 1.8)
 
     def travel(self, track_length):
         # Update Z position.
