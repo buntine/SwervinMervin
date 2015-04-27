@@ -267,7 +267,6 @@ class Player:
 
             # Finished level.
             if self.lap > self.total_laps:
-                # TODO: Play sound for end of level.
                 self.status = self.LEVEL_OVER
             else:    
                 lap_sfx = pygame.mixer.Sound(os.path.join("lib", "570.wav"))
@@ -283,7 +282,7 @@ class Player:
                 self.points     += bonus_points
 
                 if self.__fastest_lap():
-                    if self.lap > 2 and self.lap <= self.laps:
+                    if self.lap > 2:
                         self.points += self.lap_margin * s.POINTS * self.lap
                         fast_lap_sfx = pygame.mixer.Sound(os.path.join("lib", "jim.ogg"))
                         fast_lap_sfx.play()
@@ -432,7 +431,7 @@ class Player:
             self.points -= self.points * s.POINT_LOSS_COMP
 
     def __fastest_lap(self):
-        return self.status == self.ALIVE and self.lap_time < self.fastest_lap
+        return self.status != self.GAME_OVER and self.lap_time < self.fastest_lap
 
     def __run_screech(self):
         if not self.screech_sfx:
