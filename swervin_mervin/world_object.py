@@ -30,10 +30,11 @@ class WorldObject:
         if self.offset_y > 0:
             y -= (self.offset_y * 100000 * coords["s"])
  
+        self.rendered_area = [x, x + s_width]
+
         if s_width > 0 and s_height > 0 and top_clip > 0 and\
            s_width < s.DIMENSIONS[0] * 2 and s_height < s.DIMENSIONS[1] * 2 and\
            (left_clip >= 0 or abs(left_clip) < s_width):
-            self.rendered_area = [x, x + s_width]
 
             if not self.non_renderable():
                 offset_x = 0 if left_clip >= 0 else abs(left_clip)

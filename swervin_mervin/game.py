@@ -204,19 +204,18 @@ class Game:
             self.player.in_tunnel = False
 
         # Draw sprites in from back to front (painters algorithm).
-        if segment.index != base_segment.index:
-            for segment in reversed(pre_renders):
-                segment.render_polygons(self.window, coverage)
+        for segment in reversed(pre_renders):
+            segment.render_polygons(self.window, coverage)
 
-            for i in reversed(range(1, s.DRAW_DISTANCE)):
-                segment = l.offset_segment(base_segment.index + i)
-                segment.render_world_objects(self.window)
+        for i in reversed(range(1, s.DRAW_DISTANCE)):
+            segment = l.offset_segment(base_segment.index + i)
+            segment.render_world_objects(self.window)
 
-            p.render(self.window, base_segment)
-            p.render_hud(self.window)
+        p.render(self.window, base_segment)
+        p.render_hud(self.window)
 
-            if p.blood_alpha > 0:
-                p.render_blood(self.window)
+        if p.blood_alpha > 0:
+            p.render_blood(self.window)
 
         for e in pygame.event.get():
             u.try_quit(e)
