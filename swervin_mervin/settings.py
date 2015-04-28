@@ -525,14 +525,14 @@ PLAYERS            = [{"name": "Swervin' Mervin",
 
 SPRITES           = {"column": {
                        "path": "column.png",
-                       "collision": [-0.9, 0.1],
+                       "collision": [0.05, 0.05],
                        "width": 90,
                        "height": 126},
                      "tunnel_entrance": {
                        "width": 80,
                        "height": 10,
                        "path": None,
-                       "collision": [-0.7, 0.1]},
+                       "collision": [0, 0]},
                      "tunnel_light": {
                        "path": "tunnel_light.png",
                        "width": 8,
@@ -547,32 +547,32 @@ SPRITES           = {"column": {
                        "height": 40},
                      "boat_house": {
                        "path": "boat_house.png",
-                       "collision": [-0.9, 0.1],
+                       "collision": [0.05, 0.01],
                        "width": 119,
                        "height": 86},
                      "bush1": {
                        "path": "bush1.png",
-                       "collision": [-0.9, 0.1],
+                       "collision": [0.4, 0.4],
                        "width": 86,
                        "height": 52},
                      "palm_tree": {
                        "path": "palm_tree.png",
-                       "collision": [-0.9, 0.1],
+                       "collision": [0.6, 0.1],
                        "width": 86,
                        "height": 216},
                      "tree1": {
                        "path": "tree1.png",
-                       "collision": [-0.9, 0.1],
+                       "collision": [0.64, 0.1],
                        "width": 144,
                        "height": 144},
                      "billboard3": {
                        "path": "billboard03.png",
-                       "collision": [-0.9, 0.1],
+                       "collision": [0.2, 0.2],
                        "width": 92,
                        "height": 88},
                      "billboard4": {
                        "path": "billboard04.png",
-                       "collision": [-0.9, 0.1],
+                       "collision": [0.05, 0.05],
                        "width": 107,
                        "height": 68},
                      "start": {
@@ -581,12 +581,12 @@ SPRITES           = {"column": {
                        "height": 120},
                      "boulder1": {
                        "path": "boulder1.png",
-                       "collision": [-0.9, 0.1],
+                       "collision": [0, 0],
                        "width": 67,
                        "height": 99},
                      "post": {
                        "path": "post.png",
-                       "collision": [-0.9, 0.1],
+                       "collision": [0.25, 0.25],
                        "width": 30,
                        "height": 56},
                      "light_post1": {
@@ -611,43 +611,46 @@ SPRITES           = {"column": {
                        "height": 90},
                      "competitor1": {
                        "path": "competitor1.png",
+                       "collision": [0.05, 0.05],
                        "width": 80,
                        "height": 50},
                      "competitor2": {
                        "path": "competitor2.png",
+                       "collision": [0.05, 0.05],
                        "width": 80,
                        "height": 50},
                      "competitor3": {
                        "path": "competitor3.png",
+                       "collision": [0.05, 0.05],
                        "width": 80,
                        "height": 50},
                      "bonus": {
                        "path": "bonus.png",
-                       "collision": [-0.4, 0.1],
+                       "collision": [0, 0],
                        "bonus": True,
                        "width": 25,
                        "height": 25},
                      "speed_boost": {
                        "path": "speed_boost.png",
-                       "collision": [-1.1, 0.7],
+                       "collision": [0, 0],
                        "speed_boost": True,
                        "width": 42,
                        "height": 42},
                      "hooker1": {
                        "path": "hooker1.png",
-                       "collision": [-0.4, 0.07],
+                       "collision": [0.42, 0.36],
                        "hooker": True,
                        "width": 25,
                        "height": 42},
                      "hooker2": {
                        "path": "hooker2.png",
-                       "collision": [-0.4, 0.07],
+                       "collision": [0.42, 0.36],
                        "hooker": True,
                        "width": 25,
                        "height": 42},
                      "hooker3": {
                        "path": "hooker3.png",
-                       "collision": [-0.4, 0.07],
+                       "collision": [0.42, 0.36],
                        "hooker": True,
                        "width": 25,
                        "height": 42}}

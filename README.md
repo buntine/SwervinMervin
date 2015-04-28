@@ -49,6 +49,7 @@ And even...
   * !Don't use sprite for speed up. Render triangles onto road
     * !Or just use sprite that can stand upright...
   * !Congratulations sequence when game is finished
+  * !Package better for distribution (ship with Pygame?)
   * Rethink player checkpoint logic to fix "time left" bug in pause and make countdown easy to disable/enable.
     * Move all time/checkpoint stuff into game (or maybe level?) and out of player.
   * Local highscore file outside of git
@@ -59,5 +60,4 @@ And even...
   * Get Mel to create art for: Bonuses, Tunnel roof, Other players, Other levels
   * Random boxes that penalise time-left when hit
   * Random boxes that give player temporary speed boost
-  * Package better for distribution (ship with Pygame?)
   * General refactor and Pythonify of sloppy code
