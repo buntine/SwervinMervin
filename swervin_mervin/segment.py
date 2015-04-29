@@ -14,6 +14,7 @@ class Segment:
         self.clip          = [0, 0, 0]
         self.in_tunnel     = False
         self.tunnel_end    = False
+        self.speed_boost   = False
         self.colour        = s.COLOURS[palette]
         self.top           = self.__initialize_line(end_y, index + 1)
         self.bottom        = self.__initialize_line(start_y, index)
@@ -55,6 +56,14 @@ class Segment:
                   ((top["x"] + top["w"]),       y_top),
                   ((top["x"] - top["w"]),       y_top)]
         pygame.draw.polygon(window, colour["road"], points)
+
+        # Speed boost.
+        if self.speed_boost and self.index % 3 == 0:
+            points = [(bottom["x"], y_bottom),
+                      (bottom["x"] + bottom["w"], y_bottom),
+                      (top["x"] + (top["w"] / 2), y_top),
+                      (bottom["x"], y_bottom)]
+            pygame.draw.polygon(window, s.COLOURS["green"], points)
 
         top_footpath_width    = top["w"] / (s.LANES / 2.8)
         bottom_footpath_width = bottom["w"] / (s.LANES / 2.8)

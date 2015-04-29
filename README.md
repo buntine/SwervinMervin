@@ -45,8 +45,7 @@ And even...
 ### TODO
   
   * !Design 2nd and 3rd level properly
-  * !Don't use sprite for speed up. Render triangles onto road
-    * !Or just use sprite that can stand upright...
+  * !Fix sprite for speed boost
   * !Congratulations sequence when game is finished
   * !Package better for distribution (ship with Pygame?)
   * Rethink player checkpoint logic to fix "time left" bug in pause and make countdown easy to disable/enable.

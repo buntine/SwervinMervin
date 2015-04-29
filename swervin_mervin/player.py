@@ -404,14 +404,14 @@ class Player:
         self.__set_special_text("Bonus time!", 2)
 
     def __hit_speed_boost(self):
-        if self.status == self.ALIVE:
-            self.speed_boost = 1.6
+        if self.speed_boost == 1:
+            # TODO: Different sound.
+            boost_sfx = pygame.mixer.Sound(os.path.join("lib", "oh_yeah.ogg"))
+            boost_sfx.play()
 
-        # TODO: Different sound.
-        boost_sfx = pygame.mixer.Sound(os.path.join("lib", "oh_yeah.ogg"))
-        boost_sfx.play()
+            self.__set_special_text("Speed boost!", 2)
 
-        self.__set_special_text("Speed boost!", 2)
+        self.speed_boost = 1.6
 
     def __hit_world_object(self):
         pygame.mixer.music.set_volume(0.2)
