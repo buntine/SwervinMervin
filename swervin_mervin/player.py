@@ -405,8 +405,7 @@ class Player:
 
     def __hit_speed_boost(self):
         if self.speed_boost == 1:
-            # TODO: Different sound.
-            boost_sfx = pygame.mixer.Sound(os.path.join("lib", "oh_yeah.ogg"))
+            boost_sfx = pygame.mixer.Sound(os.path.join("lib", "speed_boost.ogg"))
             boost_sfx.play()
 
             self.__set_special_text("Speed boost!", 2)
