@@ -58,7 +58,7 @@ class Segment:
         pygame.draw.polygon(window, colour["road"], points)
 
         # Speed boost.
-        if self.speed_boost and self.index % 3 == 0:
+        if self.speed_boost and self.index % 5 == 0:
             points = [(bottom["x"], y_bottom),
                       (bottom["x"] + bottom["w"], y_bottom),
                       (top["x"] + (top["w"] / 2), y_top),

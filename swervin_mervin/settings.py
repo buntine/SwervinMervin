@@ -43,6 +43,7 @@ CAMERA_HEIGHT         = 1300
 CAMERA_DEPTH          = 1 / math.tan((FIELD_OF_VIEW / 2) * math.pi / 180)
 BOTTOM_OFFSET         = 5
 SPEED_BOOST_DECREASE  = 0.004
+SPEED_BOOST_LENGTH    = 50
 HARD_TOP_SPEED        = [(SEGMENT_HEIGHT / (1.0/FPS)) * 1.5, (SEGMENT_HEIGHT / (1.0/FPS)) * 2.4]
 HARD_HANDLING         = [0.1, 0.45]
 HARD_ACCELERATION     = [2.0, 7.0]
@@ -631,10 +632,10 @@ SPRITES           = {"column": {
                        "width": 25,
                        "height": 25},
                      "speed_boost": {
-                       "path": "speed_boost.png",
+                       "path": None,
                        "collision": [0, 0],
                        "speed_boost": True,
-                       "width": 42,
+                       "width": 72,
                        "height": 42},
                      "hooker1": {
                        "path": "hooker1.png",

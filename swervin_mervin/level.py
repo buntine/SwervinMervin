@@ -31,8 +31,12 @@ class Level:
 
         with open(build_path("sprites"), "r") as csvfile:
             for row in csv.reader(csvfile):
-                segment = self.segments[int(row[0])]
-                self.add_sprite(segment, row[1], float(row[2]), float(row[3]))
+
+                if row[1] == "speed_boost":
+                    self.add_speed_boost(int(row[0]), float(row[2]))
+                else:
+                    segment = self.segments[int(row[0])]
+                    self.add_sprite(segment, row[1], float(row[2]), float(row[3]))
 
         with open(build_path("competitors"), "r") as csvfile:
             for row in csv.reader(csvfile):
@@ -70,6 +74,15 @@ class Level:
         for s in segs:
             offset = random.randint(-10, 10) / 10.0
             self.add_sprite(s, "bonus", offset)
+
+    def add_speed_boost(self, position, offset):
+        """Inserts the sprites for speed boosts at the correct locations."""
+
+        for n in range(0, s.SPEED_BOOST_LENGTH):
+            segment = self.offset_segment(position + n)
+
+            self.add_sprite(segment, "speed_boost", offset)
+            segment.speed_boost = True
 
     def add_competitor(self, position, offset, name, speed):
         """Adds a competitor sprite to the given segment."""
