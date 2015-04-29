@@ -416,9 +416,10 @@ class Player:
     def __hit_world_object(self):
         pygame.mixer.music.set_volume(0.2)
 
-        crash_sfx    = pygame.mixer.Sound(os.path.join("lib", "you_fool.ogg"))
-        self.crashed = True
-        self.speed   = 0
+        crash_sfx        = pygame.mixer.Sound(os.path.join("lib", "you_fool.ogg"))
+        self.crashed     = True
+        self.speed       = 0
+        self.speed_boost = 1
 
         crash_sfx.play()
 
