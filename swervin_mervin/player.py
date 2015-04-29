@@ -162,7 +162,7 @@ class Player:
         u.render_text("kmph", window, font, s.COLOURS["text"], (110, s.DIMENSIONS[1] - 24))
         u.render_text(str(speed), window, font, s.COLOURS["text"], (10, s.DIMENSIONS[1] - 24))
         u.render_text("Lap", window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 130, 10))
-        u.render_text("%s/%s" % (self.lap, s.LAPS_PER_LEVEL) , window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 58, 10))
+        u.render_text("%s/%s" % (self.lap, self.total_laps) , window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 58, 10))
         u.render_text("Time", window, font, s.COLOURS["text"], (10, 10))
         u.render_text(str(math.trunc(self.time_left)), window, font, s.COLOURS["text"], (90, 10))
 
