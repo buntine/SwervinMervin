@@ -14,10 +14,10 @@ Yes, it's real. Ships with MAME, SNES and NES (1000+ games). Want something simi
 
 ### Playing
 
-Ensure that you have the pygame libraries installed, and then:
+Ensure that you have the [pygame](http://www.pygame.org/download.shtml) libraries installed, and then:
 
 ```
-  $ python swervin_mervin/main.py 
+  $ ./play
 ```
 
 ### What people are saying
