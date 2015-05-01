@@ -58,6 +58,9 @@ class Game:
             if not self.player.alive():
                 break
 
+        if self.player.alive():
+            self.__credits_screen()
+
         ## Post-game high scores and wait for new player.
         if self.high_scores.is_high_score(self.player.points):
             self.high_scores.add_high_score(math.trunc(self.player.points))
@@ -245,33 +248,28 @@ class Game:
                 pygame.mixer.music.unpause()
                 self.paused = False
 
+    def __progress(self, screen, fps):
+        while not screen.finished:
+            screen.progress(self.window)
+
+            pygame.display.update()
+            self.clock.tick(fps)
+
     def __title_screen(self):
         title_screen = ts.TitleScreen()
         pygame.mixer.music.load(os.path.join("lib", "mn84-theme.ogg"))
         pygame.mixer.music.play(-1)
-
-        while not title_screen.finished:
-            title_screen.progress(self.window)
-
-            pygame.display.update()
-            self.clock.tick(s.TITLE_FPS)
+        self.__progress(title_screen, s.TITLE_FPS)
 
     def __countdown(self, level_number):
         countdown = cd.CountDown(level_number, self.level.name)
-
-        while not countdown.finished:
-            countdown.progress(self.window)
-
-            pygame.display.update()
-            self.clock.tick(s.COUNTDOWN_FPS)
+        self.__progress(countdown, s.COUNTDOWN_FPS)
 
     def __player_select(self):
         player_select = ps.PlayerSelect()
-
-        while not player_select.finished:
-            player_select.progress(self.window)
-
-            pygame.display.update()
-            self.clock.tick(s.PLAYER_SELECT_FPS)
-
+        self.__progress(player_select, s.PLAYER_SELECT_FPS)
         self.selected_player = player_select.selected
+
+    def __credits_screen(self):
+        credits = ps.Credits()
+        self.__progress(credits, s.CREDITS_FPS)
