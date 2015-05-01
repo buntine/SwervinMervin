@@ -7,10 +7,11 @@ import countdown as cd
 import player_select as ps
 import settings as s
 import high_scores as hs
+import credits as c
 import util as u
 
 class Game:
-    """Represents the game flow."""
+    """Provides the game flow."""
 
     def __init__(self, window, clock):
         self.window          = window
