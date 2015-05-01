@@ -8,4 +8,4 @@ class Credits():
         self.finished = False
  
     def progress(self, window):
-        pass
+        self.finished = True

@@ -272,5 +272,5 @@ class Game:
         self.selected_player = player_select.selected
 
     def __credits_screen(self):
-        credits = ps.Credits()
+        credits = c.Credits()
         self.__progress(credits, s.CREDITS_FPS)
