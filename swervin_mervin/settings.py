@@ -78,7 +78,7 @@ LEVELS             = [{"id": "melbourne",
                        "song": "lazerhawk-overdrive.ogg",
                        "laps": LAPS_PER_LEVEL,
                        "backgrounds": [
-                         {"id": "sky",
+                         {"id": "night_sky",
                           "speed": 2,
                           "convert": True},
                          {"id": "city",
@@ -90,7 +90,7 @@ LEVELS             = [{"id": "melbourne",
                        "song": "timecop1983-summerheat.ogg",
                        "laps": LAPS_PER_LEVEL,
                        "backgrounds": [
-                         {"id": "sky",
+                         {"id": "sunny_sky",
                           "speed": 2,
                           "convert": True},
                          {"id": "city",
@@ -102,7 +102,7 @@ LEVELS             = [{"id": "melbourne",
                        "song": "alvernagunn-maddog.ogg",
                        "laps": LAPS_PER_LEVEL,
                        "backgrounds": [
-                         {"id": "sky",
+                         {"id": "sunny_sky",
                           "speed": 2,
                           "convert": True},
                          {"id": "city",
@@ -543,8 +543,8 @@ SPRITES           = {"column": {
                        "path": "bush1.png",
                        "width": 20,
                        "height": 20},
-                     "tunnel": {
-                       "path": "tunnel.png",
+                     "over_column": {
+                       "path": "over_column.png",
                        "width": 480,
                        "height": 40},
                      "boat_house": {
