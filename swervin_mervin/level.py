@@ -16,6 +16,7 @@ class Level:
         self.song        = details["song"]
         self.laps        = details["laps"]
         self.backgrounds = map(lambda bg: b.Background(bg["id"], bg["speed"], bg["convert"]), details["backgrounds"])
+        self.palettes    = details["colours"]
         self.finished    = False
         self.segments    = []
         self.competitors = []
@@ -49,7 +50,7 @@ class Level:
     def add_segment(self, curve, start_y=0, end_y=0):
         """Creates a new segment and pushes it to the segments array"""
         palette = "dark" if (len(self.segments) / s.RUMBLE_LENGTH) % 2 == 0 else "light"
-        segment = seg.Segment(palette, len(self.segments), curve, start_y, end_y)
+        segment = seg.Segment(self.palettes[palette], len(self.segments), curve, start_y, end_y)
 
         self.segments.append(segment)
 

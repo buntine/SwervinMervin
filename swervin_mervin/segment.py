@@ -15,7 +15,7 @@ class Segment:
         self.in_tunnel     = False
         self.tunnel_end    = False
         self.speed_boost   = False
-        self.colour        = s.COLOURS[palette]
+        self.palette       = palette
         self.top           = self.__initialize_line(end_y, index + 1)
         self.bottom        = self.__initialize_line(start_y, index)
 
@@ -36,7 +36,7 @@ class Segment:
         bottom = self.bottom["screen"]
         height = top["y"] - bottom["y"]
         y      = s.DIMENSIONS[1] - top["y"]
-        col    = s.COLOURS["tunnel"] if self.in_tunnel else self.colour["grass"]
+        col    = s.COLOURS["tunnel"] if self.in_tunnel else self.palette["grass"]
 
         pygame.draw.rect(window, col,
           (0, y, s.DIMENSIONS[0], height),
@@ -48,14 +48,14 @@ class Segment:
         bottom   = self.bottom["screen"]
         y_top    = (s.DIMENSIONS[1] - top["y"])
         y_bottom = (s.DIMENSIONS[1] - bottom["y"])
-        colour   = self.colour
+        col      = self.palette
 
         # Road.
         points = [((bottom["x"] - bottom["w"]), y_bottom),
                   ((bottom["x"] + bottom["w"]), y_bottom),
                   ((top["x"] + top["w"]),       y_top),
                   ((top["x"] - top["w"]),       y_top)]
-        pygame.draw.polygon(window, colour["road"], points)
+        pygame.draw.polygon(window, col["road"], points)
 
         # Speed boost.
         if self.speed_boost and self.index % 5 == 0:
@@ -74,7 +74,7 @@ class Segment:
                       ((bottom["x"] - bottom["w"]),                         y_bottom),
                       ((top["x"] - top["w"]),                               y_top),
                       ((top["x"] - top["w"] - top_footpath_width),          y_top)]
-            pygame.draw.polygon(window, colour["footpath"], points)
+            pygame.draw.polygon(window, col["footpath"], points)
 
             # Left gutter.
             pygame.draw.line(window, s.COLOURS["gutter"],
@@ -85,7 +85,7 @@ class Segment:
                       ((bottom["x"] + bottom["w"]),                         y_bottom),
                       ((top["x"] + top["w"]),                               y_top),
                       ((top["x"] + top["w"] + top_footpath_width),          y_top)]
-            pygame.draw.polygon(window, colour["footpath"], points)
+            pygame.draw.polygon(window, col["footpath"], points)
 
             # Right gutter.
             pygame.draw.line(window, s.COLOURS["gutter"],
@@ -111,7 +111,7 @@ class Segment:
                           (bottom_right, y_bottom),
                           (top_right,    y_top),
                           (top_left,     y_top)]
-                pygame.draw.polygon(window, colour["line"], points)
+                pygame.draw.polygon(window, col["line"], points)
 
     def render_polygons(self, window, full_clip):
         """Renders the polygons/shapes (if any) for this segment to the given surface.
