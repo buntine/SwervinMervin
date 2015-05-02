@@ -74,7 +74,7 @@ COLOURS               = {"white": Color(255, 255, 255),
                                    "footpath": Color(68, 84, 101),
                                    "line":     Color(185, 185, 185)}}
 LEVELS             = [{"id": "melbourne",
-                       "name": "Melbourne, VIC",
+                       "name": "Melbourne",
                        "song": "lazerhawk-overdrive.ogg",
                        "laps": LAPS_PER_LEVEL,
                        "backgrounds": [
@@ -117,7 +117,7 @@ PLAYERS            = [{"name": "Swervin' Mervin",
                        "acceleration_factor": 4.6,
                        "deceleration": 2.3,
                        "centrifugal_force": 0.261,
-                       "city": "Melbourne",
+                       "city": "Melbourne, VIC",
                        "select_sfx": "swervin_mervin_select.ogg",
                        "sprites":
                          {"mugshot_small": {
