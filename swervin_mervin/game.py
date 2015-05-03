@@ -207,6 +207,10 @@ class Game:
         else:
             self.player.in_tunnel = False
 
+        # Let backgrounds know how much height they need to cover on the next paint.
+        for bg in l.backgrounds:
+            bg.visible_height = s.DIMENSIONS[1] - coverage[1].top["screen"]["y"]
+
         # Draw sprites in from back to front (painters algorithm).
         for segment in reversed(pre_renders):
             segment.render_polygons(self.window, coverage)

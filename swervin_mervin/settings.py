@@ -81,10 +81,12 @@ LEVELS             = [{"id": "melbourne",
                        "backgrounds": [
                          {"id": "night_sky",
                           "speed": 2,
-                          "convert": True},
+                          "convert": True,
+                          "scale": False},
                          {"id": "city",
                           "speed": 1,
-                          "convert": False}
+                          "convert": False,
+                          "scale": True}
                        ]},
                       {"id": "goldcoast",
                        "name": "Gold Coast",
