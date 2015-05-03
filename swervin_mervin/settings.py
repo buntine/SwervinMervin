@@ -106,7 +106,7 @@ LEVELS             = [{"id": "melbourne",
                          {"id": "sunny_sky",
                           "speed": 2,
                           "convert": True},
-                         {"id": "city",
+                         {"id": "beach",
                           "speed": 1,
                           "convert": False}
                        ]},
@@ -128,7 +128,7 @@ LEVELS             = [{"id": "melbourne",
                          {"id": "sunny_sky",
                           "speed": 2,
                           "convert": True},
-                         {"id": "city",
+                         {"id": "beach",
                           "speed": 1,
                           "convert": False}
                        ]}
