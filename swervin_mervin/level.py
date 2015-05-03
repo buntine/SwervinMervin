@@ -59,9 +59,9 @@ class Level:
         sprite = sp.Sprite(name, x, y)
         segment.sprites.append(sprite)
 
-    def add_polygon(self, segment, klass, when="pre"):
+    def add_polygon(self, segment, klass, when="pre", args=[]):
         """Adds a miscallaneous non-sprite renderable object to the given segment."""
-        obj = klass()
+        obj = klass(*args)
 
         if when == "pre":
             segment.pre_polygons.append(obj)
@@ -101,7 +101,7 @@ class Level:
 
         self.segments[end-1].tunnel_end = True
         self.add_polygon(self.segments[start], ti.TunnelInside, "pre")
-        self.add_polygon(self.segments[start], te.TunnelEntrance, "post")
+        self.add_polygon(self.segments[start], te.TunnelEntrance, "post", [self.palettes["wall"]])
 
         self.add_sprite(self.segments[start], "tunnel_entrance", -1.0)
         self.add_sprite(self.segments[start], "tunnel_entrance", 1.85)

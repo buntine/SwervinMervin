@@ -4,8 +4,9 @@ import settings as s
 class TunnelEntrance:
     """Represents a Tunnel Entrance polygon as we approach it."""
 
-    def __init__(self):
+    def __init__(self, colour):
         self.quantifier = 3
+        self.colour     = colour
 
     def render(self, window, segment):
         coords     = segment.bottom["screen"]
@@ -28,5 +29,5 @@ class TunnelEntrance:
                         (0, 0),
                         (s_width, 0)] 
 
-            pygame.draw.polygon(surf, s.COLOURS["wall"], points)
+            pygame.draw.polygon(surf, self.colour, points)
             window.blit(surf, (x, y), (0, 0, s_width, top_clip))

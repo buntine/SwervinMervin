@@ -44,6 +44,7 @@ And even...
 
 ### TODO
   
+  * On-road obstacles
   * !Design 2nd and 3rd level properly
   * !Congratulations sequence when game is finished
   * !Package better for distribution (ship with Pygame?)
