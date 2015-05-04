@@ -266,7 +266,7 @@ class Player:
             self.lap_margin = self.fastest_lap - self.lap_time
 
             # Finished level.
-            if self.lap > self.total_laps:
+            if self.status == self.ALIVE and self.lap > self.total_laps:
                 self.status = self.LEVEL_OVER
             else:    
                 lap_sfx = pygame.mixer.Sound(os.path.join("lib", "570.wav"))

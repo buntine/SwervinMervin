@@ -105,10 +105,12 @@ LEVELS             = [{"id": "melbourne",
                        "backgrounds": [
                          {"id": "sunny_sky",
                           "speed": 2,
-                          "convert": True},
+                          "convert": True,
+                          "scale": False},
                          {"id": "beach",
                           "speed": 1,
-                          "convert": False}
+                          "convert": False,
+                          "scale": True},
                        ]},
                       {"id": "nullarbor",
                        "name": "Nullarbor Desert",
@@ -127,10 +129,12 @@ LEVELS             = [{"id": "melbourne",
                        "backgrounds": [
                          {"id": "sunny_sky",
                           "speed": 2,
-                          "convert": True},
+                          "convert": True,
+                          "scale": False},
                          {"id": "beach",
                           "speed": 1,
-                          "convert": False}
+                          "convert": False,
+                          "scale": True},
                        ]}
                      ]
 PLAYERS            = [{"name": "Swervin' Mervin",
