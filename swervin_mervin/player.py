@@ -268,13 +268,14 @@ class Player:
             self.lap_bonus  = 0
             self.new_lap    = True
             self.lap_time   = total_secs
-            self.lap       += 1
             self.lap_margin = self.fastest_lap - self.lap_time
 
             # Finished level.
-            if self.status == self.ALIVE and self.lap > self.total_laps:
+            if self.status == self.ALIVE and self.lap == self.total_laps:
                 self.status = self.LEVEL_OVER
             else:    
+                self.lap += 1
+
                 lap_sfx = pygame.mixer.Sound(os.path.join("lib", "570.wav"))
                 lap_sfx.play()
 

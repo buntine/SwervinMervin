@@ -682,7 +682,13 @@ SPRITES           = {"column": {
                        "collision": [0.42, 0.36],
                        "hooker": True,
                        "width": 25,
-                       "height": 42}}
+                       "height": 42},
+                     "barrier": {
+                       "path": "barrier.png",
+                       "collision": [0.05, 0.05],
+                       "width": 60,
+                       "height": 35},
+                     }
 
 if os.path.isfile("swervin_mervin/settings_local.py"):
     execfile("swervin_mervin/settings_local.py")
