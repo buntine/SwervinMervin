@@ -26,6 +26,8 @@ def render_text(text, window, font, color, position):
 
     window.blit(text, position)
 
+    return text
+
 def middle(surface, x_offset=0, y_offset=0, x=-1, y=-1):
     """Returns a tuple of X,Y coordinates that represents the center position for the given surface. 
        x_offset and y_offset will offset the appropriate axis by N pixels.

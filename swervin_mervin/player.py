@@ -152,6 +152,7 @@ class Player:
         speed       = round((self.speed / s.SEGMENT_HEIGHT) * 1.5, 1)
         font        = pygame.font.Font(s.FONTS["retro_computer"], 16)
         st          = self.special_text
+        time_colour = s.COLOURS["text"] if self.time_left > 5 else s.COLOURS["red"]
 
         pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
         pygame.draw.circle(window, s.COLOURS["black"], center, 4)
@@ -163,8 +164,9 @@ class Player:
         u.render_text(str(speed), window, font, s.COLOURS["text"], (10, s.DIMENSIONS[1] - 24))
         u.render_text("Lap", window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 130, 10))
         u.render_text("%s/%s" % (self.lap, self.total_laps) , window, font, s.COLOURS["text"], (s.DIMENSIONS[0] - 58, 10))
-        u.render_text("Time", window, font, s.COLOURS["text"], (10, 10))
-        u.render_text(str(math.trunc(self.time_left)), window, font, s.COLOURS["text"], (90, 10))
+
+        u.render_text("Time", window, font, time_colour, (10, 10))
+        u.render_text(str(math.trunc(self.time_left)), window, font, time_colour, (90, 10))
 
         # Render special text.
         if st:
@@ -253,6 +255,8 @@ class Player:
             self.time_left = round(self.checkpoint - total_secs, 1) + self.lap_bonus
 
             if self.time_left <= 0:
+                go_sfx = pygame.mixer.Sound(os.path.join("lib", "loser.ogg"))
+                go_sfx.play()
                 self.status = self.GAME_OVER
 
         # New lap.
