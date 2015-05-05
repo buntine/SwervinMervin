@@ -258,6 +258,8 @@ class Player:
                 go_sfx = pygame.mixer.Sound(os.path.join("lib", "loser.ogg"))
                 go_sfx.play()
                 self.status = self.GAME_OVER
+            elif self.time_left == 5:
+                self.__set_special_text("Hurry up!", 2)
 
         # New lap.
         if pos >= track_length:
@@ -360,7 +362,10 @@ class Player:
 
     def __set_special_text(self, text, time):
         """Defines the special text to show and for how long we should show it."""
-        self.special_text = [datetime.datetime.now(), time, text]
+        st = self.special_text
+
+        if not st or st[2] != text:
+            self.special_text = [datetime.datetime.now(), time, text]
 
     def __collided_with_sprite(self, sprite):
         r_area = list(sprite.rendered_area)
