@@ -50,7 +50,7 @@ class PlayerSelect():
 
         # Player stats.
         desired_acceleration = int(self.normalise(player["acceleration_factor"], *s.HARD_ACCELERATION) * 155)
-        desired_handling = int(self.normalise(player["centrifugal_force"], *s.HARD_HANDLING) * 155) # TODO: centrifugal_force needs to be inverted.
+        desired_handling = int((1.0 - self.normalise(player["centrifugal_force"], *s.HARD_HANDLING)) * 155)
         desired_top_speed = int(self.normalise(player["top_speed"], *s.HARD_TOP_SPEED) * 155)
 
         window.blit(self.fonts["stats"].render("Acceleration", 1, s.COLOURS["text"]), (start_point - bw, 290))
