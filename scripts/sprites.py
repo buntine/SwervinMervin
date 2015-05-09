@@ -1,17 +1,19 @@
 # Prints
-#  - n sprites of a given type
+#  - n sprites
+#  - random type over names
 #  - random step intervals over low and high
-#  - randomized X position over low and high
+#  - random X position over low and high
 #
-# sprites("bush1", 100, 1000, 5, 12, 2.5, 4.8, 0.0)
+# sprites(100, 1000, ["bush1", "boulder1"], [5, 12], [2.5, 4.8], 0.0)
 
 import random
 
-def sprites(name, amount, start, lstep, hstep, lpos, hpos, y):
+def sprites(amount, start, names, steps, pos, y):
     z = start
 
     for n in range(amount - 1):
-        pos = random.uniform(lpos, hpos)
-        z += random.randint(lstep, hstep)
+        stype = random.choice(names)
+        spos = random.uniform(*pos)
+        z += random.randint(*steps)
 
-        print "%d,%s,%.2f,%.1f" % (z, name, pos, y)
+        print "%d,%s,%.2f,%.1f" % (z, stype, spos, y)
