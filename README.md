@@ -48,6 +48,7 @@ And even...
   * !Congratulations sequence when game is finished
   * !Package better for distribution (ship with Pygame?)
   * Rethink player checkpoint logic to fix "time left" bug in pause and make countdown easy to disable/enable.
+    * Use current actual FPS to determine time left.
     * Move all time/checkpoint stuff into game (or maybe level?) and out of player.
   * Local highscore file outside of git
   * Engine sounds based on speed
