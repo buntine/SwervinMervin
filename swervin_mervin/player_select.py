@@ -92,7 +92,7 @@ class PlayerSelect():
 
     def finalise_selection(self, player):
         pygame.mixer.music.load(os.path.join("lib", player["select_sfx"]))
-        pygame.mixer.music.set_volume(0.5)
+        pygame.mixer.music.set_volume(1.0)
         pygame.mixer.music.play()
 
         while pygame.mixer.music.get_busy():

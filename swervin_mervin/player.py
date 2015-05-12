@@ -315,7 +315,7 @@ class Player:
             if (self.x > 1.0 or self.x < -1.0) and self.speed > (self.settings["top_speed"] / self.settings["offroad_top_speed_factor"]):
                 a = a * 3
             else:
-                if keys[K_UP] or s.AUTO_DRIVE or self.status != self.ALIVE:
+                if keys[K_UP] or keys[K_x] or s.AUTO_DRIVE or self.status != self.ALIVE:
                     a = s.FRAME_RATE
                 elif keys[K_DOWN]:
                     a = -(s.FRAME_RATE * self.settings["deceleration"])
