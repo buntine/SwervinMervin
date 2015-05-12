@@ -36,7 +36,7 @@ class Competitor(wo.WorldObject):
 
         if v > 0:
             if self.engine_sfx.get_volume() == 0:
-                self.engine_sfx.play(-1)
+                self.engine_sfx.play()
 
             self.engine_sfx.set_volume(v)
         else:
