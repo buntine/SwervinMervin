@@ -4,7 +4,9 @@ Swervin Mervin: A recreation of 80's-style pseudo-3D arcade racing games, writte
 
 Accelleration and steering is performed via the arrow keys. [ENTER] to start, [ESC] to kill the game in fullscreen mode.
 
-Here is a [small video of me playing](https://www.youtube.com/watch?v=T08Oe1l7nhk) (poorly).
+Here is a [small video of me playing](https://www.youtube.com/watch?v=isLmdHhFFgQ&feature=youtu.be) (poorly).
+
+And more info on the pixel art over at [MelanieHuang.com](http://melaniehuang.com/projects/swervinmervin.html).
 
 ### The Arcade Edition
 
@@ -30,12 +32,12 @@ And...
 
 And even...
 
-> "I've taken dumps that were better than this steaming pile of assmilk..."
+> "I've taken dumps that were more fun than this steaming assheap..."
 
 ### Credits
 
   * [Jake at codeincomplete.com](http://codeincomplete.com/) and [Lou at extentofthejam.com](http://extentofthejam.com/) for their fantastic articles on pseudo-3d racing games.
-  * My beautiful girlfriend, [Mel](http://melaniehuang.com), for all of the original pixel art. [See here](http://melaniehuang.com/projects/swervinmervin.html) for more information.
+  * My beautiful girlfriend, [Mel](http://melaniehuang.com), for all of the original pixel art. 
   * [LazerHawk](https://lazerhawk.bandcamp.com/), [Miami Nights 1984](https://soundcloud.com/miami-nights-1984), [Timecop 1983](https://timecop1983.bandcamp.com/) and [Alverna Gunn](http://www.metal-archives.com/bands/Alverna_Gunn/10011) for the excellent music.
   * Out Run (1986) for "letting me" use some sprites.
   * Jim Gillette, Macho Man Randy Savage and Cary-Hiroyuki Tagawa and Myself for the sound bites.
