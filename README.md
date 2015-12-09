@@ -16,7 +16,7 @@ Yes, it's real. Ships with MAME, SNES and NES (1000+ games). Want something simi
 
 ### Playing
 
-Ensure that you have the [pygame](http://www.pygame.org/download.shtml) libraries installed, and then:
+Ensure that you have [Python](https://www.python.org/) and [Pygame](http://www.pygame.org/download.shtml) installed, and then:
 
 ```
   $ ./play
