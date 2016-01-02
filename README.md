@@ -6,7 +6,9 @@ Accelleration and steering is performed via the arrow keys. [ENTER] to start, [E
 
 Here is a [small video of me playing](https://www.youtube.com/watch?v=isLmdHhFFgQ&feature=youtu.be) (poorly).
 
-And more info on the pixel art over at [MelanieHuang.com](http://melaniehuang.com/projects/swervinmervin.html).
+And here is my bosses son, Jesse, [playing the arcade version](https://www.youtube.com/watch?v=uZsDYY9bZ7A). Sorry for the portrait mode.
+
+And more info on the pixel art over at my girlfriends website: [MelanieHuang.com](http://melaniehuang.com/projects/swervinmervin.html).
 
 ### The Arcade Edition
 
