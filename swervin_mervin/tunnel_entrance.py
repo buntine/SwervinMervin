@@ -16,6 +16,7 @@ class TunnelEntrance:
         y          = s.DIMENSIONS[1] - coords["y"] - s_height
         top_clip   = s.DIMENSIONS[1] - segment.clip[1] - y
 
+        #  Player can see the tunnel approaching.
         if top_clip > 0:
             e_height = int(s_height * 0.7)
             surf     = pygame.Surface([s_width, s_height], pygame.SRCALPHA, 32)
