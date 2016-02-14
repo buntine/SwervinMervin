@@ -57,6 +57,7 @@ class Player:
 
         # Apply centrifugal force if we are going around a corner.
         if segment.curve != 0 and self.status == self.ALIVE:
+            # Congratulate player if they've broken personal record.
             self.x -= (self.direction_speed() * self.speed_percent() * segment.curve * self.settings["centrifugal_force"])
 
     def climb(self, segment):
@@ -154,6 +155,7 @@ class Player:
         st          = self.special_text
         time_colour = s.COLOURS["text"] if self.time_left > 5 else s.COLOURS["red"]
 
+        # Speedometer.
         pygame.draw.circle(window, s.COLOURS["black"], center, 50, 2)
         pygame.draw.circle(window, s.COLOURS["black"], center, 4)
         pygame.draw.line(window, s.COLOURS["black"], start, finish, 3)
@@ -289,6 +291,7 @@ class Player:
                 self.points     += bonus_points
 
                 if self.__fastest_lap():
+                    # Congratulate player if they've broken personal record.
                     if self.lap > 2:
                         self.points += self.lap_margin * s.POINTS * self.lap
                         fast_lap_sfx = pygame.mixer.Sound(os.path.join("lib", "jim.ogg"))
