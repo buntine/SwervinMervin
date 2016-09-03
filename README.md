@@ -24,6 +24,8 @@ Ensure that you have [Python 2.x](https://www.python.org/) and [Pygame](http://w
   $ ./play
 ```
 
+Many in-game settings can be changed in `./swervin_mervin/settings.py` but I'll also load in settings that are defined in `./swervin_mervin/settings_local.py` (which is gitignored).
+
 ### What people are saying
 
 > "It's no Sonic the Hedgehog"
