@@ -1,14 +1,16 @@
 import pygame, math, datetime, os
 from pygame.locals import *
+from enum import Enum
 import settings as s
 import util as u
 
+class PlayerStatus(Enum):
+    alive = 0
+    game_over  = 1
+    level_over = 2
+
 class Player:
     """Represents the player in the game world."""
-
-    ALIVE      = 0
-    GAME_OVER  = 1
-    LEVEL_OVER = 2
 
     def __init__(self, high_score, selected_player):
         self.settings       = s.PLAYERS[selected_player]
@@ -20,7 +22,7 @@ class Player:
 
     def reset(self, total_laps=s.LAPS_PER_LEVEL):
         """Resets player variables for the start of a new level."""
-        self.status          = self.ALIVE
+        self.status          = PlayerStatus.alive
         self.level_over_lag  = s.LEVEL_OVER_LAG
         self.x               = 0
         self.y               = 0
@@ -56,7 +58,7 @@ class Player:
         self.x = u.limit(self.x + self.direction, -bounds, bounds)
 
         # Apply centrifugal force if we are going around a corner.
-        if segment.curve != 0 and self.status == self.ALIVE:
+        if segment.curve != 0 and self.status == PlayerStatus.alive:
             # Congratulate player if they've broken personal record.
             self.x -= (self.direction_speed() * self.speed_percent() * segment.curve * self.settings["centrifugal_force"])
 
@@ -140,7 +142,7 @@ class Player:
         window.blit(p, (width - (s_width / 2), s.DIMENSIONS[1] - s_height - s.BOTTOM_OFFSET))
 
         # Finish up the round.
-        if self.status != self.ALIVE:
+        if self.status != PlayerStatus.alive:
             self.level_over_lag -= 1
 
     def render_hud(self, window):
@@ -189,7 +191,7 @@ class Player:
         window.blit(p_name_text, (p_val_x - 112, s.DIMENSIONS[1] - 24))
 
         # Hit a point milestone.
-        if self.points > self.next_milestone and self.status == self.ALIVE:
+        if self.points > self.next_milestone and self.status == PlayerStatus.alive:
             milestone_sfx = pygame.mixer.Sound(os.path.join("lib", "excellent.ogg"))
             milestone_sfx.play()
 
@@ -206,9 +208,9 @@ class Player:
 
             self.__set_special_text("New High Score!", 2)
 
-        if self.status == self.GAME_OVER:
+        if self.status == PlayerStatus.game_over:
             self.__game_over_overlay(window)
-        elif self.status == self.LEVEL_OVER:
+        elif self.status == PlayerStatus.level_over:
             self.__level_over_overlay(window)
 
         # Display lap difference (unless we've only done one lap).
@@ -252,14 +254,14 @@ class Player:
         if self.speed_boost > 1:
             self.speed_boost -= s.SPEED_BOOST_DECREASE
 
-        if self.status == self.ALIVE:
+        if self.status == PlayerStatus.alive:
             self.points   += (self.speed / s.SEGMENT_HEIGHT) / s.POINTS
             self.time_left = round(self.checkpoint - total_secs, 1) + self.lap_bonus
 
             if self.time_left <= 0:
                 go_sfx = pygame.mixer.Sound(os.path.join("lib", "loser.ogg"))
                 go_sfx.play()
-                self.status = self.GAME_OVER
+                self.status = PlayerStatus.game_over
             elif self.time_left == 5:
                 self.__set_special_text("Hurry up!", 2)
 
@@ -273,15 +275,15 @@ class Player:
             self.lap_margin = self.fastest_lap - self.lap_time
 
             # Finished level.
-            if self.status == self.ALIVE and self.lap == self.total_laps:
-                self.status = self.LEVEL_OVER
+            if self.status == PlayerStatus.alive and self.lap == self.total_laps:
+                self.status = PlayerStatus.level_over
             else:    
                 self.lap += 1
 
                 lap_sfx = pygame.mixer.Sound(os.path.join("lib", "570.wav"))
                 lap_sfx.play()
 
-            if self.status != self.GAME_OVER:
+            if self.status != PlayerStatus.game_over:
                 # Reduce checkpoint time every lap to increase difficulty.
                 checkpoint_diff = (self.checkpoint - self.lap_time) / s.LAP_DIFFICULTY_FACTOR
                 bonus_points    = self.time_left * s.POINTS * self.lap
@@ -318,7 +320,7 @@ class Player:
             if (self.x > 1.0 or self.x < -1.0) and self.speed > (self.settings["top_speed"] / self.settings["offroad_top_speed_factor"]):
                 a = a * 3
             else:
-                if keys[K_UP] or keys[K_x] or s.AUTO_DRIVE or self.status != self.ALIVE:
+                if keys[K_UP] or keys[K_x] or s.AUTO_DRIVE or self.status != PlayerStatus.alive:
                     a = s.FRAME_RATE
                 elif keys[K_DOWN]:
                     a = -(s.FRAME_RATE * self.settings["deceleration"])
@@ -329,7 +331,7 @@ class Player:
         """Updates the direction the player is going, accepts a key-map."""
         d = 0
 
-        if self.status == self.ALIVE:
+        if self.status == PlayerStatus.alive:
             if keys[K_LEFT]:
                 d = -self.direction_speed()
             elif keys[K_RIGHT]:
@@ -362,7 +364,7 @@ class Player:
         return self.level_over_lag == 0
 
     def alive(self):
-        return self.status != self.GAME_OVER
+        return self.status != PlayerStatus.game_over
 
     def __set_special_text(self, text, time):
         """Defines the special text to show and for how long we should show it."""
@@ -400,7 +402,7 @@ class Player:
         self.blood_alpha = 255
 
         # Yeah, I'm a sicko....
-        if self.status == self.ALIVE:
+        if self.status == PlayerStatus.alive:
             self.points += s.POINT_GAIN_PROSTITUTE
             self.__set_special_text("+%d points!" % s.POINT_GAIN_PROSTITUTE, 2)
 
@@ -408,7 +410,7 @@ class Player:
         splat_sfx.play()
 
     def __hit_bonus(self):
-        if self.status == self.ALIVE:
+        if self.status == PlayerStatus.alive:
             self.lap_bonus += s.BONUS_AMOUNT
 
         bonus_sfx = pygame.mixer.Sound(os.path.join("lib", "oh_yeah.ogg"))
@@ -435,7 +437,7 @@ class Player:
 
         crash_sfx.play()
 
-        if self.status == self.ALIVE:
+        if self.status == PlayerStatus.alive:
             deduction    = self.points * s.POINT_LOSS_SPRITE
             self.points -= deduction
             self.__set_special_text("-%d points!" % deduction, 2)
@@ -446,11 +448,11 @@ class Player:
 
         self.speed = self.speed / s.CRASH_DIVISOR
 
-        if self.status == self.ALIVE:
+        if self.status == PlayerStatus.alive:
             self.points -= self.points * s.POINT_LOSS_COMP
 
     def __fastest_lap(self):
-        return self.status != self.GAME_OVER and self.lap_time < self.fastest_lap
+        return self.status != PlayerStatus.game_over and self.lap_time < self.fastest_lap
 
     def __run_screech(self):
         if not self.screech_sfx:
