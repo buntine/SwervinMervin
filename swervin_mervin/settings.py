@@ -580,17 +580,22 @@ SPRITES           = {"column": {
                        "width": 119,
                        "height": 86},
                      "bush1": {
-                       "path": "bush1.png",
+                       "path": "bush3.png",
                        "collision": [0.4, 0.4],
-                       "width": 86,
-                       "height": 52},
+                       "width": 64,
+                       "height": 32},
+                     "bush2": {
+                       "path": "bush2.png",
+                       "collision": [0.4, 0.4],
+                       "width": 64,
+                       "height": 32},
                      "palm_tree": {
-                       "path": "palm_tree.png",
+                       "path": "palm-tree2.png",
                        "collision": [0.6, 0.1],
-                       "width": 86,
-                       "height": 216},
+                       "width": 64,
+                       "height": 128},
                      "tree1": {
-                       "path": "tree1.png",
+                       "path": "tree2.png",
                        "collision": [0.64, 0.1],
                        "width": 144,
                        "height": 144},
@@ -609,10 +614,10 @@ SPRITES           = {"column": {
                        "width": 240,
                        "height": 120},
                      "boulder1": {
-                       "path": "boulder1.png",
+                       "path": "boulder2.png",
                        "collision": [0, 0],
-                       "width": 67,
-                       "height": 99},
+                       "width": 64,
+                       "height": 64},
                      "post": {
                        "path": "post.png",
                        "collision": [0.25, 0.25],
