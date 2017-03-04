@@ -133,11 +133,11 @@ class Game:
                     old_seg.competitors.remove(c)
                 new_seg.competitors.append(c)
 
-        coverage      = [base_segment, base_segment, base_segment]
-        tunnel_exit   = base_segment
-        pre_renders   = []
-        curve         = 0
-        curve_delta   = -(base_segment.curve * p.segment_percent())
+        coverage    = [base_segment, base_segment, base_segment]
+        tunnel_exit = base_segment
+        pre_renders = []
+        curve       = 0
+        curve_delta = -(base_segment.curve * p.segment_percent())
 
         # Position backgrounds according to current curve.
         for bg in l.backgrounds:
