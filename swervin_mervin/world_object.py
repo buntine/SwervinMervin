@@ -13,7 +13,7 @@ class WorldObject:
            screen (usually means it's only there for collision detection)."""
         return self.sprite["path"] == None
 
-    def screen_dim(dimension, screen_pos):
+    def screen_dim(self, dimension, screen_pos):
         return int(self.sprite[dimension] * screen_pos * s.ROAD_WIDTH * self.quantifier)
 
     def render(self, window, segment):
