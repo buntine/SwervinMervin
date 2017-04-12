@@ -13,11 +13,14 @@ class WorldObject:
            screen (usually means it's only there for collision detection)."""
         return self.sprite["path"] == None
 
+    def screen_dim(dimension, screen_pos):
+        return int(self.sprite[dimension] * screen_pos * s.ROAD_WIDTH * self.quantifier)
+
     def render(self, window, segment):
         """Renders an object to the window with appropriate scaling, clipping, etc."""
         coords     = segment.bottom["screen"]
-        s_width    = int(self.sprite["width"] * coords["s"] * s.ROAD_WIDTH * self.quantifier)
-        s_height   = int(self.sprite["height"] * coords["s"] * s.ROAD_WIDTH * self.quantifier)
+        s_width    = self.screen_dim("width", coords["s"])
+        s_height   = self.screen_dim("height", coords["s"])
         x          = (coords["x"] - s_width) + (coords["w"] * self.offset)
         y          = s.DIMENSIONS[1] - coords["y"] - s_height
         top_clip   = s.DIMENSIONS[1] - segment.clip[1] - y

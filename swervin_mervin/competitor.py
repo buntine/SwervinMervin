@@ -37,17 +37,16 @@ class Competitor(wo.WorldObject):
         if v > 0:
             if self.engine_sfx.get_volume() == 0:
                 self.engine_sfx.play()
-
-            self.engine_sfx.set_volume(v)
         else:
-            self.engine_sfx.set_volume(0)
             self.engine_sfx.stop()
+
+        self.engine_sfx.set_volume(v)
 
     def path(self):
         return pygame.image.load(os.path.join("lib", self.sprite["path"]))
 
     def __engine_volume(self, player_position):
-        """Returns a value between 0.0 and 1.0 to indicate how  loud this competitors engine
+        """Returns a value between 0.0 and 1.0 to indicate how loud this competitors engine
            will sound from the persperctive of the player."""
         distance = abs(self.position - player_position)
 

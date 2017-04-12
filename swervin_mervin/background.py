@@ -10,7 +10,7 @@ class Background:
         self.y              = 0
         self.width          = self.image.get_width()
         self.height         = self.image.get_height()
-        self.curviture      = (self.width - s.DIMENSIONS[0]) / 2
+        self.curvature      = (self.width - s.DIMENSIONS[0]) / 2
         self.scale_height   = scale_height
         self.visible_height = 0
 
@@ -19,19 +19,19 @@ class Background:
 
     def step(self, curve, speed_percent):
         """Moves the background one step to simulate turning."""
-        c = self.curviture
+        c = self.curvature
 
         # Background is now completely off screen, so reset it.
         if c <= -self.width:
-            self.curviture = c + self.width
+            self.curvature = c + self.width
         elif c >= self.width:
-            self.curviture = (c - self.width) + (self.width - s.DIMENSIONS[0])
+            self.curvature = (c - self.width) + (self.width - s.DIMENSIONS[0])
 
-        self.curviture += (curve / self.parallax_speed) * speed_percent
+        self.curvature += (curve / self.parallax_speed) * speed_percent
     
     def render(self, window):
         """Draws the image to the window."""
-        c = self.curviture
+        c = self.curvature
         w = s.DIMENSIONS[0]
         img = self.image
 
@@ -43,13 +43,13 @@ class Background:
           (0, self.y),
           (c, 0, w, s.DIMENSIONS[1]))
 
-        # FIll empty space on the left of the screen.
+        # Fill empty space on the left of the screen.
         if c < 0:
             window.blit(img,
               (0, self.y),
               (self.width + c, 0, -c, s.DIMENSIONS[1]))
 
-        # FIll empty space on the right of the screen.
+        # Fill empty space on the right of the screen.
         elif c > (self.width - w):
             window.blit(img,
               (self.width - c, self.y),
