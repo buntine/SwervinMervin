@@ -1,9 +1,10 @@
 # Swervin Mervin: A recreation of 80's pseudo-3D arcade racing games
-## Written in Python over the course of way too much time.
 
 ![Swervin' Mervin](/lib/box.png?raw=true "Swervin' Mervin")
 ![Gameplay A](/lib/gameplay_a.gif)
 ![Gameplay B](/lib/gameplay_b.gif)
+
+Written in Python over the course of way too much time.
 
 Here is a [small video of me playing](https://www.youtube.com/watch?v=isLmdHhFFgQ&feature=youtu.be) (poorly).
 
