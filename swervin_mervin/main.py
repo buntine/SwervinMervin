@@ -1,4 +1,4 @@
-# Swervin' Mervin'
+# Swervin' Mervin
 # (c) Andrew Buntine
 # https://github.com/buntine/SwervinMervin
 
@@ -8,7 +8,7 @@ import settings as s
 
 pygame.init()
 
-pygame.display.set_caption("Swervin' Mervin'")
+pygame.display.set_caption("Swervin' Mervin")
 
 if s.FULLSCREEN:
     w_flag = pygame.FULLSCREEN
