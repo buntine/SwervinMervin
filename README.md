@@ -1,8 +1,8 @@
 ![Swervin' Mervin](/lib/box.png?raw=true "Swervin' Mervin")
 
-Swervin Mervin: A recreation of 80's-style pseudo-3D arcade racing games, written in Python over the course of way too much time.
+## Swervin Mervin: A recreation of 80's-style pseudo-3D arcade racing games, written in Python over the course of way too much time.
 
-Accelleration and steering is performed via the arrow keys. [ENTER] to start, [ESC] to kill the game in fullscreen mode.
+i![Gameplay](/lib/gameplay.gif)
 
 Here is a [small video of me playing](https://www.youtube.com/watch?v=isLmdHhFFgQ&feature=youtu.be) (poorly).
 
@@ -23,6 +23,8 @@ Ensure that you have [Python 2.x](https://www.python.org/) and [Pygame](http://w
 ```
   $ ./play
 ```
+
+Accelleration and steering is performed via the arrow keys. [ENTER] to start, [ESC] to kill the game in fullscreen mode.
 
 Many in-game settings can be changed in `./swervin_mervin/settings.py` but I'll also load in settings that are defined in `./swervin_mervin/settings_local.py` (which is gitignored).
 
